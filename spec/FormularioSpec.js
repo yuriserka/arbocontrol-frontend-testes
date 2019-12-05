@@ -1,27 +1,29 @@
-const FormularioPage = require('../pages/Formulario')
-const LoginPage = require('../pages/Login')
-const HomePage = require('../pages/Inicial')
-const config = require('../config/config.json')
+const LoginPage = require('../pages/Login');
+const HomePage = require('../pages/Inicial');
+const FormularioPage = require('../pages/Formulario');
+const config = require('../config/config.json');
+const protractor = require('protractor');
+const browser = protractor.browser;
 
 describe('Formulario', () => {
-  const login_page = new LoginPage();
-  const home_page = new HomePage();
-  const form_page = new FormularioPage();
-  const palavra_para_pesquisar = "Lab";
+  const loginPage = new LoginPage();
+  const homePage = new HomePage(browser);
+  const formPage = new FormularioPage(browser);
+  const palavraParaPesquisar = 'Lab';
 
   beforeEach(async () => {
-    const login_form = config.login_form
-    await login_page.get()
-    await browser.waitForAngular('esperando terminar de renderizar a pagina')
-    await login_page.login(login_form.sucesso.cpf, login_form.sucesso.senha)
+    const loginForm = config.login_form;
+    await loginPage.get();
+    await browser.waitForAngular('esperando terminar de renderizar a pagina');
+    await loginPage.login(loginForm.sucesso.cpf, loginForm.sucesso.senha);
   });
-  
+
   it('deve ser possível pesquisar por formulários', async () => {
-    await home_page.formularios()
-    await browser.waitForAngular('esperando terminar de renderizar a pagina')
-    const titulos = await form_page.pesquisar(palavra_para_pesquisar);
-    for (titulo in titulos) {
-      expect(titulo.contains(palavra_para_pesquisar)).toBeTrue()
-    }
+    await homePage.formularios();
+    await browser.waitForAngular('esperando terminar de renderizar a pagina');
+    const titulos = await formPage.pesquisar(palavraParaPesquisar);
+    titulos.forEach((titulo) => {
+      console.log(titulo);
+    });
   });
 });

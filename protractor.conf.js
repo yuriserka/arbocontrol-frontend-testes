@@ -12,7 +12,7 @@ exports.config = {
     browser.manage().window().maximize();
   },
   // Stop execution of a spec after the first expectation failure in it
-  // "stopSpecOnExpectationFailure": true,
+  "stopSpecOnExpectationFailure": true,
   // reinicia o browser a cada describe
   restartBrowserBetweenTests: true,
   // Options to be passed to Jasmine-node.

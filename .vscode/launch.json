@@ -10,7 +10,7 @@
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
-      "args": ["${workspaceRoot}/conf.js"]
+      "args": ["${workspaceRoot}/protractor.conf.js"]
     }
   ]
 }

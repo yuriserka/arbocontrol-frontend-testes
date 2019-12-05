@@ -1,30 +1,32 @@
-const Utility = require('../helpers/utility')
+const Utility = require('../helpers/utility');
+const By = require('protractor').By;
+const element = require('protractor').element;
 
-const ArboControl_Login_Page = function () {
+const ArboControlLoginPage = function(browser) {
   this.input = {
-    cpf: By.xpath("//*[@id='mat-input-0']"),
-    senha: By.xpath("//*[@id='mat-input-1']"),
-    unidade: By.xpath("//*[@id='mat-input-2']"),
-  }
-  const util = new Utility()
-  this.btn_entrar = By.xpath("//*[@class='mat-raised-button mat-button-base mat-primary']")
+    cpf: By.xpath(`//*[@id='mat-input-0']`),
+    senha: By.xpath(`//*[@id='mat-input-1']`),
+    unidade: By.xpath(`//*[@id='mat-input-2']`),
+  };
+  const util = new Utility();
+  this.btnEntrar = By.xpath(`//*[@class='mat-raised-button mat-button-base mat-primary']`);
 
-  this.get = async function () {
+  this.get = async function() {
     await browser.get('https://admin.arbocontrol.com/login');
   };
 
-  this.login = async function (cpf, senha) {
-    await element(this.input.cpf).sendKeys(cpf)
-    await element(this.input.senha).sendKeys(senha)
+  this.login = async function(cpf, senha) {
+    await element(this.input.cpf).sendKeys(cpf);
+    await element(this.input.senha).sendKeys(senha);
 
-    await element(this.input.unidade).click()
-    const lista_unidades = By.xpath("//*[@class='mat-option ng-star-inserted']");
-    await util.waitVisibility(lista_unidades)
-    const primeira_unidade = By.xpath("//*[@id=\"mat-option-0\"]");
-    await element(primeira_unidade).click();
+    await element(this.input.unidade).click();
+    const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
+    await util.waitVisibility(listaUnidades);
+    const primeiraUnidade = By.xpath(`//*[@id="mat-option-0"]`);
+    await element(primeiraUnidade).click();
 
-    await element(this.btn_entrar).click()
-  }
+    await element(this.btnEntrar).click();
+  };
 };
 
-module.exports = ArboControl_Login_Page;
+module.exports = ArboControlLoginPage;
