@@ -1,0 +1,14 @@
+{
+  "login_form": {
+    "sucesso": {
+      "cpf": "055.232.031-57",
+      "senha": "12345678",
+      "unidade": "Vigilância do RK"
+    },
+    "falha": {
+      "cpf": "055.232.031-51",
+      "senha": "12345678",
+      "unidade": "Vigilância do RK"
+    }
+  }
+}
