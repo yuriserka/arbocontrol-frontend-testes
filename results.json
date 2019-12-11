@@ -1,0 +1,111 @@
+[
+  {
+    "keyword": "Funcionalidade",
+    "name": "Login",
+    "line": 3,
+    "id": "login",
+    "tags": [],
+    "uri": "src\\features\\login.feature",
+    "elements": [
+      {
+        "id": "login;login-com-sucesso",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "Login com sucesso",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 7,
+            "name": "que eu navego até o site \"http://localhost/\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6605000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Quando ",
+            "line": 8,
+            "name": "eu entro com meu cpf \"111.111.111-11\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 303000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 9,
+            "name": "eu entro com minha senha \"12345678\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 222000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 10,
+            "name": "seleciono a primeira opção de unidade",
+            "match": {
+              "location": "src\\specs\\login.spec.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 530000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 11,
+            "name": "eu clico no botão \"Entrar\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 163000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 12,
+            "name": "meu nome \"Usuário 1\" deve estar visível na página inicial",
+            "match": {
+              "location": "src\\specs\\login.spec.js:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 689000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

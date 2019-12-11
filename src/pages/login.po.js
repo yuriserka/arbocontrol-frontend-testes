@@ -1,6 +1,7 @@
 const Utility = require('../helpers/utility');
 const By = require('protractor').By;
 const element = require('protractor').element;
+const util = new Utility();
 
 const ArboControlLoginPage = function(browser) {
   this.input = {
@@ -8,24 +9,31 @@ const ArboControlLoginPage = function(browser) {
     senha: By.xpath(`//*[@id='mat-input-1']`),
     unidade: By.xpath(`//*[@id='mat-input-2']`),
   };
-  const util = new Utility();
   this.btnEntrar = By.xpath(`//*[@class='mat-raised-button mat-button-base mat-primary']`);
 
-  this.get = async function() {
-    await browser.get('https://admin.arbocontrol.com/login');
+  this.get = function() {
+    return browser.get('http://localhost/login');
   };
 
-  this.login = async function(cpf, senha) {
-    await element(this.input.cpf).sendKeys(cpf);
-    await element(this.input.senha).sendKeys(senha);
+  this.preencherCpf = function(cpf) {
+    return element(this.input.cpf).sendKeys(cpf);
+  };
 
+  this.preencherSenha = function(senha) {
+    return element(this.input.senha).sendKeys(senha);
+  };
+
+  this.selecionarPrimeiraUnidade = async function() {
     await element(this.input.unidade).click();
     const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
     await util.waitVisibility(listaUnidades);
     const primeiraUnidade = By.xpath(`//*[@id="mat-option-0"]`);
-    await element(primeiraUnidade).click();
 
-    await element(this.btnEntrar).click();
+    return element(primeiraUnidade).click();
+  };
+
+  this.clicarBotaoEntrar = function() {
+    return element(this.btnEntrar).click();
   };
 };
 

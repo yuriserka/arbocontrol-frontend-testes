@@ -1,4 +1,4 @@
-const Utility = require('../helpers/utility')
+const Utility = require('./utility')
 
 const NavBar = function () {
   this.botoes = {

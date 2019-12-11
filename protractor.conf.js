@@ -1,23 +1,35 @@
-// conf.js
 exports.config = {
-  framework: 'jasmine',
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['./spec/*[sS]pec.js'],
-  suites: {
-    login: './spec/LoginSpec.js',
-    home: './spec/HomeSpec.js',
-    forms: './spec/FormularioSpec.js',
+  specs: ['./src/features/**/*.feature'],
+  "stopSpecOnExpectationFailure": true,
+  cucumberOpts: {
+    require: ['./src/specs/**/*.js'],
+    format: ['json:results.json'],
+    tags: false,
+    strict: true,
+    profile: false,
+    'no-source': true,
+    'dry-run': false,
   },
-  onPrepare() {
+  afterLaunch: function () {
+    var reporter = require('cucumber-html-reporter');
+
+    var options = {
+      theme: 'bootstrap',
+      jsonFile: 'results.json',
+      output: 'logs/resultados/cucumber_report.html',
+      reportSuiteAsScenarios: true,
+      launchReport: true
+    };
+
+    reporter.generate(options);
+  },
+  onPrepare: function () {
     browser.manage().window().maximize();
   },
-  // Stop execution of a spec after the first expectation failure in it
-  "stopSpecOnExpectationFailure": true,
-  // reinicia o browser a cada describe
-  restartBrowserBetweenTests: true,
-  // Options to be passed to Jasmine-node.
-  jasmineNodeOpts: {
-    showColors: true,
-    // random: true
-  }
+  getPageTimeout: 30000,
+  allScriptsTimeout: 30000,
+  plugins: []
 }
