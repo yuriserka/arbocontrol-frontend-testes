@@ -3,28 +3,34 @@ Repositório com o fim de realizar os testes de interface voltados para o front 
 
 ## Programas necessários
 
-[NodeJS e NPM](https://nodejs.org/en/)
+- [NodeJS e NPM](https://nodejs.org/en/)
+- [Docker](https://www.docker.com/)
 
-## Executando os testes
+## Instalando as dependências
+
+```yarn install```
 
 #### Instalando o Protractor
-
 ```
 npm install -g protractor
 ```
 
-#### Instalando as dependências
-
-```npm install```
-
-#### Executando todos os testes
-
+##### Atualizando o WebDriver
 ```
-webdriver-manager start
-yarn test
+webdriver-manager update
 ```
 
-#### Executando uma suíte de testes
-```
-yarn test --suite <nome_da_suite>
-```
+## Executando os testes
+- Inicialize o Docker
+- Navegue até a pasta onde se encontra  a configuração dos containers de testes do arbocontrol
+    ```
+    docker-compose up
+    ```
+- abra outro terminal e execute
+    ```
+    webdriver-manager start
+    ```
+- por fim abra mais um terminal e execute
+    ```
+    yarn test
+    ```
