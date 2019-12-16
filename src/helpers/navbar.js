@@ -1,4 +1,5 @@
 const Utility = require('./utility')
+const util = new Utility();
 
 const NavBar = function () {
   this.botoes = {
@@ -20,11 +21,6 @@ const NavBar = function () {
     perfis_usuario: By.xpath("//a[@routerlink='perfis-usuarios']"),
     usuarios_da_unidade: By.xpath("//a[@routerlink='perfil-usuario-unidade']"),
   }
-  const util = new Utility()
-
-  this.get = async function () {
-    await browser.get('https://admin.arbocontrol.com/');
-  };
 
   this.exibir = async function () {
     const nav_exibida = await this.isNavBarExibida();

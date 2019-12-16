@@ -11,10 +11,6 @@ const ArboControlLoginPage = function(browser) {
   };
   this.btnEntrar = By.xpath(`//*[@class='mat-raised-button mat-button-base mat-primary']`);
 
-  this.get = function() {
-    return browser.get('http://localhost/login');
-  };
-
   this.preencherCpf = function(cpf) {
     return element(this.input.cpf).sendKeys(cpf);
   };

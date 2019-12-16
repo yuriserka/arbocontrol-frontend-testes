@@ -1,10 +1,14 @@
-const NavBar = require('../helpers/navbar');
 const By = require('protractor').By;
 const element = require('protractor').element;
+const Page = require('./page.po');
 
 const ArboControlHomePage = function (browser) {
-  const navbar = new NavBar();
+  const basePage = new Page();
   this.card = By.xpath('//mat-card[@class="example-card mat-card"]');
+
+  this.logout = function () {
+    return basePage.logout();
+  };
 
   this.getUsuarioLogado = function () {
     return element(this.card).element(By.xpath('.//mat-card-title[@class="mat-card-title"]')).getText();

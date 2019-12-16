@@ -26,7 +26,6 @@ const ArboControlFormularioPage = function(browser) {
     await element(this.input.filtro).sendKeys(palavra);
     await util.waitClick(this.botoes.filtro);
     await element(this.botoes.filtro).click();
-    // await util.pressEnter()
 
     const itens = await element.all(By.xpath(
         `//tr[@class='mat-row ng-star-inserted']`));

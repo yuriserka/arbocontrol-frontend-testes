@@ -29,9 +29,15 @@ When('seleciono a primeira opção de unidade', async () => {
 
 Then('eu clico no botão {string}', async (nomeBotao) => {
   await loginPage.clicarBotaoEntrar();
-  browser.waitForAngular();
+  await browser.waitForAngular();
 });
 
 Then('meu nome {string} deve estar visível na página inicial', async (nome) => {
   expect(await homePage.getUsuarioLogado()).to.be.equal(nome)
+});
+
+Then('eu faço Logoff', async () => {
+  await homePage.logout();
+  await browser.waitForAngular();
+  expect(await browser.getCurrentUrl()).to.be.equal("http://localhost/login");
 });
