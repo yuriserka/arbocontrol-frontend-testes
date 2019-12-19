@@ -1,11 +1,23 @@
 exports.config = {
   framework: 'custom',
+  capabilities: {
+    browserName: 'chrome',
+    binary: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome',
+    chromeOptions: {
+      args: [
+        'load-extension=C:\\Users\\YSerk\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\mbopgmdnpcbohhpnfglgohlbhfongabi\\4.8.0_0',
+        'enable-automation',
+        'disable-plugins',
+        'disable-infobars'
+      ]
+    }
+  },
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['./src/features/**/*.feature'],
+  specs: ['./src/features/**/blaze_recorder.feature'],
   "stopSpecOnExpectationFailure": true,
   cucumberOpts: {
-    require: ['./src/specs/**/*.js'],
+    require: ['./src/specs/**/blazemeter.spec.js'],
     format: ['json:results.json'],
     tags: false,
     strict: true,

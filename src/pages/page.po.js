@@ -6,11 +6,11 @@ const Page = function () {
   this.header = new Header();
 
   this.logout = async function () {
-      await this.header.logout();
+    await this.header.logout();
   }
 
   this.mostarBarraNavegacao = async function () {
-      await this.navbar.exibir();
+    await this.navbar.exibir();
   };
 };
 
