@@ -21,10 +21,30 @@ const Recorder = function (browser) {
         return browser.get('chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html');
     }
 
+    this.startRecording = async function () {
+        await browser.waitForAngularEnabled(false);
+        await browser.executeScript('window.open()');
+        const handles = await browser.getAllWindowHandles();
+        await browser.switchTo().window(handles[1]);
+        await this.get();
+        await this.login(false);
+        await this.start();
+        await browser.switchTo().window(handles[0]);
+        await browser.waitForAngularEnabled(true);
+    }
+
+    this.stopRecording = async function () {
+        await browser.waitForAngularEnabled(false);
+        await this.get();
+        await this.stop();
+        await this.save();
+    }
+
     this.login = async function (withGoogle) {
         const blazeConfigPage = await browser.getWindowHandle()
         await element(this.botoes.login).click();
         browser.getAllWindowHandles().then(async (handles) => {
+            await browser.waitForAngularEnabled(false);
             await browser.switchTo().window(handles[2]);
             const blaze = new BlazePage(browser);
             if (withGoogle) {
@@ -33,12 +53,6 @@ const Recorder = function (browser) {
             await blaze.login();
         });
         await browser.switchTo().window(blazeConfigPage);
-    }
-
-    this.register = async function () {
-        await element(this.botoes.login).click();
-        const blaze = new BlazePage(browser);
-        blaze.cadastrar();
     }
 
     this.start = async function () {
@@ -57,7 +71,15 @@ const Recorder = function (browser) {
     this.save = async function () {
         await element(this.botoes.salvar).click();
         await element(By.xpath('//input[@name="chk-jmx"]')).click();
-        await element(By.xpath('//*[@id="domain-gleytonlima.com"]')).click();
+        const domains = await element.all(By.xpath('//input[@name="domains"]'));
+        // nao testado ainda
+        browser.sleep(10000)
+        if (domains.length > 1) {
+            domains.each(async (domain) => {
+                await domain.click();
+                console.log(await domain.getText());
+            });
+        }
         await element(By.xpath('//div[@class="button download-button"]')).click();
         await browser.sleep(20000);
     }

@@ -11,7 +11,7 @@ const ArboControlHomePage = function (browser) {
   };
 
   this.getUsuarioLogado = function () {
-    return element(this.card).element(By.xpath('.//mat-card-title[@class="mat-card-title"]')).getText();
+    return element(By.xpath('.//mat-card-title[@class="mat-card-title"]')).getText();
   };
 
   this.formularios = async function () {

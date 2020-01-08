@@ -1,4 +1,3 @@
-const Utility = require('./utility');
 const By = require('protractor').By;
 const element = require('protractor').element;
 
