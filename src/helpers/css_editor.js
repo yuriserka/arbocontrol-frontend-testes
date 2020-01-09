@@ -1,4 +1,3 @@
-const By = require('protractor').By;
 const element = require('protractor').element;
 
 const CssEditor = function (browser) {

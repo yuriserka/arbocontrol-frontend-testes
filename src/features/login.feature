@@ -11,7 +11,7 @@ Esquema do Cenário: Login com sucesso
     E seleciono a primeira opção de unidade
     Então eu clico no botão "Entrar"
     E meu nome "<nome>" deve estar visível na página inicial
-    Então eu faço Logoff
+    E eu faço Logoff
 
 Exemplos:
 | cpf            | senha    | nome      |

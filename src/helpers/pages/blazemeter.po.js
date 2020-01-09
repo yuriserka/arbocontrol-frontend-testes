@@ -1,5 +1,6 @@
 const By = require('protractor').By;
 const element = require('protractor').element;
+const GoogleLoginPage = require('./google_login.po');
 require('dotenv').config();
 
 const BlazeMeter = function (browser) {
@@ -16,6 +17,8 @@ const BlazeMeter = function (browser) {
 
     this.loginGoogle = async function () {
         await element(this.botoes.google).click();
+        await new GoogleLoginPage(browser)
+            .login(process.env.GOOGLE_EMAIL, process.env.GOOGLE_SENHA);
     };
 
     this.login = async function () {

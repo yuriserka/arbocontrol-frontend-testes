@@ -1,0 +1,475 @@
+[
+  {
+    "description": "    Como é necessário avaliar o sistema em partes, a geração de testes de carga\n    para determinadas funcionalidades é de grande utiliadade.",
+    "keyword": "Funcionalidade",
+    "name": "Exportar um script no formato JMX",
+    "line": 3,
+    "id": "exportar-um-script-no-formato-jmx",
+    "tags": [],
+    "uri": "src\\features\\blaze_recorder.feature",
+    "elements": [
+      {
+        "id": "exportar-um-script-no-formato-jmx;exportação-de-um-relátório-sem-funcionalidade-atribuída",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Exportação de um relátório sem funcionalidade atribuída",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 8,
+            "name": "que a extensão do Blaze Meter está instalada no Chrome",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 9,
+            "name": "abrirei uma nova aba",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Quando ",
+            "line": 10,
+            "name": "eu acessar a página de configuração \"chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html\"",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 11,
+            "name": "farei login com os dados disponibilizados",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Quando ",
+            "line": 12,
+            "name": "eu acionar o botão de gravação",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 13,
+            "name": "navegarei até o site \"https://admin.arbocontrol.com/\"",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 14,
+            "name": "farei login",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 15,
+            "name": "acessarei novamente a página de configuração \"chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html\"",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 16,
+            "name": "pararei a gravação",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 17,
+            "name": "clicarei para salvar e o arquivo será exportado",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "    Após já estar logado, espero conseguir utilizar as funcionalidades\n    relacionadas às listas de trabalho.",
+    "keyword": "Funcionalidade",
+    "name": "Listas de Trabalho",
+    "line": 3,
+    "id": "listas-de-trabalho",
+    "tags": [],
+    "uri": "src\\features\\lista_de_trabalho.feature",
+    "elements": [
+      {
+        "id": "listas-de-trabalho;cadastrar-uma-área-de-gestão",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Cadastrar Uma Área de Gestão",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "listas-de-trabalho;cadastrar-um-território",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Cadastrar um Território",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "listas-de-trabalho;cadastrar-uma-atividade",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Cadastrar uma Atividade",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "listas-de-trabalho;cadastrar-um-imóvel",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Cadastrar um Imóvel",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "listas-de-trabalho;cadastrar-uma-lista-de-trabalho",
+        "keyword": "Scenario",
+        "line": 15,
+        "name": "Cadastrar uma Lista de Trabalho",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "    Sendo eu um usuário já cadastrado por um administrador,\n    espero conseguir acessar o sistema.",
+    "keyword": "Funcionalidade",
+    "name": "Login",
+    "line": 3,
+    "id": "login",
+    "tags": [],
+    "uri": "src\\features\\login.feature",
+    "elements": [
+      {
+        "id": "login;login-com-sucesso",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Login com sucesso",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 8,
+            "name": "que eu navego até o site \"http://localhost/\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4219000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Quando ",
+            "line": 9,
+            "name": "eu entro com meu cpf \"111.111.111-11\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 319000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 10,
+            "name": "eu entro com minha senha \"12345678\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 364000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 11,
+            "name": "seleciono a primeira opção de unidade",
+            "match": {
+              "location": "src\\specs\\login.spec.js:36"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 556000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 12,
+            "name": "eu clico no botão \"Entrar\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 823000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 13,
+            "name": "meu nome \"Usuário 1\" deve estar visível na página inicial",
+            "match": {
+              "location": "src\\specs\\login.spec.js:45"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 96000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 14,
+            "name": "eu faço Logoff",
+            "match": {
+              "location": "src\\specs\\login.spec.js:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 308000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "login;login-com-sucesso",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Login com sucesso",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Dado ",
+            "line": 8,
+            "name": "que eu navego até o site \"http://localhost/\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2765000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Quando ",
+            "line": 9,
+            "name": "eu entro com meu cpf \"222.222.222-22\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 317000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 10,
+            "name": "eu entro com minha senha \"12345678\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 291000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 11,
+            "name": "seleciono a primeira opção de unidade",
+            "match": {
+              "location": "src\\specs\\login.spec.js:36"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 452000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Então ",
+            "line": 12,
+            "name": "eu clico no botão \"Entrar\"",
+            "match": {
+              "location": "src\\specs\\login.spec.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1124000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 13,
+            "name": "meu nome \"Usuário 2\" deve estar visível na página inicial",
+            "match": {
+              "location": "src\\specs\\login.spec.js:45"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 186000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "E ",
+            "line": 14,
+            "name": "eu faço Logoff",
+            "match": {
+              "location": "src\\specs\\login.spec.js:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 406000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

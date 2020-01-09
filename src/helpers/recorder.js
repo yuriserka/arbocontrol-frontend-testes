@@ -15,7 +15,7 @@ const Recorder = function (browser) {
     this.input = {
         nome_arquivo: By.xpath('//input[@id="name"]')
     };
-    this.nome_arquivo = ('generated at ' + moment().format('lll')).replace(/[:| *|,]/g, '_');
+    this.nome_arquivo = ('generated at ' + moment().format('lll')).replace(/[:\s*,]/g, '_');
 
     this.get = function () {
         return browser.get('chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html');
@@ -27,7 +27,7 @@ const Recorder = function (browser) {
         const handles = await browser.getAllWindowHandles();
         await browser.switchTo().window(handles[1]);
         await this.get();
-        await this.login(false);
+        await this.login(true);
         await this.start();
         await browser.switchTo().window(handles[0]);
         await browser.waitForAngularEnabled(true);
@@ -47,10 +47,7 @@ const Recorder = function (browser) {
             await browser.waitForAngularEnabled(false);
             await browser.switchTo().window(handles[2]);
             const blaze = new BlazePage(browser);
-            if (withGoogle) {
-                await blaze.loginGoogle();
-            }
-            await blaze.login();
+            withGoogle ? await blaze.loginGoogle() : await blaze.login();
         });
         await browser.switchTo().window(blazeConfigPage);
     }
@@ -73,7 +70,6 @@ const Recorder = function (browser) {
         await element(By.xpath('//input[@name="chk-jmx"]')).click();
         const domains = await element.all(By.xpath('//input[@name="domains"]'));
         // nao testado ainda
-        browser.sleep(10000)
         if (domains.length > 1) {
             domains.each(async (domain) => {
                 await domain.click();

@@ -1,5 +1,6 @@
 const By = require('protractor').By;
 const element = require('protractor').element;
+const Util = require('../utility');
 
 const GoogleAccount = function (browser) {
     this.botoes = {
@@ -7,9 +8,18 @@ const GoogleAccount = function (browser) {
         proximo_senha: By.xpath('//*[@id="passwordNext"]')
     };
     this.input = {
-        email: By.xpath('//*[@id="identifierId"]'),
-        senha: By.xpath('//*[@id="password"]/div[1]/div/div[1]/input')
+        email: By.xpath('//*[@name="identifier"]'),
+        senha: By.xpath('//*[@name="password"]')
     };
+
+    this.login = async function (email, senha) {
+        await this.preencherEmail(email);
+        const util = new Util();
+        util.waitVisibility(this.input.senha);
+        util.waitClick(this.botoes.proximo_senha);
+        browser.sleep(3000);
+        await this.preencherSenha(senha);
+    }
 
     this.preencherEmail = async function (email) {
         await element(this.input.email).sendKeys(email);

@@ -1,6 +1,5 @@
 const { setDefaultTimeout, Given, Then, When, BeforeAll, AfterAll } = require('cucumber');
 const browser = require('protractor').browser;
-const element = require('protractor').element;
 const chai = require('chai');
 chai.use(require('chai-as-promised'));
 const expect = chai.expect;

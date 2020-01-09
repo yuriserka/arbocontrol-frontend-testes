@@ -14,5 +14,5 @@ Cenário: Exportação de um relátório sem funcionalidade atribuída
     E farei login
     Então acessarei novamente a página de configuração "chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html"
     E pararei a gravação
-    Então clicarei para salvar e então o arquivo será exportado
+    E clicarei para salvar e o arquivo será exportado
     

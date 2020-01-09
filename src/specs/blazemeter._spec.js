@@ -58,7 +58,7 @@ Then('pararei a gravação', async function () {
     await blazeRecorder.stop();
 });
 
-Then('clicarei para salvar e então o arquivo será exportado', async function () {
+Then('clicarei para salvar e o arquivo será exportado', async function () {
     await browser.waitForAngularEnabled(false);
     await blazeRecorder.save();
 });
