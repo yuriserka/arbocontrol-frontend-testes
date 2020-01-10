@@ -1,29 +1,27 @@
 {
   "name": "testes_web",
   "version": "1.0.0",
-  "description": "",
-  "main": "conf.js",
+  "description": "testes desenvolvidos para o sistema Arbocontrol",
+  "main": "protractor.conf.js",
   "scripts": {
     "test": "protractor ./protractor.conf.js",
-    "lint": "./node_modules/eslint/bin/eslint --fix",
     "cucumber": "cucumber-js ./src/features -r ./src/steps"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Software Test"
+  ],
+  "author": "Yuri Serka do Carmo Rodrigues",
+  "license": "MIT",
   "dependencies": {
     "chai-as-promised": "^7.1.1",
     "cucumber-html-reporter": "^5.0.2",
     "dotenv": "^8.2.0",
     "moment": "^2.24.0",
-    "protractor": "^5.4.2",
-    "q": "^1.5.1"
+    "protractor": "^5.4.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
-    "eslint": "^6.7.2",
-    "eslint-config-google": "^0.14.0",
     "jasmine": "^3.5.0",
     "protractor-cucumber-framework": "^6.2.0"
   }

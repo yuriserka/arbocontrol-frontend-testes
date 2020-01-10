@@ -14,10 +14,10 @@ exports.config = {
   },
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['./src/features/**/*.feature'],
+  specs: ['./src/features/**/login.feature'],
   "stopSpecOnExpectationFailure": true,
   cucumberOpts: {
-    require: ['./src/specs/**/*.spec.js'],
+    require: ['./src/specs/**/login.spec.js'],
     format: ['json:results.json'],
     tags: false,
     strict: true,

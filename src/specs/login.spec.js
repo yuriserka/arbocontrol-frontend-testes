@@ -1,5 +1,6 @@
-const { setDefaultTimeout, Given, Then, When, BeforeAll, AfterAll } = require('cucumber');
+const { setDefaultTimeout, Given, Then, When } = require('cucumber');
 const browser = require('protractor').browser;
+const By = require('protractor').By;
 const chai = require('chai');
 chai.use(require('chai-as-promised'));
 const expect = chai.expect;
@@ -14,15 +15,18 @@ const loginPage = new LoginPage(browser);
 const homePage = new HomePage(browser);
 const recorder = new Recorder(browser);
 const cssEditor = new CssEditor(browser);
+let recording = false;
 
-BeforeAll(async () => {
-  await recorder.startRecording();
+Given('que eu desejo obter um script de carga para a funcionalidade {string}', (funcionalidade) => {
+  recorder.nome_arquivo = `Fun_${funcionalidade}_`.concat(recorder.nome_arquivo);
 });
 
 Given('que eu navego até o site {string}', async (url) => {
   await browser.get(url);
   await browser.waitForAngular();
-  await cssEditor.change(By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'), 'display', 'none');
+  if (recording) {
+    await cssEditor.change(By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'), 'display', 'none');
+  }
 });
 
 When('eu entro com meu cpf {string}', async (val) => {
@@ -37,7 +41,7 @@ When('seleciono a primeira opção de unidade', async () => {
   await loginPage.selecionarPrimeiraUnidade();
 });
 
-Then('eu clico no botão {string}', async (nomeBotao) => {
+Then('eu clico para entrar', async () => {
   await loginPage.clicarBotaoEntrar();
   await browser.waitForAngular();
 });
@@ -49,9 +53,14 @@ Then('meu nome {string} deve estar visível na página inicial', async (nome) =>
 Then('eu faço Logoff', async () => {
   await homePage.logout();
   await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal("http://localhost/login");
+  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/login');
 });
 
-AfterAll(async () => {
+Then('eu inicio uma gravação do BlazeMeter', async () => {
+  await recorder.startRecording();
+  recording = true;
+});
+
+Then('paro a gravação do BlazeMeter', async () => {
   await recorder.stopRecording();
 });

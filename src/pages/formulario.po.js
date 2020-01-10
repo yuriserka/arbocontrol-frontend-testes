@@ -2,7 +2,7 @@ const Utility = require('../helpers/utility');
 const By = require('protractor').By;
 const element = require('protractor').element;
 
-const ArboControlFormularioPage = function(browser) {
+const ArboControlFormularioPage = function (browser) {
   const util = new Utility();
   this.input = {
     filtro: By.xpath(`/html/body/app-root/app-main-nav/mat-sidenav-container/mat-sidenav-content/div/
@@ -11,24 +11,21 @@ const ArboControlFormularioPage = function(browser) {
   };
 
   this.botoes = {
-    cadastrar: By.xpath(
-        `//*[@class='mat-raised-button mat-button-base mat-primary']`),
-    filtro: By.xpath(
-        `//*[@class='mat-raised-button mat-button-base ng-star-inserted']`),
+    cadastrar: By.xpath(`//*[@class='mat-raised-button mat-button-base mat-primary']`),
+    filtro: By.xpath(`//*[@class='mat-raised-button mat-button-base ng-star-inserted']`),
   };
 
-  this.get = async function() {
+  this.get = async function () {
     await browser.get('https://admin.arbocontrol.com/formularios');
   };
 
-  this.pesquisar = async function(palavra) {
+  this.pesquisar = async function (palavra) {
     await util.waitVisibility(this.input.filtro);
     await element(this.input.filtro).sendKeys(palavra);
     await util.waitClick(this.botoes.filtro);
     await element(this.botoes.filtro).click();
 
-    const itens = await element.all(By.xpath(
-        `//tr[@class='mat-row ng-star-inserted']`));
+    const itens = await element.all(By.xpath(`//tr[@class='mat-row ng-star-inserted']`));
     const titulosRetornados = [];
     itens.forEach((item) => {
       console.log(item);
