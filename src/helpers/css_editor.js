@@ -1,8 +1,12 @@
 const element = require('protractor').element;
 
-const CssEditor = function (browser) {
-  this.change = function (xpath, prop, val) {
-    return browser.executeScript(`arguments[0].style.${prop} = "${val}"`, element(xpath).getWebElement());
+class CssEditor {
+  constructor(browser) {
+    this.browser = browser;
+  }
+
+  change(xpath, prop, val) {
+    return this.browser.executeScript(`arguments[0].style.${prop} = "${val}"`, element(xpath).getWebElement());
   };
 };
 

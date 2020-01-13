@@ -1,15 +1,17 @@
 const NavBar = require('../helpers/navbar');
 const Header = require('../helpers/header');
 
-const Page = function () {
-  this.navbar = new NavBar();
-  this.header = new Header();
+class Page {
+  constructor(browser) {
+    this.header = new Header();
+    this.navbar = new NavBar(browser);
+  }
 
-  this.logout = function () {
+  logout() {
     return this.header.logout();
   };
 
-  this.mostarBarraNavegacao = async function () {
+  async mostarBarraNavegacao() {
     await this.navbar.exibir();
   };
 };

@@ -3,68 +3,74 @@ const element = require('protractor').element;
 const BlazePage = require('./pages/blazemeter.po');
 const moment = require('moment');
 
-const Recorder = function (browser) {
-  this.botoes = {
-    parar: By.xpath('//*[@id="stop"]/input'),
-    pausar: By.xpath('//input[@title="Pause recording"]'),
-    gravar: By.xpath('//input[@title="Start recording"]'),
-    reset: By.xpath('//*[@id="reset"]/input'),
-    salvar: By.xpath('//*[@id="button-download"]/div[1]/input'),
-    login: By.xpath('//*[@id="sign-block"]/div/a[1]'),
-  };
-  this.input = {
-    nome_arquivo: By.xpath('//input[@id="name"]'),
-  };
-  this.nome_arquivo = ('generated at ' + moment().format('lll')).replace(/[:\s*,]/g, '_');
+class Recorder {
+  constructor(browser) {
+    this.browser = browser;
 
-  this.get = function () {
-    return browser.get('chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html');
+    this.botoes = {
+      parar: By.xpath('//*[@id="stop"]/input'),
+      pausar: By.xpath('//input[@title="Pause recording"]'),
+      gravar: By.xpath('//input[@title="Start recording"]'),
+      reset: By.xpath('//*[@id="reset"]/input'),
+      salvar: By.xpath('//*[@id="button-download"]/div[1]/input'),
+      login: By.xpath('//*[@id="sign-block"]/div/a[1]'),
+    };
+
+    this.input = {
+      nome_arquivo: By.xpath('//input[@id="name"]'),
+    };
+
+    this.nome_arquivo = ('generated at ' + moment().format('lll')).replace(/[:\s*,]/g, '_');
+  }
+
+  get() {
+    return this.browser.get('chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html');
   };
 
-  this.startRecording = async function () {
-    await browser.waitForAngularEnabled(false);
-    await browser.executeScript('window.open()');
-    const handles = await browser.getAllWindowHandles();
-    await browser.switchTo().window(handles[1]);
+  async startRecording() {
+    await this.browser.waitForAngularEnabled(false);
+    await this.browser.executeScript('window.open()');
+    const handles = await this.browser.getAllWindowHandles();
+    await this.browser.switchTo().window(handles[1]);
     await this.get();
     await this.login(true);
     await this.start();
-    await browser.switchTo().window(handles[0]);
-    await browser.waitForAngularEnabled(true);
+    await this.browser.switchTo().window(handles[0]);
+    await this.browser.waitForAngularEnabled(true);
   };
 
-  this.stopRecording = async function () {
-    await browser.waitForAngularEnabled(false);
+  async stopRecording() {
+    await this.browser.waitForAngularEnabled(false);
     await this.get();
     await this.stop();
     await this.save();
   };
 
-  this.login = async function (withGoogle) {
-    const blazeConfigPage = await browser.getWindowHandle();
+  async login(withGoogle) {
+    const blazeConfigPage = await this.browser.getWindowHandle();
     await element(this.botoes.login).click();
-    const handles = await browser.getAllWindowHandles();
-    // await browser.waitForAngularEnabled(false);
-    await browser.switchTo().window(handles[2]);
-    const blaze = new BlazePage(browser);
+    const handles = await this.browser.getAllWindowHandles();
+    // await this.browser.waitForAngularEnabled(false);
+    await this.browser.switchTo().window(handles[2]);
+    const blaze = new BlazePage(this.browser);
     withGoogle ? await blaze.loginGoogle() : await blaze.login();
-    await browser.switchTo().window(blazeConfigPage);
+    await this.browser.switchTo().window(blazeConfigPage);
   };
 
-  this.start = async function () {
+  async start() {
     await element(this.input.nome_arquivo).sendKeys(this.nome_arquivo);
     return element(this.botoes.gravar).click();
   };
 
-  this.stop = async function () {
+  async stop() {
     return element(this.botoes.parar).click();
   };
 
-  this.pause = async function () {
+  async pause() {
     return element(this.botoes.pausar).click();
   };
 
-  this.save = async function () {
+  async save() {
     await element(this.botoes.salvar).click();
     await element(By.xpath('//input[@name="chk-jmx"]')).click();
     const domains = await element.all(By.xpath('//input[@name="domains"]'));
@@ -76,7 +82,7 @@ const Recorder = function (browser) {
       });
     }
     await element(By.xpath('//div[@class="button download-button"]')).click();
-    await browser.sleep(20000);
+    await this.browser.sleep(20000);
   };
 };
 

@@ -2,91 +2,103 @@ const By = require('protractor').By;
 const element = require('protractor').element;
 const Page = require('./page.po');
 
-const ArboControlHomePage = function (browser) {
-  const basePage = new Page();
-  this.card = By.xpath('//mat-card[@class="example-card mat-card"]');
+const basePage = new Page(browser);
 
-  this.logout = function () {
+class ArboControlHomePage {
+  constructor(browser) {
+    this.browser = browser;
+
+    this.card = By.xpath('//mat-card[@class="example-card mat-card"]');
+
+    this.btnFuncMap = {
+      formularios: this.formularios,
+      relatorios_indices: this.relatorios,
+      exportar: this.exportacao,
+      processo_importacao: this.importacao,
+      demandas: this.demandas,
+      lista_trabalho: this.listasDeTrabalho,
+      atividades: this.atividades,
+      imoveis: this.imoveis,
+      territorios: this.territorios,
+      areas_gestao: this.areasDeGestao,
+      unidades: this.unidadesOrganizacionais,
+      pessoas: this.pessoas,
+      equipes: this.equipes,
+      perfis_usuarios: this.perfisDeUsuario,
+      perfil_usuario_unidade: this.usuariosDaUnidade,
+    };
+  }
+
+  logout() {
     return basePage.logout();
   };
 
-  this.getUsuarioLogado = function () {
+  showNavBar() {
+    return basePage.mostarBarraNavegacao();
+  };
+
+  getUsuarioLogado() {
     return element(By.xpath('.//mat-card-title[@class="mat-card-title"]')).getText();
   };
 
-  this.formularios = async function () {
+  async formularios() {
     await basePage.navbar.acessarFormularios();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.relatorios = async function () {
+  async relatorios() {
     await basePage.navbar.acessarRelatorios();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.exportacao = async function () {
+  async exportacao() {
     await basePage.navbar.acessarExportacao();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.importacao = async function () {
+  async importacao() {
     await basePage.navbar.acessarImportacao();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.demandas = async function () {
+  async demandas() {
     await basePage.navbar.acessarDemandas();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.listasDeTrabalho = async function () {
+  async listasDeTrabalho() {
     await basePage.navbar.acessarListasDeTrabalho();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.atividades = async function () {
+  async atividades() {
     await basePage.navbar.acessarAtividades();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.imoveis = async function () {
+  async imoveis() {
     await basePage.navbar.acessarImoveis();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.territorios = async function () {
+  async territorios() {
     await basePage.navbar.acessarTerritorios();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.areasDeGestao = async function () {
+  async areasDeGestao() {
     await basePage.navbar.acessarAreasDeGestao();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.unidadesOrganizacionais = async function () {
+  async unidadesOrganizacionais() {
     await basePage.navbar.acessarUnidadesOrganizacionais();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.pessoas = async function () {
+  async pessoas() {
     await basePage.navbar.acessarPessoas();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.equipes = async function () {
+  async equipes() {
     await basePage.navbar.acessarEquipes();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.perfisDeUsuario = async function () {
+  async perfisDeUsuario() {
     await basePage.navbar.acessarPerfisDeUsuario();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 
-  this.usuariosDaUnidade = async function () {
+  async usuariosDaUnidade() {
     await basePage.navbar.acessarUsuariosDaUnidade();
-    await browser.waitForAngular('esperando terminar de renderizar a pagina');
   };
 };
 

@@ -1,8 +1,52 @@
-// const LoginPage = require('../pages/Login');
-// const HomePage = require('../pages/Inicial');
-// const config = require('../config/config.json');
-// const protractor = require('protractor');
-// const browser = protractor.browser;
+const { setDefaultTimeout, Given, Then, When, AfterAll, BeforeAll } = require('cucumber');
+const browser = require('protractor').browser;
+const chai = require('chai');
+chai.use(require('chai-as-promised'));
+const expect = chai.expect;
+
+const LoginPage = require('../pages/login.po');
+const HomePage = require('../pages/home.po');
+// const Recorder = require('../helpers/recorder');
+// const CssEditor = require('../helpers/css_editor');
+
+setDefaultTimeout(60 * 1000);
+
+const loginPage = new LoginPage(browser);
+const homePage = new HomePage(browser);
+// const recorder = new Recorder(browser);
+// const cssEditor = new CssEditor(browser);
+// let recording = false;
+
+BeforeAll(async () => {
+  await browser.get('http://localhost/');
+  await loginPage.login('111.111.111-11', '12345678');
+});
+
+// Given('que estou logado', function () {
+//   return;
+// });
+
+When('eu clicar para expandir a barra de navegação', async function () {
+  await homePage.showNavBar();
+});
+
+When('clicar no botão {string}', async function (routerlink_name) {
+  await homePage.btnFuncMap[routerlink_name]();
+});
+
+Then('a url deve ser {string}', async function (url) {
+  expect(await browser.getCurrentUrl()).to.be.equal(url);
+});
+
+// Then('eu faço Logoff', () => {
+//   return;
+// });
+
+AfterAll(async () => {
+  await homePage.logout();
+  await browser.waitForAngular();
+  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/login');
+});
 
 // describe('HomePage', () => {
 //   const loginPage = new LoginPage(browser);
@@ -78,6 +122,3 @@
 //         'deveria ter acessado os perfiis de usuario da unidade');
 //   });
 // });
-
-// // formularios
-// // BDD - GWT
