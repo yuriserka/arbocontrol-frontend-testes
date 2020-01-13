@@ -1,15 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+
 exports.config = {
   framework: 'custom',
   capabilities: {
     browserName: 'chrome',
-    binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome',
+    // binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome',
     chromeOptions: {
       args: [
-        'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
+        // 'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
         'enable-automation',
         'disable-plugins',
         'disable-infobars'
-      ]
+      ],
+      extensions: [
+        fs.readFileSync(path.resolve('./exts', 'blazemeter_4_8_0_0.crx'), { encoding: 'base64' }),
+      ],
     }
   },
   frameworkPath: require.resolve('protractor-cucumber-framework'),
@@ -26,9 +32,9 @@ exports.config = {
     'dry-run': false,
   },
   afterLaunch: function () {
-    var reporter = require('cucumber-html-reporter');
+    const reporter = require('cucumber-html-reporter');
 
-    var options = {
+    const options = {
       theme: 'bootstrap',
       jsonFile: 'results.json',
       output: 'logs/resultados/cucumber_report.html',
