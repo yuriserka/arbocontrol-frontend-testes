@@ -1,13 +1,22 @@
-const element = require('protractor').element;
+/**
+ * @fileoverview
+ */
 
-class CssEditor {
-  constructor(browser) {
-    this.browser = browser;
-  }
+import {browser, element} from 'protractor';
 
+/**
+ *
+ */
+export class CssEditor {
+  /**
+   *
+   * @param {*} xpath
+   * @param {*} prop
+   * @param {*} val
+   */
   change(xpath, prop, val) {
-    return this.browser.executeScript(`arguments[0].style.${prop} = "${val}"`, element(xpath).getWebElement());
+    return browser.executeScript(
+        `arguments[0].style.${prop} = "${val}"`,
+        element(xpath).getWebElement());
   };
 };
-
-module.exports = CssEditor;

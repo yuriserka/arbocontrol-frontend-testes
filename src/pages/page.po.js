@@ -1,19 +1,31 @@
-const NavBar = require('../helpers/navbar');
-const Header = require('../helpers/header');
+/**
+ * @fileoverview
+ */
 
-class Page {
-  constructor(browser) {
+import {browser} from 'protractor';
+import {Header} from '../helpers/header';
+import {NavBar} from '../helpers/navbar';
+
+/**
+ *
+ */
+export class Page {
+  constructor() {
     this.header = new Header();
     this.navbar = new NavBar(browser);
   }
 
+  /**
+   *
+   */
   logout() {
     return this.header.logout();
   };
 
+  /**
+   *
+   */
   async mostarBarraNavegacao() {
     await this.navbar.exibir();
   };
 };
-
-module.exports = Page;

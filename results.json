@@ -22,11 +22,11 @@
             "line": 8,
             "name": "que eu navego até o site \"http://localhost/\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:24"
+              "location": "src\\specs\\login.spec.js:27"
             },
             "result": {
               "status": "passed",
-              "duration": 6816000000
+              "duration": 6419000000
             }
           },
           {
@@ -35,11 +35,11 @@
             "line": 9,
             "name": "eu entro com meu cpf \"111.111.111-11\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:32"
+              "location": "src\\specs\\login.spec.js:37"
             },
             "result": {
               "status": "passed",
-              "duration": 329000000
+              "duration": 323000000
             }
           },
           {
@@ -48,11 +48,11 @@
             "line": 10,
             "name": "eu entro com minha senha \"12345678\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:36"
+              "location": "src\\specs\\login.spec.js:41"
             },
             "result": {
               "status": "passed",
-              "duration": 257000000
+              "duration": 350000000
             }
           },
           {
@@ -61,11 +61,11 @@
             "line": 11,
             "name": "seleciono a primeira opção de unidade",
             "match": {
-              "location": "src\\specs\\login.spec.js:40"
+              "location": "src\\specs\\login.spec.js:45"
             },
             "result": {
               "status": "passed",
-              "duration": 674000000
+              "duration": 1198000000
             }
           },
           {
@@ -74,11 +74,11 @@
             "line": 12,
             "name": "eu clico para entrar",
             "match": {
-              "location": "src\\specs\\login.spec.js:44"
+              "location": "src\\specs\\login.spec.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 754000000
+              "duration": 978000000
             }
           },
           {
@@ -87,11 +87,11 @@
             "line": 13,
             "name": "meu nome \"Usuário 1\" deve estar visível na página inicial",
             "match": {
-              "location": "src\\specs\\login.spec.js:49"
+              "location": "src\\specs\\login.spec.js:54"
             },
             "result": {
               "status": "passed",
-              "duration": 91000000
+              "duration": 170000000
             }
           },
           {
@@ -100,11 +100,11 @@
             "line": 14,
             "name": "eu faço Logoff",
             "match": {
-              "location": "src\\specs\\login.spec.js:53"
+              "location": "src\\specs\\login.spec.js:58"
             },
             "result": {
               "status": "passed",
-              "duration": 260000000
+              "duration": 481000000
             }
           },
           {
@@ -134,11 +134,11 @@
             "line": 8,
             "name": "que eu navego até o site \"http://localhost/\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:24"
+              "location": "src\\specs\\login.spec.js:27"
             },
             "result": {
               "status": "passed",
-              "duration": 2444000000
+              "duration": 2655000000
             }
           },
           {
@@ -147,11 +147,11 @@
             "line": 9,
             "name": "eu entro com meu cpf \"222.222.222-22\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:32"
+              "location": "src\\specs\\login.spec.js:37"
             },
             "result": {
               "status": "passed",
-              "duration": 280000000
+              "duration": 307000000
             }
           },
           {
@@ -160,11 +160,11 @@
             "line": 10,
             "name": "eu entro com minha senha \"12345678\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:36"
+              "location": "src\\specs\\login.spec.js:41"
             },
             "result": {
               "status": "passed",
-              "duration": 213000000
+              "duration": 286000000
             }
           },
           {
@@ -173,11 +173,11 @@
             "line": 11,
             "name": "seleciono a primeira opção de unidade",
             "match": {
-              "location": "src\\specs\\login.spec.js:40"
+              "location": "src\\specs\\login.spec.js:45"
             },
             "result": {
               "status": "passed",
-              "duration": 369000000
+              "duration": 743000000
             }
           },
           {
@@ -186,11 +186,11 @@
             "line": 12,
             "name": "eu clico para entrar",
             "match": {
-              "location": "src\\specs\\login.spec.js:44"
+              "location": "src\\specs\\login.spec.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 978000000
+              "duration": 773000000
             }
           },
           {
@@ -199,11 +199,11 @@
             "line": 13,
             "name": "meu nome \"Usuário 2\" deve estar visível na página inicial",
             "match": {
-              "location": "src\\specs\\login.spec.js:49"
+              "location": "src\\specs\\login.spec.js:54"
             },
             "result": {
               "status": "passed",
-              "duration": 95000000
+              "duration": 162000000
             }
           },
           {
@@ -212,11 +212,11 @@
             "line": 14,
             "name": "eu faço Logoff",
             "match": {
-              "location": "src\\specs\\login.spec.js:53"
+              "location": "src\\specs\\login.spec.js:58"
             },
             "result": {
               "status": "passed",
-              "duration": 261000000
+              "duration": 446000000
             }
           },
           {
@@ -259,11 +259,11 @@
             "line": 23,
             "name": "eu inicio uma gravação do BlazeMeter",
             "match": {
-              "location": "src\\specs\\login.spec.js:59"
+              "location": "src\\specs\\login.spec.js:64"
             },
             "result": {
               "status": "passed",
-              "duration": 18391000000
+              "duration": 23778000000
             }
           },
           {
@@ -272,11 +272,11 @@
             "line": 24,
             "name": "que eu navego até o site \"http://localhost/\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:24"
+              "location": "src\\specs\\login.spec.js:27"
             },
             "result": {
               "status": "passed",
-              "duration": 2875000000
+              "duration": 3552000000
             }
           },
           {
@@ -285,11 +285,11 @@
             "line": 25,
             "name": "eu entro com meu cpf \"111.111.111-11\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:32"
+              "location": "src\\specs\\login.spec.js:37"
             },
             "result": {
               "status": "passed",
-              "duration": 281000000
+              "duration": 266000000
             }
           },
           {
@@ -298,11 +298,11 @@
             "line": 26,
             "name": "eu entro com minha senha \"12345678\"",
             "match": {
-              "location": "src\\specs\\login.spec.js:36"
+              "location": "src\\specs\\login.spec.js:41"
             },
             "result": {
               "status": "passed",
-              "duration": 244000000
+              "duration": 255000000
             }
           },
           {
@@ -311,11 +311,11 @@
             "line": 27,
             "name": "seleciono a primeira opção de unidade",
             "match": {
-              "location": "src\\specs\\login.spec.js:40"
+              "location": "src\\specs\\login.spec.js:45"
             },
             "result": {
               "status": "passed",
-              "duration": 566000000
+              "duration": 1221000000
             }
           },
           {
@@ -324,11 +324,11 @@
             "line": 28,
             "name": "eu clico para entrar",
             "match": {
-              "location": "src\\specs\\login.spec.js:44"
+              "location": "src\\specs\\login.spec.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 1115000000
+              "duration": 1106000000
             }
           },
           {
@@ -337,11 +337,11 @@
             "line": 29,
             "name": "meu nome \"Usuário 1\" deve estar visível na página inicial",
             "match": {
-              "location": "src\\specs\\login.spec.js:49"
+              "location": "src\\specs\\login.spec.js:54"
             },
             "result": {
               "status": "passed",
-              "duration": 93000000
+              "duration": 176000000
             }
           },
           {
@@ -350,11 +350,11 @@
             "line": 30,
             "name": "eu faço Logoff",
             "match": {
-              "location": "src\\specs\\login.spec.js:53"
+              "location": "src\\specs\\login.spec.js:58"
             },
             "result": {
               "status": "passed",
-              "duration": 294000000
+              "duration": 462000000
             }
           },
           {
@@ -363,11 +363,11 @@
             "line": 31,
             "name": "paro a gravação do BlazeMeter",
             "match": {
-              "location": "src\\specs\\login.spec.js:64"
+              "location": "src\\specs\\login.spec.js:69"
             },
             "result": {
               "status": "passed",
-              "duration": 21395000000
+              "duration": 12050000000
             }
           },
           {
@@ -378,7 +378,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 0
+              "duration": 2000000
             }
           }
         ]

@@ -14,14 +14,15 @@
 //   beforeEach(async () => {
 //     const loginForm = config.login_form;
 //     await loginPage.get();
-//     await browser.waitForAngular('esperando terminar de renderizar a pagina');
-//     await loginPage.login(loginForm.sucesso.cpf, loginForm.sucesso.senha);
+//     await browser.waitForAngular('esperando terminar de renderizar a
+//     pagina'); await loginPage.login(loginForm.sucesso.cpf,
+//     loginForm.sucesso.senha);
 //   });
 
 //   it('deve ser possível pesquisar por formulários', async () => {
 //     await homePage.formularios();
-//     await browser.waitForAngular('esperando terminar de renderizar a pagina');
-//     const titulos = await formPage.pesquisar(palavraParaPesquisar);
+//     await browser.waitForAngular('esperando terminar de renderizar a
+//     pagina'); const titulos = await formPage.pesquisar(palavraParaPesquisar);
 //     titulos.forEach((titulo) => {
 //       console.log(titulo);
 //     });

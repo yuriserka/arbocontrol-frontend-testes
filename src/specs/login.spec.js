@@ -1,31 +1,36 @@
-const { setDefaultTimeout, Given, Then, When } = require('cucumber');
-const browser = require('protractor').browser;
-const By = require('protractor').By;
-const chai = require('chai');
-chai.use(require('chai-as-promised'));
-const expect = chai.expect;
-const LoginPage = require('../pages/login.po');
-const HomePage = require('../pages/home.po');
-const Recorder = require('../helpers/recorder');
-const CssEditor = require('../helpers/css_editor');
+/**
+ * @fileoverview
+ */
+
+import {expect} from 'chai';
+import {Given, setDefaultTimeout, Then, When} from 'cucumber';
+import {browser, By} from 'protractor';
+import {CssEditor} from '../helpers/css_editor';
+import {Recorder} from '../helpers/recorder';
+import {HomePage} from '../pages/home.po';
+import {LoginPage} from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
-
 const loginPage = new LoginPage(browser);
 const homePage = new HomePage(browser);
 const recorder = new Recorder(browser);
 const cssEditor = new CssEditor(browser);
 let recording = false;
 
-Given('que eu desejo obter um script de carga para a funcionalidade {string}', (funcionalidade) => {
-  recorder.nome_arquivo = `Fun_${funcionalidade}_`.concat(recorder.nome_arquivo);
-});
+Given(
+    'que eu desejo obter um script de carga para a funcionalidade {string}',
+    (funcionalidade) => {
+      recorder.nome_arquivo =
+          `Fun_${funcionalidade}_`.concat(recorder.nome_arquivo);
+    });
 
 Given('que eu navego até o site {string}', async (url) => {
   await browser.get(url);
   await browser.waitForAngular();
   if (recording) {
-    await cssEditor.change(By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'), 'display', 'none');
+    await cssEditor.change(
+        By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'), 'display',
+        'none');
   }
 });
 

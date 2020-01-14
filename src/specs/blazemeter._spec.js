@@ -1,20 +1,21 @@
-const { setDefaultTimeout, Given, Then, When } = require('cucumber');
-const browser = require('protractor').browser;
-const chai = require('chai');
-const LoginPage = require('../pages/login.po');
-const Recorder = require('../helpers/recorder');
-chai.use(require('chai-as-promised'));
+/**
+ * @fileoverview
+ */
+
+import {Given, setDefaultTimeout, Then, When} from 'cucumber';
+import {browser} from 'protractor';
+import {Recorder} from '../helpers/recorder';
+import {LoginPage} from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
 const blazeRecorder = new Recorder(browser);
 let baseTab;
 
-Given('que a extensão do Blaze Meter está instalada no Chrome', async function () {
+Given('que a extensão do Blaze Meter está instalada no Chrome', async () => {
   await browser.waitForAngularEnabled(false);
-  return;
 });
 
-Then('abrirei uma nova aba', async function () {
+Then('abrirei uma nova aba', async () => {
   baseTab = await browser.getWindowHandle();
   await browser.executeScript('window.open()');
   const handles = await browser.getAllWindowHandles();
@@ -22,25 +23,25 @@ Then('abrirei uma nova aba', async function () {
   await browser.switchTo().window(handles[1]);
 });
 
-When('eu acessar a página de configuração {string}', async function (blazeUrl) {
+When('eu acessar a página de configuração {string}', async (blazeUrl) => {
   await browser.get(blazeUrl);
 });
 
-Then('farei login com os dados disponibilizados', async function () {
-  await blazeRecorder.login(false);
+Then('farei login com os dados disponibilizados', async () => {
+  await blazeRecorder.login(true);
 });
 
-When('eu acionar o botão de gravação', async function () {
+When('eu acionar o botão de gravação', async () => {
   await blazeRecorder.start();
 });
 
-Then('navegarei até o site {string}', async function (url) {
+Then('navegarei até o site {string}', async (url) => {
   await browser.switchTo().window(baseTab);
   await browser.waitForAngularEnabled(true);
   await browser.get(url);
 });
 
-Then('farei login', async function () {
+Then('farei login', async () => {
   const loginPage = new LoginPage(browser);
   await loginPage.preencherCpf('055.232.031-57');
   await loginPage.preencherSenha('12345678');
@@ -49,16 +50,18 @@ Then('farei login', async function () {
   await browser.waitForAngular();
 });
 
-Then('acessarei novamente a página de configuração {string}', async function (blazeUrl) {
-  await browser.waitForAngularEnabled(false);
-  await browser.get(blazeUrl);
-});
+Then(
+    'acessarei novamente a página de configuração {string}',
+    async (blazeUrl) => {
+      await browser.waitForAngularEnabled(false);
+      await browser.get(blazeUrl);
+    });
 
-Then('pararei a gravação', async function () {
+Then('pararei a gravação', async () => {
   await blazeRecorder.stop();
 });
 
-Then('clicarei para salvar e o arquivo será exportado', async function () {
+Then('clicarei para salvar e o arquivo será exportado', async () => {
   await browser.waitForAngularEnabled(false);
   await blazeRecorder.save();
 });

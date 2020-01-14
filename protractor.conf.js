@@ -5,16 +5,13 @@ exports.config = {
   framework: 'custom',
   capabilities: {
     browserName: 'chrome',
-    // binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome',
     chromeOptions: {
       args: [
-        // 'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
-        'enable-automation',
         'disable-plugins',
         'disable-infobars'
       ],
       extensions: [
-        fs.readFileSync(path.resolve('./exts', 'blazemeter_4_8_0_0.crx'), { encoding: 'base64' }),
+        fs.readFileSync(path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'), { encoding: 'base64' }),
       ],
     }
   },
@@ -46,6 +43,8 @@ exports.config = {
   },
   onPrepare: function () {
     browser.manage().window().maximize();
+    require('babel-register');
+    require('babel-polyfill');
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 30000,

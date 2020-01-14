@@ -1,41 +1,37 @@
-const protractor = require('protractor');
-const EC = protractor.ExpectedConditions;
-const element = require('protractor').element;
-const browser = require('protractor').browser;
+/**
+ * @fileoverview
+ */
 
-class Utility {
+import {browser, element, ExpectedConditions as EC} from 'protractor';
+
+/**
+ *
+ */
+export class Utility {
+  constructor() {
+    this.timeout = 5000;
+  }
+  /**
+   *
+   * @param {*} path
+   */
   async waitClick(path) {
-    await EC.elementToBeClickable(element(path));
+    await browser.wait(EC.elementToBeClickable(element(path)), this.timeout);
   };
 
+  /**
+   *
+   * @param {*} url
+   */
   async waitUrl(url) {
-    await EC.urlIs(element(url));
+    await browser.wait(EC.urlIs(element(url)), this.timeout);
   };
 
+  /**
+   *
+   * @param {*} path
+   */
   async waitVisibility(path) {
-    await EC.visibilityOf(element(path));
+    await browser.wait(EC.visibilityOf(element(path)), this.timeout);
   };
-
-  async pressEnter() {
-    await browser
-      .actions()
-      .sendKeys(protractor.Key.Enter)
-      .perform();
-  };
-
-  async fileToBase64(filename, filepath) {
-    return new Promise(resolve => {
-      var file = new File([filename], filepath);
-      var reader = new FileReader();
-
-      reader.onload = function (event) {
-        resolve(event.target.result);
-      };
-
-      reader.readAsDataURL(file);
-    });
-  };
-
 };
-
-module.exports = Utility;

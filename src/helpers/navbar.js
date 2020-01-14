@@ -1,13 +1,17 @@
-const Utility = require('./utility');
-const element = require('protractor').element;
-const By = require('protractor').By;
+/**
+ * @fileoverview
+ */
+
+import {browser, By, element} from 'protractor';
+import {Utility} from './utility';
 
 const util = new Utility();
 
-class NavBar {
-  constructor(browser) {
-    this.browser = browser;
-
+/**
+ *
+ */
+export class NavBar {
+  constructor() {
     this.botoes = {
       formularios: By.xpath('//a[@routerlink="formularios"]'),
       relatorios_indices: By.xpath('//a[@routerlink="relatorios-indices"]'),
@@ -19,34 +23,42 @@ class NavBar {
       imoveis: By.xpath('//a[@routerlink="imoveis"]'),
       territorios: By.xpath('//a[@routerlink="territorios"]'),
       rede_de_saude: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]',
-      ),
+          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]',
+          ),
       areas_gestao: By.xpath('//a[@routerlink="areas-gestao"]'),
       unidades: By.xpath('//a[@routerlink="unidades"]'),
       pessoas: By.xpath('//a[@routerlink="pessoas"]'),
       equipes: By.xpath('//a[@routerlink="equipes"]'),
       perfis_usuarios: By.xpath('//a[@routerlink="perfis-usuarios"]'),
-      perfil_usuario_unidade: By.xpath('//a[@routerlink="perfil-usuario-unidade"]'),
+      perfil_usuario_unidade:
+          By.xpath('//a[@routerlink="perfil-usuario-unidade"]'),
       tabelas_basicas: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]',
-      ),
+          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]',
+          ),
     };
   }
 
+  /**
+   *
+   */
   async exibir() {
     const navBarExibida = await this.isNavBarExibida();
     if (navBarExibida) {
       return;
     }
 
-    const btnNavBarLateral = By.xpath('(//*[@class="mat-icon notranslate material-icons mat-icon-no-color"])[1]');
+    const btnNavBarLateral = By.xpath(
+        '(//*[@class="mat-icon notranslate material-icons mat-icon-no-color"])[1]');
     await element(btnNavBarLateral).click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
     await util.waitVisibility(this.botoes.tabelas_basicas);
     await util.waitClick(this.botoes.tabelas_basicas);
-    await this.browser.sleep(1500);
+    await browser.sleep(1500);
   };
 
+  /**
+   *
+   */
   async expandirRedeSaude() {
     this.exibir();
     const redeSaudeExibida = await this.isRedeSaudeExpandida();
@@ -54,29 +66,42 @@ class NavBar {
       return;
     }
     await element(this.botoes.rede_de_saude)
-      .element(By.xpath('.//div[@class="mat-list-item-content"]'))
-      .click();
+        .element(By.xpath('.//div[@class="mat-list-item-content"]'))
+        .click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
     await util.waitVisibility(this.botoes.perfil_usuario_unidade);
     await util.waitClick(this.botoes.perfil_usuario_unidade);
-    await this.browser.sleep(1500);
+    await browser.sleep(1500);
   };
 
+  /**
+   *
+   */
   async isNavBarExibida() {
-    const displayed = await element(
-      By.xpath('/html/body/app-root/app-main-nav/mat-sidenav-container/mat-sidenav/div'),
-    ).isDisplayed();
+    const displayed =
+        await element(
+            By.xpath(
+                '/html/body/app-root/app-main-nav/mat-sidenav-container/mat-sidenav/div'),
+            )
+            .isDisplayed();
     return displayed;
   };
 
+  /**
+   *
+   */
   async isRedeSaudeExpandida() {
-    // isso nao ta funcionando, tenho ideia do pq, mas ainda nao sei rsolver...
+    // isso nao ta funcionando, tenho ideia do pq, mas ainda nao sei resolver...
     // potencial erro:
-    //     o element, mesmo com o try parece nao lançar uma exceção, apenas encerra o programa do nada
+    //     o element, mesmo com o try parece nao lançar uma exceção, apenas
+    //     encerra o programa do nada
     try {
-      const classAttr = await element(
-        By.xpath('(//div[contains(@class, "submenu ng-star-inserted")])[1]'),
-      ).getAttribute('class');
+      const classAttr =
+          await element(
+              By.xpath(
+                  '(//div[contains(@class, "submenu ng-star-inserted")])[1]'),
+              )
+              .getAttribute('class');
       if (classAttr.includes('expanded')) {
         return true;
       }
@@ -103,6 +128,9 @@ class NavBar {
     // return false;
   };
 
+  /**
+   *
+   */
   async acessarFormularios() {
     await this.exibir();
     await util.waitVisibility(this.botoes.formularios);
@@ -110,6 +138,9 @@ class NavBar {
     await element(this.botoes.formularios).click();
   };
 
+  /**
+   *
+   */
   async acessarRelatorios() {
     await this.exibir();
     await util.waitVisibility(this.botoes.relatorios_indices);
@@ -117,6 +148,9 @@ class NavBar {
     await element(this.botoes.relatorios_indices).click();
   };
 
+  /**
+   *
+   */
   async acessarExportacao() {
     await this.exibir();
     await util.waitVisibility(this.botoes.exportar);
@@ -124,6 +158,9 @@ class NavBar {
     await element(this.botoes.exportar).click();
   };
 
+  /**
+   *
+   */
   async acessarImportacao() {
     await this.exibir();
     await util.waitVisibility(this.botoes.processo_importacao);
@@ -131,6 +168,9 @@ class NavBar {
     await element(this.botoes.processo_importacao).click();
   };
 
+  /**
+   *
+   */
   async acessarDemandas() {
     await this.exibir();
     await util.waitVisibility(this.botoes.demandas);
@@ -138,6 +178,9 @@ class NavBar {
     await element(this.botoes.demandas).click();
   };
 
+  /**
+   *
+   */
   async acessarListasDeTrabalho() {
     await this.exibir();
     await util.waitVisibility(this.botoes.lista_trabalho);
@@ -145,6 +188,9 @@ class NavBar {
     await element(this.botoes.lista_trabalho).click();
   };
 
+  /**
+   *
+   */
   async acessarAtividades() {
     await this.exibir();
     await util.waitVisibility(this.botoes.atividades);
@@ -152,6 +198,9 @@ class NavBar {
     await element(this.botoes.atividades).click();
   };
 
+  /**
+   *
+   */
   async acessarImoveis() {
     await this.exibir();
     await util.waitVisibility(this.botoes.imoveis);
@@ -159,6 +208,9 @@ class NavBar {
     await element(this.botoes.imoveis).click();
   };
 
+  /**
+   *
+   */
   async acessarTerritorios() {
     await this.exibir();
     await util.waitVisibility(this.botoes.territorios);
@@ -166,6 +218,9 @@ class NavBar {
     await element(this.botoes.territorios).click();
   };
 
+  /**
+   *
+   */
   async acessarAreasDeGestao() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.areas_gestao);
@@ -173,6 +228,9 @@ class NavBar {
     await element(this.botoes.areas_gestao).click();
   };
 
+  /**
+   *
+   */
   async acessarUnidadesOrganizacionais() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.unidades);
@@ -180,6 +238,9 @@ class NavBar {
     await element(this.botoes.unidades).click();
   };
 
+  /**
+   *
+   */
   async acessarPessoas() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.pessoas);
@@ -187,6 +248,9 @@ class NavBar {
     await element(this.botoes.pessoas).click();
   };
 
+  /**
+   *
+   */
   async acessarEquipes() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.equipes);
@@ -194,6 +258,9 @@ class NavBar {
     await element(this.botoes.equipes).click();
   };
 
+  /**
+   *
+   */
   async acessarPerfisDeUsuario() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.perfis_usuarios);
@@ -201,6 +268,9 @@ class NavBar {
     await element(this.botoes.perfis_usuarios).click();
   };
 
+  /**
+   *
+   */
   async acessarUsuariosDaUnidade() {
     await this.expandirRedeSaude();
     await util.waitVisibility(this.botoes.perfil_usuario_unidade);
@@ -208,5 +278,3 @@ class NavBar {
     await element(this.botoes.perfil_usuario_unidade).click();
   };
 };
-
-module.exports = NavBar;
