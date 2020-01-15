@@ -11,10 +11,10 @@ import {HomePage} from '../pages/home.po';
 import {LoginPage} from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage(browser);
-const homePage = new HomePage(browser);
-const recorder = new Recorder(browser);
-const cssEditor = new CssEditor(browser);
+const loginPage = new LoginPage();
+const homePage = new HomePage();
+const recorder = new Recorder();
+const cssEditor = new CssEditor();
 let recording = false;
 
 Given(

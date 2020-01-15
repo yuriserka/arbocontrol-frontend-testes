@@ -7,8 +7,8 @@
 
 // describe('Formulario', () => {
 //   const loginPage = new LoginPage();
-//   const homePage = new HomePage(browser);
-//   const formPage = new FormularioPage(browser);
+//   const homePage = new HomePage();
+//   const formPage = new FormularioPage();
 //   const palavraParaPesquisar = 'Lab';
 
 //   beforeEach(async () => {

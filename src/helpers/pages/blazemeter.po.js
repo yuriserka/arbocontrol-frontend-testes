@@ -29,7 +29,7 @@ export class BlazeMeter {
    */
   async loginGoogle() {
     await element(this.botoes.google).click();
-    await new GoogleAccount(browser).login(
+    await new GoogleAccount().login(
         process.env.GOOGLE_EMAIL, process.env.GOOGLE_SENHA);
   };
 

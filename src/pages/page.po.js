@@ -12,7 +12,7 @@ import {NavBar} from '../helpers/navbar';
 export class Page {
   constructor() {
     this.header = new Header();
-    this.navbar = new NavBar(browser);
+    this.navbar = new NavBar();
   }
 
   /**

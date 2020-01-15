@@ -8,7 +8,7 @@ import {Recorder} from '../helpers/recorder';
 import {LoginPage} from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
-const blazeRecorder = new Recorder(browser);
+const blazeRecorder = new Recorder();
 let baseTab;
 
 Given('que a extensão do Blaze Meter está instalada no Chrome', async () => {
@@ -42,7 +42,7 @@ Then('navegarei até o site {string}', async (url) => {
 });
 
 Then('farei login', async () => {
-  const loginPage = new LoginPage(browser);
+  const loginPage = new LoginPage();
   await loginPage.preencherCpf('055.232.031-57');
   await loginPage.preencherSenha('12345678');
   await loginPage.selecionarPrimeiraUnidade();

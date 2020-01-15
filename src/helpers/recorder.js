@@ -107,7 +107,6 @@ export class Recorder {
   async save() {
     await element(this.botoes.salvar).click();
     await element(By.xpath('//input[@name="chk-jmx"]')).click();
-    // ta dando errado aqui
     element.all(By.xpath('//input[@name="domains"]')).each(async (domain) => {
       const isSelected = await domain.isSelected();
       if (isSelected) {
