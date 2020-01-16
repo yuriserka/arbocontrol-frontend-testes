@@ -1,0 +1,32 @@
+{
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "include": [
+            "."
+        ],
+        "exclude": [
+            "node_modules"
+        ]
+    },
+    "recurseDepth": 10,
+    "opts": {
+        "destination": "./docs/",
+        "template": "node_modules/docdash",
+        "recurse": true,
+        "verbose": true
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": false
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+    "docdash": {
+        "search": true
+    }
+}

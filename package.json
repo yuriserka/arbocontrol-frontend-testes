@@ -5,7 +5,7 @@
   "main": "protractor.conf.js",
   "scripts": {
     "test": "protractor ./protractor.conf.js",
-    "cucumber": "cucumber-js ./src/features -r ./src/specs"
+    "docs": "jsdoc -c ./jsdoc.conf.json"
   },
   "keywords": [
     "Software Test"
@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "cucumber-html-reporter": "^5.0.2",
+    "docdash": "^1.1.1",
     "dotenv": "^8.2.0",
     "moment": "^2.24.0",
     "protractor": "^5.4.2"

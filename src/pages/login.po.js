@@ -8,64 +8,84 @@ import {Utility} from '../helpers/utility';
 const util = new Utility();
 
 /**
- *
+ * @description Abstração da página de login
  */
 export class LoginPage {
   constructor() {
-    this.input = {
+    /**
+     * @description botões que necessitam de ser clicados
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.botoes_ = {
+      entrar: By.xpath(
+          `//*[@class='mat-raised-button mat-button-base mat-primary']`),
+    };
+
+    /**
+     * @description campos que devem ser preenchidos
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.campos_ = {
       cpf: By.xpath(`//*[@id='mat-input-0']`),
       senha: By.xpath(`//*[@id='mat-input-1']`),
       unidade: By.xpath(`//*[@id='mat-input-2']`),
     };
-
-    this.btnEntrar =
-        By.xpath(`//*[@class='mat-raised-button mat-button-base mat-primary']`);
   }
 
   /**
-   *
-   * @param {*} cpf
-   * @param {*} senha
+   * @description Preenche os campos de cpf e senha, seleciona a primeira
+   * unidade e então faz login
+   * @async
+   * @param {!String} cpf
+   * @param {!String} senha
    */
   async login(cpf, senha) {
     await this.preencherCpf(cpf);
     await this.preencherSenha(senha);
     await this.selecionarPrimeiraUnidade();
-    return this.clicarBotaoEntrar();
-  };
+    await this.clicarBotaoEntrar();
+  }
 
   /**
-   *
-   * @param {*} cpf
+   * @description preenche o cpf
+   * @example "111.111.111-11"
+   * @async
+   * @param {!String} cpf
    */
-  preencherCpf(cpf) {
-    return element(this.input.cpf).sendKeys(cpf);
-  };
+  async preencherCpf(cpf) {
+    await element(this.campos_.cpf).sendKeys(cpf);
+  }
 
   /**
-   *
-   * @param {*} senha
+   * @description preenche a senha
+   * @async
+   * @param {!String} senha
    */
-  preencherSenha(senha) {
-    return element(this.input.senha).sendKeys(senha);
-  };
+  async preencherSenha(senha) {
+    await element(this.campos_.senha).sendKeys(senha);
+  }
 
   /**
-   *
+   * @description Seleciona a primeira unidade da lista
+   * @async
    */
   async selecionarPrimeiraUnidade() {
-    await element(this.input.unidade).click();
+    await element(this.campos_.unidade).click();
     const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
     await util.waitVisibility(listaUnidades);
     const primeiraUnidade = By.xpath(`//*[@id="mat-option-0"]`);
-
-    return element(primeiraUnidade).click();
-  };
+    await element(primeiraUnidade).click();
+  }
 
   /**
-   *
+   * @description clica no botao pra fazer o login
+   * @async
    */
-  clicarBotaoEntrar() {
-    return element(this.btnEntrar).click();
-  };
-};
+  async clicarBotaoEntrar() {
+    await element(this.botoes_.entrar).click();
+  }
+}

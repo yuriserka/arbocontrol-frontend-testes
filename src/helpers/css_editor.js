@@ -2,21 +2,23 @@
  * @fileoverview
  */
 
-import {browser, element} from 'protractor';
+import {browser, element, Locator} from 'protractor';
 
 /**
- *
+ * @description Responsável por editar o estilo de um atributo de um elemento da
+ * página
  */
 export class CssEditor {
   /**
-   *
-   * @param {*} xpath
-   * @param {*} prop
-   * @param {*} val
+   * @description Altera ou adiciona o estilo do elemento passado
+   * @async
+   * @param {!Locator} locator
+   * @param {!String} attribute
+   * @param {!String} value
    */
-  change(xpath, prop, val) {
-    return browser.executeScript(
-        `arguments[0].style.${prop} = "${val}"`,
-        element(xpath).getWebElement());
-  };
-};
+  async alterar(locator, attribute, value) {
+    await browser.executeScript(
+        `arguments[0].style.${attribute} = "${value}"`,
+        element(locator).getWebElement());
+  }
+}

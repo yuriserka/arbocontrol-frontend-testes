@@ -2,54 +2,73 @@
  * @fileoverview
  */
 
-import {browser, By, element} from 'protractor';
+import {browser, By, element, Locator} from 'protractor';
 import {Utility} from '../utility';
 
 /**
- *
+ * @description Representa a página de login utilizando a conta do Google
  */
 export class GoogleAccount {
   constructor() {
-    this.botoes = {
+    /**
+     * @description botões que necessitam de ser clicados
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.botoes_ = {
       proximo_email: By.xpath('//*[@id="identifierNext"]'),
       proximo_senha: By.xpath('//*[@id="passwordNext"]'),
     };
 
-    this.input = {
+    /**
+     * @description campos que devem ser preenchidos
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.campos_ = {
       email: By.xpath('//*[@name="identifier"]'),
       senha: By.xpath('//*[@name="password"]'),
     };
   }
 
   /**
-   * @param  {} email
-   * @param  {} senha
+   * @description Preenche email e senha na página de login que é aberta pelo
+   * Blaze Meter
+   * @async
+   * @param  {!String} email
+   * @param  {!String} senha
    */
   async login(email, senha) {
     const util = new Utility();
-    await this.preencherEmail(email);
-    util.waitVisibility(this.input.senha);
-    util.waitClick(this.botoes.proximo_senha);
-    await browser.sleep(2000);
-    await this.preencherSenha(senha);
-    await browser.sleep(1500);
-  };
+    await this.preencherEmail_(email);
+    await browser.sleep(1000);
+    await util.waitVisibility(this.campos_.senha);
+    await util.waitClick(this.botoes_.proximo_senha);
+    await this.preencherSenha_(senha);
+  }
 
   /**
-   *
-   * @param {*} email
+   * @description Preenche o email na página login que é aberta pelo Blaze Meter
+   * @private
+   * @async
+   * @param {!String} email
    */
-  async preencherEmail(email) {
-    await element(this.input.email).sendKeys(email);
-    return element(this.botoes.proximo_email).click();
-  };
+  async preencherEmail_(email) {
+    await element(this.campos_.email).sendKeys(email);
+    await element(this.botoes_.proximo_email).click();
+  }
 
   /**
-   *
-   * @param {*} senha
+   * @description Preenche a Senha na página login que é aberta pelo Blaze
+   * Meter, deve ser chamada após preencher o email
+   * @private
+   * @async
+   * @param {!String} senha
    */
-  async preencherSenha(senha) {
-    await element(this.input.senha).sendKeys(senha);
-    return element(this.botoes.proximo_senha).click();
-  };
-};
+  async preencherSenha_(senha) {
+    await element(this.campos_.senha).sendKeys(senha);
+    await element(this.botoes_.proximo_senha).click();
+  }
+}

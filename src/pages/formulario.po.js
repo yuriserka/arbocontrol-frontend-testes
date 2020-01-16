@@ -8,7 +8,7 @@ import Utility from '../helpers/utility';
 const util = new Utility();
 
 /**
- *
+ * Abstração da página de Formulários
  */
 export class FormPage {
   constructor() {
@@ -32,7 +32,7 @@ export class FormPage {
    */
   async get() {
     await browser.get('https://admin.arbocontrol.com/formularios');
-  };
+  }
 
   /**
    *
@@ -58,5 +58,5 @@ export class FormPage {
     });
 
     return titulosRetornados;
-  };
-};
+  }
+}

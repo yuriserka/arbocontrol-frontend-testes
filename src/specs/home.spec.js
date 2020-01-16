@@ -17,15 +17,15 @@ BeforeAll(async () => {
   await loginPage.login('111.111.111-11', '12345678');
 });
 
-When('eu clicar para expandir a barra de navegação', async function() {
-  await homePage.showNavBar();
+When('eu clicar para expandir a barra de navegação', async () => {
+  await homePage.mostrarSideNav();
 });
 
-When('clicar no botão {string}', async function(routerlink_name) {
-  await homePage.btnFuncMap[routerlink_name]();
+When('clicar no botão {string}', async (btn) => {
+  await homePage.acessar(btn);
 });
 
-Then('a url deve ser {string}', async function(url) {
+Then('a url deve ser {string}', async (url) => {
   expect(await browser.getCurrentUrl()).to.be.equal(url);
 });
 

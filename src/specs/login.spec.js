@@ -13,22 +13,21 @@ import {LoginPage} from '../pages/login.po';
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const homePage = new HomePage();
-const recorder = new Recorder();
 const cssEditor = new CssEditor();
+let recorder;
 let recording = false;
 
 Given(
     'que eu desejo obter um script de carga para a funcionalidade {string}',
     (funcionalidade) => {
-      recorder.nome_arquivo =
-          `Fun_${funcionalidade}_`.concat(recorder.nome_arquivo);
+      recorder = new Recorder(funcionalidade);
     });
 
 Given('que eu navego até o site {string}', async (url) => {
   await browser.get(url);
   await browser.waitForAngular();
   if (recording) {
-    await cssEditor.change(
+    await cssEditor.alterar(
         By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'), 'display',
         'none');
   }
@@ -62,10 +61,10 @@ Then('eu faço Logoff', async () => {
 });
 
 Then('eu inicio uma gravação do BlazeMeter', async () => {
-  await recorder.startRecording();
+  await recorder.iniciar();
   recording = true;
 });
 
 Then('paro a gravação do BlazeMeter', async () => {
-  await recorder.stopRecording();
+  await recorder.terminar();
 });

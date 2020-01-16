@@ -32,7 +32,7 @@ Then('farei login com os dados disponibilizados', async () => {
 });
 
 When('eu acionar o botão de gravação', async () => {
-  await blazeRecorder.start();
+  await blazeRecorder.gravar();
 });
 
 Then('navegarei até o site {string}', async (url) => {
@@ -42,11 +42,7 @@ Then('navegarei até o site {string}', async (url) => {
 });
 
 Then('farei login', async () => {
-  const loginPage = new LoginPage();
-  await loginPage.preencherCpf('055.232.031-57');
-  await loginPage.preencherSenha('12345678');
-  await loginPage.selecionarPrimeiraUnidade();
-  await loginPage.clicarBotaoEntrar();
+  await new LoginPage().login('055.232.031-57', '12345678');
   await browser.waitForAngular();
 });
 
@@ -58,10 +54,10 @@ Then(
     });
 
 Then('pararei a gravação', async () => {
-  await blazeRecorder.stop();
+  await blazeRecorder.parar();
 });
 
 Then('clicarei para salvar e o arquivo será exportado', async () => {
   await browser.waitForAngularEnabled(false);
-  await blazeRecorder.save();
+  await blazeRecorder.salvar();
 });
