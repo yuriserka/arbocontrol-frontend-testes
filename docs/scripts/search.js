@@ -63,7 +63,7 @@ document.getElementById("nav-search").addEventListener("keyup", function(event) 
                 
                 // count all visible elements
                 var children = ulP.children
-                for (i=0; i<children.length; i++) {
+                for (let i=0; i<children.length; i++) {
                     var elem = children[i];
                     if (elem.style.display != "none") {
                         countUlVisible++;

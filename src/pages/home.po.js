@@ -27,7 +27,7 @@ export class HomePage extends Page {
      * @constant
      * @type {!Object<!String, !Promise<void>>}
      */
-    this.mapBotaoPagina_ = {
+    this.btn2page_ = {
       formularios: () => this.navbar_.acessarFormularios(),
       relatorios_indices: () => this.navbar_.acessarRelatorios(),
       exportar: () => this.navbar_.acessarExportacao(),
@@ -52,11 +52,12 @@ export class HomePage extends Page {
    * @param {String} nomeBotao
    */
   async acessar(nomeBotao) {
-    await this.mapBotaoPagina_[nomeBotao]();
+    await this.btn2page_[nomeBotao]();
   }
 
   /**
-   * @description Retorna o nome do usuário logado atualmente
+   * @description Retorna o nome do usuário escrito no Card
+   * @returns {!String} nome do usuário logado
    * @async
    */
   async getUsuarioLogado() {

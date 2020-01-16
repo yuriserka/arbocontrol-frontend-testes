@@ -2,28 +2,38 @@
  * @fileoverview
  */
 
-import {browser, By, element} from 'protractor';
+import {By, element, Locator} from 'protractor';
 import Utility from '../helpers/utility';
+import {Page} from './page.po';
 
 const util = new Utility();
 
 /**
  * Abstração da página de Formulários
  */
-export class FormPage {
+export class FormPage extends Page {
   constructor() {
-    this.input = {
-      filtro: By.xpath(
-          `/html/body/app-root/app-main-nav/mat-sidenav-container/mat-sidenav-content/div/
-                        app-formulario-listar/app-formulario-listagem/div/div/mat-form-field/div/
-                        div[1]/div/input`),
-    };
-
-    this.botoes = {
+    /**
+     * @description botões que necessitam de ser clicados
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.botoes_ = {
       cadastrar: By.xpath(
           `//*[@class='mat-raised-button mat-button-base mat-primary']`),
       filtro: By.xpath(
           `//*[@class='mat-raised-button mat-button-base ng-star-inserted']`),
+    };
+
+    /**
+     * @description campos que devem ser preenchidos
+     * @private
+     * @constant
+     * @type {!Object<!String, !Locator>}
+     */
+    this.input_ = {
+      filtro: By.xpath('(//input[contains(@class, "mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored")])[2]'),
     };
   }
 
@@ -31,18 +41,18 @@ export class FormPage {
    *
    */
   async get() {
-    await browser.get('https://admin.arbocontrol.com/formularios');
+    await this.navbar_.acessarFormularios();
   }
 
   /**
    *
-   * @param {*} palavra
+   * @param {!String} palavra
    */
   async pesquisar(palavra) {
-    await util.waitVisibility(this.input.filtro);
-    await element(this.input.filtro).sendKeys(palavra);
-    await util.waitClick(this.botoes.filtro);
-    await element(this.botoes.filtro).click();
+    await util.waitVisibility(this.input_.filtro);
+    await element(this.input_.filtro).sendKeys(palavra);
+    await util.waitClick(this.botoes_.filtro);
+    await element(this.botoes_.filtro).click();
 
     const itens =
         await element.all(By.xpath(`//tr[@class='mat-row ng-star-inserted']`));

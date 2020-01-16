@@ -3,7 +3,6 @@
  */
 
 import {By, element, Locator} from 'protractor';
-import {SideNav} from './navbar';
 
 /**
  * @description Represena a barra de navegação superior do site arbocontrol
