@@ -5,7 +5,11 @@
   "main": "protractor.conf.js",
   "scripts": {
     "test": "protractor ./protractor.conf.js",
-    "docs": "jsdoc -c ./jsdoc.conf.json"
+    "docs": "./node_modules/.bin/jsdoc -c ./jsdoc.conf.json",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix"
   },
   "keywords": [
     "Software Test"
@@ -13,18 +17,26 @@
   "author": "Yuri Serka do Carmo Rodrigues",
   "license": "MIT",
   "dependencies": {
-    "cucumber-html-reporter": "^5.0.2",
-    "docdash": "^1.1.1",
-    "dotenv": "^8.2.0",
-    "moment": "^2.24.0",
     "protractor": "^5.4.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/cucumber": "^6.0.0",
+    "@types/node": "^10.0.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "better-docs": "^1.4.7",
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
-    "protractor-cucumber-framework": "^6.2.0"
+    "cucumber-html-reporter": "^5.1.0",
+    "docdash": "^1.1.1",
+    "dotenv": "^8.2.0",
+    "gts": "^1.1.2",
+    "jsdoc": "^3.6.3",
+    "moment": "^2.24.0",
+    "protractor-cucumber-framework": "^6.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "~3.7.0"
   }
 }

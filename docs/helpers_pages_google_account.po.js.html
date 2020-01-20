@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: pages/page.po.js</title>
+    <title>JSDoc: helpers/pages/google_account.po.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>pages/page.po.js</h1>
+                        <h1>helpers/pages/google_account.po.js</h1>
                     </header>
                     
                     
@@ -68,46 +68,74 @@
  * @fileoverview
  */
 
-import {SideNav} from '../helpers/sidenav';
-import {ToolBar} from '../helpers/toolbar';
+import {browser, By, element, Locator} from 'protractor';
+import {SmartWaiter} from '../smart_waiter';
 
 /**
- * @description Abstração dos componentes basicos que todas as páginas possuem
- * @category Util
+ * @description Representa a página de login utilizando a conta do Google
  */
-export class Page {
+export class GoogleAccount {
   constructor() {
     /**
-     * @description barra de navegação superior visível em todas as paginas
+     * @description botões que necessitam de ser clicados
      * @private
      * @constant
-     * @type {!ToolBar}
+     * @type {!Object&lt;!string, !Locator>}
      */
-    this.toolbar_ = new ToolBar();
+    this.botoes_ = {
+      proximo_email: By.id('identifierNext'),
+      proximo_senha: By.id('passwordNext'),
+    };
 
     /**
-     * @description barra de navegação lateral
+     * @description campos que devem ser preenchidos
      * @private
      * @constant
-     * @type {!SideNav}
+     * @type {!Object&lt;!string, !Locator>}
      */
-    this.navbar_ = new SideNav();
+    this.campos_ = {
+      email: By.name('identifier'),
+      senha: By.name('password'),
+    };
   }
 
   /**
-   * @description faz logout do sistema
+   * @description Preenche email e senha na página de login que é aberta pelo
+   * Blaze Meter
    * @async
+   * @param  {!string} email
+   * @param  {!string} senha
    */
-  async logout() {
-    await this.toolbar_.logout();
+  async login(email, senha) {
+    const waiter = new SmartWaiter();
+    await this.preencherEmail_(email);
+    await browser.sleep(1000);
+    await waiter.waitVisibility(this.campos_.senha);
+    await waiter.waitClick(this.botoes_.proximo_senha);
+    await this.preencherSenha_(senha);
   }
 
   /**
-   * @description mostra a barra de navegação lateral
+   * @description Preenche o email na página login que é aberta pelo Blaze Meter
+   * @private
    * @async
+   * @param {!string} email
    */
-  async mostrarSideNav() {
-    await this.navbar_.exibir();
+  async preencherEmail_(email) {
+    await element(this.campos_.email).sendKeys(email);
+    await element(this.botoes_.proximo_email).click();
+  }
+
+  /**
+   * @description Preenche a Senha na página login que é aberta pelo Blaze
+   * Meter, deve ser chamada após preencher o email
+   * @private
+   * @async
+   * @param {!string} senha
+   */
+  async preencherSenha_(senha) {
+    await element(this.campos_.senha).sendKeys(senha);
+    await element(this.botoes_.proximo_senha).click();
   }
 }
 </code></pre>

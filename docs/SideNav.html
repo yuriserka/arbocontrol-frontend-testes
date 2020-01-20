@@ -3,41 +3,59 @@
 <head>
     
     <meta charset="utf-8">
-    <title>SideNav - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <title>JSDoc: SideNav</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    <input type="text" id="nav-search" placeholder="Search" />
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a><ul class='methods'><li data-type='method'><a href="BlazeMeter.html#login">login</a></li><li data-type='method'><a href="BlazeMeter.html#loginGoogle">loginGoogle</a></li></ul></li><li><a href="CssEditor.html">CssEditor</a><ul class='methods'><li data-type='method'><a href="CssEditor.html#alterar">alterar</a></li></ul></li><li><a href="FormPage.html">FormPage</a><ul class='methods'><li data-type='method'><a href="FormPage.html#get">get</a></li><li data-type='method'><a href="FormPage.html#pesquisar">pesquisar</a></li></ul></li><li><a href="GoogleAccount.html">GoogleAccount</a><ul class='methods'><li data-type='method'><a href="GoogleAccount.html#login">login</a></li></ul></li><li><a href="HomePage.html">HomePage</a><ul class='methods'><li data-type='method'><a href="HomePage.html#acessar">acessar</a></li><li data-type='method'><a href="HomePage.html#getUsuarioLogado">getUsuarioLogado</a></li></ul></li><li><a href="LoginPage.html">LoginPage</a><ul class='methods'><li data-type='method'><a href="LoginPage.html#clicarBotaoEntrar">clicarBotaoEntrar</a></li><li data-type='method'><a href="LoginPage.html#login">login</a></li><li data-type='method'><a href="LoginPage.html#preencherCpf">preencherCpf</a></li><li data-type='method'><a href="LoginPage.html#preencherSenha">preencherSenha</a></li><li data-type='method'><a href="LoginPage.html#selecionarPrimeiraUnidade">selecionarPrimeiraUnidade</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#logout">logout</a></li><li data-type='method'><a href="Page.html#mostrarSideNav">mostrarSideNav</a></li></ul></li><li><a href="Recorder.html">Recorder</a><ul class='methods'><li data-type='method'><a href="Recorder.html#gravar">gravar</a></li><li data-type='method'><a href="Recorder.html#iniciar">iniciar</a></li><li data-type='method'><a href="Recorder.html#login">login</a></li><li data-type='method'><a href="Recorder.html#parar">parar</a></li><li data-type='method'><a href="Recorder.html#pause">pause</a></li><li data-type='method'><a href="Recorder.html#salvar">salvar</a></li><li data-type='method'><a href="Recorder.html#terminar">terminar</a></li></ul></li><li><a href="SideNav.html">SideNav</a><ul class='methods'><li data-type='method'><a href="SideNav.html#acessarAreasDeGestao">acessarAreasDeGestao</a></li><li data-type='method'><a href="SideNav.html#acessarAtividades">acessarAtividades</a></li><li data-type='method'><a href="SideNav.html#acessarDemandas">acessarDemandas</a></li><li data-type='method'><a href="SideNav.html#acessarEquipes">acessarEquipes</a></li><li data-type='method'><a href="SideNav.html#acessarExportacao">acessarExportacao</a></li><li data-type='method'><a href="SideNav.html#acessarFormularios">acessarFormularios</a></li><li data-type='method'><a href="SideNav.html#acessarImoveis">acessarImoveis</a></li><li data-type='method'><a href="SideNav.html#acessarImportacao">acessarImportacao</a></li><li data-type='method'><a href="SideNav.html#acessarListasDeTrabalho">acessarListasDeTrabalho</a></li><li data-type='method'><a href="SideNav.html#acessarPerfisDeUsuario">acessarPerfisDeUsuario</a></li><li data-type='method'><a href="SideNav.html#acessarPessoas">acessarPessoas</a></li><li data-type='method'><a href="SideNav.html#acessarRelatorios">acessarRelatorios</a></li><li data-type='method'><a href="SideNav.html#acessarTerritorios">acessarTerritorios</a></li><li data-type='method'><a href="SideNav.html#acessarUnidadesOrganizacionais">acessarUnidadesOrganizacionais</a></li><li data-type='method'><a href="SideNav.html#acessarUsuariosDaUnidade">acessarUsuariosDaUnidade</a></li><li data-type='method'><a href="SideNav.html#exibir">exibir</a></li><li data-type='method'><a href="SideNav.html#expandirRedeSaude">expandirRedeSaude</a></li></ul></li><li><a href="ToolBar.html">ToolBar</a><ul class='methods'><li data-type='method'><a href="ToolBar.html#logout">logout</a></li></ul></li><li><a href="Utility.html">Utility</a><ul class='methods'><li data-type='method'><a href="Utility.html#waitClick">waitClick</a></li><li data-type='method'><a href="Utility.html#waitText">waitText</a></li><li data-type='method'><a href="Utility.html#waitUrl">waitUrl</a></li><li data-type='method'><a href="Utility.html#waitVisibility">waitVisibility</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">SideNav</h1>
-    
-
-    
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a></li><li><a href="CssEditor.html">CssEditor</a></li><li><a href="GoogleAccount.html">GoogleAccount</a></li><li><a href="Recorder.html">Recorder</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="SmartWaiter.html">SmartWaiter</a></li><li><a href="ToolBar.html">ToolBar</a></li></ul></div><div class="category"><h2>Páginas do sistema</h2><h3>Classes</h3><ul><li><a href="FormPage.html">FormPage</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="LoginPage.html">LoginPage</a></li><li><a href="WorkList.html">WorkList</a></li></ul></div><div class="category"><h2>Util</h2><h3>Classes</h3><ul><li><a href="Page.html">Page</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>SideNav</h1>
+                    </header>
+                    
+                    
 
 
 
@@ -46,24 +64,48 @@
 
 <header>
     
-        <h2>
-        SideNav
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>SideNav<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
 
 <article>
+    <div class="container-overview">
     
-        <div class="container-overview">
         
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+
+    
+    <h4 class="name" id="SideNav">
+        <a class="href-link" href="#SideNav">#</a>
+        
+        <span class="code-name">
             
-
+                new SideNav<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
     
 
-    <h4 class="name" id="SideNav"><span class="type-signature"></span>new SideNav<span class="signature">()</span><span class="type-signature"></span></h4>
-
     
+    
+    <div class="description">
+        <p>Permite o acesso à todas as páginas do sistema</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,11 +113,6 @@
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
 
     
 
@@ -98,13 +135,19 @@
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line14">line 14</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -112,41 +155,29 @@
 
 
 
-<div class="description">
-    <p>Permite o acesso à todas as páginas do sistema</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
+            </div>
         
-        </div>
     
-
+    </div>
+    
     
 
     
@@ -159,114 +190,55 @@
             <dd></dd>
         </dl>
     
-    
-    
-
-     
 
     
 
     
 
     
-        <h3 class="subsection-title">Methods</h3>
 
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarAreasDeGestao">
+        <a class="href-link" href="#acessarAreasDeGestao">#</a>
         
             
-
-    
-
-    <h4 class="name" id="acessarAreasDeGestao"><span class="type-signature">(async) </span>acessarAreasDeGestao<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line223">line 223</a>
-    </li></ul></dd>
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarAreasDeGestao<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
     
 
     
-
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>acessa a página de &quot;Áreas de Gestão&quot; a partir da barra de
+    <div class="description">
+        <p>acessa a página de &quot;Áreas de Gestão&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarAtividades"><span class="type-signature">(async) </span>acessarAtividades<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -274,11 +246,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line187">line 187</a>
-    </li></ul></dd>
-    
 
     
 
@@ -301,13 +268,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line223">line 223</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -315,46 +288,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Atividades&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarAtividades">
+        <a class="href-link" href="#acessarAtividades">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarAtividades<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Atividades&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarDemandas"><span class="type-signature">(async) </span>acessarDemandas<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -362,11 +348,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line163">line 163</a>
-    </li></ul></dd>
-    
 
     
 
@@ -389,13 +370,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line187">line 187</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -403,46 +390,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Demandas&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarDemandas">
+        <a class="href-link" href="#acessarDemandas">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarDemandas<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Demandas&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarEquipes"><span class="type-signature">(async) </span>acessarEquipes<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -450,11 +450,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line259">line 259</a>
-    </li></ul></dd>
-    
 
     
 
@@ -477,13 +472,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line163">line 163</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -491,46 +492,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Equipes&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarEquipes">
+        <a class="href-link" href="#acessarEquipes">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarEquipes<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Equipes&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarExportacao"><span class="type-signature">(async) </span>acessarExportacao<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -538,11 +552,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line139">line 139</a>
-    </li></ul></dd>
-    
 
     
 
@@ -565,13 +574,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line259">line 259</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -579,46 +594,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Exportação&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarExportacao">
+        <a class="href-link" href="#acessarExportacao">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarExportacao<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Exportação&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarFormularios"><span class="type-signature">(async) </span>acessarFormularios<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -626,11 +654,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line115">line 115</a>
-    </li></ul></dd>
-    
 
     
 
@@ -653,13 +676,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line139">line 139</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -667,46 +696,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Formulários&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarFormularios">
+        <a class="href-link" href="#acessarFormularios">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarFormularios<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Formulários&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarImoveis"><span class="type-signature">(async) </span>acessarImoveis<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -714,11 +756,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line199">line 199</a>
-    </li></ul></dd>
-    
 
     
 
@@ -741,13 +778,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line115">line 115</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -755,46 +798,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Imóveis&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarImoveis">
+        <a class="href-link" href="#acessarImoveis">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarImoveis<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Imóveis&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarImportacao"><span class="type-signature">(async) </span>acessarImportacao<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -802,11 +858,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line151">line 151</a>
-    </li></ul></dd>
-    
 
     
 
@@ -829,13 +880,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line199">line 199</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -843,46 +900,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Importação&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarImportacao">
+        <a class="href-link" href="#acessarImportacao">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarImportacao<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Importação&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarListasDeTrabalho"><span class="type-signature">(async) </span>acessarListasDeTrabalho<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -890,11 +960,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line175">line 175</a>
-    </li></ul></dd>
-    
 
     
 
@@ -917,13 +982,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line151">line 151</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -931,46 +1002,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Lista de Trabalho&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarListasDeTrabalho">
+        <a class="href-link" href="#acessarListasDeTrabalho">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarListasDeTrabalho<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Lista de Trabalho&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarPerfisDeUsuario"><span class="type-signature">(async) </span>acessarPerfisDeUsuario<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -978,11 +1062,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line271">line 271</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1005,13 +1084,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line175">line 175</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1019,46 +1104,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Perfis de Usuário&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarPerfisDeUsuario">
+        <a class="href-link" href="#acessarPerfisDeUsuario">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarPerfisDeUsuario<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Perfis de Usuário&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarPessoas"><span class="type-signature">(async) </span>acessarPessoas<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1066,11 +1164,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line247">line 247</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1093,13 +1186,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line271">line 271</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1107,46 +1206,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Pessoas&quot; a partir da barra de navegação
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarPessoas">
+        <a class="href-link" href="#acessarPessoas">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarPessoas<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Pessoas&quot; a partir da barra de navegação
 lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarRelatorios"><span class="type-signature">(async) </span>acessarRelatorios<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1154,11 +1266,6 @@ lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line127">line 127</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1181,13 +1288,19 @@ lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line247">line 247</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1195,46 +1308,59 @@ lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Relatórios e Índices&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarRelatorios">
+        <a class="href-link" href="#acessarRelatorios">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarRelatorios<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Relatórios e Índices&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarTerritorios"><span class="type-signature">(async) </span>acessarTerritorios<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1242,11 +1368,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line211">line 211</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1269,13 +1390,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line127">line 127</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1283,46 +1410,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Territórios&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarTerritorios">
+        <a class="href-link" href="#acessarTerritorios">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarTerritorios<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Territórios&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarUnidadesOrganizacionais"><span class="type-signature">(async) </span>acessarUnidadesOrganizacionais<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1330,11 +1470,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line235">line 235</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1357,13 +1492,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line211">line 211</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1371,46 +1512,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Unidades Organizacionais&quot; a partir da
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarUnidadesOrganizacionais">
+        <a class="href-link" href="#acessarUnidadesOrganizacionais">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarUnidadesOrganizacionais<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Unidades Organizacionais&quot; a partir da
 barra de navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="acessarUsuariosDaUnidade"><span class="type-signature">(async) </span>acessarUsuariosDaUnidade<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1418,11 +1572,6 @@ barra de navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line283">line 283</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1445,13 +1594,19 @@ barra de navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line235">line 235</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1459,46 +1614,59 @@ barra de navegação lateral</p>
 
 
 
-<div class="description">
-    <p>acessa a página de &quot;Usuários da Unidade&quot; a partir da barra de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="acessarUsuariosDaUnidade">
+        <a class="href-link" href="#acessarUsuariosDaUnidade">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                acessarUsuariosDaUnidade<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>acessa a página de &quot;Usuários da Unidade&quot; a partir da barra de
 navegação lateral</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="exibir"><span class="type-signature">(async) </span>exibir<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1506,11 +1674,6 @@ navegação lateral</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line50">line 50</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1533,13 +1696,19 @@ navegação lateral</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line283">line 283</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1547,46 +1716,59 @@ navegação lateral</p>
 
 
 
-<div class="description">
-    <p>Se a barra de navegação lateral não estiver sendo exibida,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="exibir">
+        <a class="href-link" href="#exibir">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                exibir<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Se a barra de navegação lateral não estiver sendo exibida,
 então é clicado no botão para exibi-la, caso contrário não faz nada</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
+    </div>
     
 
-    <h4 class="name" id="expandirRedeSaude"><span class="type-signature">(async) </span>expandirRedeSaude<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    
+
+
+
+
+
+
+
 
 
 
@@ -1594,11 +1776,6 @@ então é clicado no botão para exibi-la, caso contrário não faz nada</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_navbar.js.html">helpers/navbar.js</a>, <a href="helpers_navbar.js.html#line83">line 83</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1621,13 +1798,19 @@ então é clicado no botão para exibi-la, caso contrário não faz nada</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line50">line 50</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -1635,40 +1818,129 @@ então é clicado no botão para exibi-la, caso contrário não faz nada</p>
 
 
 
-<div class="description">
-    <p>Se a lista de opções da Rede de Saúde não estiver sendo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="expandirRedeSaude">
+        <a class="href-link" href="#expandirRedeSaude">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                expandirRedeSaude<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Se a lista de opções da Rede de Saúde não estiver sendo
 exibida, então é clicado no botão para exibi-la, caso contrário não faz
 nada</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="helpers_sidenav.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_sidenav.js.html">helpers/sidenav.js</a>, <a href="helpers_sidenav.js.html#line83">line 83</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+            
+            </div>
+        </div>
     
 
     
@@ -1681,23 +1953,24 @@ nada</p>
 
 
 
-    
-    
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<br class="clear">
 
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 16 2020 01:04:41 GMT-0300 (GMT-03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Jan 20 2020 14:25:35 GMT-0300 (GMT-03:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
 
-<script src="scripts/search.js" defer></script>
-
-
-
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

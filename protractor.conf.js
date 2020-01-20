@@ -1,5 +1,5 @@
-// const fs = require('fs');
-// const path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 exports.config = {
   framework: 'custom',
@@ -7,22 +7,21 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions: {
       args: [
-        // carregar direto do diretório é muito mais rápido que ler o arquivo com encode base64
-        'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
+        // 'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
         'disable-plugins',
         'disable-infobars'
       ],
-      // extensions: [
-      //   fs.readFileSync(path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'), { encoding: 'base64' }),
-      // ],
+      extensions: [
+        fs.readFileSync(path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'), { encoding: 'base64' }),
+      ],
     }
   },
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['./src/features/**/home.feature'],
+  specs: ['./src/features/**/blazemeter.feature'],
   "stopSpecOnExpectationFailure": true,
   cucumberOpts: {
-    require: ['./src/specs/**/home.spec.js'],
+    require: ['./src/specs/**/blazemeter._spec.ts'],
     format: ['json:results.json'],
     tags: false,
     strict: true,

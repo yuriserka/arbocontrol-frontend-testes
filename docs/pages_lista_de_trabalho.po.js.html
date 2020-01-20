@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: pages/page.po.js</title>
+    <title>JSDoc: pages/lista_de_trabalho.po.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>pages/page.po.js</h1>
+                        <h1>pages/lista_de_trabalho.po.js</h1>
                     </header>
                     
                     
@@ -68,46 +68,33 @@
  * @fileoverview
  */
 
-import {SideNav} from '../helpers/sidenav';
-import {ToolBar} from '../helpers/toolbar';
+import {Page} from './page.po';
 
 /**
- * @description Abstração dos componentes basicos que todas as páginas possuem
- * @category Util
+ * @description Abstração da página de login
+ * @category Páginas do sistema
  */
-export class Page {
+export class WorkList extends Page {
   constructor() {
     /**
-     * @description barra de navegação superior visível em todas as paginas
+     * @description botões que necessitam de ser clicados
      * @private
      * @constant
-     * @type {!ToolBar}
+     * @type {!Object&lt;!string, !Locator>}
      */
-    this.toolbar_ = new ToolBar();
+    this.botoes_ = {};
 
     /**
-     * @description barra de navegação lateral
+     * @description campos que devem ser preenchidos
      * @private
      * @constant
-     * @type {!SideNav}
+     * @type {!Object&lt;!string, !Locator>}
      */
-    this.navbar_ = new SideNav();
+    this.campos_ = {};
   }
 
-  /**
-   * @description faz logout do sistema
-   * @async
-   */
-  async logout() {
-    await this.toolbar_.logout();
-  }
-
-  /**
-   * @description mostra a barra de navegação lateral
-   * @async
-   */
-  async mostrarSideNav() {
-    await this.navbar_.exibir();
+  async get() {
+    await this.navbar_.acessarListasDeTrabalho();
   }
 }
 </code></pre>

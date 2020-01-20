@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: helpers/sidenav.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a></li><li><a href="CssEditor.html">CssEditor</a></li><li><a href="GoogleAccount.html">GoogleAccount</a></li><li><a href="Recorder.html">Recorder</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="SmartWaiter.html">SmartWaiter</a></li><li><a href="ToolBar.html">ToolBar</a></li></ul></div><div class="category"><h2>Páginas do sistema</h2><h3>Classes</h3><ul><li><a href="FormPage.html">FormPage</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="LoginPage.html">LoginPage</a></li><li><a href="WorkList.html">WorkList</a></li></ul></div><div class="category"><h2>Util</h2><h3>Classes</h3><ul><li><a href="Page.html">Page</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>helpers/sidenav.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview
+ */
+
+import {By, element, Locator} from 'protractor';
+import {SmartWaiter} from './smart_waiter';
+
+const waiter = new SmartWaiter();
+
+/**
+ * @description Permite o acesso à todas as páginas do sistema
+ */
+export class SideNav {
+  constructor() {
+    /**
+     * @description botões que necessitam de ser clicados
+     * @private
+     * @constant
+     * @type {!Object&lt;!string, !Locator>}
+     */
+    this.botoes_ = {
+      formularios: By.xpath('//a[@routerlink="formularios"]'),
+      relatorios_indices: By.xpath('//a[@routerlink="relatorios-indices"]'),
+      exportar: By.xpath('//a[@routerlink="exportar"]'),
+      processo_importacao: By.xpath('//a[@routerlink="processo-importacao"]'),
+      demandas: By.xpath('//a[@routerlink="demandas"]'),
+      lista_trabalho: By.xpath('//a[@routerlink="lista-trabalho"]'),
+      atividades: By.xpath('//a[@routerlink="atividades"]'),
+      imoveis: By.xpath('//a[@routerlink="imoveis"]'),
+      territorios: By.xpath('//a[@routerlink="territorios"]'),
+      rede_de_saude: By.xpath(
+          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]'),
+      areas_gestao: By.xpath('//a[@routerlink="areas-gestao"]'),
+      unidades: By.xpath('//a[@routerlink="unidades"]'),
+      pessoas: By.xpath('//a[@routerlink="pessoas"]'),
+      equipes: By.xpath('//a[@routerlink="equipes"]'),
+      perfis_usuarios: By.xpath('//a[@routerlink="perfis-usuarios"]'),
+      perfil_usuario_unidade:
+          By.xpath('//a[@routerlink="perfil-usuario-unidade"]'),
+      tabelas_basicas: By.xpath(
+          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]')
+    };
+  }
+
+  /**
+   * @description Se a barra de navegação lateral não estiver sendo exibida,
+   * então é clicado no botão para exibi-la, caso contrário não faz nada
+   * @async
+   */
+  async exibir() {
+    /**
+     * @description checa se a barra de navegação está sendo exibida
+     * @async
+     */
+    const isNavBarExibida = async () => {
+      return (await element(
+                  By.xpath(
+                      '//*[contains(@class, "example-sidenav mat-drawer mat-sidenav")]'))
+                  .getAttribute('class'))
+          .includes('mat-drawer-opened');
+    };
+
+    if (await isNavBarExibida()) {
+      return;
+    }
+
+    const btnNavBarLateral = By.xpath(
+        '//button[contains(@class, "mat-icon-button mat-button-base ng-star-inserted")]');
+    await waiter.waitClick(btnNavBarLateral);
+    await element(btnNavBarLateral).click();
+    // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
+    // await waiter.waitVisibility(this.botoes_.tabelas_basicas);
+    // await waiter.waitClick(this.botoes_.tabelas_basicas);
+    // await browser.sleep(2000);
+  }
+
+  /**
+   * @description Se a lista de opções da Rede de Saúde não estiver sendo
+   * exibida, então é clicado no botão para exibi-la, caso contrário não faz
+   * nada
+   * @async
+   */
+  async expandirRedeSaude() {
+    this.exibir();
+    /**
+     * @description checa se a lista da Rede de Saúde está sendo exibida
+     * @async
+     */
+    const isRedeSaudeExibida = async () => {
+      return (await element(
+                  By.xpath(
+                      '(//div[contains(@class, "submenu ng-star-inserted")])[1]'))
+                  .getAttribute('class'))
+          .includes('expanded');
+    };
+
+    if (await isRedeSaudeExibida()) {
+      return;
+    }
+
+    await element(this.botoes_.rede_de_saude)
+        .element(By.xpath('.//div[@class="mat-list-item-content"]'))
+        .click();
+    // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
+    // await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
+    // await waiter.waitClick(this.botoes_.perfil_usuario_unidade);
+    // await browser.sleep(1500);
+  }
+
+  /**
+   * @description acessa a página de "Formulários" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarFormularios() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.formularios);
+    await waiter.waitClick(this.botoes_.formularios);
+    await element(this.botoes_.formularios).click();
+  }
+
+  /**
+   * @description acessa a página de "Relatórios e Índices" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarRelatorios() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.relatorios_indices);
+    await waiter.waitClick(this.botoes_.relatorios_indices);
+    await element(this.botoes_.relatorios_indices).click();
+  }
+
+  /**
+   * @description acessa a página de "Exportação" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarExportacao() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.exportar);
+    await waiter.waitClick(this.botoes_.exportar);
+    await element(this.botoes_.exportar).click();
+  }
+
+  /**
+   * @description acessa a página de "Importação" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarImportacao() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.processo_importacao);
+    await waiter.waitClick(this.botoes_.processo_importacao);
+    await element(this.botoes_.processo_importacao).click();
+  }
+
+  /**
+   * @description acessa a página de "Demandas" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarDemandas() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.demandas);
+    await waiter.waitClick(this.botoes_.demandas);
+    await element(this.botoes_.demandas).click();
+  }
+
+  /**
+   * @description acessa a página de "Lista de Trabalho" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarListasDeTrabalho() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.lista_trabalho);
+    await waiter.waitClick(this.botoes_.lista_trabalho);
+    await element(this.botoes_.lista_trabalho).click();
+  }
+
+  /**
+   * @description acessa a página de "Atividades" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarAtividades() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.atividades);
+    await waiter.waitClick(this.botoes_.atividades);
+    await element(this.botoes_.atividades).click();
+  }
+
+  /**
+   * @description acessa a página de "Imóveis" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarImoveis() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.imoveis);
+    await waiter.waitClick(this.botoes_.imoveis);
+    await element(this.botoes_.imoveis).click();
+  }
+
+  /**
+   * @description acessa a página de "Territórios" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarTerritorios() {
+    await this.exibir();
+    await waiter.waitVisibility(this.botoes_.territorios);
+    await waiter.waitClick(this.botoes_.territorios);
+    await element(this.botoes_.territorios).click();
+  }
+
+  /**
+   * @description acessa a página de "Áreas de Gestão" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarAreasDeGestao() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.areas_gestao);
+    await waiter.waitClick(this.botoes_.areas_gestao);
+    await element(this.botoes_.areas_gestao).click();
+  }
+
+  /**
+   * @description acessa a página de "Unidades Organizacionais" a partir da
+   * barra de navegação lateral
+   * @async
+   */
+  async acessarUnidadesOrganizacionais() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.unidades);
+    await waiter.waitClick(this.botoes_.unidades);
+    await element(this.botoes_.unidades).click();
+  }
+
+  /**
+   * @description acessa a página de "Pessoas" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarPessoas() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.pessoas);
+    await waiter.waitClick(this.botoes_.pessoas);
+    await element(this.botoes_.pessoas).click();
+  }
+
+  /**
+   * @description acessa a página de "Equipes" a partir da barra de navegação
+   * lateral
+   * @async
+   */
+  async acessarEquipes() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.equipes);
+    await waiter.waitClick(this.botoes_.equipes);
+    await element(this.botoes_.equipes).click();
+  }
+
+  /**
+   * @description acessa a página de "Perfis de Usuário" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarPerfisDeUsuario() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.perfis_usuarios);
+    await waiter.waitClick(this.botoes_.perfis_usuarios);
+    await element(this.botoes_.perfis_usuarios).click();
+  }
+
+  /**
+   * @description acessa a página de "Usuários da Unidade" a partir da barra de
+   * navegação lateral
+   * @async
+   */
+  async acessarUsuariosDaUnidade() {
+    await this.expandirRedeSaude();
+    await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
+    await waiter.waitClick(this.botoes_.perfil_usuario_unidade);
+    await element(this.botoes_.perfil_usuario_unidade).click();
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Jan 20 2020 14:25:34 GMT-0300 (GMT-03:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

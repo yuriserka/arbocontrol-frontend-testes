@@ -3,41 +3,59 @@
 <head>
     
     <meta charset="utf-8">
-    <title>CssEditor - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <title>JSDoc: CssEditor</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    <input type="text" id="nav-search" placeholder="Search" />
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a><ul class='methods'><li data-type='method'><a href="BlazeMeter.html#login">login</a></li><li data-type='method'><a href="BlazeMeter.html#loginGoogle">loginGoogle</a></li></ul></li><li><a href="CssEditor.html">CssEditor</a><ul class='methods'><li data-type='method'><a href="CssEditor.html#alterar">alterar</a></li></ul></li><li><a href="FormPage.html">FormPage</a><ul class='methods'><li data-type='method'><a href="FormPage.html#get">get</a></li><li data-type='method'><a href="FormPage.html#pesquisar">pesquisar</a></li></ul></li><li><a href="GoogleAccount.html">GoogleAccount</a><ul class='methods'><li data-type='method'><a href="GoogleAccount.html#login">login</a></li></ul></li><li><a href="HomePage.html">HomePage</a><ul class='methods'><li data-type='method'><a href="HomePage.html#acessar">acessar</a></li><li data-type='method'><a href="HomePage.html#getUsuarioLogado">getUsuarioLogado</a></li></ul></li><li><a href="LoginPage.html">LoginPage</a><ul class='methods'><li data-type='method'><a href="LoginPage.html#clicarBotaoEntrar">clicarBotaoEntrar</a></li><li data-type='method'><a href="LoginPage.html#login">login</a></li><li data-type='method'><a href="LoginPage.html#preencherCpf">preencherCpf</a></li><li data-type='method'><a href="LoginPage.html#preencherSenha">preencherSenha</a></li><li data-type='method'><a href="LoginPage.html#selecionarPrimeiraUnidade">selecionarPrimeiraUnidade</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#logout">logout</a></li><li data-type='method'><a href="Page.html#mostrarSideNav">mostrarSideNav</a></li></ul></li><li><a href="Recorder.html">Recorder</a><ul class='methods'><li data-type='method'><a href="Recorder.html#gravar">gravar</a></li><li data-type='method'><a href="Recorder.html#iniciar">iniciar</a></li><li data-type='method'><a href="Recorder.html#login">login</a></li><li data-type='method'><a href="Recorder.html#parar">parar</a></li><li data-type='method'><a href="Recorder.html#pause">pause</a></li><li data-type='method'><a href="Recorder.html#salvar">salvar</a></li><li data-type='method'><a href="Recorder.html#terminar">terminar</a></li></ul></li><li><a href="SideNav.html">SideNav</a><ul class='methods'><li data-type='method'><a href="SideNav.html#acessarAreasDeGestao">acessarAreasDeGestao</a></li><li data-type='method'><a href="SideNav.html#acessarAtividades">acessarAtividades</a></li><li data-type='method'><a href="SideNav.html#acessarDemandas">acessarDemandas</a></li><li data-type='method'><a href="SideNav.html#acessarEquipes">acessarEquipes</a></li><li data-type='method'><a href="SideNav.html#acessarExportacao">acessarExportacao</a></li><li data-type='method'><a href="SideNav.html#acessarFormularios">acessarFormularios</a></li><li data-type='method'><a href="SideNav.html#acessarImoveis">acessarImoveis</a></li><li data-type='method'><a href="SideNav.html#acessarImportacao">acessarImportacao</a></li><li data-type='method'><a href="SideNav.html#acessarListasDeTrabalho">acessarListasDeTrabalho</a></li><li data-type='method'><a href="SideNav.html#acessarPerfisDeUsuario">acessarPerfisDeUsuario</a></li><li data-type='method'><a href="SideNav.html#acessarPessoas">acessarPessoas</a></li><li data-type='method'><a href="SideNav.html#acessarRelatorios">acessarRelatorios</a></li><li data-type='method'><a href="SideNav.html#acessarTerritorios">acessarTerritorios</a></li><li data-type='method'><a href="SideNav.html#acessarUnidadesOrganizacionais">acessarUnidadesOrganizacionais</a></li><li data-type='method'><a href="SideNav.html#acessarUsuariosDaUnidade">acessarUsuariosDaUnidade</a></li><li data-type='method'><a href="SideNav.html#exibir">exibir</a></li><li data-type='method'><a href="SideNav.html#expandirRedeSaude">expandirRedeSaude</a></li></ul></li><li><a href="ToolBar.html">ToolBar</a><ul class='methods'><li data-type='method'><a href="ToolBar.html#logout">logout</a></li></ul></li><li><a href="Utility.html">Utility</a><ul class='methods'><li data-type='method'><a href="Utility.html#waitClick">waitClick</a></li><li data-type='method'><a href="Utility.html#waitText">waitText</a></li><li data-type='method'><a href="Utility.html#waitUrl">waitUrl</a></li><li data-type='method'><a href="Utility.html#waitVisibility">waitVisibility</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">CssEditor</h1>
-    
-
-    
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a></li><li><a href="CssEditor.html">CssEditor</a></li><li><a href="GoogleAccount.html">GoogleAccount</a></li><li><a href="Recorder.html">Recorder</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="SmartWaiter.html">SmartWaiter</a></li><li><a href="ToolBar.html">ToolBar</a></li></ul></div><div class="category"><h2>Páginas do sistema</h2><h3>Classes</h3><ul><li><a href="FormPage.html">FormPage</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="LoginPage.html">LoginPage</a></li><li><a href="WorkList.html">WorkList</a></li></ul></div><div class="category"><h2>Util</h2><h3>Classes</h3><ul><li><a href="Page.html">Page</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>CssEditor</h1>
+                    </header>
+                    
+                    
 
 
 
@@ -46,133 +64,49 @@
 
 <header>
     
-        <h2>
-        CssEditor
-        </h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CssEditor<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
 
 <article>
+    <div class="container-overview">
     
-        <div class="container-overview">
         
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+
+    
+    <h4 class="name" id="CssEditor">
+        <a class="href-link" href="#CssEditor">#</a>
+        
+        <span class="code-name">
             
-
-    
-
-    <h4 class="name" id="CssEditor"><span class="type-signature"></span>new CssEditor<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_css_editor.js.html">helpers/css_editor.js</a>, <a href="helpers_css_editor.js.html#line11">line 11</a>
-    </li></ul></dd>
+                new CssEditor<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
     
 
     
-
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Responsável por editar o estilo de um atributo de um elemento da
+    <div class="description">
+        <p>Responsável por editar o estilo de um atributo de um elemento da
 página</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
+    </div>
     
 
-    
 
-    
 
-    
-    
-    
 
-     
 
-    
 
-    
 
-    
-        <h3 class="subsection-title">Methods</h3>
 
-        
-            
 
-    
-
-    <h4 class="name" id="alterar"><span class="type-signature">(async) </span>alterar<span class="signature">(locator<span class="signature-attributes">non-null</span>, attribute<span class="signature-attributes">non-null</span>, value<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
@@ -180,11 +114,6 @@ página</p>
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_css_editor.js.html">helpers/css_editor.js</a>, <a href="helpers_css_editor.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
 
     
 
@@ -207,13 +136,19 @@ página</p>
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="helpers_css_editor.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_css_editor.js.html">helpers/css_editor.js</a>, <a href="helpers_css_editor.js.html#line11">line 11</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -221,11 +156,73 @@ página</p>
 
 
 
-<div class="description">
-    <p>Altera ou adiciona o estilo do elemento passado</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
 
 
+    
+    <h4 class="name" id="alterar">
+        <a class="href-link" href="#alterar">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                alterar<span class="signature">(locator<span class="signature-attributes">non-null</span>, attribute<span class="signature-attributes">non-null</span>, value<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Altera ou adiciona o estilo do elemento passado</p>
+    </div>
+    
 
 
 
@@ -258,72 +255,78 @@ página</p>
     <tbody>
     
 
-        <tr>
-            
-                <td class="name"><code>locator</code></td>
-            
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>locator</code></td>
+  
 
-            <td class="type">
-            
-                
+  <td class="type">
+  
+      
 <span class="param-type">Locator</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last"></td>
-        </tr>
+  <td class="description last"></td>
+</tr>
+
 
     
 
-        <tr>
-            
-                <td class="name"><code>attribute</code></td>
-            
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>attribute</code></td>
+  
 
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last"></td>
-        </tr>
+  <td class="description last"></td>
+</tr>
+
 
     
 
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>value</code></td>
+  
 
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last"></td>
-        </tr>
+  <td class="description last"></td>
+</tr>
+
 
     
     </tbody>
@@ -333,6 +336,46 @@ página</p>
 
 
 
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="helpers_css_editor.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_css_editor.js.html">helpers/css_editor.js</a>, <a href="helpers_css_editor.js.html#line19">line 19</a>
+            </span>
+        </p>
+    
+</dl>
 
 
 
@@ -347,7 +390,17 @@ página</p>
 
 
 
-        
+
+
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
     
 
     
@@ -360,23 +413,24 @@ página</p>
 
 
 
-    
-    
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<br class="clear">
 
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 16 2020 01:04:41 GMT-0300 (GMT-03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Jan 20 2020 14:25:34 GMT-0300 (GMT-03:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
 
-<script src="scripts/search.js" defer></script>
-
-
-
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

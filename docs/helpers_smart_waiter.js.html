@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: pages/page.po.js</title>
+    <title>JSDoc: helpers/smart_waiter.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>pages/page.po.js</h1>
+                        <h1>helpers/smart_waiter.js</h1>
                     </header>
                     
                     
@@ -68,46 +68,65 @@
  * @fileoverview
  */
 
-import {SideNav} from '../helpers/sidenav';
-import {ToolBar} from '../helpers/toolbar';
+import {browser, element, ExpectedConditions as EC, Locator} from 'protractor';
 
 /**
- * @description Abstração dos componentes basicos que todas as páginas possuem
- * @category Util
+ * @description Responsável por esperas inteligentes
  */
-export class Page {
+export class SmartWaiter {
   constructor() {
     /**
-     * @description barra de navegação superior visível em todas as paginas
+     * @description Representa o tempo máximo de espera para as condições
      * @private
      * @constant
-     * @type {!ToolBar}
+     * @type {number}
      */
-    this.toolbar_ = new ToolBar();
-
-    /**
-     * @description barra de navegação lateral
-     * @private
-     * @constant
-     * @type {!SideNav}
-     */
-    this.navbar_ = new SideNav();
+    this.timeout_ = 10000;
+  }
+  /**
+   * @description Espera o elemento estar disponivel para ser clicado
+   * @async
+   * @param {!Locator} locator
+   * @param {?number} tempoAdicional
+   */
+  async waitClick(locator, tempoAdicional = 0) {
+    await browser.wait(
+        EC.elementToBeClickable(element(locator)),
+        this.timeout_ + tempoAdicional);
   }
 
   /**
-   * @description faz logout do sistema
+   * @description Espera até que a url mude para a passada como argumento
    * @async
+   * @param {!string} url
+   * @param {?number} tempoAdicional
    */
-  async logout() {
-    await this.toolbar_.logout();
+  async waitUrl(url, tempoAdicional = 0) {
+    await browser.wait(EC.urlIs(url), this.timeout_ + tempoAdicional);
   }
 
   /**
-   * @description mostra a barra de navegação lateral
+   * @description Espera o elemento estar visível
    * @async
+   * @param {!Locator} locator
+   * @param {?number} tempoAdicional
    */
-  async mostrarSideNav() {
-    await this.navbar_.exibir();
+  async waitVisibility(locator, tempoAdicional = 0) {
+    await browser.wait(
+        EC.visibilityOf(element(locator)), this.timeout_ + tempoAdicional);
+  }
+
+  /**
+   * @description Espera o texto dentro do elemento ser o passado
+   * @async
+   * @param {!Locator} locator
+   * @param {!string} texto
+   * @param {?number} tempoAdicional
+   */
+  async waitText(locator, texto, tempoAdicional = 0) {
+    await browser.wait(
+        EC.textToBePresentInElement(element(locator), texto),
+        this.timeout_ + tempoAdicional);
   }
 }
 </code></pre>

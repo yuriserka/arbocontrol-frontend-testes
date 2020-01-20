@@ -15,6 +15,11 @@ Repositório com o fim de realizar os testes de interface voltados para o front 
 npm install -g protractor
 ```
 
+#### Instalando o Cucumber
+```
+npm install -g cucumber
+```
+
 ##### Atualizando o WebDriver
 ```
 webdriver-manager update

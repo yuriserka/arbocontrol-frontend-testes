@@ -1,70 +1,4 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
-    <meta charset="utf-8">
-    <title>JSDoc: helpers/recorder.js</title>
-
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="./build/entry.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
-</head>
-
-<body>
-    <div id="stickyNavbarOverlay"></div>
-    <div class="top-navbar">
-        <div class="container">
-            <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    
-                    
-                        <h1 class="navbar-item">Documentation</h1>
-                    
-                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
-                
-            </nav>
-        </div>
-    </div>
-    <div class="container">
-        <div class="columns">
-            <div class="column is-3" id="sidebarNav">
-                <div class="sidebar">
-                    <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlazeMeter.html">BlazeMeter</a></li><li><a href="CssEditor.html">CssEditor</a></li><li><a href="GoogleAccount.html">GoogleAccount</a></li><li><a href="Recorder.html">Recorder</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="SmartWaiter.html">SmartWaiter</a></li><li><a href="ToolBar.html">ToolBar</a></li></ul></div><div class="category"><h2>Páginas do sistema</h2><h3>Classes</h3><ul><li><a href="FormPage.html">FormPage</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="LoginPage.html">LoginPage</a></li><li><a href="WorkList.html">WorkList</a></li></ul></div><div class="category"><h2>Util</h2><h3>Classes</h3><ul><li><a href="Page.html">Page</a></li></ul></div>
-                    </nav>
-                </div>
-            </div>
-            <div class="column is-9-desktop">
-                <div class="content" id="main-content-wrapper">
-                    <header class="page-title">
-                        <p>Source</p>
-                        <h1>helpers/recorder.js</h1>
-                    </header>
-                    
-                    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+/**
  * @fileoverview
  */
 
@@ -79,6 +13,10 @@ const waiter = new SmartWaiter();
  * @description Responsável pelas interações com a extensão do Blaze Meter
  */
 export class Recorder {
+  botoes_: any;
+  campos_: any;
+  nome_arquivo_: string;
+  
   /**
    * @param {?string} funcionalidade nome da funcionalidade que será gravada
    */
@@ -87,7 +25,7 @@ export class Recorder {
      * @description botões que necessitam de ser clicados
      * @private
      * @constant
-     * @type {!Object&lt;!string, !Locator>}
+     * @type {!Object<!string, !Locator>}
      */
     this.botoes_ = {
       parar: By.css('#stop > input'),
@@ -102,7 +40,7 @@ export class Recorder {
      * @description campos que devem ser preenchidos
      * @private
      * @constant
-     * @type {!Object&lt;!string, !Locator>}
+     * @type {!Object<!string, !Locator>}
      */
     this.campos_ = {
       nome_arquivo: By.css('#name'),
@@ -166,7 +104,7 @@ export class Recorder {
    * @async
    * @param {boolean} comGoogle
    */
-  async login(comGoogle) {
+  async login(comGoogle: boolean) {
     const blazeConfigPage = await browser.getWindowHandle();
     await element(this.botoes_.login).click();
 
@@ -217,6 +155,7 @@ export class Recorder {
     await element(By.css('#chk-jmx')).click();
 
     element.all(By.name('domains')).each(async (domain) => {
+      if (!domain) {return; }
       const isSelected = await domain.isSelected();
       if (isSelected) {
         return;
@@ -235,31 +174,3 @@ export class Recorder {
     await browser.sleep(10000);
   }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<footer class="footer">
-    <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Jan 20 2020 14:25:34 GMT-0300 (GMT-03:00)</p>
-        <p class="sidebar-created-by">
-            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
-            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
-        </p>
-    </div>
-</footer>
-
-
-<script src="scripts/app.min.js"></script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

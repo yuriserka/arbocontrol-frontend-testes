@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Recorder</title>
+    <title>JSDoc: SmartWaiter</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Class</p>
-                        <h1>Recorder</h1>
+                        <h1>SmartWaiter</h1>
                     </header>
                     
                     
@@ -64,7 +64,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Recorder<span class="signature">(funcionalidade<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>SmartWaiter<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -80,12 +80,12 @@
 
 
     
-    <h4 class="name" id="Recorder">
-        <a class="href-link" href="#Recorder">#</a>
+    <h4 class="name" id="SmartWaiter">
+        <a class="href-link" href="#SmartWaiter">#</a>
         
         <span class="code-name">
             
-                new Recorder<span class="signature">(funcionalidade<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
+                new SmartWaiter<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -94,7 +94,139 @@
     
     
     <div class="description">
-        <p>Responsável pelas interações com a extensão do Blaze Meter</p>
+        <p>Responsável por esperas inteligentes</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="helpers_smart_waiter.js.html" class="button">View Source</a>
+            <span>
+                <a href="helpers_smart_waiter.js.html">helpers/smart_waiter.js</a>, <a href="helpers_smart_waiter.js.html#line11">line 11</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="SmartWaiter.html">SmartWaiter</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="waitClick">
+        <a class="href-link" href="#waitClick">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                waitClick<span class="signature">(locator<span class="signature-attributes">non-null</span>, tempoAdicional<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Espera o elemento estar disponivel para ser clicado</p>
     </div>
     
 
@@ -136,13 +268,50 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>funcionalidade</code></td>
+      <td class="name"><code>locator</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">string</span>
+<span class="param-type">Locator</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>tempoAdicional</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
 
 
   
@@ -163,395 +332,9 @@
   
       <td class="default">
       
-          null
+          0
       
       </td>
-  
-
-  <td class="description last"><p>nome da funcionalidade que será gravada</p></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
-            <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line19">line 19</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="Recorder.html">Recorder</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="gravar">
-        <a class="href-link" href="#gravar">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-        
-        <span class="code-name">
-            
-                gravar<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>inicia a gravação do script</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
-            <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line123">line 123</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="iniciar">
-        <a class="href-link" href="#iniciar">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-        
-        <span class="code-name">
-            
-                iniciar<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Realiza todo o procedimento necessário para começar uma
-gravação e então inicia ela.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
-            <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line71">line 71</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="login">
-        <a class="href-link" href="#login">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-        
-        <span class="code-name">
-            
-                login<span class="signature">(comGoogle)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>A partir da tela inicial da extensão, acessa a página de login
-e faz o login</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>comGoogle</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">boolean</span>
-
-
-  
-  </td>
-
-  
-
   
 
   <td class="description last"></td>
@@ -599,9 +382,9 @@ e faz o login</p>
 
     
         <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
+            <a href="helpers_smart_waiter.js.html" class="button">View Source</a>
             <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line103">line 103</a>
+                <a href="helpers_smart_waiter.js.html">helpers/smart_waiter.js</a>, <a href="helpers_smart_waiter.js.html#line26">line 26</a>
             </span>
         </p>
     
@@ -633,8 +416,8 @@ e faz o login</p>
 
 
     
-    <h4 class="name" id="parar">
-        <a class="href-link" href="#parar">#</a>
+    <h4 class="name" id="waitText">
+        <a class="href-link" href="#waitText">#</a>
         
             
                 <span class='tag'>async</span>
@@ -642,7 +425,7 @@ e faz o login</p>
         
         <span class="code-name">
             
-                parar<span class="signature">()</span><span class="type-signature"></span>
+                waitText<span class="signature">(locator<span class="signature-attributes">non-null</span>, texto<span class="signature-attributes">non-null</span>, tempoAdicional<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -651,7 +434,7 @@ e faz o login</p>
     
     
     <div class="description">
-        <p>para a gravação do script</p>
+        <p>Espera o texto dentro do elemento ser o passado</p>
     </div>
     
 
@@ -662,6 +445,150 @@ e faz o login</p>
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>locator</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Locator</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>texto</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>tempoAdicional</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
 
 
 
@@ -700,9 +627,9 @@ e faz o login</p>
 
     
         <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
+            <a href="helpers_smart_waiter.js.html" class="button">View Source</a>
             <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line132">line 132</a>
+                <a href="helpers_smart_waiter.js.html">helpers/smart_waiter.js</a>, <a href="helpers_smart_waiter.js.html#line60">line 60</a>
             </span>
         </p>
     
@@ -734,8 +661,8 @@ e faz o login</p>
 
 
     
-    <h4 class="name" id="pause">
-        <a class="href-link" href="#pause">#</a>
+    <h4 class="name" id="waitUrl">
+        <a class="href-link" href="#waitUrl">#</a>
         
             
                 <span class='tag'>async</span>
@@ -743,7 +670,7 @@ e faz o login</p>
         
         <span class="code-name">
             
-                pause<span class="signature">()</span><span class="type-signature"></span>
+                waitUrl<span class="signature">(url<span class="signature-attributes">non-null</span>, tempoAdicional<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -752,7 +679,7 @@ e faz o login</p>
     
     
     <div class="description">
-        <p>pausa a gravação do script</p>
+        <p>Espera até que a url mude para a passada como argumento</p>
     </div>
     
 
@@ -763,6 +690,113 @@ e faz o login</p>
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>url</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>tempoAdicional</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
 
 
 
@@ -801,9 +835,9 @@ e faz o login</p>
 
     
         <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
+            <a href="helpers_smart_waiter.js.html" class="button">View Source</a>
             <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line140">line 140</a>
+                <a href="helpers_smart_waiter.js.html">helpers/smart_waiter.js</a>, <a href="helpers_smart_waiter.js.html#line38">line 38</a>
             </span>
         </p>
     
@@ -835,8 +869,8 @@ e faz o login</p>
 
 
     
-    <h4 class="name" id="salvar">
-        <a class="href-link" href="#salvar">#</a>
+    <h4 class="name" id="waitVisibility">
+        <a class="href-link" href="#waitVisibility">#</a>
         
             
                 <span class='tag'>async</span>
@@ -844,7 +878,7 @@ e faz o login</p>
         
         <span class="code-name">
             
-                salvar<span class="signature">()</span><span class="type-signature"></span>
+                waitVisibility<span class="signature">(locator<span class="signature-attributes">non-null</span>, tempoAdicional<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -853,8 +887,7 @@ e faz o login</p>
     
     
     <div class="description">
-        <p>seleciona todos os dominios nos quais houveram requisições e
-então baixa o arquivo na pasta &quot;Downloads&quot;</p>
+        <p>Espera o elemento estar visível</p>
     </div>
     
 
@@ -865,6 +898,113 @@ então baixa o arquivo na pasta &quot;Downloads&quot;</p>
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>locator</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Locator</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>tempoAdicional</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
 
 
 
@@ -903,111 +1043,9 @@ então baixa o arquivo na pasta &quot;Downloads&quot;</p>
 
     
         <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
+            <a href="helpers_smart_waiter.js.html" class="button">View Source</a>
             <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line149">line 149</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="terminar">
-        <a class="href-link" href="#terminar">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-        
-        <span class="code-name">
-            
-                terminar<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Realiza todo o procedimento necessário para parar uma gravação
-e então salva o arquivo .jmx gerado.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="helpers_recorder.js.html" class="button">View Source</a>
-            <span>
-                <a href="helpers_recorder.js.html">helpers/recorder.js</a>, <a href="helpers_recorder.js.html#line90">line 90</a>
+                <a href="helpers_smart_waiter.js.html">helpers/smart_waiter.js</a>, <a href="helpers_smart_waiter.js.html#line48">line 48</a>
             </span>
         </p>
     
