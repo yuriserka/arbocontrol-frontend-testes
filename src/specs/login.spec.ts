@@ -37,19 +37,19 @@ Given('que eu navego até o site {string}', async (url: string) => {
 });
 
 When('eu entro com meu cpf {string}', async (cpf: string) => {
-  await loginPage.preencherCpf(cpf);
+  await loginPage['preencherCpf'](cpf);
 });
 
 When('eu entro com minha senha {string}', async (senha: string) => {
-  await loginPage.preencherSenha(senha);
+  await loginPage['preencherSenha'](senha);
 });
 
 When('seleciono a primeira opção de unidade', async () => {
-  await loginPage.selecionarPrimeiraUnidade();
+  await loginPage['selecionarPrimeiraUnidade']();
 });
 
 Then('eu clico para entrar', async () => {
-  await loginPage.clicarBotaoEntrar();
+  await loginPage['clicarBotaoEntrar']();
   await browser.waitForAngular();
 });
 

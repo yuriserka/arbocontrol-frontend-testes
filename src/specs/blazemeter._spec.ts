@@ -31,11 +31,11 @@ When(
 );
 
 Then('farei login com os dados disponibilizados', async () => {
-  await blazeRecorder.login(false);
+  await blazeRecorder['login'](false);
 });
 
 When('eu acionar o botão de gravação', async () => {
-  await blazeRecorder.gravar();
+  await blazeRecorder['gravar']();
 });
 
 Then('navegarei até o site {string}', async (url: string) => {
@@ -58,10 +58,10 @@ Then(
 );
 
 Then('pararei a gravação', async () => {
-  await blazeRecorder.parar();
+  await blazeRecorder['parar']();
 });
 
 Then('clicarei para salvar e o arquivo será exportado', async () => {
   await browser.waitForAngularEnabled(false);
-  await blazeRecorder.salvar();
+  await blazeRecorder['salvar']();
 });
