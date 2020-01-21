@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ToolBar | testes_web</title>
+	<title>CssEditor | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_helpers_toolbar_.html">&quot;helpers/toolbar&quot;</a>
+					<a href="../modules/_src_helpers_css_editor_.html">&quot;src/helpers/css_editor&quot;</a>
 				</li>
 				<li>
-					<a href="_helpers_toolbar_.toolbar.html">ToolBar</a>
+					<a href="_src_helpers_css_editor_.csseditor.html">CssEditor</a>
 				</li>
 			</ul>
-			<h1>Class ToolBar</h1>
+			<h1>Class CssEditor</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,8 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>description</dt>
-						<dd><p>Represena a barra de navegação superior do site arbocontrol</p>
+						<dd><p>Responsável por editar o estilo de um atributo de um elemento da
+							página</p>
 						</dd>
 					</dl>
 				</div>
@@ -82,7 +83,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ToolBar</span>
+						<span class="target">CssEditor</span>
 					</li>
 				</ul>
 			</section>
@@ -91,100 +92,52 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_helpers_toolbar_.toolbar.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_helpers_toolbar_.toolbar.html#botoes_" class="tsd-kind-icon">botoes_</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_helpers_toolbar_.toolbar.html#logout" class="tsd-kind-icon">logout</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_helpers_css_editor_.csseditor.html#alterar" class="tsd-kind-icon">alterar</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tool<wbr>Bar<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_helpers_toolbar_.toolbar.html" class="tsd-signature-type">ToolBar</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/toolbar.ts#L17">helpers/toolbar.ts:17</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_helpers_toolbar_.toolbar.html" class="tsd-signature-type">ToolBar</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="botoes_" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> botoes_</h3>
-					<div class="tsd-signature tsd-kind-icon">botoes_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/toolbar.ts#L17">helpers/toolbar.ts:17</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>description</dt>
-							<dd><p>botões que necessitam de ser clicados</p>
-							</dd>
-							<dt>constant</dt>
-							<dd></dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SeleniumBy</span></h5>
-							</li>
-						</ul>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="logout" class="tsd-anchor"></a>
-					<h3>logout</h3>
+					<a name="alterar" class="tsd-anchor"></a>
+					<h3>alterar</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">alterar<span class="tsd-signature-symbol">(</span>locator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, attribute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/toolbar.ts#L31">helpers/toolbar.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/helpers/css_editor.ts#L19">src/helpers/css_editor.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>clica no botão de sair</p>
+									<dd><p>Altera ou adiciona o estilo do elemento passado</p>
 									</dd>
 									<dt>async</dt>
 									<dd></dd>
 								</dl>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>locator: <span class="tsd-signature-type">Locator</span></h5>
+								</li>
+								<li>
+									<h5>attribute: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -198,55 +151,46 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_css_editor_.html">&quot;helpers/css_<wbr>editor&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_pages_blazemeter_po_.html">&quot;helpers/pages/blazemeter.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_pages_google_account_po_.html">&quot;helpers/pages/google_<wbr>account.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_recorder_.html">&quot;helpers/recorder&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_reporter_.html">&quot;helpers/reporter&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_sidenav_.html">&quot;helpers/sidenav&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_smart_waiter_.html">&quot;helpers/smart_<wbr>waiter&quot;</a>
+						<a href="../modules/_protractor_conf_.html">&quot;protractor.conf&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_helpers_toolbar_.html">&quot;helpers/toolbar&quot;</a>
+						<a href="../modules/_src_helpers_css_editor_.html">&quot;src/helpers/css_<wbr>editor&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_formulario_po_.html">&quot;pages/formulario.po&quot;</a>
+						<a href="../modules/_src_helpers_pages_blazemeter_po_.html">&quot;src/helpers/pages/blazemeter.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_home_po_.html">&quot;pages/home.po&quot;</a>
+						<a href="../modules/_src_helpers_pages_google_account_po_.html">&quot;src/helpers/pages/google_<wbr>account.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_lista_de_trabalho_po_.html">&quot;pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
+						<a href="../modules/_src_helpers_recorder_.html">&quot;src/helpers/recorder&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_login_po_.html">&quot;pages/login.po&quot;</a>
+						<a href="../modules/_src_helpers_reporter_.html">&quot;src/helpers/reporter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_page_po_.html">&quot;pages/page.po&quot;</a>
+						<a href="../modules/_src_helpers_sidenav_.html">&quot;src/helpers/sidenav&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_blazemeter__spec_.html">&quot;specs/blazemeter._<wbr>spec&quot;</a>
+						<a href="../modules/_src_helpers_smart_waiter_.html">&quot;src/helpers/smart_<wbr>waiter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_formulario_spec_.html">&quot;specs/formulario.spec&quot;</a>
+						<a href="../modules/_src_helpers_toolbar_.html">&quot;src/helpers/toolbar&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_home_spec_.html">&quot;specs/home.spec&quot;</a>
+						<a href="../modules/_src_pages_formulario_po_.html">&quot;src/pages/formulario.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_login_spec_.html">&quot;specs/login.spec&quot;</a>
+						<a href="../modules/_src_pages_home_po_.html">&quot;src/pages/home.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_lista_de_trabalho_po_.html">&quot;src/pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_login_po_.html">&quot;src/pages/login.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_page_po_.html">&quot;src/pages/page.po&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -255,16 +199,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_helpers_toolbar_.toolbar.html" class="tsd-kind-icon">Tool<wbr>Bar</a>
+						<a href="_src_helpers_css_editor_.csseditor.html" class="tsd-kind-icon">Css<wbr>Editor</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_helpers_toolbar_.toolbar.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_helpers_toolbar_.toolbar.html#botoes_" class="tsd-kind-icon">botoes_</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_helpers_toolbar_.toolbar.html#logout" class="tsd-kind-icon">logout</a>
+								<a href="_src_helpers_css_editor_.csseditor.html#alterar" class="tsd-kind-icon">alterar</a>
 							</li>
 						</ul>
 					</li>

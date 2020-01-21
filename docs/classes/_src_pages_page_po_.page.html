@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GoogleAccount | testes_web</title>
+	<title>Page | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_helpers_pages_google_account_po_.html">&quot;helpers/pages/google_account.po&quot;</a>
+					<a href="../modules/_src_pages_page_po_.html">&quot;src/pages/page.po&quot;</a>
 				</li>
 				<li>
-					<a href="_helpers_pages_google_account_po_.googleaccount.html">GoogleAccount</a>
+					<a href="_src_pages_page_po_.page.html">Page</a>
 				</li>
 			</ul>
-			<h1>Class GoogleAccount</h1>
+			<h1>Class Page</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>description</dt>
-						<dd><p>Representa a página de login utilizando a conta do Google</p>
+						<dd><p>Abstração dos componentes basicos que todas as páginas possuem</p>
 						</dd>
 					</dl>
 				</div>
@@ -82,7 +82,15 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GoogleAccount</span>
+						<span class="target">Page</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_src_pages_home_po_.homepage.html" class="tsd-signature-type">HomePage</a>
+							</li>
+							<li>
+								<a href="_src_pages_lista_de_trabalho_po_.worklist.html" class="tsd-signature-type">WorkList</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -93,22 +101,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_helpers_pages_google_account_po_.googleaccount.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_pages_page_po_.page.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_helpers_pages_google_account_po_.googleaccount.html#botoes_" class="tsd-kind-icon">botoes_</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_helpers_pages_google_account_po_.googleaccount.html#campos_" class="tsd-kind-icon">campos_</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_pages_page_po_.page.html#navbar_" class="tsd-kind-icon">navbar_</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_pages_page_po_.page.html#toolbar_" class="tsd-kind-icon">toolbar_</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_helpers_pages_google_account_po_.googleaccount.html#login" class="tsd-kind-icon">login</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_helpers_pages_google_account_po_.googleaccount.html#preencheremail_" class="tsd-kind-icon">preencher<wbr>Email_</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_helpers_pages_google_account_po_.googleaccount.html#preenchersenha_" class="tsd-kind-icon">preencher<wbr>Senha_</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_pages_page_po_.page.html#logout" class="tsd-kind-icon">logout</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_pages_page_po_.page.html#mostrarsidenav" class="tsd-kind-icon">mostrar<wbr>Side<wbr>Nav</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,16 +127,16 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Google<wbr>Account<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_helpers_pages_google_account_po_.googleaccount.html" class="tsd-signature-type">GoogleAccount</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Page<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_pages_page_po_.page.html" class="tsd-signature-type">Page</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L25">helpers/pages/google_account.po.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/pages/page.po.ts#L24">src/pages/page.po.ts:24</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_helpers_pages_google_account_po_.googleaccount.html" class="tsd-signature-type">GoogleAccount</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_src_pages_page_po_.page.html" class="tsd-signature-type">Page</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -137,165 +144,94 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="botoes_" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> botoes_</h3>
-					<div class="tsd-signature tsd-kind-icon">botoes_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<a name="navbar_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> navbar_</h3>
+					<div class="tsd-signature tsd-kind-icon">navbar_<span class="tsd-signature-symbol">:</span> <a href="_src_helpers_sidenav_.sidenav.html" class="tsd-signature-type">SideNav</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L19">helpers/pages/google_account.po.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/pages/page.po.ts#L24">src/pages/page.po.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
-							<dd><p>botões que necessitam de ser clicados</p>
+							<dd><p>barra de navegação lateral</p>
 							</dd>
 							<dt>constant</dt>
 							<dd></dd>
 						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SeleniumBy</span></h5>
-							</li>
-						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="campos_" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> campos_</h3>
-					<div class="tsd-signature tsd-kind-icon">campos_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<a name="toolbar_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> toolbar_</h3>
+					<div class="tsd-signature tsd-kind-icon">toolbar_<span class="tsd-signature-symbol">:</span> <a href="_src_helpers_toolbar_.toolbar.html" class="tsd-signature-type">ToolBar</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L25">helpers/pages/google_account.po.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/pages/page.po.ts#L18">src/pages/page.po.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
-							<dd><p>campos que devem ser preenchidos</p>
+							<dd><p>barra de navegação superior visível em todas as paginas</p>
 							</dd>
 							<dt>constant</dt>
 							<dd></dd>
 						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SeleniumBy</span></h5>
-							</li>
-						</ul>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="login" class="tsd-anchor"></a>
-					<h3>login</h3>
+					<a name="logout" class="tsd-anchor"></a>
+					<h3>logout</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">login<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, senha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L46">helpers/pages/google_account.po.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/pages/page.po.ts#L35">src/pages/page.po.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Preenche email e senha na página de login que é aberta pelo
-										Blaze Meter</p>
+									<dd><p>faz logout do sistema</p>
 									</dd>
 									<dt>async</dt>
 									<dd></dd>
 								</dl>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>email: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>senha: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="preencheremail_" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> preencher<wbr>Email_</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">preencher<wbr>Email_<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="mostrarsidenav" class="tsd-anchor"></a>
+					<h3>mostrar<wbr>Side<wbr>Nav</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">mostrar<wbr>Side<wbr>Nav<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L61">helpers/pages/google_account.po.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/46fe39d/src/pages/page.po.ts#L43">src/pages/page.po.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Preenche o email na página login que é aberta pelo Blaze Meter</p>
+									<dd><p>mostra a barra de navegação lateral</p>
 									</dd>
 									<dt>async</dt>
 									<dd></dd>
 								</dl>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>email: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="preenchersenha_" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> preencher<wbr>Senha_</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">preencher<wbr>Senha_<span class="tsd-signature-symbol">(</span>senha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d517e5b/src/helpers/pages/google_account.po.ts#L73">helpers/pages/google_account.po.ts:73</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><p>Preenche a Senha na página login que é aberta pelo Blaze
-										Meter, deve ser chamada após preencher o email</p>
-									</dd>
-									<dt>async</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>senha: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -309,55 +245,46 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_css_editor_.html">&quot;helpers/css_<wbr>editor&quot;</a>
+						<a href="../modules/_protractor_conf_.html">&quot;protractor.conf&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_pages_blazemeter_po_.html">&quot;helpers/pages/blazemeter.po&quot;</a>
+						<a href="../modules/_src_helpers_css_editor_.html">&quot;src/helpers/css_<wbr>editor&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_pages_blazemeter_po_.html">&quot;src/helpers/pages/blazemeter.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_pages_google_account_po_.html">&quot;src/helpers/pages/google_<wbr>account.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_recorder_.html">&quot;src/helpers/recorder&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_reporter_.html">&quot;src/helpers/reporter&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_sidenav_.html">&quot;src/helpers/sidenav&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_smart_waiter_.html">&quot;src/helpers/smart_<wbr>waiter&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_toolbar_.html">&quot;src/helpers/toolbar&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_formulario_po_.html">&quot;src/pages/formulario.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_home_po_.html">&quot;src/pages/home.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_lista_de_trabalho_po_.html">&quot;src/pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_login_po_.html">&quot;src/pages/login.po&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_helpers_pages_google_account_po_.html">&quot;helpers/pages/google_<wbr>account.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_recorder_.html">&quot;helpers/recorder&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_reporter_.html">&quot;helpers/reporter&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_sidenav_.html">&quot;helpers/sidenav&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_smart_waiter_.html">&quot;helpers/smart_<wbr>waiter&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_toolbar_.html">&quot;helpers/toolbar&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_formulario_po_.html">&quot;pages/formulario.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_home_po_.html">&quot;pages/home.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_lista_de_trabalho_po_.html">&quot;pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_login_po_.html">&quot;pages/login.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pages_page_po_.html">&quot;pages/page.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_blazemeter__spec_.html">&quot;specs/blazemeter._<wbr>spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_formulario_spec_.html">&quot;specs/formulario.spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_home_spec_.html">&quot;specs/home.spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_specs_login_spec_.html">&quot;specs/login.spec&quot;</a>
+						<a href="../modules/_src_pages_page_po_.html">&quot;src/pages/page.po&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -366,25 +293,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_helpers_pages_google_account_po_.googleaccount.html" class="tsd-kind-icon">Google<wbr>Account</a>
+						<a href="_src_pages_page_po_.page.html" class="tsd-kind-icon">Page</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_src_pages_page_po_.page.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#botoes_" class="tsd-kind-icon">botoes_</a>
+								<a href="_src_pages_page_po_.page.html#navbar_" class="tsd-kind-icon">navbar_</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#campos_" class="tsd-kind-icon">campos_</a>
+								<a href="_src_pages_page_po_.page.html#toolbar_" class="tsd-kind-icon">toolbar_</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#login" class="tsd-kind-icon">login</a>
+								<a href="_src_pages_page_po_.page.html#logout" class="tsd-kind-icon">logout</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#preencheremail_" class="tsd-kind-icon">preencher<wbr>Email_</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_helpers_pages_google_account_po_.googleaccount.html#preenchersenha_" class="tsd-kind-icon">preencher<wbr>Senha_</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_pages_page_po_.page.html#mostrarsidenav" class="tsd-kind-icon">mostrar<wbr>Side<wbr>Nav</a>
 							</li>
 						</ul>
 					</li>
