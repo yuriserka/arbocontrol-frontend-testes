@@ -2,34 +2,34 @@
  * @fileoverview
  */
 
-import {browser, By, element} from 'protractor';
-import {SmartWaiter} from '../smart_waiter';
+import { browser, element } from 'protractor';
+import { By } from 'selenium-webdriver';
+import { By as SeleniumBy } from 'selenium-webdriver';
+import { SmartWaiter } from '../smart_waiter';
 
 /**
  * @description Representa a página de login utilizando a conta do Google
  */
 export class GoogleAccount {
-  botoes_: any;
-  campos_: any;
-  
+  /**
+   * @description botões que necessitam de ser clicados
+   * @private
+   * @constant
+   */
+  private botoes_: { [key: string]: SeleniumBy };
+  /**
+   * @description campos que devem ser preenchidos
+   * @private
+   * @constant
+   */
+  private campos_: { [key: string]: SeleniumBy };
+
   constructor() {
-    /**
-     * @description botões que necessitam de ser clicados
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.botoes_ = {
       proximo_email: By.id('identifierNext'),
       proximo_senha: By.id('passwordNext'),
     };
 
-    /**
-     * @description campos que devem ser preenchidos
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.campos_ = {
       email: By.name('identifier'),
       senha: By.name('password'),
@@ -43,7 +43,7 @@ export class GoogleAccount {
    * @param  {!string} email
    * @param  {!string} senha
    */
-  async login(email: string, senha: string) {
+  public async login(email: string, senha: string) {
     const waiter = new SmartWaiter();
     await this.preencherEmail_(email);
     await browser.sleep(1000);
@@ -58,7 +58,7 @@ export class GoogleAccount {
    * @async
    * @param {!string} email
    */
-  async preencherEmail_(email: string) {
+  public async preencherEmail_(email: string) {
     await element(this.campos_.email).sendKeys(email);
     await element(this.botoes_.proximo_email).click();
   }
@@ -70,7 +70,7 @@ export class GoogleAccount {
    * @async
    * @param {!string} senha
    */
-  async preencherSenha_(senha: string) {
+  public async preencherSenha_(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
     await element(this.botoes_.proximo_senha).click();
   }

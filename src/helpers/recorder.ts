@@ -2,31 +2,40 @@
  * @fileoverview
  */
 
-import moment from 'moment';
-import {browser, By, element} from 'protractor';
-import {BlazeMeter} from './pages/blazemeter.po';
-import {SmartWaiter} from './smart_waiter';
+import moment = require('moment');
+import { browser, By, element } from 'protractor';
+import { By as SeleniumBy } from 'selenium-webdriver';
+import { BlazeMeter } from './pages/blazemeter.po';
+import { SmartWaiter } from './smart_waiter';
 
 const waiter = new SmartWaiter();
-
 /**
  * @description Responsável pelas interações com a extensão do Blaze Meter
  */
 export class Recorder {
-  botoes_: any;
-  campos_: any;
-  nome_arquivo_: string;
-  
+  /**
+   * @description botões que necessitam de ser clicados
+   * @private
+   * @constant
+   */
+  private botoes_: { [key: string]: SeleniumBy };
+  /**
+   * @description campos que devem ser preenchidos
+   * @private
+   * @constant
+   */
+  private campos_: { [key: string]: SeleniumBy };
+  /**
+   * @description data de geração do arquivo .jmx exportado
+   * @private
+   * @constant
+   */
+  private nomeArquivo_: string;
+
   /**
    * @param {?string} funcionalidade nome da funcionalidade que será gravada
    */
   constructor(funcionalidade = 'null') {
-    /**
-     * @description botões que necessitam de ser clicados
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.botoes_ = {
       parar: By.css('#stop > input'),
       pausar: By.css('#record-off > div > input'),
@@ -35,26 +44,12 @@ export class Recorder {
       salvar: By.css('#button-download > div.button_container > input'),
       login: By.css('#sign-block > div > a.login'),
     };
-
-    /**
-     * @description campos que devem ser preenchidos
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.campos_ = {
       nome_arquivo: By.css('#name'),
     };
-
-    /**
-     * @description data de geração do arquivo .jmx exportado
-     * @private
-     * @constant
-     * @type {!string}
-     */
-    this.nome_arquivo_ =
-        `func ${funcionalidade} generated at ${moment().format('lll')}`.replace(
-            /[:\s*,]/g, '_');
+    this.nomeArquivo_ = `func ${funcionalidade} generated at ${moment().format(
+      'lll'
+    )}`.replace(/[:\s*,]/g, '_');
   }
 
   /**
@@ -62,9 +57,10 @@ export class Recorder {
    * @private
    * @async
    */
-  async get_() {
+  private async get_() {
     await browser.get(
-        'chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html');
+      'chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html'
+    );
   }
 
   /**
@@ -72,7 +68,7 @@ export class Recorder {
    * gravação e então inicia ela.
    * @async
    */
-  async iniciar() {
+  public async iniciar() {
     await browser.waitForAngularEnabled(false);
     await browser.executeScript('window.open()');
     const handles = await browser.getAllWindowHandles();
@@ -91,7 +87,7 @@ export class Recorder {
    * e então salva o arquivo .jmx gerado.
    * @async
    */
-  async terminar() {
+  public async terminar() {
     await browser.waitForAngularEnabled(false);
     await this.get_();
     await this.parar();
@@ -104,7 +100,7 @@ export class Recorder {
    * @async
    * @param {boolean} comGoogle
    */
-  async login(comGoogle: boolean) {
+  public async login(comGoogle: boolean) {
     const blazeConfigPage = await browser.getWindowHandle();
     await element(this.botoes_.login).click();
 
@@ -124,8 +120,8 @@ export class Recorder {
    * @description inicia a gravação do script
    * @async
    */
-  async gravar() {
-    await element(this.campos_.nome_arquivo).sendKeys(this.nome_arquivo_);
+  public async gravar() {
+    await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
     await element(this.botoes_.gravar).click();
   }
 
@@ -133,7 +129,7 @@ export class Recorder {
    * @description para a gravação do script
    * @async
    */
-  async parar() {
+  public async parar() {
     await element(this.botoes_.parar).click();
   }
 
@@ -141,7 +137,7 @@ export class Recorder {
    * @description pausa a gravação do script
    * @async
    */
-  async pause() {
+  public async pause() {
     await element(this.botoes_.pausar).click();
   }
 
@@ -150,12 +146,14 @@ export class Recorder {
    * então baixa o arquivo na pasta "Downloads"
    * @async
    */
-  async salvar() {
+  public async salvar() {
     await element(this.botoes_.salvar).click();
     await element(By.css('#chk-jmx')).click();
 
-    element.all(By.name('domains')).each(async (domain) => {
-      if (!domain) {return; }
+    element.all(By.name('domains')).each(async domain => {
+      if (!domain) {
+        return;
+      }
       const isSelected = await domain.isSelected();
       if (isSelected) {
         return;
@@ -165,7 +163,8 @@ export class Recorder {
 
     await browser.sleep(1000);
     const btnDownload = By.css(
-        '#run-overlay > div.download-body.body > div.button.download-button');
+      '#run-overlay > div.download-body.body > div.button.download-button'
+    );
     await waiter.waitClick(btnDownload);
     await element(btnDownload).click();
 

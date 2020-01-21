@@ -2,8 +2,9 @@
  * @fileoverview
  */
 
-import {By, element } from 'protractor';
-import {SmartWaiter} from './smart_waiter';
+import { By, element } from 'protractor';
+import { By as SeleniumBy } from 'selenium-webdriver';
+import { SmartWaiter } from './smart_waiter';
 
 const waiter = new SmartWaiter();
 
@@ -11,15 +12,14 @@ const waiter = new SmartWaiter();
  * @description Permite o acesso à todas as páginas do sistema
  */
 export class SideNav {
-  botoes_: any;
+  /**
+   * @description botões que necessitam de ser clicados
+   * @private
+   * @constant
+   */
+  private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {
-    /**
-     * @description botões que necessitam de ser clicados
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.botoes_ = {
       formularios: By.xpath('//a[@routerlink="formularios"]'),
       relatorios_indices: By.xpath('//a[@routerlink="relatorios-indices"]'),
@@ -31,16 +31,19 @@ export class SideNav {
       imoveis: By.xpath('//a[@routerlink="imoveis"]'),
       territorios: By.xpath('//a[@routerlink="territorios"]'),
       rede_de_saude: By.xpath(
-          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]'),
+        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]'
+      ),
       areas_gestao: By.xpath('//a[@routerlink="areas-gestao"]'),
       unidades: By.xpath('//a[@routerlink="unidades"]'),
       pessoas: By.xpath('//a[@routerlink="pessoas"]'),
       equipes: By.xpath('//a[@routerlink="equipes"]'),
       perfis_usuarios: By.xpath('//a[@routerlink="perfis-usuarios"]'),
-      perfil_usuario_unidade:
-          By.xpath('//a[@routerlink="perfil-usuario-unidade"]'),
+      perfil_usuario_unidade: By.xpath(
+        '//a[@routerlink="perfil-usuario-unidade"]'
+      ),
       tabelas_basicas: By.xpath(
-          '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]')
+        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]'
+      ),
     };
   }
 
@@ -49,17 +52,19 @@ export class SideNav {
    * então é clicado no botão para exibi-la, caso contrário não faz nada
    * @async
    */
-  async exibir() {
+  public async exibir() {
     /**
      * @description checa se a barra de navegação está sendo exibida
      * @async
      */
     const isNavBarExibida = async () => {
-      return (await element(
-                  By.xpath(
-                      '//*[contains(@class, "example-sidenav mat-drawer mat-sidenav")]'))
-                  .getAttribute('class'))
-          .includes('mat-drawer-opened');
+      return (
+        await element(
+          By.xpath(
+            '//*[contains(@class, "example-sidenav mat-drawer mat-sidenav")]'
+          )
+        ).getAttribute('class')
+      ).includes('mat-drawer-opened');
     };
 
     if (await isNavBarExibida()) {
@@ -67,7 +72,8 @@ export class SideNav {
     }
 
     const btnNavBarLateral = By.xpath(
-        '//button[contains(@class, "mat-icon-button mat-button-base ng-star-inserted")]');
+      '//button[contains(@class, "mat-icon-button mat-button-base ng-star-inserted")]'
+    );
     await waiter.waitClick(btnNavBarLateral);
     await element(btnNavBarLateral).click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
@@ -82,18 +88,18 @@ export class SideNav {
    * nada
    * @async
    */
-  async expandirRedeSaude() {
+  public async expandirRedeSaude() {
     this.exibir();
     /**
      * @description checa se a lista da Rede de Saúde está sendo exibida
      * @async
      */
     const isRedeSaudeExibida = async () => {
-      return (await element(
-                  By.xpath(
-                      '(//div[contains(@class, "submenu ng-star-inserted")])[1]'))
-                  .getAttribute('class'))
-          .includes('expanded');
+      return (
+        await element(
+          By.xpath('(//div[contains(@class, "submenu ng-star-inserted")])[1]')
+        ).getAttribute('class')
+      ).includes('expanded');
     };
 
     if (await isRedeSaudeExibida()) {
@@ -101,8 +107,8 @@ export class SideNav {
     }
 
     await element(this.botoes_.rede_de_saude)
-        .element(By.xpath('.//div[@class="mat-list-item-content"]'))
-        .click();
+      .element(By.xpath('.//div[@class="mat-list-item-content"]'))
+      .click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
     // await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
     // await waiter.waitClick(this.botoes_.perfil_usuario_unidade);
@@ -114,7 +120,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarFormularios() {
+  public async acessarFormularios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.formularios);
     await waiter.waitClick(this.botoes_.formularios);
@@ -126,7 +132,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarRelatorios() {
+  public async acessarRelatorios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.relatorios_indices);
     await waiter.waitClick(this.botoes_.relatorios_indices);
@@ -138,7 +144,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarExportacao() {
+  public async acessarExportacao() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.exportar);
     await waiter.waitClick(this.botoes_.exportar);
@@ -150,7 +156,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarImportacao() {
+  public async acessarImportacao() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.processo_importacao);
     await waiter.waitClick(this.botoes_.processo_importacao);
@@ -162,7 +168,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarDemandas() {
+  public async acessarDemandas() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.demandas);
     await waiter.waitClick(this.botoes_.demandas);
@@ -174,7 +180,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarListasDeTrabalho() {
+  public async acessarListasDeTrabalho() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.lista_trabalho);
     await waiter.waitClick(this.botoes_.lista_trabalho);
@@ -186,7 +192,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarAtividades() {
+  public async acessarAtividades() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.atividades);
     await waiter.waitClick(this.botoes_.atividades);
@@ -198,7 +204,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarImoveis() {
+  public async acessarImoveis() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.imoveis);
     await waiter.waitClick(this.botoes_.imoveis);
@@ -210,7 +216,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarTerritorios() {
+  public async acessarTerritorios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.territorios);
     await waiter.waitClick(this.botoes_.territorios);
@@ -222,7 +228,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarAreasDeGestao() {
+  public async acessarAreasDeGestao() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.areas_gestao);
     await waiter.waitClick(this.botoes_.areas_gestao);
@@ -234,7 +240,7 @@ export class SideNav {
    * barra de navegação lateral
    * @async
    */
-  async acessarUnidadesOrganizacionais() {
+  public async acessarUnidadesOrganizacionais() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.unidades);
     await waiter.waitClick(this.botoes_.unidades);
@@ -246,7 +252,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarPessoas() {
+  public async acessarPessoas() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.pessoas);
     await waiter.waitClick(this.botoes_.pessoas);
@@ -258,7 +264,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  async acessarEquipes() {
+  public async acessarEquipes() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.equipes);
     await waiter.waitClick(this.botoes_.equipes);
@@ -270,7 +276,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarPerfisDeUsuario() {
+  public async acessarPerfisDeUsuario() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.perfis_usuarios);
     await waiter.waitClick(this.botoes_.perfis_usuarios);
@@ -282,7 +288,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  async acessarUsuariosDaUnidade() {
+  public async acessarUsuariosDaUnidade() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
     await waiter.waitClick(this.botoes_.perfil_usuario_unidade);

@@ -25,7 +25,8 @@
 //       cadastrar: By.xpath(
 //           `//*[@class='mat-raised-button mat-button-base mat-primary']`),
 //       filtro: By.xpath(
-//           `//*[@class='mat-raised-button mat-button-base ng-star-inserted']`),
+//           `//*[@class='mat-raised-button mat-button-base
+//           ng-star-inserted']`),
 //     };
 
 //     /**
@@ -36,7 +37,9 @@
 //      */
 //     this.input_ = {
 //       filtro: By.xpath(
-//           '(//input[contains(@class, "mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored")])[2]'),
+//           '(//input[contains(@class, "mat-input-element
+//           mat-form-field-autofill-control
+//           cdk-text-field-autofill-monitored")])[2]'),
 //     };
 //   }
 
@@ -58,7 +61,8 @@
 //     await element(this.botoes_.filtro).click();
 
 //     const itens =
-//         await element.all(By.xpath(`//tr[@class='mat-row ng-star-inserted']`));
+//         await element.all(By.xpath(`//tr[@class='mat-row
+//         ng-star-inserted']`));
 //     const titulosRetornados = [];
 //     itens.forEach((item) => {
 //       console.log(item);

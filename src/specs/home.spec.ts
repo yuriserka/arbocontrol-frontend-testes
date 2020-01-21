@@ -2,11 +2,17 @@
  * @fileoverview
  */
 
-import {expect} from 'chai';
-import {AfterAll, BeforeAll, setDefaultTimeout, Then, When} from 'cucumber';
-import {browser} from 'protractor';
-import {HomePage} from '../pages/home.po';
-import {LoginPage} from '../pages/login.po';
+const {
+  AfterAll,
+  BeforeAll,
+  setDefaultTimeout,
+  Then,
+  When,
+} = require('cucumber');
+import { expect } from 'chai';
+import { browser } from 'protractor';
+import { HomePage } from '../pages/home.po';
+import { LoginPage } from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -21,11 +27,11 @@ When('eu clicar para expandir a barra de navegação', async () => {
   await homePage.mostrarSideNav();
 });
 
-When('clicar no botão {string}', async (btn) => {
+When('clicar no botão {string}', async (btn: string) => {
   await homePage.acessar(btn);
 });
 
-Then('a url deve ser {string}', async (url) => {
+Then('a url deve ser {string}', async (url: string) => {
   expect(await browser.getCurrentUrl()).to.be.equal(url);
 });
 

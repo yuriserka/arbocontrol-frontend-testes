@@ -2,21 +2,25 @@
  * @fileoverview
  */
 
-import {browser, element, ExpectedConditions as EC, Locator} from 'protractor';
+import {
+  browser,
+  element,
+  ExpectedConditions as EC,
+  Locator,
+} from 'protractor';
 
 /**
  * @description Responsável por esperas inteligentes
  */
 export class SmartWaiter {
-  timeout_: number;
+  /**
+   * @description Representa o tempo máximo de espera para as condições
+   * @private
+   * @constant
+   */
+  private timeout_: number;
 
   constructor() {
-    /**
-     * @description Representa o tempo máximo de espera para as condições
-     * @private
-     * @constant
-     * @type {number}
-     */
     this.timeout_ = 10000;
   }
   /**
@@ -25,10 +29,11 @@ export class SmartWaiter {
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  async waitClick(locator: Locator, tempoAdicional = 0) {
+  public async waitClick(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
-        EC.elementToBeClickable(element(locator)),
-        this.timeout_ + tempoAdicional);
+      EC.elementToBeClickable(element(locator)),
+      this.timeout_ + tempoAdicional
+    );
   }
 
   /**
@@ -37,7 +42,7 @@ export class SmartWaiter {
    * @param {!string} url
    * @param {?number} tempoAdicional
    */
-  async waitUrl(url: string, tempoAdicional = 0) {
+  public async waitUrl(url: string, tempoAdicional = 0) {
     await browser.wait(EC.urlIs(url), this.timeout_ + tempoAdicional);
   }
 
@@ -47,9 +52,11 @@ export class SmartWaiter {
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  async waitVisibility(locator: Locator, tempoAdicional = 0) {
+  public async waitVisibility(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
-        EC.visibilityOf(element(locator)), this.timeout_ + tempoAdicional);
+      EC.visibilityOf(element(locator)),
+      this.timeout_ + tempoAdicional
+    );
   }
 
   /**
@@ -59,9 +66,10 @@ export class SmartWaiter {
    * @param {!string} texto
    * @param {?number} tempoAdicional
    */
-  async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
+  public async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
     await browser.wait(
-        EC.textToBePresentInElement(element(locator), texto),
-        this.timeout_ + tempoAdicional);
+      EC.textToBePresentInElement(element(locator), texto),
+      this.timeout_ + tempoAdicional
+    );
   }
 }

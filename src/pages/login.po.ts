@@ -2,9 +2,10 @@
  * @fileoverview
  */
 
-import {By, element} from 'protractor';
+import { By, element } from 'protractor';
+import { By as SeleniumBy } from 'selenium-webdriver';
 
-import {SmartWaiter} from '../helpers/smart_waiter';
+import { SmartWaiter } from '../helpers/smart_waiter';
 
 const waiter = new SmartWaiter();
 
@@ -13,27 +14,25 @@ const waiter = new SmartWaiter();
  * @category Páginas do sistema
  */
 export class LoginPage {
-  botoes_: any;
-  campos_: any;
-  
+  /**
+   * @description botões que necessitam de ser clicados
+   * @private
+   * @constant
+   */
+  private botoes_: { [key: string]: SeleniumBy };
+  /**
+   * @description campos que devem ser preenchidos
+   * @private
+   * @constant
+   */
+  private campos_: { [key: string]: SeleniumBy };
+
   constructor() {
-    /**
-     * @description botões que necessitam de ser clicados
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.botoes_ = {
       entrar: By.css(
-          'body > app-root > app-main-nav > mat-sidenav-container > mat-sidenav-content > div > app-login-2 > div > mat-card > mat-card-content > form > div:nth-child(4) > button'),
+        'body > app-root > app-main-nav > mat-sidenav-container > mat-sidenav-content > div > app-login-2 > div > mat-card > mat-card-content > form > div:nth-child(4) > button'
+      ),
     };
-
-    /**
-     * @description campos que devem ser preenchidos
-     * @private
-     * @constant
-     * @type {!Object<!string, !Locator>}
-     */
     this.campos_ = {
       cpf: By.id('mat-input-0'),
       senha: By.id('mat-input-1'),
@@ -48,7 +47,7 @@ export class LoginPage {
    * @param {!string} cpf
    * @param {!string} senha
    */
-  async login(cpf: string, senha: string) {
+  public async login(cpf: string, senha: string) {
     await this.preencherCpf(cpf);
     await this.preencherSenha(senha);
     await this.selecionarPrimeiraUnidade();
@@ -61,7 +60,7 @@ export class LoginPage {
    * @async
    * @param {!string} cpf
    */
-  async preencherCpf(cpf: string) {
+  public async preencherCpf(cpf: string) {
     await element(this.campos_.cpf).sendKeys(cpf);
   }
 
@@ -70,7 +69,7 @@ export class LoginPage {
    * @async
    * @param {!string} senha
    */
-  async preencherSenha(senha: string) {
+  public async preencherSenha(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
   }
 
@@ -78,7 +77,7 @@ export class LoginPage {
    * @description Seleciona a primeira unidade da lista
    * @async
    */
-  async selecionarPrimeiraUnidade() {
+  public async selecionarPrimeiraUnidade() {
     await element(this.campos_.unidade).click();
     const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
     await waiter.waitVisibility(listaUnidades);
@@ -90,7 +89,7 @@ export class LoginPage {
    * @description clica no botao pra fazer o login
    * @async
    */
-  async clicarBotaoEntrar() {
+  public async clicarBotaoEntrar() {
     await element(this.botoes_.entrar).click();
   }
 }

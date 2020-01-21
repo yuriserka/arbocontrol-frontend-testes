@@ -2,10 +2,10 @@
  * @fileoverview
  */
 
-import {Given, setDefaultTimeout, Then, When} from 'cucumber';
-import {browser} from 'protractor';
-import {Recorder} from '../helpers/recorder';
-import {LoginPage} from '../pages/login.po';
+const { Given, setDefaultTimeout, Then, When } = require('cucumber');
+import { browser } from 'protractor';
+import { Recorder } from '../helpers/recorder';
+import { LoginPage } from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);
 const blazeRecorder = new Recorder();
@@ -23,9 +23,12 @@ Then('abrirei uma nova aba', async () => {
   await browser.switchTo().window(handles[1]);
 });
 
-When('eu acessar a página de configuração {string}', async (blazeUrl) => {
-  await browser.get(blazeUrl);
-});
+When(
+  'eu acessar a página de configuração {string}',
+  async (blazeUrl: string) => {
+    await browser.get(blazeUrl);
+  }
+);
 
 Then('farei login com os dados disponibilizados', async () => {
   await blazeRecorder.login(false);
@@ -35,7 +38,7 @@ When('eu acionar o botão de gravação', async () => {
   await blazeRecorder.gravar();
 });
 
-Then('navegarei até o site {string}', async (url) => {
+Then('navegarei até o site {string}', async (url: string) => {
   await browser.switchTo().window(baseTab);
   await browser.waitForAngularEnabled(true);
   await browser.get(url);
@@ -47,11 +50,12 @@ Then('farei login', async () => {
 });
 
 Then(
-    'acessarei novamente a página de configuração {string}',
-    async (blazeUrl) => {
-      await browser.waitForAngularEnabled(false);
-      await browser.get(blazeUrl);
-    });
+  'acessarei novamente a página de configuração {string}',
+  async (blazeUrl: string) => {
+    await browser.waitForAngularEnabled(false);
+    await browser.get(blazeUrl);
+  }
+);
 
 Then('pararei a gravação', async () => {
   await blazeRecorder.parar();

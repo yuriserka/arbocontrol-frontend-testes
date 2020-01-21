@@ -2,7 +2,7 @@
  * @fileoverview
  */
 
-import {browser, element, Locator} from 'protractor';
+import { browser, element, Locator } from 'protractor';
 
 /**
  * @description Responsável por editar o estilo de um atributo de um elemento da
@@ -16,9 +16,10 @@ export class CssEditor {
    * @param {!string} attribute
    * @param {!string} value
    */
-  async alterar(locator: Locator, attribute: string, value: string) {
+  public async alterar(locator: Locator, attribute: string, value: string) {
     await browser.executeScript(
-        `arguments[0].style.${attribute} = "${value}"`,
-        element(locator).getWebElement());
+      `arguments[0].style.${attribute} = "${value}"`,
+      element(locator).getWebElement()
+    );
   }
 }

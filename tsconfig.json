@@ -1,15 +1,29 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "declaration": false,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
     "outDir": "build",
-    "esModuleInterop": true
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "cucumber"
+    ]
   },
-  "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
-  ],
   "exclude": [
-    "node_modules/**"
-  ]
+    "node_modules",
+    "build"
+  ],
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "docs"
+  }
 }
