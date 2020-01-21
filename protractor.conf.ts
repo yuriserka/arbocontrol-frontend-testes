@@ -23,11 +23,11 @@ export const config: Config = {
     },
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/blazemeter.feature'],
+  specs: ['../features/home.feature'],
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['../build/src/specs/blazemeter._spec.js'],
+    require: ['../build/src/specs/home.spec.js'],
     tags: false,
     strict: true,
     profile: false,
