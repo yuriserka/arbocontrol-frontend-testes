@@ -43,7 +43,7 @@ export class BlazeMeter {
    * credenciais criadas.
    * @async
    */
-  public async loginGoogle() {
+  async loginGoogle() {
     await element(this.botoes_.google).click();
     await new GoogleAccount().login(
       process.env.GOOGLE_EMAIL || 'none',
@@ -55,7 +55,7 @@ export class BlazeMeter {
    * @description preenche email e senha utilizando as credenciais criadas.
    * @async
    */
-  public async login() {
+  async login() {
     await element(this.campos_.email).sendKeys(
       process.env.BLAZE_METER_EMAIL || 'none'
     );

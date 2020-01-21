@@ -68,7 +68,7 @@ export class Recorder {
    * gravação e então inicia ela.
    * @async
    */
-  public async iniciar() {
+  async iniciar() {
     await browser.waitForAngularEnabled(false);
     await browser.executeScript('window.open()');
     const handles = await browser.getAllWindowHandles();
@@ -87,7 +87,7 @@ export class Recorder {
    * e então salva o arquivo .jmx gerado.
    * @async
    */
-  public async terminar() {
+  async terminar() {
     await browser.waitForAngularEnabled(false);
     await this.get_();
     await this.parar();
@@ -100,7 +100,7 @@ export class Recorder {
    * @async
    * @param {boolean} comGoogle
    */
-  public async login(comGoogle: boolean) {
+  private async login(comGoogle: boolean) {
     const blazeConfigPage = await browser.getWindowHandle();
     await element(this.botoes_.login).click();
 
@@ -120,7 +120,7 @@ export class Recorder {
    * @description inicia a gravação do script
    * @async
    */
-  public async gravar() {
+  private async gravar() {
     await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
     await element(this.botoes_.gravar).click();
   }
@@ -129,7 +129,7 @@ export class Recorder {
    * @description para a gravação do script
    * @async
    */
-  public async parar() {
+  private async parar() {
     await element(this.botoes_.parar).click();
   }
 
@@ -137,7 +137,7 @@ export class Recorder {
    * @description pausa a gravação do script
    * @async
    */
-  public async pause() {
+  private async pause() {
     await element(this.botoes_.pausar).click();
   }
 
@@ -146,7 +146,7 @@ export class Recorder {
    * então baixa o arquivo na pasta "Downloads"
    * @async
    */
-  public async salvar() {
+  private async salvar() {
     await element(this.botoes_.salvar).click();
     await element(By.css('#chk-jmx')).click();
 

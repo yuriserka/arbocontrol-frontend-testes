@@ -43,7 +43,7 @@ export class GoogleAccount {
    * @param  {!string} email
    * @param  {!string} senha
    */
-  public async login(email: string, senha: string) {
+  async login(email: string, senha: string) {
     const waiter = new SmartWaiter();
     await this.preencherEmail_(email);
     await browser.sleep(1000);
@@ -58,7 +58,7 @@ export class GoogleAccount {
    * @async
    * @param {!string} email
    */
-  public async preencherEmail_(email: string) {
+  private async preencherEmail_(email: string) {
     await element(this.campos_.email).sendKeys(email);
     await element(this.botoes_.proximo_email).click();
   }
@@ -70,7 +70,7 @@ export class GoogleAccount {
    * @async
    * @param {!string} senha
    */
-  public async preencherSenha_(senha: string) {
+  private async preencherSenha_(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
     await element(this.botoes_.proximo_senha).click();
   }

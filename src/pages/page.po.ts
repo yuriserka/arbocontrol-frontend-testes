@@ -32,7 +32,7 @@ export class Page {
    * @description faz logout do sistema
    * @async
    */
-  public async logout() {
+  async logout() {
     await this.toolbar_.logout();
   }
 
@@ -40,7 +40,7 @@ export class Page {
    * @description mostra a barra de navegação lateral
    * @async
    */
-  public async mostrarSideNav() {
+  async mostrarSideNav() {
     await this.navbar_.exibir();
   }
 }

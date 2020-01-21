@@ -16,7 +16,7 @@ export class CssEditor {
    * @param {!string} attribute
    * @param {!string} value
    */
-  public async alterar(locator: Locator, attribute: string, value: string) {
+  async alterar(locator: Locator, attribute: string, value: string) {
     await browser.executeScript(
       `arguments[0].style.${attribute} = "${value}"`,
       element(locator).getWebElement()

@@ -30,7 +30,7 @@ export class WorkList extends Page {
     this.campos_ = {};
   }
 
-  public async get() {
+  async get() {
     await this.navbar_.acessarListasDeTrabalho();
   }
 }

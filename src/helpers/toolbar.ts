@@ -28,7 +28,7 @@ export class ToolBar {
    * @description clica no botão de sair
    * @async
    */
-  public async logout() {
+  async logout() {
     await element(this.botoes_.sair).click();
   }
 }

@@ -44,7 +44,7 @@ export class HomePage extends Page {
    * @async
    * @param {!string} nomeBotao
    */
-  public async acessar(nomeBotao: string) {
+  async acessar(nomeBotao: string) {
     await this.btn2page_[nomeBotao]();
   }
 
@@ -53,7 +53,7 @@ export class HomePage extends Page {
    * @returns {!string} nome do usuário logado
    * @async
    */
-  public async getUsuarioLogado(): Promise<string> {
+  async getUsuarioLogado(): Promise<string> {
     return element(
       By.xpath('.//mat-card-title[@class="mat-card-title"]')
     ).getText();

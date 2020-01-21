@@ -52,7 +52,7 @@ export class SideNav {
    * então é clicado no botão para exibi-la, caso contrário não faz nada
    * @async
    */
-  public async exibir() {
+  async exibir() {
     /**
      * @description checa se a barra de navegação está sendo exibida
      * @async
@@ -88,7 +88,7 @@ export class SideNav {
    * nada
    * @async
    */
-  public async expandirRedeSaude() {
+  private async expandirRedeSaude() {
     this.exibir();
     /**
      * @description checa se a lista da Rede de Saúde está sendo exibida
@@ -120,7 +120,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarFormularios() {
+  async acessarFormularios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.formularios);
     await waiter.waitClick(this.botoes_.formularios);
@@ -132,7 +132,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarRelatorios() {
+  async acessarRelatorios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.relatorios_indices);
     await waiter.waitClick(this.botoes_.relatorios_indices);
@@ -144,7 +144,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarExportacao() {
+  async acessarExportacao() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.exportar);
     await waiter.waitClick(this.botoes_.exportar);
@@ -156,7 +156,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarImportacao() {
+  async acessarImportacao() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.processo_importacao);
     await waiter.waitClick(this.botoes_.processo_importacao);
@@ -168,7 +168,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarDemandas() {
+  async acessarDemandas() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.demandas);
     await waiter.waitClick(this.botoes_.demandas);
@@ -180,7 +180,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarListasDeTrabalho() {
+  async acessarListasDeTrabalho() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.lista_trabalho);
     await waiter.waitClick(this.botoes_.lista_trabalho);
@@ -192,7 +192,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarAtividades() {
+  async acessarAtividades() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.atividades);
     await waiter.waitClick(this.botoes_.atividades);
@@ -204,7 +204,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarImoveis() {
+  async acessarImoveis() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.imoveis);
     await waiter.waitClick(this.botoes_.imoveis);
@@ -216,7 +216,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarTerritorios() {
+  async acessarTerritorios() {
     await this.exibir();
     await waiter.waitVisibility(this.botoes_.territorios);
     await waiter.waitClick(this.botoes_.territorios);
@@ -228,7 +228,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarAreasDeGestao() {
+  async acessarAreasDeGestao() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.areas_gestao);
     await waiter.waitClick(this.botoes_.areas_gestao);
@@ -240,7 +240,7 @@ export class SideNav {
    * barra de navegação lateral
    * @async
    */
-  public async acessarUnidadesOrganizacionais() {
+  async acessarUnidadesOrganizacionais() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.unidades);
     await waiter.waitClick(this.botoes_.unidades);
@@ -252,7 +252,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarPessoas() {
+  async acessarPessoas() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.pessoas);
     await waiter.waitClick(this.botoes_.pessoas);
@@ -264,7 +264,7 @@ export class SideNav {
    * lateral
    * @async
    */
-  public async acessarEquipes() {
+  async acessarEquipes() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.equipes);
     await waiter.waitClick(this.botoes_.equipes);
@@ -276,7 +276,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarPerfisDeUsuario() {
+  async acessarPerfisDeUsuario() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.perfis_usuarios);
     await waiter.waitClick(this.botoes_.perfis_usuarios);
@@ -288,7 +288,7 @@ export class SideNav {
    * navegação lateral
    * @async
    */
-  public async acessarUsuariosDaUnidade() {
+  async acessarUsuariosDaUnidade() {
     await this.expandirRedeSaude();
     await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
     await waiter.waitClick(this.botoes_.perfil_usuario_unidade);

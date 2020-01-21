@@ -29,7 +29,7 @@ export class SmartWaiter {
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  public async waitClick(locator: Locator, tempoAdicional = 0) {
+  async waitClick(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
       EC.elementToBeClickable(element(locator)),
       this.timeout_ + tempoAdicional
@@ -42,7 +42,7 @@ export class SmartWaiter {
    * @param {!string} url
    * @param {?number} tempoAdicional
    */
-  public async waitUrl(url: string, tempoAdicional = 0) {
+  async waitUrl(url: string, tempoAdicional = 0) {
     await browser.wait(EC.urlIs(url), this.timeout_ + tempoAdicional);
   }
 
@@ -52,7 +52,7 @@ export class SmartWaiter {
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  public async waitVisibility(locator: Locator, tempoAdicional = 0) {
+  async waitVisibility(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
       EC.visibilityOf(element(locator)),
       this.timeout_ + tempoAdicional
@@ -66,7 +66,7 @@ export class SmartWaiter {
    * @param {!string} texto
    * @param {?number} tempoAdicional
    */
-  public async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
+  async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
     await browser.wait(
       EC.textToBePresentInElement(element(locator), texto),
       this.timeout_ + tempoAdicional

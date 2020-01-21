@@ -4,7 +4,6 @@
 
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
-
 import { SmartWaiter } from '../helpers/smart_waiter';
 
 const waiter = new SmartWaiter();
@@ -47,7 +46,7 @@ export class LoginPage {
    * @param {!string} cpf
    * @param {!string} senha
    */
-  public async login(cpf: string, senha: string) {
+  async login(cpf: string, senha: string) {
     await this.preencherCpf(cpf);
     await this.preencherSenha(senha);
     await this.selecionarPrimeiraUnidade();
@@ -60,7 +59,7 @@ export class LoginPage {
    * @async
    * @param {!string} cpf
    */
-  public async preencherCpf(cpf: string) {
+  private async preencherCpf(cpf: string) {
     await element(this.campos_.cpf).sendKeys(cpf);
   }
 
@@ -69,7 +68,7 @@ export class LoginPage {
    * @async
    * @param {!string} senha
    */
-  public async preencherSenha(senha: string) {
+  private async preencherSenha(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
   }
 
@@ -77,7 +76,7 @@ export class LoginPage {
    * @description Seleciona a primeira unidade da lista
    * @async
    */
-  public async selecionarPrimeiraUnidade() {
+  private async selecionarPrimeiraUnidade() {
     await element(this.campos_.unidade).click();
     const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
     await waiter.waitVisibility(listaUnidades);
@@ -89,7 +88,7 @@ export class LoginPage {
    * @description clica no botao pra fazer o login
    * @async
    */
-  public async clicarBotaoEntrar() {
+  private async clicarBotaoEntrar() {
     await element(this.botoes_.entrar).click();
   }
 }

@@ -1,34 +1,25 @@
-import * as reporter from 'cucumber-html-reporter';
-import * as fs from 'fs';
-import * as mkdirp from 'mkdirp';
-import * as path from 'path';
-
-const jsonReports = path.join('./reports/json');
-const htmlReports = path.join('./reports/html');
-const targetJson = jsonReports + '/cucumber_report.json';
-
-const cucumberReporterOptions: reporter.Options = {
-  jsonFile: targetJson,
-  output: htmlReports + '/cucumber_reporter.html',
-  reportSuiteAsScenarios: true,
-  theme: 'bootstrap',
-  launchReport: true,
-};
+import reporter = require('cucumber-html-reporter');
+import fs = require('fs');
+import mkdirp = require('mkdirp');
 
 export class Reporter {
-  public static createDirectory(dir: string) {
+  static createDirectory(dir: string) {
     if (!fs.existsSync(dir)) {
       mkdirp.sync(dir);
     }
   }
 
-  public static createHTMLReport() {
+  static createHTMLReport() {
     try {
-      reporter.generate(cucumberReporterOptions);
+      reporter.generate({
+        theme: 'bootstrap',
+        jsonFile: 'results.json',
+        output: 'logs/resultados/cucumber_report.html',
+        reportSuiteAsScenarios: true,
+        launchReport: true,
+      });
     } catch (err) {
-      if (err) {
-        throw new Error('Failed to save cucumber test results to json file.');
-      }
+      throw new Error('Failed to save cucumber test results to json file.');
     }
   }
 }
