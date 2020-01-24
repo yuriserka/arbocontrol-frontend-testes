@@ -31,7 +31,7 @@ When(
 );
 
 Then('farei login com os dados disponibilizados', async () => {
-  await blazeRecorder['login'](false);
+  await blazeRecorder['login'](/* comGoogle= */ false);
 });
 
 When('eu acionar o botão de gravação', async () => {

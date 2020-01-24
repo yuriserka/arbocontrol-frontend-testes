@@ -1,7 +1,7 @@
 import { Config, browser } from 'protractor';
 import { Reporter } from './src/helpers/reporter';
 const fs = require('fs');
-const path = require('path');
+import path = require('path');
 
 export const config: Config = {
   framework: 'custom',
@@ -28,6 +28,7 @@ export const config: Config = {
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
     require: ['../build/src/specs/home.spec.js'],
+    // format: ['json:./reports/results.json'],
     tags: false,
     strict: true,
     profile: false,
@@ -40,7 +41,7 @@ export const config: Config = {
       .window()
       .maximize();
 
-    Reporter.createDirectory('./reports/json');
+    Reporter.createDirectory('reports');
   },
   onComplete: () => {
     Reporter.createHTMLReport();

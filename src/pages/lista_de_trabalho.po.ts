@@ -3,7 +3,6 @@
  */
 
 import { By as SeleniumBy } from 'selenium-webdriver';
-
 import { Page } from './page.po';
 
 /**
