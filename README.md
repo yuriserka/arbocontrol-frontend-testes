@@ -1,4 +1,4 @@
-# ARBO_frontend_tests,
+# arbocontrol-frontend-testes
 
 Repositório com o fim de realizar os testes de interface voltados para o frontend do sistema do Arbocontrol.
 
