@@ -65,3 +65,6 @@ typings/
 
 # vscode files
 .vscode
+
+# Cucumber results
+reports

@@ -28,7 +28,7 @@ export const config: Config = {
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
     require: ['../build/src/specs/home.spec.js'],
-    // format: ['json:./reports/results.json'],
+    format: ['json:./reports/results.json'],
     tags: false,
     strict: true,
     profile: false,
@@ -41,10 +41,10 @@ export const config: Config = {
       .window()
       .maximize();
 
-    Reporter.createDirectory('reports');
+    Reporter.criarDiretorio('reports');
   },
   onComplete: () => {
-    Reporter.createHTMLReport();
+    Reporter.gerarRelatorioCucumber();
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 30000,

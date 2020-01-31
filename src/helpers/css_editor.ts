@@ -13,12 +13,12 @@ export class CssEditor {
    * @description Altera ou adiciona o estilo do elemento passado
    * @async
    * @param {!Locator} locator
-   * @param {!string} attribute
-   * @param {!string} value
+   * @param {!string} atributo
+   * @param {!string} valor
    */
-  async alterar(locator: Locator, attribute: string, value: string) {
+  async alterar(locator: Locator, atributo: string, valor: string) {
     await browser.executeScript(
-      `arguments[0].style.${attribute} = "${value}"`,
+      `arguments[0].style.${atributo} = "${valor}"`,
       element(locator).getWebElement()
     );
   }

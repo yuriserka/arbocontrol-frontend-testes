@@ -3,28 +3,40 @@ import fs = require('fs');
 import mkdirp = require('mkdirp');
 import path = require('path');
 
-let out_dir_: string;
+let outDir: string;
+
+/**
+ * @description classe Responsavel por exportar relatorios do cucumber
+ */
 
 export class Reporter {
-
-  static createDirectory(dir: string) {
-    if (!fs.existsSync(dir)) {
-      mkdirp.sync(dir);
+  /**
+   * @description Assegura que o diretório no qual será salvo os resultados existe
+   * @param {!string} diretorio 
+   */
+  static criarDiretorio(diretorio: string) {
+    if (!fs.existsSync(diretorio)) {
+      mkdirp.sync(diretorio);
     }
-    out_dir_ = dir;
+    outDir = diretorio;
   }
 
-  static createHTMLReport() {
+  /**
+   * @description gera um relatorio html apresentando as funcionalidades que foram testadas
+   */
+  static gerarRelatorioCucumber() {
     try {
       reporter.generate({
         theme: 'bootstrap',
-        jsonFile: path.join(out_dir_, 'results.json'),
-        output: path.join(out_dir_, 'cucumber_report.html'),
+        jsonFile: path.join(outDir, 'results.json'),
+        output: path.join(outDir, 'cucumber_report.html'),
         reportSuiteAsScenarios: true,
         launchReport: false,
       });
     } catch (err) {
-      throw new Error('Failed to save cucumber test results to json file.');
+      throw new Error(
+        'Falha ao salvar arquivo com resultado dos testes do Cucumber.'
+      );
     }
   }
 }

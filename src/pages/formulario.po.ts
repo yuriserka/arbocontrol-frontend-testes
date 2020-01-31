@@ -19,7 +19,7 @@
 //      * @description botões que necessitam de ser clicados
 //      * @private
 //      * @constant
-//      * @type {!Object<!String, !Locator>}
+//      * @type {!Object<!string, !Locator>}
 //      */
 //     this.botoes_ = {
 //       cadastrar: By.xpath(
@@ -33,7 +33,7 @@
 //      * @description campos que devem ser preenchidos
 //      * @private
 //      * @constant
-//      * @type {!Object<!String, !Locator>}
+//      * @type {!Object<!string, !Locator>}
 //      */
 //     this.input_ = {
 //       filtro: By.xpath(
@@ -52,7 +52,7 @@
 
 //   /**
 //    *
-//    * @param {!String} palavra
+//    * @param {!string} palavra
 //    */
 //   async pesquisar(palavra: string) {
 //     await waiter.waitVisibility(this.input_.filtro);
