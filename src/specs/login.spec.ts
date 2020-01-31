@@ -7,7 +7,7 @@ import { expect } from 'chai';
 import { browser, By } from 'protractor';
 import { CssEditor } from '../helpers/css_editor';
 import { Recorder } from '../helpers/recorder';
-import { HomePage } from '../pages/home.po';
+import { HomePage } from '../pages/inicial.po';
 import { LoginPage } from '../pages/login.po';
 
 setDefaultTimeout(60 * 1000);

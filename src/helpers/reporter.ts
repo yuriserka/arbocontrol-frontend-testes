@@ -12,7 +12,7 @@ let outDir: string;
 export class Reporter {
   /**
    * @description Assegura que o diretório no qual será salvo os resultados existe
-   * @param {!string} diretorio 
+   * @param {!string} diretorio
    */
   static criarDiretorio(diretorio: string) {
     if (!fs.existsSync(diretorio)) {

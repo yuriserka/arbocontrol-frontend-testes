@@ -14,20 +14,20 @@ export const config: Config = {
         'disable-plugins',
         'disable-infobars',
       ],
-      extensions: [
-        fs.readFileSync(
-          path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'),
-          { encoding: 'base64' }
-        ),
-      ],
+      // extensions: [
+      //   fs.readFileSync(
+      //     path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'),
+      //     { encoding: 'base64' }
+      //   ),
+      // ],
     },
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/home.feature'],
+  specs: ['../features/equipes.feature'],
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['../build/src/specs/home.spec.js'],
+    require: ['../build/src/specs/equipes.spec.js'],
     format: ['json:./reports/results.json'],
     tags: false,
     strict: true,

@@ -9,7 +9,7 @@ import { Page } from './page.po';
  * @description Abstração da página de login
  * @category Páginas do sistema
  */
-export class WorkList extends Page {
+export class ListaDeTrabalhoPage extends Page {
   /**
    * @description botões que necessitam de ser clicados
    * @private
