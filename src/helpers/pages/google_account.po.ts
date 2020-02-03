@@ -44,11 +44,10 @@ export class GoogleAccount {
    * @param  {!string} senha
    */
   async login(email: string, senha: string) {
-    const waiter = new SmartWaiter();
     await this.preencherEmail_(email);
     await browser.sleep(1000);
-    await waiter.waitVisibility(this.campos_.senha);
-    await waiter.waitClick(this.botoes_.proximo_senha);
+    await SmartWaiter.waitVisibility(this.campos_.senha);
+    await SmartWaiter.waitClick(this.botoes_.proximo_senha);
     await this.preencherSenha_(senha);
   }
 

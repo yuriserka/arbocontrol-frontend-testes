@@ -2,9 +2,11 @@
  * @fileoverview
  */
 
-import { By, element, browser, ElementArrayFinder, ElementFinder } from 'protractor';
+import { By, element, browser } from 'protractor';
 import { Page } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
+import { DataTable } from '../helpers/data_table';
+import { SmartWaiter } from '../helpers/smart_waiter'
 
 /**
  * @description Abstração da página de gerenciamento de equipes
@@ -31,10 +33,17 @@ export class EquipesPage extends Page {
     };
   }
 
+  /**
+   * 
+   */
   async get() {
     await this.navbar_.acessarEquipes();
   }
 
+  /**
+   * 
+   * @param nome 
+   */
   async criarEquipe(nome: string) {
     await element(this.botoes_.cadastrar).click();
     await element(By.xpath('//*[@formcontrolname="nome"]')).sendKeys(nome);
@@ -43,15 +52,28 @@ export class EquipesPage extends Page {
     ).click();
   }
 
-  async adicionarPessoas(equipe: string, usuarios: { nome: string, role: string }[]) {
-    const rows = await element.all(By.xpath('//tbody//tr'));
-    rows.forEach(async (row?: ElementFinder) => {
-      const nome = await row?.element(By.xpath('.//td//span[@class="span-link"]')).getText();
-      console.log({nome})
-      console.log(nome === equipe);
-    });
-    // equipeAlvo.click();
-    await browser.sleep(5000);
-    usuarios.forEach(u => console.log(`${u.nome} sera adicionado a equipe ${equipe} como ${u.role}`));
+  /**
+   * 
+   * @param equipe 
+   * @param usuarios 
+   */
+  async adicionarPessoas(equipe: string, usuarios: Array<{ nome: string, cargo: string }>) {
+    const linkEquipeAlvo = await DataTable.findTextIn(By.xpath('//tbody//tr//td//span[@class="span-link"]'), equipe);
+    await linkEquipeAlvo.click();
+    for (const [idx, usuario] of usuarios.entries()) {
+      const campoNomeUsuario = By.xpath('//input[@placeholder="Agente a Adicionar"]');
+      await element(campoNomeUsuario).click();
+      await element(campoNomeUsuario).sendKeys(usuario.nome);
+      const opcoesUsuarios = '//mat-option';
+      await SmartWaiter.waitVisibility(By.xpath(`(${opcoesUsuarios})[${(await element.all(By.xpath(opcoesUsuarios))).length}]`));
+      const username = await DataTable.findTextIn(By.xpath(`${opcoesUsuarios}//span//span`), usuario.nome);
+      await username.click();
+      const botaoAdicionar = By.xpath('(//button[@color="primary"])[1]');
+      await element(botaoAdicionar).click();
+      const userRow = await DataTable.findTextIn(By.xpath('//tbody//tr'), usuario.nome, By.xpath(`(//td[contains(@class, "cdk-column-vinculo")]//a)[${idx + 1}]`));
+      await userRow.findElement(By.xpath(`(//td[contains(@class, "cdk-column-${usuario.cargo}")]//div[@class="mat-slide-toggle-thumb"])[${idx + 1}]`)).click();
+      await element(campoNomeUsuario).clear();
+    }
+    await element(By.xpath('//div[@class="linha-botoes"]//button[@color="primary"]')).click();
   }
 }

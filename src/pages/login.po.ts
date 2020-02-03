@@ -6,8 +6,6 @@ import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from '../helpers/smart_waiter';
 
-const waiter = new SmartWaiter();
-
 /**
  * @description Abstração da página de login
  * @category Páginas do sistema
@@ -26,6 +24,8 @@ export class LoginPage {
    */
   private campos_: { [key: string]: SeleniumBy };
 
+  private logado_: boolean;
+
   constructor() {
     this.botoes_ = {
       entrar: By.css(
@@ -37,6 +37,7 @@ export class LoginPage {
       senha: By.id('mat-input-1'),
       unidade: By.id('mat-input-2'),
     };
+    this.logado_ = false;
   }
 
   /**
@@ -47,10 +48,14 @@ export class LoginPage {
    * @param {!string} senha
    */
   async login(cpf: string, senha: string) {
+    if (this.logado_) {
+      return;
+    }
     await this.preencherCpf(cpf);
     await this.preencherSenha(senha);
     await this.selecionarPrimeiraUnidade();
     await this.clicarBotaoEntrar();
+    this.logado_ = true;
   }
 
   /**
@@ -79,7 +84,7 @@ export class LoginPage {
   private async selecionarPrimeiraUnidade() {
     await element(this.campos_.unidade).click();
     const listaUnidades = By.xpath(`//*[@class='mat-option ng-star-inserted']`);
-    await waiter.waitVisibility(listaUnidades);
+    await SmartWaiter.waitVisibility(listaUnidades);
     const primeiraUnidade = By.xpath(`//*[@id="mat-option-0"]`);
     await element(primeiraUnidade).click();
   }

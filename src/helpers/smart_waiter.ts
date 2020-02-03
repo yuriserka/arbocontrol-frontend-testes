@@ -10,29 +10,26 @@ import {
 } from 'protractor';
 
 /**
+ * @description Representa o tempo máximo de espera para as condições
+ * @private
+ * @constant
+ */
+const timeout = 10000;
+
+/**
  * @description Responsável por esperas inteligentes
  */
 export class SmartWaiter {
-  /**
-   * @description Representa o tempo máximo de espera para as condições
-   * @private
-   * @constant
-   */
-  private timeout_: number;
-
-  constructor() {
-    this.timeout_ = 10000;
-  }
   /**
    * @description Espera o elemento estar disponivel para ser clicado
    * @async
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  async waitClick(locator: Locator, tempoAdicional = 0) {
+  static async waitClick(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
       EC.elementToBeClickable(element(locator)),
-      this.timeout_ + tempoAdicional
+      timeout + tempoAdicional
     );
   }
 
@@ -42,8 +39,8 @@ export class SmartWaiter {
    * @param {!string} url
    * @param {?number} tempoAdicional
    */
-  async waitUrl(url: string, tempoAdicional = 0) {
-    await browser.wait(EC.urlIs(url), this.timeout_ + tempoAdicional);
+  static async waitUrl(url: string, tempoAdicional = 0) {
+    await browser.wait(EC.urlIs(url), timeout + tempoAdicional);
   }
 
   /**
@@ -52,10 +49,10 @@ export class SmartWaiter {
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
    */
-  async waitVisibility(locator: Locator, tempoAdicional = 0) {
+  static async waitVisibility(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
       EC.visibilityOf(element(locator)),
-      this.timeout_ + tempoAdicional
+      timeout + tempoAdicional
     );
   }
 
@@ -66,10 +63,10 @@ export class SmartWaiter {
    * @param {!string} texto
    * @param {?number} tempoAdicional
    */
-  async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
+  static async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
     await browser.wait(
       EC.textToBePresentInElement(element(locator), texto),
-      this.timeout_ + tempoAdicional
+      timeout + tempoAdicional
     );
   }
 }

@@ -4,9 +4,11 @@ Funcionalidade: Acesso às funcionalidades do sistema
     Uma vez que estou logado, eu posso acessar as funcionalidades restritas
     aos meus privilégios de acesso.
 
-#Contexto:
-#   Dado que estou logado
-
+Contexto:
+  Dado que estou logado com
+    | cpf            | senha    |
+    | 111.111.111-11 | 12345678 |
+    
 Esquema do Cenário: Acessar todas as áreas do sistema sendo super admin
     Quando eu clicar para expandir a barra de navegação
     E clicar no botão "<nome_botao>"

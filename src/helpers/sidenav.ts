@@ -6,8 +6,6 @@ import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from './smart_waiter';
 
-const waiter = new SmartWaiter();
-
 /**
  * @description Permite o acesso à todas as páginas do sistema
  */
@@ -74,11 +72,11 @@ export class SideNav {
     const btnNavBarLateral = By.xpath(
       '//button[contains(@class, "mat-icon-button mat-button-base ng-star-inserted")]'
     );
-    await waiter.waitClick(btnNavBarLateral);
+    await SmartWaiter.waitClick(btnNavBarLateral);
     await element(btnNavBarLateral).click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
-    // await waiter.waitVisibility(this.botoes_.tabelas_basicas);
-    // await waiter.waitClick(this.botoes_.tabelas_basicas);
+    // await SmartWaiter.waitVisibility(this.botoes_.tabelas_basicas);
+    // await SmartWaiter.waitClick(this.botoes_.tabelas_basicas);
     // await browser.sleep(2000);
   }
 
@@ -110,8 +108,8 @@ export class SideNav {
       .element(By.xpath('.//div[@class="mat-list-item-content"]'))
       .click();
     // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
-    // await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
-    // await waiter.waitClick(this.botoes_.perfil_usuario_unidade);
+    // await SmartWaiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
+    // await SmartWaiter.waitClick(this.botoes_.perfil_usuario_unidade);
     // await browser.sleep(1500);
   }
 
@@ -122,8 +120,8 @@ export class SideNav {
    */
   async acessarFormularios() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.formularios);
-    await waiter.waitClick(this.botoes_.formularios);
+    await SmartWaiter.waitVisibility(this.botoes_.formularios);
+    await SmartWaiter.waitClick(this.botoes_.formularios);
     await element(this.botoes_.formularios).click();
   }
 
@@ -134,8 +132,8 @@ export class SideNav {
    */
   async acessarRelatorios() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.relatorios_indices);
-    await waiter.waitClick(this.botoes_.relatorios_indices);
+    await SmartWaiter.waitVisibility(this.botoes_.relatorios_indices);
+    await SmartWaiter.waitClick(this.botoes_.relatorios_indices);
     await element(this.botoes_.relatorios_indices).click();
   }
 
@@ -146,8 +144,8 @@ export class SideNav {
    */
   async acessarExportacao() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.exportar);
-    await waiter.waitClick(this.botoes_.exportar);
+    await SmartWaiter.waitVisibility(this.botoes_.exportar);
+    await SmartWaiter.waitClick(this.botoes_.exportar);
     await element(this.botoes_.exportar).click();
   }
 
@@ -158,8 +156,8 @@ export class SideNav {
    */
   async acessarImportacao() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.processo_importacao);
-    await waiter.waitClick(this.botoes_.processo_importacao);
+    await SmartWaiter.waitVisibility(this.botoes_.processo_importacao);
+    await SmartWaiter.waitClick(this.botoes_.processo_importacao);
     await element(this.botoes_.processo_importacao).click();
   }
 
@@ -170,8 +168,8 @@ export class SideNav {
    */
   async acessarDemandas() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.demandas);
-    await waiter.waitClick(this.botoes_.demandas);
+    await SmartWaiter.waitVisibility(this.botoes_.demandas);
+    await SmartWaiter.waitClick(this.botoes_.demandas);
     await element(this.botoes_.demandas).click();
   }
 
@@ -182,8 +180,8 @@ export class SideNav {
    */
   async acessarListasDeTrabalho() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.lista_trabalho);
-    await waiter.waitClick(this.botoes_.lista_trabalho);
+    await SmartWaiter.waitVisibility(this.botoes_.lista_trabalho);
+    await SmartWaiter.waitClick(this.botoes_.lista_trabalho);
     await element(this.botoes_.lista_trabalho).click();
   }
 
@@ -194,8 +192,8 @@ export class SideNav {
    */
   async acessarAtividades() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.atividades);
-    await waiter.waitClick(this.botoes_.atividades);
+    await SmartWaiter.waitVisibility(this.botoes_.atividades);
+    await SmartWaiter.waitClick(this.botoes_.atividades);
     await element(this.botoes_.atividades).click();
   }
 
@@ -206,8 +204,8 @@ export class SideNav {
    */
   async acessarImoveis() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.imoveis);
-    await waiter.waitClick(this.botoes_.imoveis);
+    await SmartWaiter.waitVisibility(this.botoes_.imoveis);
+    await SmartWaiter.waitClick(this.botoes_.imoveis);
     await element(this.botoes_.imoveis).click();
   }
 
@@ -218,8 +216,8 @@ export class SideNav {
    */
   async acessarTerritorios() {
     await this.exibir();
-    await waiter.waitVisibility(this.botoes_.territorios);
-    await waiter.waitClick(this.botoes_.territorios);
+    await SmartWaiter.waitVisibility(this.botoes_.territorios);
+    await SmartWaiter.waitClick(this.botoes_.territorios);
     await element(this.botoes_.territorios).click();
   }
 
@@ -230,8 +228,8 @@ export class SideNav {
    */
   async acessarAreasDeGestao() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.areas_gestao);
-    await waiter.waitClick(this.botoes_.areas_gestao);
+    await SmartWaiter.waitVisibility(this.botoes_.areas_gestao);
+    await SmartWaiter.waitClick(this.botoes_.areas_gestao);
     await element(this.botoes_.areas_gestao).click();
   }
 
@@ -242,8 +240,8 @@ export class SideNav {
    */
   async acessarUnidadesOrganizacionais() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.unidades);
-    await waiter.waitClick(this.botoes_.unidades);
+    await SmartWaiter.waitVisibility(this.botoes_.unidades);
+    await SmartWaiter.waitClick(this.botoes_.unidades);
     await element(this.botoes_.unidades).click();
   }
 
@@ -254,8 +252,8 @@ export class SideNav {
    */
   async acessarPessoas() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.pessoas);
-    await waiter.waitClick(this.botoes_.pessoas);
+    await SmartWaiter.waitVisibility(this.botoes_.pessoas);
+    await SmartWaiter.waitClick(this.botoes_.pessoas);
     await element(this.botoes_.pessoas).click();
   }
 
@@ -266,8 +264,8 @@ export class SideNav {
    */
   async acessarEquipes() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.equipes);
-    await waiter.waitClick(this.botoes_.equipes);
+    await SmartWaiter.waitVisibility(this.botoes_.equipes);
+    await SmartWaiter.waitClick(this.botoes_.equipes);
     await element(this.botoes_.equipes).click();
   }
 
@@ -278,8 +276,8 @@ export class SideNav {
    */
   async acessarPerfisDeUsuario() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.perfis_usuarios);
-    await waiter.waitClick(this.botoes_.perfis_usuarios);
+    await SmartWaiter.waitVisibility(this.botoes_.perfis_usuarios);
+    await SmartWaiter.waitClick(this.botoes_.perfis_usuarios);
     await element(this.botoes_.perfis_usuarios).click();
   }
 
@@ -290,8 +288,8 @@ export class SideNav {
    */
   async acessarUsuariosDaUnidade() {
     await this.expandirRedeSaude();
-    await waiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
-    await waiter.waitClick(this.botoes_.perfil_usuario_unidade);
+    await SmartWaiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
+    await SmartWaiter.waitClick(this.botoes_.perfil_usuario_unidade);
     await element(this.botoes_.perfil_usuario_unidade).click();
   }
 }

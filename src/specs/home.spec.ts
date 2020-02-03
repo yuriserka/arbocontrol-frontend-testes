@@ -6,8 +6,9 @@ const {
   AfterAll,
   BeforeAll,
   setDefaultTimeout,
-  Then,
+  Given,
   When,
+  Then
 } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
@@ -20,8 +21,15 @@ const homePage = new HomePage();
 
 BeforeAll(async () => {
   await browser.get('http://localhost/');
-  await loginPage.login('111.111.111-11', '12345678');
 });
+
+Given(
+  'que estou logado com',
+  async (dataTable: any) => {
+    const user = dataTable.hashes()[0];
+    await loginPage.login(user.cpf, user.senha);
+  }
+);
 
 When('eu clicar para expandir a barra de navegação', async () => {
   await homePage.mostrarSideNav();

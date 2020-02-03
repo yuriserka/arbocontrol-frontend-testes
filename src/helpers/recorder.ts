@@ -8,7 +8,6 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { BlazeMeter } from './pages/blazemeter.po';
 import { SmartWaiter } from './smart_waiter';
 
-const waiter = new SmartWaiter();
 /**
  * @description Responsável pelas interações com a extensão do Blaze Meter
  */
@@ -111,7 +110,7 @@ export class Recorder {
     const blaze = new BlazeMeter();
     comGoogle ? await blaze.loginGoogle() : await blaze.login();
 
-    await waiter.waitUrl('https://a.blazemeter.com/app/#/welcome-screen', 5000);
+    await SmartWaiter.waitUrl('https://a.blazemeter.com/app/#/welcome-screen', 5000);
     await browser.switchTo().window(blazeConfigPage);
     await browser.navigate().refresh();
   }
@@ -165,7 +164,7 @@ export class Recorder {
     const btnDownload = By.css(
       '#run-overlay > div.download-body.body > div.button.download-button'
     );
-    await waiter.waitClick(btnDownload);
+    await SmartWaiter.waitClick(btnDownload);
     await element(btnDownload).click();
 
     // depois é melhor criar uma função que checa se o arquivo terminou de ser
