@@ -110,7 +110,10 @@ export class Recorder {
     const blaze = new BlazeMeter();
     comGoogle ? await blaze.loginGoogle() : await blaze.login();
 
-    await SmartWaiter.waitUrl('https://a.blazemeter.com/app/#/welcome-screen', 5000);
+    await SmartWaiter.waitUrl(
+      'https://a.blazemeter.com/app/#/welcome-screen',
+      5000
+    );
     await browser.switchTo().window(blazeConfigPage);
     await browser.navigate().refresh();
   }

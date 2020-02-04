@@ -8,12 +8,13 @@ const {
   setDefaultTimeout,
   Given,
   When,
-  Then
+  Then,
 } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { HomePage } from '../pages/inicial.po';
+import { HomePage } from '../pages/home.po';
 import { LoginPage } from '../pages/login.po';
+import { TableDefinition } from 'cucumber';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -23,13 +24,10 @@ BeforeAll(async () => {
   await browser.get('http://localhost/');
 });
 
-Given(
-  'que estou logado com',
-  async (dataTable: any) => {
-    const user = dataTable.hashes()[0];
-    await loginPage.login(user.cpf, user.senha);
-  }
-);
+Given('que estou logado com', async (dataTable: TableDefinition) => {
+  const user = dataTable.hashes()[0];
+  await loginPage.login(user.cpf, user.senha);
+});
 
 When('eu clicar para expandir a barra de navegação', async () => {
   await homePage.mostrarSideNav();

@@ -12,10 +12,12 @@ Esquema do Cenário: Cadastro com sucesso
     Então eu vou cadastrar a equipe "<nome_da_equipe>"
     Então adicionar os usuarios a equipe "<nome_da_equipe>"
     | nome      | cargo      |
+    | Usuário 3 | supervisor |
     | Usuário 1 | agente     |
     | Usuário 2 | supervisor |
 
 Exemplos:
 | nome_da_equipe  |
-# | Time 7          |
+| Time 7          |
 | Turma do Pagode |
+| Exalta samba    |

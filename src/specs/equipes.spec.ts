@@ -7,6 +7,7 @@ import { expect } from 'chai';
 import { browser } from 'protractor';
 import { LoginPage } from '../pages/login.po';
 import { EquipesPage } from '../pages/equipes.po';
+import { TableDefinition } from 'cucumber';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -16,13 +17,10 @@ BeforeAll(async () => {
   await browser.get('http://localhost/');
 });
 
-Given(
-  'que estou logado com',
-  async (dataTable: any) => {
-    const user = dataTable.hashes()[0];
-    await loginPage.login(user.cpf, user.senha);
-  }
-);
+Given('que estou logado com', async (dataTable: TableDefinition) => {
+  const user = dataTable.hashes()[0];
+  await loginPage.login(user.cpf, user.senha);
+});
 
 When('eu acessar a pagina das equipes', async () => {
   await equipePage.get();
@@ -33,6 +31,9 @@ Then('eu vou cadastrar a equipe {string}', async (nomeDaEquipe: string) => {
   expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/equipes');
 });
 
-Then('adicionar os usuarios a equipe {string}', async (nomeDaEquipe: string, dataTable: any) => {
-  await equipePage.adicionarPessoas(nomeDaEquipe, dataTable.hashes());
-});
+Then(
+  'adicionar os usuarios a equipe {string}',
+  async (nomeDaEquipe: string, dataTable: TableDefinition) => {
+    await equipePage.vincularUsuarios(nomeDaEquipe, dataTable.hashes());
+  }
+);
