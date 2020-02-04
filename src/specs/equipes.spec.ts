@@ -26,6 +26,19 @@ When('eu acessar a pagina das equipes', async () => {
   await equipePage.get();
 });
 
+Then(
+  'eu irei desvincular os usuarios da equipe {string}',
+  async (nomeDaEquipe: string, dataTable: TableDefinition) => {
+    await equipePage.desvincularUsuarios(
+      nomeDaEquipe,
+      dataTable.hashes().map(usuario => usuario.nome)
+    );
+    expect(await browser.getCurrentUrl()).to.be.equal(
+      'http://localhost/equipes'
+    );
+  }
+);
+
 Then('eu vou cadastrar a equipe {string}', async (nomeDaEquipe: string) => {
   await equipePage.criarEquipe(nomeDaEquipe);
   expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/equipes');
@@ -37,3 +50,8 @@ Then(
     await equipePage.vincularUsuarios(nomeDaEquipe, dataTable.hashes());
   }
 );
+
+Then('eu vou excluiur a equipe {string}', async (nomeDaEquipe: string) => {
+  await equipePage.excluirEquipe(nomeDaEquipe);
+  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/equipes');
+});

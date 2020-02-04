@@ -6,11 +6,11 @@ import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 
 /**
- * @description Represena a barra de navegação superior do site arbocontrol
+ * Represena a barra de navegação superior do site arbocontrol
  */
 export class ToolBar {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
@@ -25,7 +25,7 @@ export class ToolBar {
   }
 
   /**
-   * @description clica no botão de sair
+   * clica no botão de sair
    * @async
    */
   async logout() {

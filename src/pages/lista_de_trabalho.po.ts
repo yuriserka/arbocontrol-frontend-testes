@@ -6,18 +6,18 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { Page } from './page.po';
 
 /**
- * @description Abstração da página de login
+ * Abstração da página de login
  * @category Páginas do sistema
  */
 export class ListaDeTrabalhoPage extends Page {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
-   * @description campos que devem ser preenchidos
+   * campos que devem ser preenchidos
    * @private
    * @constant
    */

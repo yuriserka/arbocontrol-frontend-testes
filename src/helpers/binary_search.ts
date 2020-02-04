@@ -1,6 +1,8 @@
 /**
- *
- * @param val
+ * Realiza uma busca binária no array
+ * @param array array no qual será feita a busca
+ * @param val valor buscado
+ * @returns retorna -1 caso não encontre o elemento, caso contrário retorna o menor indice tal que array[indice] == val
  */
 export function binarySearch<T>(array: T[], val: T): number {
   let start = 0;

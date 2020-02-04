@@ -7,23 +7,27 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from '../helpers/smart_waiter';
 
 /**
- * @description Abstração da página de login
+ * Abstração da página de login
  * @category Páginas do sistema
  */
 export class LoginPage {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
-   * @description campos que devem ser preenchidos
+   * campos que devem ser preenchidos
    * @private
    * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
 
+  /**
+   * guarda o estado atual para evitar tentar fazer login novamente não estando na página correta
+   * @private
+   */
   private logado_: boolean;
 
   constructor() {
@@ -41,7 +45,7 @@ export class LoginPage {
   }
 
   /**
-   * @description Preenche os campos de cpf e senha, seleciona a primeira
+   * Preenche os campos de cpf e senha, seleciona a primeira
    * unidade e então faz login
    * @async
    * @param {!string} cpf
@@ -59,7 +63,7 @@ export class LoginPage {
   }
 
   /**
-   * @description preenche o cpf
+   * preenche o cpf
    * @example const cpf = "111.111.111-11"
    * @async
    * @param {!string} cpf
@@ -69,7 +73,7 @@ export class LoginPage {
   }
 
   /**
-   * @description preenche a senha
+   * preenche a senha
    * @async
    * @param {!string} senha
    */
@@ -78,7 +82,7 @@ export class LoginPage {
   }
 
   /**
-   * @description Seleciona a primeira unidade da lista
+   * Seleciona a primeira unidade da lista
    * @async
    */
   private async selecionarPrimeiraUnidade() {
@@ -90,7 +94,7 @@ export class LoginPage {
   }
 
   /**
-   * @description clica no botao pra fazer o login
+   * clica no botao pra fazer o login
    * @async
    */
   private async clicarBotaoEntrar() {

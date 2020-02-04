@@ -6,12 +6,12 @@ import path = require('path');
 let outDir: string;
 
 /**
- * @description classe Responsavel por exportar relatorios do cucumber
+ * classe Responsavel por exportar relatorios do cucumber
  */
 
 export class Reporter {
   /**
-   * @description Assegura que o diretório no qual será salvo os resultados existe
+   * Assegura que o diretório no qual será salvo os resultados existe
    * @param {!string} diretorio
    */
   static criarDiretorio(diretorio: string) {
@@ -22,7 +22,7 @@ export class Reporter {
   }
 
   /**
-   * @description gera um relatorio html apresentando as funcionalidades que foram testadas
+   * gera um relatorio html apresentando as funcionalidades que foram testadas
    */
   static gerarRelatorioCucumber() {
     try {

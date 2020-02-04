@@ -14,10 +14,30 @@ Esquema do Cenário: Cadastro com sucesso
     | nome      | cargo      |
     | Usuário 3 | supervisor |
     | Usuário 1 | agente     |
-    | Usuário 2 | supervisor |
+    | Usuário 2 | agente     |
 
 Exemplos:
 | nome_da_equipe  |
-| Time 7          |
 | Turma do Pagode |
+| Time 7          |
 | Exalta samba    |
+
+Esquema do Cenário: Excluir uma equipe
+    Quando eu acessar a pagina das equipes
+    Então eu vou excluiur a equipe "<nome_da_equipe>"
+
+Exemplos:
+| nome_da_equipe  |
+| Exalta samba    |
+| Time 7          |
+
+Esquema do Cenário: Desvincular usuarios de uma equipe
+    Quando eu acessar a pagina das equipes
+    Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
+    | nome      |
+    | Usuário 2 |
+    | Usuário 3 |
+
+Exemplos:
+| nome_da_equipe  |
+| Turma do Pagode |

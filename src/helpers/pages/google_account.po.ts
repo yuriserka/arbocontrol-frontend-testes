@@ -8,17 +8,17 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from '../smart_waiter';
 
 /**
- * @description Representa a página de login utilizando a conta do Google
+ * Representa a página de login utilizando a conta do Google
  */
 export class GoogleAccount {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
-   * @description campos que devem ser preenchidos
+   * campos que devem ser preenchidos
    * @private
    * @constant
    */
@@ -37,7 +37,7 @@ export class GoogleAccount {
   }
 
   /**
-   * @description Preenche email e senha na página de login que é aberta pelo
+   * Preenche email e senha na página de login que é aberta pelo
    * Blaze Meter
    * @async
    * @param  {!string} email
@@ -52,7 +52,7 @@ export class GoogleAccount {
   }
 
   /**
-   * @description Preenche o email na página login que é aberta pelo Blaze Meter
+   * Preenche o email na página login que é aberta pelo Blaze Meter
    * @private
    * @async
    * @param {!string} email
@@ -63,7 +63,7 @@ export class GoogleAccount {
   }
 
   /**
-   * @description Preenche a Senha na página login que é aberta pelo Blaze
+   * Preenche a Senha na página login que é aberta pelo Blaze
    * Meter, deve ser chamada após preencher o email
    * @private
    * @async

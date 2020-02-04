@@ -6,22 +6,22 @@ import { SideNav } from '../helpers/sidenav';
 import { ToolBar } from '../helpers/toolbar';
 
 /**
- * @description Abstração dos componentes basicos que todas as páginas possuem
+ * Abstração dos componentes basicos que todas as páginas possuem
  * @category Util
  */
 export class Page {
   /**
-   * @description barra de navegação superior visível em todas as paginas
+   * barra de navegação superior visível em todas as paginas
    * @private
    * @constant
    */
-  protected toolbar_: ToolBar;
+  protected readonly toolbar_: ToolBar;
   /**
-   * @description barra de navegação lateral
+   * barra de navegação lateral
    * @private
    * @constant
    */
-  protected navbar_: SideNav;
+  protected readonly navbar_: SideNav;
 
   constructor() {
     this.toolbar_ = new ToolBar();
@@ -29,7 +29,7 @@ export class Page {
   }
 
   /**
-   * @description faz logout do sistema
+   * faz logout do sistema
    * @async
    */
   async logout() {
@@ -37,7 +37,7 @@ export class Page {
   }
 
   /**
-   * @description mostra a barra de navegação lateral
+   * mostra a barra de navegação lateral
    * @async
    */
   async mostrarSideNav() {

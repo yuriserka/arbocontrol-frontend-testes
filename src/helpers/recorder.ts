@@ -9,23 +9,23 @@ import { BlazeMeter } from './pages/blazemeter.po';
 import { SmartWaiter } from './smart_waiter';
 
 /**
- * @description Responsável pelas interações com a extensão do Blaze Meter
+ * Responsável pelas interações com a extensão do Blaze Meter
  */
 export class Recorder {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
-   * @description campos que devem ser preenchidos
+   * campos que devem ser preenchidos
    * @private
    * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
   /**
-   * @description data de geração do arquivo .jmx exportado
+   * data de geração do arquivo .jmx exportado
    * @private
    * @constant
    */
@@ -52,7 +52,7 @@ export class Recorder {
   }
 
   /**
-   * @description Acessa a página principal de configuração da extensão
+   * Acessa a página principal de configuração da extensão
    * @private
    * @async
    */
@@ -63,7 +63,7 @@ export class Recorder {
   }
 
   /**
-   * @description Realiza todo o procedimento necessário para começar uma
+   * Realiza todo o procedimento necessário para começar uma
    * gravação e então inicia ela.
    * @async
    */
@@ -82,7 +82,7 @@ export class Recorder {
   }
 
   /**
-   * @description Realiza todo o procedimento necessário para parar uma gravação
+   * Realiza todo o procedimento necessário para parar uma gravação
    * e então salva o arquivo .jmx gerado.
    * @async
    */
@@ -94,7 +94,7 @@ export class Recorder {
   }
 
   /**
-   * @description A partir da tela inicial da extensão, acessa a página de login
+   * A partir da tela inicial da extensão, acessa a página de login
    * e faz o login
    * @async
    * @param {boolean} comGoogle
@@ -119,7 +119,7 @@ export class Recorder {
   }
 
   /**
-   * @description inicia a gravação do script
+   * inicia a gravação do script
    * @async
    */
   private async gravar() {
@@ -128,7 +128,7 @@ export class Recorder {
   }
 
   /**
-   * @description para a gravação do script
+   * para a gravação do script
    * @async
    */
   private async parar() {
@@ -136,7 +136,7 @@ export class Recorder {
   }
 
   /**
-   * @description pausa a gravação do script
+   * pausa a gravação do script
    * @async
    */
   private async pause() {
@@ -144,7 +144,7 @@ export class Recorder {
   }
 
   /**
-   * @description seleciona todos os dominios nos quais houveram requisições e
+   * seleciona todos os dominios nos quais houveram requisições e
    * então baixa o arquivo na pasta "Downloads"
    * @async
    */

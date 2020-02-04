@@ -10,18 +10,18 @@ import { GoogleAccount } from './google_account.po';
 dotenv.config();
 
 /**
- * @description Responsável por prover interfaces para login utilizando o Google
+ * Responsável por prover interfaces para login utilizando o Google
  * quanto com uma conta do Blaze Meter
  */
 export class BlazeMeter {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
-   * @description campos que devem ser preenchidos
+   * campos que devem ser preenchidos
    * @private
    * @constant
    */
@@ -39,7 +39,7 @@ export class BlazeMeter {
   }
 
   /**
-   * @description redireciona para a página de login do google e utiliza as
+   * redireciona para a página de login do google e utiliza as
    * credenciais criadas.
    * @async
    */
@@ -52,7 +52,7 @@ export class BlazeMeter {
   }
 
   /**
-   * @description preenche email e senha utilizando as credenciais criadas.
+   * preenche email e senha utilizando as credenciais criadas.
    * @async
    */
   async login() {

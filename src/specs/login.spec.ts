@@ -13,7 +13,6 @@ import { LoginPage } from '../pages/login.po';
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const homePage = new HomePage();
-const cssEditor = new CssEditor();
 let recorder: Recorder;
 let recording = false;
 
@@ -28,10 +27,9 @@ Given('que eu navego até o site {string}', async (url: string) => {
   await browser.get(url);
   await browser.waitForAngular();
   if (recording) {
-    await cssEditor.alterar(
+    await CssEditor.alterar(
       By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'),
-      'display',
-      'none'
+      [{ atributo: 'display', valor: 'none' }]
     );
   }
 });

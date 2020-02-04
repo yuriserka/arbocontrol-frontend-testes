@@ -6,12 +6,12 @@ import { By, element } from 'protractor';
 import { Page } from './page.po';
 
 /**
- * @description Abstração da página inicial após login
+ * Abstração da página inicial após login
  * @category Páginas do sistema
  */
 export class HomePage extends Page {
   /**
-   * @description mapeamento do nome dos botões para a função que deve ser
+   * mapeamento do nome dos botões para a função que deve ser
    * chamada
    * @private
    * @constant
@@ -40,7 +40,7 @@ export class HomePage extends Page {
   }
 
   /**
-   * @description acessa a página especificada pelo nome do botao
+   * acessa a página especificada pelo nome do botao
    * @async
    * @param {!string} nomeBotao
    */
@@ -49,7 +49,7 @@ export class HomePage extends Page {
   }
 
   /**
-   * @description Retorna o nome do usuário escrito no Card
+   * Retorna o nome do usuário escrito no Card
    * @returns {!string} nome do usuário logado
    * @async
    */

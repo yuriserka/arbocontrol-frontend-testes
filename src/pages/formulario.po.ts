@@ -9,14 +9,14 @@
 // const waiter = new SmartWaiter();
 
 // /**
-//  * @description Abstração da página de Formulários
+//  * Abstração da página de Formulários
 //  * @category Páginas do sistema
 //  */
 // export class FormPage extends Page {
 //   constructor() {
 //     super();
 //     /**
-//      * @description botões que necessitam de ser clicados
+//      * botões que necessitam de ser clicados
 //      * @private
 //      * @constant
 //      * @type {!Object<!string, !Locator>}
@@ -30,7 +30,7 @@
 //     };
 
 //     /**
-//      * @description campos que devem ser preenchidos
+//      * campos que devem ser preenchidos
 //      * @private
 //      * @constant
 //      * @type {!Object<!string, !Locator>}

@@ -10,18 +10,18 @@ import {
 } from 'protractor';
 
 /**
- * @description Representa o tempo máximo de espera para as condições
+ * Representa o tempo máximo de espera para as condições
  * @private
  * @constant
  */
 const timeout = 10000;
 
 /**
- * @description Responsável por esperas inteligentes
+ * Responsável por esperas inteligentes
  */
 export class SmartWaiter {
   /**
-   * @description Espera o elemento estar disponivel para ser clicado
+   * Espera o elemento estar disponivel para ser clicado
    * @async
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
@@ -34,7 +34,7 @@ export class SmartWaiter {
   }
 
   /**
-   * @description Espera até que a url mude para a passada como argumento
+   * Espera até que a url mude para a passada como argumento
    * @async
    * @param {!string} url
    * @param {?number} tempoAdicional
@@ -44,7 +44,7 @@ export class SmartWaiter {
   }
 
   /**
-   * @description Espera o elemento estar visível
+   * Espera o elemento estar visível
    * @async
    * @param {!Locator} locator
    * @param {?number} tempoAdicional
@@ -57,7 +57,7 @@ export class SmartWaiter {
   }
 
   /**
-   * @description Espera o texto dentro do elemento ser o passado
+   * Espera o texto dentro do elemento ser o passado
    * @async
    * @param {!Locator} locator
    * @param {!string} texto

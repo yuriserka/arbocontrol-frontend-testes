@@ -7,11 +7,11 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from './smart_waiter';
 
 /**
- * @description Permite o acesso à todas as páginas do sistema
+ * Permite o acesso à todas as páginas do sistema
  */
 export class SideNav {
   /**
-   * @description botões que necessitam de ser clicados
+   * botões que necessitam de ser clicados
    * @private
    * @constant
    */
@@ -46,13 +46,13 @@ export class SideNav {
   }
 
   /**
-   * @description Se a barra de navegação lateral não estiver sendo exibida,
+   * Se a barra de navegação lateral não estiver sendo exibida,
    * então é clicado no botão para exibi-la, caso contrário não faz nada
    * @async
    */
   async exibir() {
     /**
-     * @description checa se a barra de navegação está sendo exibida
+     * checa se a barra de navegação está sendo exibida
      * @async
      */
     const isNavBarExibida = async () => {
@@ -81,7 +81,7 @@ export class SideNav {
   }
 
   /**
-   * @description Se a lista de opções da Rede de Saúde não estiver sendo
+   * Se a lista de opções da Rede de Saúde não estiver sendo
    * exibida, então é clicado no botão para exibi-la, caso contrário não faz
    * nada
    * @async
@@ -89,7 +89,7 @@ export class SideNav {
   private async expandirRedeSaude() {
     this.exibir();
     /**
-     * @description checa se a lista da Rede de Saúde está sendo exibida
+     * checa se a lista da Rede de Saúde está sendo exibida
      * @async
      */
     const isRedeSaudeExibida = async () => {
@@ -114,7 +114,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Formulários" a partir da barra de
+   * acessa a página de "Formulários" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -126,7 +126,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Relatórios e Índices" a partir da barra de
+   * acessa a página de "Relatórios e Índices" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -138,7 +138,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Exportação" a partir da barra de navegação
+   * acessa a página de "Exportação" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -150,7 +150,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Importação" a partir da barra de navegação
+   * acessa a página de "Importação" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -162,7 +162,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Demandas" a partir da barra de navegação
+   * acessa a página de "Demandas" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -174,7 +174,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Lista de Trabalho" a partir da barra de
+   * acessa a página de "Lista de Trabalho" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -186,7 +186,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Atividades" a partir da barra de navegação
+   * acessa a página de "Atividades" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -198,7 +198,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Imóveis" a partir da barra de navegação
+   * acessa a página de "Imóveis" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -210,7 +210,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Territórios" a partir da barra de
+   * acessa a página de "Territórios" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -222,7 +222,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Áreas de Gestão" a partir da barra de
+   * acessa a página de "Áreas de Gestão" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -234,7 +234,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Unidades Organizacionais" a partir da
+   * acessa a página de "Unidades Organizacionais" a partir da
    * barra de navegação lateral
    * @async
    */
@@ -246,7 +246,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Pessoas" a partir da barra de navegação
+   * acessa a página de "Pessoas" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -258,7 +258,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Equipes" a partir da barra de navegação
+   * acessa a página de "Equipes" a partir da barra de navegação
    * lateral
    * @async
    */
@@ -270,7 +270,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Perfis de Usuário" a partir da barra de
+   * acessa a página de "Perfis de Usuário" a partir da barra de
    * navegação lateral
    * @async
    */
@@ -282,7 +282,7 @@ export class SideNav {
   }
 
   /**
-   * @description acessa a página de "Usuários da Unidade" a partir da barra de
+   * acessa a página de "Usuários da Unidade" a partir da barra de
    * navegação lateral
    * @async
    */
