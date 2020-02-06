@@ -135,7 +135,7 @@ export class ListaDeTrabalhoPage extends Page {
   ) {
     let path = `//input[@aria-label="${campo.ariaLabel}"]`;
     if ((await element.all(By.xpath(path))).length > 1) {
-      path = `(${path})[${contadorQtdeTratados++}]`
+      path = `(${path})[${contadorQtdeTratados++}]`;
     }
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {

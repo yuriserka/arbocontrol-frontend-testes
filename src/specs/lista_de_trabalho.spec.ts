@@ -51,9 +51,8 @@ Then(
   'irei cadastrar um registro com os valores',
   async (registro: TableDefinition) => {
     await listaDeTrabalhoPage['preencherCampoDeDados'](registro.hashes()[0]);
-    await SmartWaiter.waitUrl(`http://localhost/registros-atividades/listar/${5000}/${5002}`);
-    expect(await browser.getCurrentUrl()).to.be.equal(
-      `http://localhost/registros-atividades/listar/${atividade}/${imovel}`
-    );
+    const url = `http://localhost/registros-atividades/listar/${atividade}/${imovel}`;
+    await SmartWaiter.waitUrl(url);
+    expect(await browser.getCurrentUrl()).to.be.equal(url);
   }
 );
