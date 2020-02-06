@@ -50,7 +50,7 @@ Then('selecionar o imovel {string}', async (codigoImovel: string) => {
 Then(
   'irei cadastrar um registro com os valores',
   async (registro: TableDefinition) => {
-    await listaDeTrabalhoPage['preencherCampoDeDados'](registro.hashes()[0]);
+    await listaDeTrabalhoPage['preencherRegistro'](registro.hashes()[0]);
     const url = `http://localhost/registros-atividades/listar/${atividade}/${imovel}`;
     await SmartWaiter.waitUrl(url);
     expect(await browser.getCurrentUrl()).to.be.equal(url);

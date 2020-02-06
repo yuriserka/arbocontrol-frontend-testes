@@ -17,7 +17,7 @@ interface CampoDeDado {
 }
 
 /**
- * Abstração da página de login
+ * Abstração da página de gerenciamento de listas de trabalho
  * @category Páginas do sistema
  */
 export class ListaDeTrabalhoPage extends Page {
@@ -61,7 +61,7 @@ export class ListaDeTrabalhoPage extends Page {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
     await this.selecionarImovel(codigoImovel);
-    await this.preencherCampoDeDados(registro);
+    await this.preencherRegistro(registro);
   }
 
   /**
@@ -96,7 +96,7 @@ export class ListaDeTrabalhoPage extends Page {
    *
    * @param registro
    */
-  private async preencherCampoDeDados(registro: { [campo: string]: string }) {
+  private async preencherRegistro(registro: { [campo: string]: string }) {
     await element(By.xpath('//button[@color="primary"]')).click();
     let campos: CampoDeDado[] = await element
       .all(By.xpath('//*[@aria-label]'))
