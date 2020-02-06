@@ -8,11 +8,14 @@ import { browser } from 'protractor';
 import { LoginPage } from '../pages/login.po';
 import { ListaDeTrabalhoPage } from '../pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
+import { SmartWaiter } from '../helpers/smart_waiter';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
+
 let atividade: string;
+let imovel: string;
 
 BeforeAll(async () => {
   await browser.get('http://localhost/');
@@ -41,12 +44,16 @@ Then('selecionar o imovel {string}', async (codigoImovel: string) => {
   expect(await browser.getCurrentUrl()).to.be.equal(
     `http://localhost/registros-atividades/listar/${atividade}/${codigoImovel}`
   );
+  imovel = codigoImovel;
 });
 
 Then(
   'irei cadastrar um registro com os valores',
   async (registro: TableDefinition) => {
-    await listaDeTrabalhoPage['preencherCampos'](registro.hashes()[0]);
-    await browser.sleep(5000);
+    await listaDeTrabalhoPage['preencherCampoDeDados'](registro.hashes()[0]);
+    await SmartWaiter.waitUrl(`http://localhost/registros-atividades/listar/${5000}/${5002}`);
+    expect(await browser.getCurrentUrl()).to.be.equal(
+      `http://localhost/registros-atividades/listar/${atividade}/${imovel}`
+    );
   }
 );

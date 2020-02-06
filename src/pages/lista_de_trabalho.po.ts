@@ -8,6 +8,8 @@ import { DataTable } from '../helpers/data_table';
 import { element, By, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
 
+let contadorQtdeTratados = 1;
+
 interface CampoDeDado {
   tipo: string;
   ariaLabel: string;
@@ -118,6 +120,8 @@ export class ListaDeTrabalhoPage extends Page {
         ? await this.preencherInput(campo, registro)
         : await this.preencherSelect(campo, registro);
     }
+
+    await element(By.xpath('//button[@color="primary"]')).click();
   }
 
   /**
@@ -129,12 +133,12 @@ export class ListaDeTrabalhoPage extends Page {
     campo: CampoDeDado,
     registro: { [campo: string]: string }
   ) {
-    const input = By.xpath(`//input[@aria-label="${campo.ariaLabel}"]`);
+    let path = `//input[@aria-label="${campo.ariaLabel}"]`;
+    if ((await element.all(By.xpath(path))).length > 1) {
+      path = `(${path})[${contadorQtdeTratados++}]`
+    }
+    const input = By.xpath(path);
     if (await element(input).isEnabled()) {
-      console.log('enviando :', {
-        val: registro[campo.cucumberLabel],
-        input,
-      });
       await element(input).sendKeys(registro[campo.cucumberLabel]);
     }
   }
