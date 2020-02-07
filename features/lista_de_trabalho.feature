@@ -17,4 +17,4 @@ Esquema do Cenário: Inserção com sucesso
 
 Exemplos:
 | numero_atividade | codigo_imovel |
-| 5000             | 5002          |
+| 5018             | 5017          |

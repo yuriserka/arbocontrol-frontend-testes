@@ -1,4 +1,5 @@
 import { Locator, element, ElementFinder, By } from 'protractor';
+import { WebDriverLocator } from 'protractor/built/locators';
 
 /**
  * Abstração para a interação com elementos <select> do HTML
@@ -9,17 +10,25 @@ export class Selector {
    * @param locator
    * @param opcaoProcurada
    */
-  static async selectFrom(locator: Locator, opcaoProcurada: string) {
+  static async selectFrom(
+    locator: Locator,
+    opcaoProcurada: string,
+    textLocator?: WebDriverLocator,
+    optionsTagName = 'option'
+  ) {
     await element(locator).click();
 
     const options: ElementFinder[] = await element(locator).all(
-      By.xpath('.//option')
+      By.xpath(`.//${optionsTagName}`)
     );
     let found: ElementFinder | undefined;
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      if ((await option.getText()) === opcaoProcurada) {
+      const text = textLocator
+        ? await option.element(textLocator).getText()
+        : await option.getText();
+      if (text === opcaoProcurada) {
         found = option;
         break;
       }
