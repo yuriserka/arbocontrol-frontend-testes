@@ -185,7 +185,8 @@ export class EquipesPage extends Page {
     await userRow
       .element(
         By.xpath(
-          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
+          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]
+           //div[@class="mat-slide-toggle-thumb"]`
         )
       )
       .click();

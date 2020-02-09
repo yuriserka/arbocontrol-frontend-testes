@@ -84,9 +84,9 @@ export class ImovelPage extends Page {
   }
 
   /**
-   * 
-   * @param campo 
-   * @param imovel 
+   *
+   * @param campo
+   * @param imovel
    */
   private async preencherInput(
     campo: CampoDeDado,
@@ -100,9 +100,9 @@ export class ImovelPage extends Page {
   }
 
   /**
-   * 
-   * @param campo 
-   * @param imovel 
+   *
+   * @param campo
+   * @param imovel
    */
   private async preencherSelect(
     campo: CampoDeDado,
@@ -118,9 +118,9 @@ export class ImovelPage extends Page {
   }
 
   /**
-   * 
-   * @param campo 
-   * @param imovel 
+   *
+   * @param campo
+   * @param imovel
    */
   private async preencherTextArea(
     campo: CampoDeDado,

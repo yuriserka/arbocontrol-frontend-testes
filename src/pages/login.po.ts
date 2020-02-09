@@ -33,7 +33,9 @@ export class LoginPage {
   constructor() {
     this.botoes_ = {
       entrar: By.css(
-        'body > app-root > app-main-nav > mat-sidenav-container > mat-sidenav-content > div > app-login-2 > div > mat-card > mat-card-content > form > div:nth-child(4) > button'
+        `body > app-root > app-main-nav > mat-sidenav-container 
+         > mat-sidenav-content > div > app-login-2 > div > mat-card 
+         > mat-card-content > form > div:nth-child(4) > button`
       ),
     };
     this.campos_ = {

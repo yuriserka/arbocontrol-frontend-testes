@@ -29,7 +29,9 @@ export class SideNav {
       imoveis: By.xpath('//a[@routerlink="imoveis"]'),
       territorios: By.xpath('//a[@routerlink="territorios"]'),
       rede_de_saude: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]'
+        `(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar
+                                  mat-list-item-with-avatar ng-star-inserted"]
+         )[1]`
       ),
       areas_gestao: By.xpath('//a[@routerlink="areas-gestao"]'),
       unidades: By.xpath('//a[@routerlink="unidades"]'),
@@ -40,7 +42,9 @@ export class SideNav {
         '//a[@routerlink="perfil-usuario-unidade"]'
       ),
       tabelas_basicas: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]'
+        `(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar
+                                  mat-list-item-with-avatar ng-star-inserted"]
+         )[2]`
       ),
     };
   }

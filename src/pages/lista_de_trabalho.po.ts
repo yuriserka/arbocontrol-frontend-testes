@@ -71,7 +71,9 @@ export class ListaDeTrabalhoPage extends Page {
   private async selecionarAtividade(numero: string) {
     const linkAtividade = await DataTable.findTextIn(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
+        `//app-atividade-tabela-simples//tbody//tr
+         //td[contains(@class, "cdk-column-numero")]
+         //span[@class="span-link"]`
       ),
       numero
     );
@@ -85,7 +87,9 @@ export class ListaDeTrabalhoPage extends Page {
   private async selecionarImovel(codigo: string) {
     const linkImovel = await DataTable.findTextIn(
       By.xpath(
-        '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
+        `//app-imovel-tabela-simples//tbody//tr
+         //td[contains(@class, "cdk-column-id")]
+         //span[@class="span-link"]`
       ),
       codigo
     );
