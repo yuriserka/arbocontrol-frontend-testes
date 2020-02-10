@@ -13,14 +13,9 @@ export class Selector {
   static async selectFrom(
     locator: Locator,
     opcaoProcurada: string,
-    textLocator?: WebDriverLocator,
-    optionsTagName = 'option'
+    textLocator?: WebDriverLocator
   ) {
-    await element(locator).click();
-
-    const options: ElementFinder[] = await element(locator).all(
-      By.xpath(`.//${optionsTagName}`)
-    );
+    const options: ElementFinder[] = await element.all(locator);
     let found: ElementFinder | undefined;
 
     for (let i = 0; i < options.length; i++) {
