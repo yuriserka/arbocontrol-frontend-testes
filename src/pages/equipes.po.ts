@@ -2,7 +2,7 @@
  * @fileoverview
  */
 
-import { By, element } from 'protractor';
+import { By, element, browser } from 'protractor';
 import { Page } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { DataTable } from '../helpers/data_table';
@@ -185,8 +185,7 @@ export class EquipesPage extends Page {
     await userRow
       .element(
         By.xpath(
-          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]
-           //div[@class="mat-slide-toggle-thumb"]`
+          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
         )
       )
       .click();
@@ -208,5 +207,6 @@ export class EquipesPage extends Page {
     await SmartWaiter.waitVisibility(botaoConfirmacao);
     await SmartWaiter.waitClick(botaoConfirmacao);
     await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

@@ -8,7 +8,7 @@ import { DataTable } from '../helpers/data_table';
 import { element, By, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
 
-let contadorQtdeTratados = 1;
+let contadorQtdeTratados = 0;
 
 interface CampoDeDado {
   tipo: string;
@@ -71,9 +71,7 @@ export class ListaDeTrabalhoPage extends Page {
   private async selecionarAtividade(numero: string) {
     const linkAtividade = await DataTable.findTextIn(
       By.xpath(
-        `//app-atividade-tabela-simples//tbody//tr
-         //td[contains(@class, "cdk-column-numero")]
-         //span[@class="span-link"]`
+        '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
       ),
       numero
     );
@@ -87,9 +85,7 @@ export class ListaDeTrabalhoPage extends Page {
   private async selecionarImovel(codigo: string) {
     const linkImovel = await DataTable.findTextIn(
       By.xpath(
-        `//app-imovel-tabela-simples//tbody//tr
-         //td[contains(@class, "cdk-column-id")]
-         //span[@class="span-link"]`
+        '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
       ),
       codigo
     );
@@ -139,7 +135,7 @@ export class ListaDeTrabalhoPage extends Page {
   ) {
     let path = `//input[@aria-label="${campo.ariaLabel}"]`;
     if ((await element.all(By.xpath(path))).length > 1) {
-      path = `(${path})[${contadorQtdeTratados++}]`;
+      path = `(${path})[${(contadorQtdeTratados++ % 2) + 1}]`;
     }
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
