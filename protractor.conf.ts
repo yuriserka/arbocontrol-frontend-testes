@@ -23,11 +23,11 @@ export const config: Config = {
     },
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/imovel.feature'],
+  specs: ['../features/equipes.feature'],
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['../build/src/specs/imovel.spec.js'],
+    require: ['../build/src/specs/equipes.spec.js'],
     format: ['json:./reports/results.json'],
     tags: false,
     strict: true,

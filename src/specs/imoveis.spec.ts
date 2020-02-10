@@ -6,7 +6,7 @@ const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { LoginPage } from '../pages/login.po';
-import { ImovelPage } from '../pages/imovel.po';
+import { ImovelPage } from '../pages/imoveis.po';
 import { TableDefinition } from 'cucumber';
 
 setDefaultTimeout(60 * 1000);
@@ -19,7 +19,7 @@ BeforeAll(async () => {
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = dataTable.hashes()[0];
-  await loginPage.login(user.cpf, user.senha);
+  await loginPage.login(user.cpf, user.senha, user.unidade);
 });
 
 When('eu acessar a pagina dos imoveis', async () => {

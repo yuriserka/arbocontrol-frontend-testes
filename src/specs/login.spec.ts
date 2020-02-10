@@ -42,8 +42,8 @@ When('eu entro com minha senha {string}', async (senha: string) => {
   await loginPage['preencherSenha'](senha);
 });
 
-When('seleciono a primeira opção de unidade', async () => {
-  await loginPage['selecionarPrimeiraUnidade']();
+When('seleciono a unidade {string}', async (nomeDaUnidade: string) => {
+  await loginPage['selecionarUnidade'](nomeDaUnidade);
 });
 
 Then('eu clico para entrar', async () => {

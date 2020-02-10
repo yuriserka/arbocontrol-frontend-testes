@@ -19,7 +19,7 @@ BeforeAll(async () => {
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = dataTable.hashes()[0];
-  await loginPage.login(user.cpf, user.senha);
+  await loginPage.login(user.cpf, user.senha, user.unidade);
 });
 
 When('eu acessar a pagina das equipes', async () => {

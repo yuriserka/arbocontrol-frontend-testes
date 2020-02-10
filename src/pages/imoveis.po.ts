@@ -4,7 +4,7 @@
 
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { Page } from './page.po';
-import { By, element } from 'protractor';
+import { By, element, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
 
 interface CampoDeDado {
@@ -78,6 +78,7 @@ export class ImovelPage extends Page {
       } else {
         this.preencherTextArea(campo, imovel);
       }
+      await browser.sleep(1000);
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();
@@ -108,12 +109,11 @@ export class ImovelPage extends Page {
     campo: CampoDeDado,
     imovel: { [campo: string]: string }
   ) {
-    this.preencherInput(campo, imovel);
-    Selector.selectFrom(
-      By.xpath(`//input[@placeholder="${campo.placeholder}"]`),
+    await this.preencherInput(campo, imovel);
+    await Selector.selectFrom(
+      By.xpath(`//*[@role="option"]`),
       imovel[campo.cucumberLabel],
-      By.xpath('//span//span'),
-      'mat-option'
+      By.xpath('.//span//span')
     );
   }
 

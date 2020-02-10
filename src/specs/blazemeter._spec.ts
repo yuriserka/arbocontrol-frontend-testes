@@ -45,7 +45,7 @@ Then('navegarei até o site {string}', async (url: string) => {
 });
 
 Then('farei login', async () => {
-  await new LoginPage().login('055.232.031-57', '12345678');
+  await new LoginPage().login('055.232.031-57', '12345678', 'SES - AM');
   await browser.waitForAngular();
 });
 
