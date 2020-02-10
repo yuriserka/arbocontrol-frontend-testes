@@ -4,8 +4,8 @@ Funcionalidade: Cadastrar uma equipe
 
 Contexto:
   Dado que estou logado com
-  | cpf            | senha    |
-  | 111.111.111-11 | 12345678 |
+  | cpf            | senha         | unidade  |
+  | 111.111.111-11 | 12345678@arbo | SES - AM |
 
 Cenário: Cadastro com sucesso
   Quando eu acessar a pagina dos imoveis
