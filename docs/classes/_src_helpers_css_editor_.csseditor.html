@@ -71,12 +71,10 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>description</dt>
-						<dd><p>Responsável por editar o estilo de um atributo de um elemento da
-							página</p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>Responsável por editar o estilo de um atributo de um elemento da
+						página</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -94,7 +92,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_helpers_css_editor_.csseditor.html#alterar" class="tsd-kind-icon">alterar</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_src_helpers_css_editor_.csseditor.html#alterar" class="tsd-kind-icon">alterar</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,27 +100,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="alterar" class="tsd-anchor"></a>
-					<h3>alterar</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">alterar<span class="tsd-signature-symbol">(</span>locator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, atributo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, valor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> alterar</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">alterar<span class="tsd-signature-symbol">(</span>locator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, estilos<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>atributo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>valor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/c9c7578/src/helpers/css_editor.ts#L19">src/helpers/css_editor.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d037a88/src/helpers/css_editor.ts#L18">src/helpers/css_editor.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><p>Altera ou adiciona o estilo do elemento passado</p>
-									</dd>
-									<dt>async</dt>
-									<dd></dd>
-								</dl>
+								<div class="lead">
+									<p>Altera ou adiciona o estilo do elemento passado</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -130,12 +124,7 @@
 									<h5>locator: <span class="tsd-signature-type">Locator</span></h5>
 								</li>
 								<li>
-									<h5>atributo: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>valor: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
+									<h5>estilos: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>atributo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>valor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -175,6 +164,9 @@
 						<a href="../modules/_src_helpers_reporter_.html">&quot;src/helpers/reporter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_helpers_selector_.html">&quot;src/helpers/selector&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_src_helpers_sidenav_.html">&quot;src/helpers/sidenav&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -184,13 +176,22 @@
 						<a href="../modules/_src_helpers_toolbar_.html">&quot;src/helpers/toolbar&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_models_imovel_.html">&quot;src/models/imovel&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_models_registro_campo_.html">&quot;src/models/registro_<wbr>campo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_src_pages_equipes_po_.html">&quot;src/pages/equipes.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_formulario_po_.html">&quot;src/pages/formulario.po&quot;</a>
+						<a href="../modules/_src_pages_formularios_po_.html">&quot;src/pages/formularios.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_src_pages_home_po_.html">&quot;src/pages/home.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_pages_imoveis_po_.html">&quot;src/pages/imoveis.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_src_pages_lista_de_trabalho_po_.html">&quot;src/pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
@@ -210,7 +211,7 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_src_helpers_css_editor_.csseditor.html" class="tsd-kind-icon">Css<wbr>Editor</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_src_helpers_css_editor_.csseditor.html#alterar" class="tsd-kind-icon">alterar</a>
 							</li>
 						</ul>
