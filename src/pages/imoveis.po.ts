@@ -6,6 +6,7 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { Page } from './page.po';
 import { By, element, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
+import { SmartWaiter } from '../helpers/smart_waiter';
 
 interface CampoDeDado {
   tipo: string;
@@ -51,7 +52,7 @@ export class ImovelPage extends Page {
   async cadastrarImovel(imovel: { [campo: string]: string }) {
     await element(this.botoes_.cadastrar).click();
     let campos: CampoDeDado[] = await element
-      .all(By.xpath('//input[@placeholder]'))
+      .all(By.xpath('(//input|//textarea)[@placeholder]'))
       .map(elm => {
         return {
           tipo: elm?.getTagName(),
@@ -72,12 +73,13 @@ export class ImovelPage extends Page {
           ? await this.preencherSelect(campo, imovel)
           : await this.preencherInput(campo, imovel);
       } else {
-        this.preencherTextArea(campo, imovel);
+        await this.preencherTextArea(campo, imovel);
       }
       await browser.sleep(1000);
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();
+    await SmartWaiter.waitUrl('http://localhost/imoveis');
   }
 
   /**
@@ -89,7 +91,7 @@ export class ImovelPage extends Page {
     campo: CampoDeDado,
     imovel: { [campo: string]: string }
   ) {
-    const path = `//input[@placeholder="${campo.placeholder}"]`;
+    const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
       await element(input).sendKeys(imovel[campo.cucumberLabel]);
@@ -121,7 +123,7 @@ export class ImovelPage extends Page {
     campo: CampoDeDado,
     imovel: { [campo: string]: string }
   ) {
-    const path = `//textarea[@placeholder="${campo.placeholder}"]`;
+    const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     await element(input).click();
     await element(input).sendKeys(imovel[campo.cucumberLabel]);
