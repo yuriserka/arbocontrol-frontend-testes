@@ -1,13 +1,13 @@
 #language:pt
 
-Funcionalidade: Inserir um registro em uma atividade já cadastrada
+Funcionalidade: Inserir um registros em atividades
 
 Contexto:
     Dado que estou logado com
     | cpf            | senha         | unidade  |
     | 111.111.111-11 | 12345678@arbo | SES - AM |
 
-Esquema do Cenário: Inserção com sucesso
+Esquema do Cenário: Inserção de registro de campo em uma atividade já cadastrada
     Quando eu acessar a pagina da lista de trabalho
     Então eu vou selecionar a atividade "<numero_atividade>"
     E selecionar o imovel "<codigo_imovel>"

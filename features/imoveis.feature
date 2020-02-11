@@ -1,6 +1,6 @@
 #language:pt
 
-Funcionalidade: Cadastrar uma equipe
+Funcionalidade: Cadastrar um Imóvel
 
 Contexto:
   Dado que estou logado com
