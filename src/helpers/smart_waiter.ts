@@ -11,8 +11,6 @@ import {
 
 /**
  * Representa o tempo máximo de espera para as condições
- * @private
- * @constant
  */
 const timeout = 10000;
 
@@ -22,9 +20,9 @@ const timeout = 10000;
 export class SmartWaiter {
   /**
    * Espera o elemento estar disponivel para ser clicado
-   * @async
-   * @param {!Locator} locator
-   * @param {?number} tempoAdicional
+   *
+   * @param locator
+   * @param tempoAdicional
    */
   static async waitClick(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
@@ -35,9 +33,8 @@ export class SmartWaiter {
 
   /**
    * Espera até que a url mude para a passada como argumento
-   * @async
-   * @param {!string} url
-   * @param {?number} tempoAdicional
+   * @param url
+   * @param tempoAdicional
    */
   static async waitUrl(url: string, tempoAdicional = 0) {
     await browser.wait(EC.urlIs(url), timeout + tempoAdicional);
@@ -45,9 +42,9 @@ export class SmartWaiter {
 
   /**
    * Espera o elemento estar visível
-   * @async
-   * @param {!Locator} locator
-   * @param {?number} tempoAdicional
+   *
+   * @param locator
+   * @param tempoAdicional
    */
   static async waitVisibility(locator: Locator, tempoAdicional = 0) {
     await browser.wait(
@@ -58,10 +55,10 @@ export class SmartWaiter {
 
   /**
    * Espera o texto dentro do elemento ser o passado
-   * @async
-   * @param {!Locator} locator
-   * @param {!string} texto
-   * @param {?number} tempoAdicional
+   *
+   * @param locator
+   * @param texto
+   * @param tempoAdicional
    */
   static async waitText(locator: Locator, texto: string, tempoAdicional = 0) {
     await browser.wait(

@@ -13,20 +13,15 @@ import { Selector } from '../helpers/selector';
 export class LoginPage {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
    * campos que devem ser preenchidos
-   * @private
-   * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
 
   /**
    * guarda o estado atual para evitar tentar fazer login novamente não estando na página correta
-   * @private
    */
   private logado_: boolean;
 
@@ -47,9 +42,9 @@ export class LoginPage {
   /**
    * Preenche os campos de cpf e senha, seleciona a primeira
    * unidade e então faz login
-   * @async
-   * @param {!string} cpf
-   * @param {!string} senha
+   * @param cpf
+   * @param senha
+   * @param unidade
    */
   async login(cpf: string, senha: string, unidade: string) {
     if (this.logado_) {
@@ -65,8 +60,7 @@ export class LoginPage {
   /**
    * preenche o cpf
    * @example const cpf = "111.111.111-11"
-   * @async
-   * @param {!string} cpf
+   * @param cpf
    */
   private async preencherCpf(cpf: string) {
     await element(this.campos_.cpf).sendKeys(cpf);
@@ -74,8 +68,7 @@ export class LoginPage {
 
   /**
    * preenche a senha
-   * @async
-   * @param {!string} senha
+   * @param senha
    */
   private async preencherSenha(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
@@ -84,15 +77,13 @@ export class LoginPage {
   private async selecionarUnidade(nome: string) {
     await element(this.campos_.unidade).click();
     await Selector.selectFrom(
-      By.xpath('//*[@role="option"]'),
-      nome,
-      By.xpath('.//span//span')
+      By.xpath('//*[@role="option"]//span//span'),
+      nome
     );
   }
 
   /**
    * clica no botao pra fazer o login
-   * @async
    */
   private async clicarBotaoEntrar() {
     await element(this.botoes_.entrar).click();

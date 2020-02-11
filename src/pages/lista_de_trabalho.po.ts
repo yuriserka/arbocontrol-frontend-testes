@@ -41,7 +41,7 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * acessa a página de gerenciamento de listas de trabalho
    */
   async get() {
     await this.navbar_.acessarListasDeTrabalho();
@@ -69,7 +69,7 @@ export class ListaDeTrabalhoPage extends Page {
    * @param numero
    */
   private async selecionarAtividade(numero: string) {
-    const linkAtividade = await DataTable.findTextIn(
+    const linkAtividade = await DataTable.getNodeWithText(
       By.xpath(
         '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
       ),
@@ -83,7 +83,7 @@ export class ListaDeTrabalhoPage extends Page {
    * @param codigo
    */
   private async selecionarImovel(codigo: string) {
-    const linkImovel = await DataTable.findTextIn(
+    const linkImovel = await DataTable.getNodeWithText(
       By.xpath(
         '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
       ),
@@ -152,8 +152,10 @@ export class ListaDeTrabalhoPage extends Page {
     campo: CampoDeDado,
     registro: { [campo: string]: string }
   ) {
+    const path = `//select[@aria-label="${campo.ariaLabel}"]`;
+    await element(By.xpath(path)).click();
     await Selector.selectFrom(
-      By.xpath(`//select[@aria-label="${campo.ariaLabel}"]`),
+      By.xpath(`${path}//option`),
       registro[campo.cucumberLabel]
     );
   }

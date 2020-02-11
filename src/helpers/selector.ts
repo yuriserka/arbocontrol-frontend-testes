@@ -1,28 +1,21 @@
 import { Locator, element, ElementFinder, By } from 'protractor';
-import { WebDriverLocator } from 'protractor/built/locators';
 
 /**
- * Abstração para a interação com elementos <select> do HTML
+ * Abstração para a interação com campos que precisam que uma opção seja selecionada
  */
 export class Selector {
   /**
-   *
-   * @param locator
-   * @param opcaoProcurada
+   * seleciona uma opção de um array de opções
+   * @param locator caminho para um ou mais nós que possuam um texto dentro para ser comparado
+   * @param opcaoProcurada string que deverá ser comparada
    */
-  static async selectFrom(
-    locator: Locator,
-    opcaoProcurada: string,
-    textLocator?: WebDriverLocator
-  ) {
+  static async selectFrom(locator: Locator, opcaoProcurada: string) {
     const options: ElementFinder[] = await element.all(locator);
     let found: ElementFinder | undefined;
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const text = textLocator
-        ? await option.element(textLocator).getText()
-        : await option.getText();
+      const text = await option.getText();
       if (text === opcaoProcurada) {
         found = option;
         break;

@@ -14,25 +14,19 @@ import { SmartWaiter } from './smart_waiter';
 export class Recorder {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
    * campos que devem ser preenchidos
-   * @private
-   * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
   /**
    * data de geração do arquivo .jmx exportado
-   * @private
-   * @constant
    */
   private nomeArquivo_: string;
 
   /**
-   * @param {?string} funcionalidade nome da funcionalidade que será gravada
+   * @param funcionalidade nome da funcionalidade que será gravada
    */
   constructor(funcionalidade = 'null') {
     this.botoes_ = {
@@ -53,8 +47,6 @@ export class Recorder {
 
   /**
    * Acessa a página principal de configuração da extensão
-   * @private
-   * @async
    */
   private async get_() {
     await browser.get(
@@ -65,7 +57,6 @@ export class Recorder {
   /**
    * Realiza todo o procedimento necessário para começar uma
    * gravação e então inicia ela.
-   * @async
    */
   async iniciar() {
     await browser.waitForAngularEnabled(false);
@@ -84,7 +75,6 @@ export class Recorder {
   /**
    * Realiza todo o procedimento necessário para parar uma gravação
    * e então salva o arquivo .jmx gerado.
-   * @async
    */
   async terminar() {
     await browser.waitForAngularEnabled(false);
@@ -96,8 +86,7 @@ export class Recorder {
   /**
    * A partir da tela inicial da extensão, acessa a página de login
    * e faz o login
-   * @async
-   * @param {boolean} comGoogle
+   * @param comGoogle
    */
   private async login(comGoogle: boolean) {
     const blazeConfigPage = await browser.getWindowHandle();
@@ -120,7 +109,6 @@ export class Recorder {
 
   /**
    * inicia a gravação do script
-   * @async
    */
   private async gravar() {
     await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
@@ -129,7 +117,6 @@ export class Recorder {
 
   /**
    * para a gravação do script
-   * @async
    */
   private async parar() {
     await element(this.botoes_.parar).click();
@@ -137,7 +124,6 @@ export class Recorder {
 
   /**
    * pausa a gravação do script
-   * @async
    */
   private async pause() {
     await element(this.botoes_.pausar).click();
@@ -146,7 +132,6 @@ export class Recorder {
   /**
    * seleciona todos os dominios nos quais houveram requisições e
    * então baixa o arquivo na pasta "Downloads"
-   * @async
    */
   private async salvar() {
     await element(this.botoes_.salvar).click();

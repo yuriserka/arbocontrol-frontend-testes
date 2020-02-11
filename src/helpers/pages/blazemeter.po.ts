@@ -16,14 +16,10 @@ dotenv.config();
 export class BlazeMeter {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
    * campos que devem ser preenchidos
-   * @private
-   * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
 
@@ -41,7 +37,6 @@ export class BlazeMeter {
   /**
    * redireciona para a página de login do google e utiliza as
    * credenciais criadas.
-   * @async
    */
   async loginGoogle() {
     await element(this.botoes_.google).click();
@@ -53,7 +48,6 @@ export class BlazeMeter {
 
   /**
    * preenche email e senha utilizando as credenciais criadas.
-   * @async
    */
   async login() {
     await element(this.campos_.email).sendKeys(

@@ -21,14 +21,10 @@ interface CampoDeDado {
 export class ImovelPage extends Page {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
    * campos que devem ser preenchidos
-   * @private
-   * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
 
@@ -42,14 +38,14 @@ export class ImovelPage extends Page {
   }
 
   /**
-   *
+   * acessa a página de gerenciamento dos imóveis
    */
   async get() {
     await this.navbar_.acessarImoveis();
   }
 
   /**
-   *
+   * cadastra um imóvel
    * @param imovel
    */
   async cadastrarImovel(imovel: { [campo: string]: string }) {
@@ -111,9 +107,8 @@ export class ImovelPage extends Page {
   ) {
     await this.preencherInput(campo, imovel);
     await Selector.selectFrom(
-      By.xpath(`//*[@role="option"]`),
-      imovel[campo.cucumberLabel],
-      By.xpath('.//span//span')
+      By.xpath(`//*[@role="option"]//span//span`),
+      imovel[campo.cucumberLabel]
     );
   }
 
@@ -128,6 +123,7 @@ export class ImovelPage extends Page {
   ) {
     const path = `//textarea[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
+    await element(input).click();
     await element(input).sendKeys(imovel[campo.cucumberLabel]);
   }
 }

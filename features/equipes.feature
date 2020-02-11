@@ -36,7 +36,6 @@ Esquema do Cenário: Desvincular usuarios de uma equipe
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
     | nome      |
     | Usuário 2 |
-    | Usuário 3 |
 
 Exemplos:
 | nome_da_equipe  |

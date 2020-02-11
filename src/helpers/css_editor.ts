@@ -11,11 +11,9 @@ import { browser, element, Locator } from 'protractor';
 export class CssEditor {
   /**
    * Altera ou adiciona o estilo do elemento passado
-   * @async
-   * @param {!Locator} locator
-   * @param {!string} atributo
-   * @param {!string} valor
-   * @static
+   * @param locator
+   * @param atributo
+   * @param valor
    */
   static async alterar(
     locator: Locator,

@@ -8,11 +8,10 @@ let outDir: string;
 /**
  * classe Responsavel por exportar relatorios do cucumber
  */
-
 export class Reporter {
   /**
    * Assegura que o diretório no qual será salvo os resultados existe
-   * @param {!string} diretorio
+   * @param diretorio
    */
   static criarDiretorio(diretorio: string) {
     if (!fs.existsSync(diretorio)) {

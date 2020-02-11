@@ -13,8 +13,6 @@ export class HomePage extends Page {
   /**
    * mapeamento do nome dos botões para a função que deve ser
    * chamada
-   * @private
-   * @constant
    */
   private btn2page_: { [key: string]: () => Promise<void> };
 
@@ -41,8 +39,7 @@ export class HomePage extends Page {
 
   /**
    * acessa a página especificada pelo nome do botao
-   * @async
-   * @param {!string} nomeBotao
+   * @param nomeBotao
    */
   async acessar(nomeBotao: string) {
     await this.btn2page_[nomeBotao]();
@@ -50,8 +47,7 @@ export class HomePage extends Page {
 
   /**
    * Retorna o nome do usuário escrito no Card
-   * @returns {!string} nome do usuário logado
-   * @async
+   * @returns nome do usuário logado
    */
   async getUsuarioLogado(): Promise<string> {
     return element(

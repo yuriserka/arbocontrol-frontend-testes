@@ -15,25 +15,22 @@ import { WebDriverLocator } from 'protractor/built/locators';
  */
 export class DataTable {
   /**
-   * @description retorna todos os localizados no caminho especificado
+   * retorna todos os webelements localizados no caminho especificado
    * @param locator
-   * @async
-   * @static
    */
   static getAllRows(locator: Locator): ElementArrayFinder {
     return element.all(locator);
   }
 
   /**
-   * @description Retorna um ElementFinder correspondente ao nó passado no parametro rootLocator que contenha o mesmo texto que o passado em textoProcurado.
+   * Retorna um ElementFinder correspondente ao nó passado no parametro rootLocator que contenha o mesmo texto que o passado em textoProcurado.
    * É possível passar um complemento para o nó buscado, este de onde será extraído o texto para comparação,
    * sendo assim é possível retornar um nó que não seja o qual o elemento com texto está localizado.
-   * @param rootLocator
-   * @param textoProcurado
-   * @async
-   * @static
+   * @param rootLocator nó raíz que será retornado
+   * @param textoProcurado texto desejado a ser buscado
+   * @param textLocator caminho para onde estará localizado o texto
    */
-  static async findTextIn(
+  static async getNodeWithText(
     rootLocator: Locator,
     textoProcurado: string,
     textLocator?: WebDriverLocator

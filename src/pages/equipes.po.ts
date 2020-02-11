@@ -8,6 +8,7 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { DataTable } from '../helpers/data_table';
 import { CssEditor } from '../helpers/css_editor';
 import { SmartWaiter } from '../helpers/smart_waiter';
+import { Selector } from '../helpers/selector';
 
 /**
  * Abstração da página de gerenciamento de equipes
@@ -128,7 +129,7 @@ export class EquipesPage extends Page {
    * @param equipe nome da equipe
    */
   private async selecionarEquipe(equipe: string) {
-    const linkEquipeAlvo = await DataTable.findTextIn(
+    const linkEquipeAlvo = await DataTable.getNodeWithText(
       By.xpath('//tbody//tr//td//span[@class="span-link"]'),
       equipe
     );
@@ -154,11 +155,7 @@ export class EquipesPage extends Page {
     );
     await element(campoNomeUsuario).click();
     await element(campoNomeUsuario).sendKeys(nome);
-    const username = await DataTable.findTextIn(
-      By.xpath('//mat-option//span//span'),
-      nome
-    );
-    await username.click();
+    await Selector.selectFrom(By.xpath('//mat-option//span//span'), nome);
     const botaoAdicionar = By.xpath('(//button[@color="primary"])[1]');
     await element(botaoAdicionar).click();
     await element(campoNomeUsuario).clear();
@@ -169,7 +166,7 @@ export class EquipesPage extends Page {
    * @param nome nome do usuario
    */
   private async getUsuarioRow(nome: string) {
-    return DataTable.findTextIn(
+    return DataTable.getNodeWithText(
       By.xpath('//tbody//tr'),
       nome,
       By.xpath(`//td[contains(@class, "cdk-column-vinculo")]//a`)

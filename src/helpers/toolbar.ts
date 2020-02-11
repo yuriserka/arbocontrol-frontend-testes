@@ -11,8 +11,6 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 export class ToolBar {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
 
@@ -26,7 +24,6 @@ export class ToolBar {
 
   /**
    * clica no botão de sair
-   * @async
    */
   async logout() {
     await element(this.botoes_.sair).click();

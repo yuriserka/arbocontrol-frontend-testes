@@ -12,14 +12,10 @@ import { ToolBar } from '../helpers/toolbar';
 export class Page {
   /**
    * barra de navegação superior visível em todas as paginas
-   * @private
-   * @constant
    */
   protected readonly toolbar_: ToolBar;
   /**
    * barra de navegação lateral
-   * @private
-   * @constant
    */
   protected readonly navbar_: SideNav;
 
@@ -30,7 +26,6 @@ export class Page {
 
   /**
    * faz logout do sistema
-   * @async
    */
   async logout() {
     await this.toolbar_.logout();
@@ -38,7 +33,6 @@ export class Page {
 
   /**
    * mostra a barra de navegação lateral
-   * @async
    */
   async mostrarSideNav() {
     await this.navbar_.exibir();

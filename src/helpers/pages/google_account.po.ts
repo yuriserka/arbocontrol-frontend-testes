@@ -13,14 +13,10 @@ import { SmartWaiter } from '../smart_waiter';
 export class GoogleAccount {
   /**
    * botões que necessitam de ser clicados
-   * @private
-   * @constant
    */
   private botoes_: { [key: string]: SeleniumBy };
   /**
    * campos que devem ser preenchidos
-   * @private
-   * @constant
    */
   private campos_: { [key: string]: SeleniumBy };
 
@@ -39,9 +35,9 @@ export class GoogleAccount {
   /**
    * Preenche email e senha na página de login que é aberta pelo
    * Blaze Meter
-   * @async
-   * @param  {!string} email
-   * @param  {!string} senha
+   *
+   * @param email
+   * @param senha
    */
   async login(email: string, senha: string) {
     await this.preencherEmail_(email);
@@ -53,9 +49,7 @@ export class GoogleAccount {
 
   /**
    * Preenche o email na página login que é aberta pelo Blaze Meter
-   * @private
-   * @async
-   * @param {!string} email
+   * @param email
    */
   private async preencherEmail_(email: string) {
     await element(this.campos_.email).sendKeys(email);
@@ -65,9 +59,7 @@ export class GoogleAccount {
   /**
    * Preenche a Senha na página login que é aberta pelo Blaze
    * Meter, deve ser chamada após preencher o email
-   * @private
-   * @async
-   * @param {!string} senha
+   * @param senha
    */
   private async preencherSenha_(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
