@@ -4,11 +4,10 @@
 
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
-import { browser } from 'protractor';
-import { LoginPage } from '../pages/login.po';
-import { ListaDeTrabalhoPage } from '../pages/lista_de_trabalho.po';
+import { browser, element, By } from 'protractor';
+import { LoginPage } from '../src/pages/login.po';
+import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
-import { SmartWaiter } from '../helpers/smart_waiter';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -48,11 +47,31 @@ Then('selecionar o imovel {string}', async (codigoImovel: string) => {
 });
 
 Then(
-  'irei cadastrar um registro com os valores',
+  'irei cadastrar um registro de campo com os valores',
   async (registro: TableDefinition) => {
-    await listaDeTrabalhoPage['preencherRegistro'](registro.hashes()[0]);
-    const url = `http://localhost/registros-atividades/listar/${atividade}/${imovel}`;
-    await SmartWaiter.waitUrl(url);
-    expect(await browser.getCurrentUrl()).to.be.equal(url);
+    await element(By.xpath('//button[@color="primary"]')).click();
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registro.hashes()[0]);
   }
 );
+
+Then('selecionarei a aba {string}', async (nome: string) => {
+  await listaDeTrabalhoPage['selecionarAba'](nome);
+});
+
+Then(
+  'irei cadastrar um registro de laboratório com os valores',
+  async (registro: TableDefinition) => {
+    await element(By.xpath('//button[@color="primary"]')).click();
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registro.hashes()[0]);
+  }
+);
+
+Then('Adicionar as seguintes amostras', async (amostras: TableDefinition) => {
+  await listaDeTrabalhoPage['preencherAmostras'](amostras.hashes());
+});
+
+Then('salvar', async () => {
+  await listaDeTrabalhoPage['salvar']();
+  const url = `http://localhost/registros-atividades/listar/${atividade}/${imovel}`;
+  expect(await browser.getCurrentUrl()).to.be.equal(url);
+});

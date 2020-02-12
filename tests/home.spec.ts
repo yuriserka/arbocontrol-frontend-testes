@@ -12,8 +12,8 @@ const {
 } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { HomePage } from '../pages/home.po';
-import { LoginPage } from '../pages/login.po';
+import { HomePage } from '../src/pages/home.po';
+import { LoginPage } from '../src/pages/login.po';
 import { TableDefinition } from 'cucumber';
 
 setDefaultTimeout(60 * 1000);

@@ -5,8 +5,8 @@
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { LoginPage } from '../pages/login.po';
-import { ImovelPage } from '../pages/imoveis.po';
+import { LoginPage } from '../src/pages/login.po';
+import { ImovelPage } from '../src/pages/imoveis.po';
 import { TableDefinition } from 'cucumber';
 
 setDefaultTimeout(60 * 1000);

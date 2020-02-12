@@ -4,8 +4,8 @@
 
 const { Given, setDefaultTimeout, Then, When } = require('cucumber');
 import { browser } from 'protractor';
-import { Recorder } from '../helpers/recorder';
-import { LoginPage } from '../pages/login.po';
+import { Recorder } from '../src/helpers/recorder';
+import { LoginPage } from '../src/pages/login.po';
 
 setDefaultTimeout(60 * 1000);
 const blazeRecorder = new Recorder();

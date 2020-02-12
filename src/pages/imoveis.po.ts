@@ -66,7 +66,7 @@ export class ImovelPage extends Page {
 
     campos = campos.filter(c => Object.keys(imovel).includes(c.cucumberLabel));
 
-    for (let i = 0; i < campos.length; i++) {
+    for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
       if (campo.tipo === 'input') {
         campo.role

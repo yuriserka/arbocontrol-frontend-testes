@@ -27,7 +27,7 @@ export const config: Config = {
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['../build/src/specs/imoveis.spec.js'],
+    require: ['../build/tests/imoveis.spec.js'],
     format: ['json:./reports/results.json'],
     tags: false,
     strict: true,

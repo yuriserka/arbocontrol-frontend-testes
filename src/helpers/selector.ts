@@ -1,4 +1,4 @@
-import { Locator, element, ElementFinder, By } from 'protractor';
+import { Locator, element, ElementFinder } from 'protractor';
 
 /**
  * Abstração para a interação com campos que precisam que uma opção seja selecionada
@@ -11,23 +11,15 @@ export class Selector {
    */
   static async selectFrom(locator: Locator, opcaoProcurada: string) {
     const options: ElementFinder[] = await element.all(locator);
-    let found: ElementFinder | undefined;
-
-    for (let i = 0; i < options.length; i++) {
+    for (let i = 0; i < options.length; ++i) {
       const option = options[i];
       const text = await option.getText();
       if (text === opcaoProcurada) {
-        found = option;
-        break;
+        return option.click();
       }
     }
-
-    if (!found) {
-      throw new Error(
-        `não foi possivel encontrar a opção = '${opcaoProcurada}' na lista de opções`
-      );
-    }
-
-    await found.click();
+    throw new Error(
+      `não foi possivel encontrar a opção = '${opcaoProcurada}' na lista de opções`
+    );
   }
 }

@@ -76,7 +76,7 @@ export class EquipesPage extends Page {
     usuarios: Array<{ [col: string]: string }>
   ) {
     await this.selecionarEquipe(equipe);
-    for (let i = 0; i < usuarios.length; i++) {
+    for (let i = 0; i < usuarios.length; ++i) {
       const usuario = usuarios[i];
       await this.vincularUsuario(usuario);
     }
@@ -100,7 +100,7 @@ export class EquipesPage extends Page {
       usernames = usernames.filter(u => nomes.includes(u));
     }
 
-    for (let i = 0; i < usernames.length; i++) {
+    for (let i = 0; i < usernames.length; ++i) {
       await this.desvincularUsuario(usernames[i]);
     }
 
