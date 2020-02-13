@@ -8,13 +8,14 @@ import { browser } from 'protractor';
 import { LoginPage } from '../src/pages/login.po';
 import { EquipesPage } from '../src/pages/equipes.po';
 import { TableDefinition } from 'cucumber';
+import { baseUrl } from '../config';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const equipePage = new EquipesPage();
 
 BeforeAll(async () => {
-  await browser.get('http://localhost/');
+  await browser.get(baseUrl);
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
@@ -33,15 +34,13 @@ Then(
       nomeDaEquipe,
       dataTable.hashes().map(usuario => usuario.nome)
     );
-    expect(await browser.getCurrentUrl()).to.be.equal(
-      'http://localhost/equipes'
-    );
+    expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
   }
 );
 
 Then('eu vou cadastrar a equipe {string}', async (nomeDaEquipe: string) => {
   await equipePage.criarEquipe(nomeDaEquipe);
-  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/equipes');
+  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
 });
 
 Then(
@@ -53,5 +52,5 @@ Then(
 
 Then('eu vou excluiur a equipe {string}', async (nomeDaEquipe: string) => {
   await equipePage.excluirEquipe(nomeDaEquipe);
-  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/equipes');
+  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
 });

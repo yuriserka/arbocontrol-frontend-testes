@@ -8,6 +8,7 @@ import { DataTable } from '../helpers/data_table';
 import { element, By, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
 import { SmartWaiter } from '../helpers/smart_waiter';
+import { baseUrl } from '../../config';
 
 let contadorQtdeTratados = 0;
 
@@ -217,7 +218,7 @@ export class ListaDeTrabalhoPage extends Page {
    */
   private async salvar() {
     await element(By.xpath('//button[@color="primary"]')).click();
-    const url = `http://localhost/registros-atividades/listar/${this.atividade}/${this.imovel}`;
+    const url = `${baseUrl}/registros-atividades/listar/${this.atividade}/${this.imovel}`;
     await SmartWaiter.waitUrl(url);
   }
 

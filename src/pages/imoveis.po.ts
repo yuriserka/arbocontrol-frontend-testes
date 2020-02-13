@@ -7,6 +7,7 @@ import { Page } from './page.po';
 import { By, element, browser } from 'protractor';
 import { Selector } from '../helpers/selector';
 import { SmartWaiter } from '../helpers/smart_waiter';
+import { baseUrl } from '../../config';
 
 interface CampoDeDado {
   tipo: string;
@@ -79,7 +80,7 @@ export class ImovelPage extends Page {
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();
-    await SmartWaiter.waitUrl('http://localhost/imoveis');
+    await SmartWaiter.waitUrl(`${baseUrl}/imoveis`);
   }
 
   /**

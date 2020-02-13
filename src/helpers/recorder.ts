@@ -5,7 +5,7 @@
 import moment = require('moment');
 import { browser, By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { BlazeMeter } from './pages/blazemeter.po';
+import { BlazeMeterPage } from './pages/blazemeter.po';
 import { SmartWaiter } from './smart_waiter';
 
 /**
@@ -96,7 +96,7 @@ export class Recorder {
     await browser.waitForAngularEnabled(false);
     await browser.switchTo().window(handles[2]);
 
-    const blaze = new BlazeMeter();
+    const blaze = new BlazeMeterPage();
     comGoogle ? await blaze.loginGoogle() : await blaze.login();
 
     await SmartWaiter.waitUrl(

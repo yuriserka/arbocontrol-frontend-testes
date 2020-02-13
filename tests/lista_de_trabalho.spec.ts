@@ -8,6 +8,7 @@ import { browser, element, By } from 'protractor';
 import { LoginPage } from '../src/pages/login.po';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
+import { baseUrl } from '../config';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -17,7 +18,7 @@ let atividade: string;
 let imovel: string;
 
 BeforeAll(async () => {
-  await browser.get('http://localhost/');
+  await browser.get(baseUrl);
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
@@ -41,7 +42,7 @@ Then(
 Then('selecionar o imovel {string}', async (codigoImovel: string) => {
   await listaDeTrabalhoPage['selecionarImovel'](codigoImovel);
   expect(await browser.getCurrentUrl()).to.be.equal(
-    `http://localhost/registros-atividades/listar/${atividade}/${codigoImovel}`
+    `${baseUrl}/registros-atividades/listar/${atividade}/${codigoImovel}`
   );
   imovel = codigoImovel;
 });
@@ -72,6 +73,6 @@ Then('Adicionar as seguintes amostras', async (amostras: TableDefinition) => {
 
 Then('salvar', async () => {
   await listaDeTrabalhoPage['salvar']();
-  const url = `http://localhost/registros-atividades/listar/${atividade}/${imovel}`;
+  const url = `${baseUrl}/registros-atividades/listar/${atividade}/${imovel}`;
   expect(await browser.getCurrentUrl()).to.be.equal(url);
 });

@@ -15,19 +15,19 @@ Esquema do Cenário: Acessar todas as áreas do sistema sendo super admin
     Então a url deve ser "<url>"
 
 Exemplos:
-| nome_botao             | url                                     |
-| formularios            | http://localhost/formularios            |
-| relatorios_indices     | http://localhost/relatorios-indices     |
-| exportar               | http://localhost/exportar               |
-| processo_importacao    | http://localhost/processo-importacao    |
-| demandas               | http://localhost/demandas               |
-| lista_trabalho         | http://localhost/lista-trabalho         |
-| atividades             | http://localhost/atividades             |
-| imoveis                | http://localhost/imoveis                |
-| territorios            | http://localhost/territorios            |
-| areas_gestao           | http://localhost/areas-gestao           |
-| unidades               | http://localhost/unidades               |
-| pessoas                | http://localhost/pessoas                |
-| equipes                | http://localhost/equipes                |
-| perfis_usuarios        | http://localhost/perfis-usuarios        |
-| perfil_usuario_unidade | http://localhost/perfil-usuario-unidade |
+| nome_botao             | url                              |
+| formularios            | <env.url>/formularios            |
+| relatorios_indices     | <env.url>/relatorios-indices     |
+| exportar               | <env.url>/exportar               |
+| processo_importacao    | <env.url>/processo-importacao    |
+| demandas               | <env.url>/demandas               |
+| lista_trabalho         | <env.url>/lista-trabalho         |
+| atividades             | <env.url>/atividades             |
+| imoveis                | <env.url>/imoveis                |
+| territorios            | <env.url>/territorios            |
+| areas_gestao           | <env.url>/areas-gestao           |
+| unidades               | <env.url>/unidades               |
+| pessoas                | <env.url>/pessoas                |
+| equipes                | <env.url>/equipes                |
+| perfis_usuarios        | <env.url>/perfis-usuarios        |
+| perfil_usuario_unidade | <env.url>/perfil-usuario-unidade |

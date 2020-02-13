@@ -2,18 +2,16 @@
  * @fileoverview
  */
 
-import dotenv = require('dotenv');
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { GoogleAccount } from './google_account.po';
-
-dotenv.config();
+import { GoogleAccountPage } from './google_account.po';
+import { googleAccount, blazeMeterAccount } from '../../../config';
 
 /**
  * Responsável por prover interfaces para login utilizando o Google
  * quanto com uma conta do Blaze Meter
  */
-export class BlazeMeter {
+export class BlazeMeterPage {
   /**
    * botões que necessitam de ser clicados
    */
@@ -40,9 +38,9 @@ export class BlazeMeter {
    */
   async loginGoogle() {
     await element(this.botoes_.google).click();
-    await new GoogleAccount().login(
-      process.env.GOOGLE_EMAIL || 'none',
-      process.env.GOOGLE_SENHA || 'none'
+    await new GoogleAccountPage().login(
+      googleAccount.email,
+      googleAccount.senha
     );
   }
 
@@ -50,12 +48,8 @@ export class BlazeMeter {
    * preenche email e senha utilizando as credenciais criadas.
    */
   async login() {
-    await element(this.campos_.email).sendKeys(
-      process.env.BLAZE_METER_EMAIL || 'none'
-    );
-    await element(this.campos_.senha).sendKeys(
-      process.env.BLAZE_METER_SENHA || 'none'
-    );
+    await element(this.campos_.email).sendKeys(blazeMeterAccount.email);
+    await element(this.campos_.senha).sendKeys(blazeMeterAccount.senha);
     await element(this.botoes_.login).click();
   }
 }

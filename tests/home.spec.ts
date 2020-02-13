@@ -15,13 +15,14 @@ import { browser } from 'protractor';
 import { HomePage } from '../src/pages/home.po';
 import { LoginPage } from '../src/pages/login.po';
 import { TableDefinition } from 'cucumber';
+import { baseUrl } from '../config';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const homePage = new HomePage();
 
 BeforeAll(async () => {
-  await browser.get('http://localhost/');
+  await browser.get(baseUrl);
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
@@ -38,11 +39,12 @@ When('clicar no botão {string}', async (btn: string) => {
 });
 
 Then('a url deve ser {string}', async (url: string) => {
-  expect(await browser.getCurrentUrl()).to.be.equal(url);
+  const realUrl = url.replace('<baseUrl>', baseUrl);
+  expect(await browser.getCurrentUrl()).to.be.equal(realUrl);
 });
 
 AfterAll(async () => {
   await homePage.logout();
   await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/login');
+  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/login`);
 });

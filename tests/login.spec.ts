@@ -9,6 +9,7 @@ import { CssEditor } from '../src/helpers/css_editor';
 import { Recorder } from '../src/helpers/recorder';
 import { HomePage } from '../src/pages/home.po';
 import { LoginPage } from '../src/pages/login.po';
+import { baseUrl } from '../config';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -23,8 +24,8 @@ Given(
   }
 );
 
-Given('que eu navego até o site {string}', async (url: string) => {
-  await browser.get(url);
+Given('que eu navego até a url do site do SisVetor', async () => {
+  await browser.get(baseUrl);
   await browser.waitForAngular();
   if (recording) {
     await CssEditor.alterar(
@@ -61,7 +62,7 @@ Then(
 Then('eu faço Logoff', async () => {
   await homePage.logout();
   await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal('http://localhost/login');
+  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/login`);
 });
 
 Then('eu inicio uma gravação do BlazeMeter', async () => {

@@ -10,7 +10,7 @@ import { SmartWaiter } from '../smart_waiter';
 /**
  * Representa a página de login utilizando a conta do Google
  */
-export class GoogleAccount {
+export class GoogleAccountPage {
   /**
    * botões que necessitam de ser clicados
    */
