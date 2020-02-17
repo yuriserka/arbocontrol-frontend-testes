@@ -23,11 +23,11 @@ export const config: Config = {
     },
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/imoveis.feature'],
+  specs: ['../features/lista_de_trabalho.feature'],
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['../build/tests/imoveis.spec.js'],
+    require: ['../build/tests/lista_de_trabalho.spec.js'],
     format: ['json:./reports/results.json'],
     tags: false,
     strict: true,

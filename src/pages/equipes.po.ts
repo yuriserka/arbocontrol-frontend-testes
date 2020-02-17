@@ -119,7 +119,7 @@ export class EquipesPage extends Page {
   private async desvincularUsuario(nome: string) {
     const userRow = await this.getUsuarioRow(nome);
     await userRow
-      .element(By.xpath(`.//td[contains(@class, "cdk-column-acoes")]//button`))
+      .element(By.xpath('.//td[contains(@class, "cdk-column-acoes")]//button'))
       .click();
     await this.confirmarExclusao();
   }
@@ -129,11 +129,10 @@ export class EquipesPage extends Page {
    * @param equipe nome da equipe
    */
   private async selecionarEquipe(equipe: string) {
-    const linkEquipeAlvo = await DataTable.getNodeWithText(
+    await Selector.selectFrom(
       By.xpath('//tbody//tr//td//span[@class="span-link"]'),
       equipe
     );
-    await linkEquipeAlvo.click();
   }
 
   /**
