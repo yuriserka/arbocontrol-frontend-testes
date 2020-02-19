@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DataTable | testes_web</title>
+	<title>&quot;src/helpers/selectors&quot; | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_src_helpers_data_table_.html">&quot;src/helpers/data_table&quot;</a>
-				</li>
-				<li>
-					<a href="_src_helpers_data_table_.datatable.html">DataTable</a>
+					<a href="_src_helpers_selectors_.html">&quot;src/helpers/selectors&quot;</a>
 				</li>
 			</ul>
-			<h1>Class DataTable</h1>
+			<h1>External module &quot;src/helpers/selectors&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,84 +68,68 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Abstração para a captura de valores em formato tabular</p>
-					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">DataTable</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_src_helpers_data_table_.datatable.html#getallrows" class="tsd-kind-icon">get<wbr>All<wbr>Rows</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_src_helpers_data_table_.datatable.html#getnodewithtext" class="tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_selectors_.html#getnodewithtext" class="tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_selectors_.html#selectfrom" class="tsd-kind-icon">select<wbr>From</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="getallrows" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>All<wbr>Rows</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Rows<span class="tsd-signature-symbol">(</span>locator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementArrayFinder</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d037a88/src/helpers/data_table.ts#L21">src/helpers/data_table.ts:21</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>retorna todos os webelements localizados no caminho especificado</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>locator: <span class="tsd-signature-type">Locator</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ElementArrayFinder</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="getnodewithtext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Node<wbr>With<wbr>Text</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text<span class="tsd-signature-symbol">(</span>rootLocator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, textoProcurado<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, textLocator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WebDriverLocator</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ElementFinder</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<h3>get<wbr>Node<wbr>With<wbr>Text</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text<span class="tsd-signature-symbol">(</span>rootLocator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, textoProcurado<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, textLocator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">WebDriverLocator</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/d037a88/src/helpers/data_table.ts#L33">src/helpers/data_table.ts:33</a></li>
+									<li>Defined in src/helpers/selectors.ts:71</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retorna um ElementFinder correspondente ao nó passado no parametro rootLocator que contenha o mesmo texto que o passado em textoProcurado.
-										É possível passar um complemento para o nó buscado, este de onde será extraído o texto para comparação,
-									sendo assim é possível retornar um nó que não seja o qual o elemento com texto está localizado.</p>
+									<p>Retorna um [[ElementFinder]] correspondente ao nó passado no parametro
+										rootLocator que contenha o mesmo texto que o passado em textoProcurado.
+										É possível passar um complemento para o nó buscado, este de onde será
+										extraído o texto para comparação, sendo assim é possível retornar um nó
+									que não seja o qual o elemento com texto está localizado.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><p>suponha que há uma tabela de dados do tipo</p>
+										<pre><code class="language-gherkin">|<span class="hljs-string"> nome </span>|<span class="hljs-string"> concluido </span>|
+|<span class="hljs-string"> t1   </span>|<span class="hljs-string"> False     </span>|
+|<span class="hljs-string"> t2   </span>|<span class="hljs-string"> True      </span>|</code></pre>
+										<p>e cada linha da tabela é dada pelo xpath:</p>
+										<pre><code class="language-ts"><span class="hljs-keyword">const</span> root_locator = <span class="hljs-string">'//tbody//tr'</span></code></pre>
+										<p>e o xpath da coluna nome seja:</p>
+										<pre><code class="language-ts"><span class="hljs-comment">// atenção com o '.' no inicio para indicar que é um subnó</span>
+nome_locator = <span class="hljs-string">'.//td//span[@id="nome"]'</span></code></pre>
+										<p>e a opção de concluido seja dado pelo xpath:</p>
+										<pre><code class="language-ts"><span class="hljs-comment">// atenção com o '.' no inicio para indicar que é um subnó</span>
+opt_concluido = <span class="hljs-string">'.//td//input[@type="checkbox"]'</span></code></pre>
+										<p>Então, suponha que seja necessário alternar a coluna concluido com base
+											no nome que for passado.
+										Logo, a chamada para esta função seria:</p>
+										<pre><code class="language-ts"><span class="hljs-keyword">const</span> row = getNodeWithText(root_locator, <span class="hljs-string">'t1'</span>, nome_locator)</code></pre>
+										<p>como row irá conter informação sobre toda a sua linha, pode-se fazer:</p>
+										<pre><code class="language-ts"><span class="hljs-comment">// isto irá alterar o valor de concluído de t1 para True</span>
+<span class="hljs-keyword">await</span> row.element(opt_concluido).click()</code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -171,7 +152,46 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ElementFinder</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="selectfrom" class="tsd-anchor"></a>
+					<h3>select<wbr>From</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">select<wbr>From<span class="tsd-signature-symbol">(</span>locator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Locator</span>, opcaoProcurada<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helpers/selectors.ts:15</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Dada uma lista de opções (com caminho já apontando para os nós que
+										conterão o texto), seleciona a opção que conter o mesmo texto que
+									o passado em opcaoProcurada</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>locator: <span class="tsd-signature-type">Locator</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>caminho para um ou mais nós que possuam um texto dentro para ser comparado</p>
+									</div>
+								</li>
+								<li>
+									<h5>opcaoProcurada: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>string que deverá ser comparada</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -184,87 +204,84 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_protractor_conf_.html">&quot;protractor.conf&quot;</a>
+						<a href="_config_.html">&quot;config&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_binary_search_.html">&quot;src/helpers/binary_<wbr>search&quot;</a>
+						<a href="_protractor_conf_.html">&quot;protractor.conf&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_css_editor_.html">&quot;src/helpers/css_<wbr>editor&quot;</a>
+						<a href="_src_helpers_asserts_equipes_.html">&quot;src/helpers/asserts/equipes&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_binary_search_.html">&quot;src/helpers/binary_<wbr>search&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_css_editor_.html">&quot;src/helpers/css_<wbr>editor&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_pages_blazemeter_po_.html">&quot;src/helpers/pages/blazemeter.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_pages_google_account_po_.html">&quot;src/helpers/pages/google_<wbr>account.po&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_recorder_.html">&quot;src/helpers/recorder&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_helpers_reporter_.html">&quot;src/helpers/reporter&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_src_helpers_data_table_.html">&quot;src/helpers/data_<wbr>table&quot;</a>
+						<a href="_src_helpers_selectors_.html">&quot;src/helpers/selectors&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_pages_blazemeter_po_.html">&quot;src/helpers/pages/blazemeter.po&quot;</a>
+						<a href="_src_helpers_sidenav_.html">&quot;src/helpers/sidenav&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_pages_google_account_po_.html">&quot;src/helpers/pages/google_<wbr>account.po&quot;</a>
+						<a href="_src_helpers_smart_waiter_.html">&quot;src/helpers/smart_<wbr>waiter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_recorder_.html">&quot;src/helpers/recorder&quot;</a>
+						<a href="_src_helpers_toolbar_.html">&quot;src/helpers/toolbar&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_reporter_.html">&quot;src/helpers/reporter&quot;</a>
+						<a href="_src_models_imovel_.html">&quot;src/models/imovel&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_selector_.html">&quot;src/helpers/selector&quot;</a>
+						<a href="_src_models_registro_campo_.html">&quot;src/models/registro_<wbr>campo&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_sidenav_.html">&quot;src/helpers/sidenav&quot;</a>
+						<a href="_src_pages_atividades_po_.html">&quot;src/pages/atividades.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_smart_waiter_.html">&quot;src/helpers/smart_<wbr>waiter&quot;</a>
+						<a href="_src_pages_equipes_po_.html">&quot;src/pages/equipes.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_helpers_toolbar_.html">&quot;src/helpers/toolbar&quot;</a>
+						<a href="_src_pages_formularios_po_.html">&quot;src/pages/formularios.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_models_imovel_.html">&quot;src/models/imovel&quot;</a>
+						<a href="_src_pages_home_po_.html">&quot;src/pages/home.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_models_registro_campo_.html">&quot;src/models/registro_<wbr>campo&quot;</a>
+						<a href="_src_pages_imoveis_po_.html">&quot;src/pages/imoveis.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_equipes_po_.html">&quot;src/pages/equipes.po&quot;</a>
+						<a href="_src_pages_lista_de_trabalho_po_.html">&quot;src/pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_formularios_po_.html">&quot;src/pages/formularios.po&quot;</a>
+						<a href="_src_pages_login_po_.html">&quot;src/pages/login.po&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_home_po_.html">&quot;src/pages/home.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_imoveis_po_.html">&quot;src/pages/imoveis.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_lista_de_trabalho_po_.html">&quot;src/pages/lista_<wbr>de_<wbr>trabalho.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_login_po_.html">&quot;src/pages/login.po&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_src_pages_page_po_.html">&quot;src/pages/page.po&quot;</a>
+						<a href="_src_pages_page_po_.html">&quot;src/pages/page.po&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_src_helpers_data_table_.datatable.html" class="tsd-kind-icon">Data<wbr>Table</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_src_helpers_data_table_.datatable.html#getallrows" class="tsd-kind-icon">get<wbr>All<wbr>Rows</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_src_helpers_data_table_.datatable.html#getnodewithtext" class="tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_src_helpers_selectors_.html#getnodewithtext" class="tsd-kind-icon">get<wbr>Node<wbr>With<wbr>Text</a>
 					</li>
-				</ul>
-				<ul class="after-current">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_src_helpers_selectors_.html#selectfrom" class="tsd-kind-icon">select<wbr>From</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
