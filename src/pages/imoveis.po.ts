@@ -1,11 +1,11 @@
 /**
- * @fileoverview
+ * @packageDocumentation
  */
 
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { Page } from './page.po';
 import { By, element, browser } from 'protractor';
-import { Selector } from '../helpers/selector';
+import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 
@@ -109,7 +109,7 @@ export class ImovelPage extends Page {
     imovel: { [campo: string]: string }
   ) {
     await this.preencherInput(campo, imovel);
-    await Selector.selectFrom(
+    await selectFrom(
       By.xpath(`//*[@role="option"]//span//span`),
       imovel[campo.cucumberLabel]
     );

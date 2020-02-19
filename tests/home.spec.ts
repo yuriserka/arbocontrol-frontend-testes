@@ -1,7 +1,3 @@
-/**
- * @fileoverview
- */
-
 const {
   AfterAll,
   BeforeAll,

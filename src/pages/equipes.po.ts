@@ -1,14 +1,13 @@
 /**
- * @fileoverview
+ * @packageDocumentation
  */
 
 import { By, element, browser } from 'protractor';
 import { Page } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { DataTable } from '../helpers/data_table';
 import { CssEditor } from '../helpers/css_editor';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { Selector } from '../helpers/selector';
+import { selectFrom, getNodeWithText } from '../helpers/selectors';
 
 /**
  * Abstração da página de gerenciamento de equipes
@@ -92,9 +91,11 @@ export class EquipesPage extends Page {
   async desvincularUsuarios(nomeEquipe: string, nomes?: string[]) {
     await this.selecionarEquipe(nomeEquipe);
 
-    let usernames: string[] = await DataTable.getAllRows(
-      By.xpath('//tbody//tr//td[contains(@class, "cdk-column-vinculo")]//a')
-    ).map(usernameLink => usernameLink?.getText());
+    let usernames: string[] = await element
+      .all(
+        By.xpath('//tbody//tr//td[contains(@class, "cdk-column-vinculo")]//a')
+      )
+      .map(usernameLink => usernameLink?.getText());
 
     if (nomes) {
       usernames = usernames.filter(u => nomes.includes(u));
@@ -129,7 +130,7 @@ export class EquipesPage extends Page {
    * @param equipe nome da equipe
    */
   private async selecionarEquipe(equipe: string) {
-    await Selector.selectFrom(
+    await selectFrom(
       By.xpath('//tbody//tr//td//span[@class="span-link"]'),
       equipe
     );
@@ -154,7 +155,7 @@ export class EquipesPage extends Page {
     );
     await element(campoNomeUsuario).click();
     await element(campoNomeUsuario).sendKeys(nome);
-    await Selector.selectFrom(By.xpath('//mat-option//span//span'), nome);
+    await selectFrom(By.xpath('//mat-option//span//span'), nome);
     const botaoAdicionar = By.xpath('(//button[@color="primary"])[1]');
     await element(botaoAdicionar).click();
     await element(campoNomeUsuario).clear();
@@ -165,10 +166,10 @@ export class EquipesPage extends Page {
    * @param nome nome do usuario
    */
   private async getUsuarioRow(nome: string) {
-    return DataTable.getNodeWithText(
+    return getNodeWithText(
       By.xpath('//tbody//tr'),
       nome,
-      By.xpath(`//td[contains(@class, "cdk-column-vinculo")]//a`)
+      By.xpath('.//td[contains(@class, "cdk-column-vinculo")]//a')
     );
   }
 

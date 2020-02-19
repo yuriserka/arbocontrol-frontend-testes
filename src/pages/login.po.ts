@@ -1,10 +1,10 @@
 /**
- * @fileoverview
+ * @packageDocumentation
  */
 
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { Selector } from '../helpers/selector';
+import { selectFrom } from '../helpers/selectors';
 
 /**
  * Abstração da página de login
@@ -76,10 +76,7 @@ export class LoginPage {
 
   private async selecionarUnidade(nome: string) {
     await element(this.campos_.unidade).click();
-    await Selector.selectFrom(
-      By.xpath('//*[@role="option"]//span//span'),
-      nome
-    );
+    await selectFrom(By.xpath('//*[@role="option"]//span//span'), nome);
   }
 
   /**

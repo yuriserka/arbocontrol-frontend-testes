@@ -1,5 +1,5 @@
 /**
- * @fileoverview
+ * @packageDocumentation
  */
 
 import { browser, element } from 'protractor';

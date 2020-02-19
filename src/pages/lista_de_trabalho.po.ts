@@ -1,12 +1,11 @@
 /**
- * @fileoverview
+ * @packageDocumentation
  */
 
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { Page } from './page.po';
-import { DataTable } from '../helpers/data_table';
 import { element, By, browser } from 'protractor';
-import { Selector } from '../helpers/selector';
+import { getNodeWithText, selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 
@@ -111,7 +110,7 @@ export class ListaDeTrabalhoPage extends Page {
    * @param numero
    */
   private async selecionarAtividade(numero: string) {
-    const linkAtividade = await DataTable.getNodeWithText(
+    const linkAtividade = await getNodeWithText(
       By.xpath(
         '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
       ),
@@ -126,7 +125,7 @@ export class ListaDeTrabalhoPage extends Page {
    * @param codigo
    */
   private async selecionarImovel(codigo: string) {
-    const linkImovel = await DataTable.getNodeWithText(
+    const linkImovel = await getNodeWithText(
       By.xpath(
         '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
       ),
@@ -207,7 +206,7 @@ export class ListaDeTrabalhoPage extends Page {
   ) {
     const path = `//select[@aria-label="${campo.ariaLabel}"]`;
     await element(By.xpath(path)).click();
-    await Selector.selectFrom(
+    await selectFrom(
       By.xpath(`${path}//option`),
       registro[campo.cucumberLabel]
     );

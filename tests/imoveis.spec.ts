@@ -1,7 +1,3 @@
-/**
- * @fileoverview
- */
-
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';

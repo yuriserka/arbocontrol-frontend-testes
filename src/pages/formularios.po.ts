@@ -1,5 +1,5 @@
 // /**
-//  * @fileoverview
+//  * @packageDocumentation
 //  */
 
 // import {By, element, Locator} from 'protractor';

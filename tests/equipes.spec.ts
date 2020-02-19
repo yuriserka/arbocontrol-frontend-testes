@@ -1,7 +1,3 @@
-/**
- * @fileoverview
- */
-
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
@@ -9,6 +5,7 @@ import { LoginPage } from '../src/pages/login.po';
 import { EquipesPage } from '../src/pages/equipes.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
+import { assertEquipeExiste } from '../src/helpers/asserts/equipes';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -41,6 +38,7 @@ Then(
 Then('eu vou cadastrar a equipe {string}', async (nomeDaEquipe: string) => {
   await equipePage.criarEquipe(nomeDaEquipe);
   expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
+  expect(await assertEquipeExiste(nomeDaEquipe)).to.be.equal(true);
 });
 
 Then(

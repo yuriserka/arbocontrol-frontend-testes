@@ -1,7 +1,3 @@
-/**
- * @fileoverview
- */
-
 const { Given, setDefaultTimeout, Then, When } = require('cucumber');
 import { browser } from 'protractor';
 import { Recorder } from '../src/helpers/recorder';
