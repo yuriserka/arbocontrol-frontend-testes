@@ -76,7 +76,7 @@ export class ImovelPage extends Page {
       } else {
         await this.preencherTextArea(campo, imovel);
       }
-      await browser.sleep(1000);
+      await browser.sleep(500);
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();

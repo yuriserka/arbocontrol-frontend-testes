@@ -41,6 +41,16 @@ export class SmartWaiter {
   }
 
   /**
+   * Espera até que a url tenha algum pedaço que de match com a string passada
+   * 
+   * @param str 
+   * @param tempoAdicional 
+   */
+  static async waitUrlContain(str: string, tempoAdicional = 0) {
+    await browser.wait(EC.urlContains(str), timeout + tempoAdicional);
+  }
+
+  /**
    * Espera o elemento estar visível
    *
    * @param locator
