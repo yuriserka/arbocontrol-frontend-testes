@@ -11,7 +11,6 @@ const loginPage = new LoginPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
 let atividade: string;
-let imovel: string;
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -35,12 +34,11 @@ Then(
   }
 );
 
-Then('selecionar o imovel {string}', async (codigoImovel: string) => {
-  await listaDeTrabalhoPage['selecionarImovel'](codigoImovel);
+Then('selecionar o imovel {string}', async (logradouro: string) => {
+  await listaDeTrabalhoPage['selecionarImovel'](logradouro);
   expect(await browser.getCurrentUrl()).to.be.equal(
-    `${baseUrl}/registros-atividades/listar/${atividade}/${codigoImovel}`
+    `${baseUrl}/registros/${atividade}`
   );
-  imovel = codigoImovel;
 });
 
 Then(
@@ -69,6 +67,7 @@ Then('Adicionar as seguintes amostras', async (amostras: TableDefinition) => {
 
 Then('salvar', async () => {
   await listaDeTrabalhoPage['salvar']();
-  const url = `${baseUrl}/registros-atividades/listar/${atividade}/${imovel}`;
-  expect(await browser.getCurrentUrl()).to.be.equal(url);
+  expect(await browser.getCurrentUrl()).to.be.equal(
+    `${baseUrl}/registros/${atividade}`
+  );
 });

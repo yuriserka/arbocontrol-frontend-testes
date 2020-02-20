@@ -32,11 +32,6 @@ export class ListaDeTrabalhoPage extends Page {
   private campos_: { [key: string]: SeleniumBy };
 
   /**
-   * imóvel que estará sendo manipulado
-   */
-  private imovel: string;
-
-  /**
    * atividade que estará sendo manipulada
    */
   private atividade: string;
@@ -45,7 +40,6 @@ export class ListaDeTrabalhoPage extends Page {
     super();
     this.botoes_ = {};
     this.campos_ = {};
-    this.imovel = '';
     this.atividade = '';
   }
 
@@ -59,21 +53,21 @@ export class ListaDeTrabalhoPage extends Page {
   /**
    *
    * @param numeroAtividade
-   * @param codigoImovel
+   * @param logradouroDoImovel
    * @param registro
    */
   async inserirRegistroDeCampo(
     numeroAtividade: string,
-    codigoImovel: string,
+    logradouroDoImovel: string,
     registro: { [campo: string]: string }
   ) {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
-    await this.selecionarImovel(codigoImovel);
-    const nomeDaAba = await element(
-      By.xpath('(//div[@class="mat-tab-label-content"])[1]')
+    await this.selecionarImovel(logradouroDoImovel);
+    const abaCampo = await element(
+      By.xpath('(//app-formulario-tabela-simples//tbody//tr//td//span)[1]')
     ).getText();
-    await this.selecionarAba(nomeDaAba);
+    await this.selecionarAba(abaCampo);
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.salvar();
@@ -82,23 +76,23 @@ export class ListaDeTrabalhoPage extends Page {
   /**
    *
    * @param numeroAtividade
-   * @param codigoImovel
+   * @param logradouroDoImovel
    * @param registro
    * @param amostras
    */
   async inserirRegistroDeLaboratorio(
     numeroAtividade: string,
-    codigoImovel: string,
+    logradouroDoImovel: string,
     registro: { [campo: string]: string },
     amostras: Array<{ [campo: string]: string }>
   ) {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
-    await this.selecionarImovel(codigoImovel);
-    const nomeDaAba = await element(
-      By.xpath('(//div[@class="mat-tab-label-content"])[2]')
+    await this.selecionarImovel(logradouroDoImovel);
+    const abaLab = await element(
+      By.xpath('(//app-formulario-tabela-simples//tbody//tr//td//span)[2]')
     ).getText();
-    await this.selecionarAba(nomeDaAba);
+    await this.selecionarAba(abaLab);
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.preencherAmostras(amostras);
@@ -110,29 +104,30 @@ export class ListaDeTrabalhoPage extends Page {
    * @param numero
    */
   private async selecionarAtividade(numero: string) {
-    const linkAtividade = await getNodeWithText(
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-atividade-tabela-simples')
+    );
+    await selectFrom(
       By.xpath(
         '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
       ),
       numero
     );
     this.atividade = numero;
-    await linkAtividade.click();
   }
 
   /**
    *
    * @param codigo
    */
-  private async selecionarImovel(codigo: string) {
-    const linkImovel = await getNodeWithText(
+  private async selecionarImovel(logradouro: string) {
+    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-tabela-simples'));
+    await selectFrom(
       By.xpath(
-        '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
+        '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-logradouro")]//span'
       ),
-      codigo
+      logradouro
     );
-    this.imovel = codigo;
-    await linkImovel.click();
   }
 
   /**
@@ -217,7 +212,7 @@ export class ListaDeTrabalhoPage extends Page {
    */
   private async salvar() {
     await element(By.xpath('//button[@color="primary"]')).click();
-    const url = `${baseUrl}/registros-atividades/listar/${this.atividade}/${this.imovel}`;
+    const url = `${baseUrl}/registros/${this.atividade}`;
     await SmartWaiter.waitUrl(url);
   }
 
@@ -228,7 +223,11 @@ export class ListaDeTrabalhoPage extends Page {
   private async selecionarAba(nomeDaAba: string) {
     const isCampo = /[CC]ampo/g.test(nomeDaAba);
     await element(
-      By.xpath(`(//div[@class="mat-tab-label-content"])[${isCampo ? 1 : 2}]`)
+      By.xpath(
+        `(//app-formulario-tabela-simples//tbody//tr//td//span)[${
+          isCampo ? 1 : 2
+        }]`
+      )
     ).click();
     await browser.sleep(1000);
   }
