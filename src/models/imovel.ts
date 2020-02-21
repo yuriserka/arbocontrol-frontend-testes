@@ -14,22 +14,22 @@ export interface Imovel {
 }
 
 /**
- * Acho que essa abordagem quebraria a flexibilidade que tenho atualmente
- * @param imovel
+ * retorna um Objeto que contem informações de um Imovel
+ * @param imovelData
  */
-export function makeImovel(imovel: { [campo: string]: string }): Imovel {
+export function makeImovel(imovelData: { [campo: string]: string }): Imovel {
   return {
-    código: imovel['código'],
-    versão: imovel['versão'],
-    território: imovel['território'],
-    tipo_de_imovel: imovel['tipo_de_imovel'],
-    logradouro: imovel['logradouro'],
-    número: imovel['número'],
-    sequência: imovel['sequência'],
-    complemento: imovel['complemento'],
-    ponto_de_referência: imovel['ponto_de_referência'],
-    cep: imovel['cep'],
-    polígono: imovel['polígono'],
-    lado_do_quarteirão: imovel['lado_do_quarteirão'],
+    código: imovelData['código'],
+    versão: imovelData['versão'],
+    território: imovelData['território'],
+    tipo_de_imovel: imovelData['tipo_de_imovel'],
+    logradouro: imovelData['logradouro'],
+    número: imovelData['número'],
+    sequência: imovelData['sequência'],
+    complemento: imovelData['complemento'],
+    ponto_de_referência: imovelData['ponto_de_referência'],
+    cep: imovelData['cep'],
+    polígono: imovelData['polígono'],
+    lado_do_quarteirão: imovelData['lado_do_quarteirão'],
   };
 }
