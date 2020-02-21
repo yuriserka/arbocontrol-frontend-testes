@@ -2,6 +2,7 @@ const { Given, setDefaultTimeout, Then, When } = require('cucumber');
 import { browser } from 'protractor';
 import { Recorder } from '../src/helpers/recorder';
 import { LoginPage } from '../src/pages/login.po';
+import { Usuario } from '../src/models/usuario';
 
 setDefaultTimeout(60 * 1000);
 const blazeRecorder = new Recorder();
@@ -41,7 +42,12 @@ Then('navegarei até o site {string}', async (url: string) => {
 });
 
 Then('farei login', async () => {
-  await new LoginPage().login('055.232.031-57', '12345678', 'SES - AM');
+  const user: Usuario = {
+    cpf: '055.232.031-57',
+    senha: '12345678@arbo',
+    unidade: 'SES - AM',
+  };
+  await new LoginPage().login(user);
   await browser.waitForAngular();
 });
 

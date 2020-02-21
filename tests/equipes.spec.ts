@@ -6,6 +6,7 @@ import { EquipesPage } from '../src/pages/equipes.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { assertEquipeExiste } from '../src/helpers/asserts/equipes';
+import { makeUsuario } from '../src/models/usuario';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -16,8 +17,8 @@ BeforeAll(async () => {
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = dataTable.hashes()[0];
-  await loginPage.login(user.cpf, user.senha, user.unidade);
+  const user = makeUsuario(dataTable.hashes()[0]);
+  await loginPage.login(user);
 });
 
 When('eu acessar a pagina das equipes', async () => {

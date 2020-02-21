@@ -8,6 +8,7 @@ import { By, element, browser } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
+import { Imovel } from '../models/imovel';
 
 interface CampoDeDado {
   tipo: string;
@@ -50,22 +51,9 @@ export class ImovelPage extends Page {
    * cadastra um imóvel
    * @param imovel
    */
-  async cadastrarImovel(imovel: { [campo: string]: string }) {
+  async cadastrarImovel(imovel: Imovel) {
     await element(this.botoes_.cadastrar).click();
-    let campos: CampoDeDado[] = await element
-      .all(By.xpath('(//input|//textarea)[@placeholder]'))
-      .map(elm => {
-        return {
-          tipo: elm?.getTagName(),
-          role: elm?.getAttribute('role'),
-          placeholder: elm?.getAttribute('placeholder'),
-          cucumberLabel: elm
-            ?.getAttribute('placeholder')
-            .then((val: string) => val.toLowerCase().replace(/\s+/g, '_')),
-        };
-      });
-
-    campos = campos.filter(c => Object.keys(imovel).includes(c.cucumberLabel));
+    const campos = await this.getCampos(imovel);
 
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
@@ -83,15 +71,29 @@ export class ImovelPage extends Page {
     await SmartWaiter.waitUrl(`${baseUrl}/imoveis`);
   }
 
+  private async getCampos(imovel: Imovel) {
+    const campos: CampoDeDado[] = await element
+      .all(By.xpath('(//input|//textarea)[@placeholder]'))
+      .map(elm => {
+        return {
+          tipo: elm?.getTagName(),
+          role: elm?.getAttribute('role'),
+          placeholder: elm?.getAttribute('placeholder'),
+          cucumberLabel: elm
+            ?.getAttribute('placeholder')
+            .then((val: string) => val.toLowerCase().replace(/\s+/g, '_')),
+        };
+      });
+
+    return campos.filter(c => Object.keys(imovel).includes(c.cucumberLabel));
+  }
+
   /**
    *
    * @param campo
    * @param imovel
    */
-  private async preencherInput(
-    campo: CampoDeDado,
-    imovel: { [campo: string]: string }
-  ) {
+  private async preencherInput(campo: CampoDeDado, imovel: Imovel) {
     const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
@@ -104,10 +106,7 @@ export class ImovelPage extends Page {
    * @param campo
    * @param imovel
    */
-  private async preencherSelect(
-    campo: CampoDeDado,
-    imovel: { [campo: string]: string }
-  ) {
+  private async preencherSelect(campo: CampoDeDado, imovel: Imovel) {
     await this.preencherInput(campo, imovel);
     await selectFrom(
       By.xpath(`//*[@role="option"]//span//span`),
@@ -120,10 +119,7 @@ export class ImovelPage extends Page {
    * @param campo
    * @param imovel
    */
-  private async preencherTextArea(
-    campo: CampoDeDado,
-    imovel: { [campo: string]: string }
-  ) {
+  private async preencherTextArea(campo: CampoDeDado, imovel: Imovel) {
     const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     await element(input).click();

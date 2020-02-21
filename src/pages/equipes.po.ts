@@ -5,9 +5,9 @@
 import { By, element, browser } from 'protractor';
 import { Page } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
+import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { CssEditor } from '../helpers/css_editor';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { selectFrom, getNodeWithText } from '../helpers/selectors';
 
 /**
  * Abstração da página de gerenciamento de equipes
@@ -126,21 +126,10 @@ export class EquipesPage extends Page {
   }
 
   /**
-   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
-   * @param equipe nome da equipe
-   */
-  private async selecionarEquipe(equipe: string) {
-    await selectFrom(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
-      equipe
-    );
-  }
-
-  /**
    * vincula um usuario à equipe previamente selecionada
    * @param usuario contém informação sobre o nome e o cargo
    */
-  private async vincularUsuario(usuario: { [header: string]: string }) {
+  private async vincularUsuario(usuario: { [key: string]: string }) {
     await this.adicionarUsuario(usuario['nome']);
     await this.setCargo(usuario);
   }
@@ -174,18 +163,14 @@ export class EquipesPage extends Page {
   }
 
   /**
-   * atribui um cargo ao usuario
-   * @param usuario estrutura que contém informação sobre nome e cargo
+   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
+   * @param equipe nome da equipe
    */
-  private async setCargo(usuario: { [header: string]: string }) {
-    const userRow = await this.getUsuarioRow(usuario['nome']);
-    await userRow
-      .element(
-        By.xpath(
-          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
-        )
-      )
-      .click();
+  private async selecionarEquipe(equipe: string) {
+    await selectFrom(
+      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      equipe
+    );
   }
 
   /**
@@ -205,5 +190,20 @@ export class EquipesPage extends Page {
     await SmartWaiter.waitClick(botaoConfirmacao);
     await element(botaoConfirmacao).click();
     await browser.sleep(1000);
+  }
+
+  /**
+   * atribui um cargo ao usuario
+   * @param usuario estrutura que contém informação sobre nome e cargo
+   */
+  private async setCargo(usuario: { [key: string]: string }) {
+    const userRow = await this.getUsuarioRow(usuario['nome']);
+    await userRow
+      .element(
+        By.xpath(
+          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
+        )
+      )
+      .click();
   }
 }

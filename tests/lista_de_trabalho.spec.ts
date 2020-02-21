@@ -5,6 +5,10 @@ import { LoginPage } from '../src/pages/login.po';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
+import { makeUsuario } from '../src/models/usuario';
+import { makeRegistroDeCampo } from '../src/models/registro_campo';
+import { makeRegistroDeLaboratorio } from '../src/models/registro_laboratorio';
+import { makeAmostra } from '../src/models/amostra';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -17,8 +21,8 @@ BeforeAll(async () => {
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = dataTable.hashes()[0];
-  await loginPage.login(user.cpf, user.senha, user.unidade);
+  const user = makeUsuario(dataTable.hashes()[0]);
+  await loginPage.login(user);
 });
 
 When('eu acessar a pagina da lista de trabalho', async () => {
@@ -43,9 +47,10 @@ Then('selecionar o imovel {string}', async (logradouro: string) => {
 
 Then(
   'irei cadastrar um registro de campo com os valores',
-  async (registro: TableDefinition) => {
+  async (dataTable: TableDefinition) => {
     await element(By.xpath('//button[@color="primary"]')).click();
-    await listaDeTrabalhoPage['preencherCamposDeDados'](registro.hashes()[0]);
+    const registroDeCampo = makeRegistroDeCampo(dataTable.hashes()[0]);
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeCampo);
   }
 );
 
@@ -55,14 +60,16 @@ Then('selecionarei a aba {string}', async (nome: string) => {
 
 Then(
   'irei cadastrar um registro de laboratório com os valores',
-  async (registro: TableDefinition) => {
+  async (dataTable: TableDefinition) => {
     await element(By.xpath('//button[@color="primary"]')).click();
-    await listaDeTrabalhoPage['preencherCamposDeDados'](registro.hashes()[0]);
+    const registroDeLab = makeRegistroDeLaboratorio(dataTable.hashes()[0]);
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeLab);
   }
 );
 
-Then('Adicionar as seguintes amostras', async (amostras: TableDefinition) => {
-  await listaDeTrabalhoPage['preencherAmostras'](amostras.hashes());
+Then('Adicionar as seguintes amostras', async (dataTable: TableDefinition) => {
+  const amostras = dataTable.hashes().map(a => makeAmostra(a));
+  await listaDeTrabalhoPage['preencherAmostras'](amostras);
 });
 
 Then('salvar', async () => {

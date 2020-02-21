@@ -8,6 +8,7 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
+import { Atividade, DadosBasicos } from '../models/atividade';
 
 interface CampoDeDado {
   tipo: string;
@@ -45,9 +46,31 @@ export class AtividadesPage extends Page {
     await this.navbar_.acessarAtividades();
   }
 
-  async cadastroBasico(dadosBasicos: { [campo: string]: string }) {
+  async cadastroBasico(atividade: Atividade) {
     await element(this.botoes_.cadastrar).click();
-    let campos: CampoDeDado[] = await element
+
+    const campos = await this.getCamposDadosBasicos(atividade);
+
+    for (let i = 0; i < campos.length; ++i) {
+      const campo = campos[i];
+      if (campo.role) {
+        await this.preencherSelectDadosBasicos(campo, atividade.dadosBasicos);
+      } else {
+        campo.tipo === 'input'
+          ? await this.preencherInputDadosBasicos(campo, atividade.dadosBasicos)
+          : await this.preencherTextAreaDadosBasicos(
+              campo,
+              atividade.dadosBasicos
+            );
+      }
+      await browser.sleep(500);
+    }
+
+    await this.salvar();
+  }
+
+  private async getCamposDadosBasicos(atividade: Atividade) {
+    const campos: CampoDeDado[] = await element
       .all(
         By.xpath(
           '//app-atividade-cadastrar-editar//*[@formcontrolname] | //app-atividade-cadastrar-editar//*[contains(@role, "box")]'
@@ -67,25 +90,10 @@ export class AtividadesPage extends Page {
         };
       });
 
-    campos = campos.filter(c => {
-      const keys = Object.keys(dadosBasicos);
-      return (keys.includes(c.cucumberLabel) || keys.includes(c.placeholder));
-    }
-    );
-
-    for (let i = 0; i < campos.length; ++i) {
-      const campo = campos[i];
-      if (campo.role) {
-        await this.preencherSelect(campo, dadosBasicos);
-      } else {
-        campo.tipo === 'input'
-          ? await this.preencherInput(campo, dadosBasicos)
-          : await this.preencherTextArea(campo, dadosBasicos);
-      }
-      await browser.sleep(500);
-    }
-
-    await this.salvar();
+    return campos.filter(c => {
+      const keys = Object.keys(atividade.dadosBasicos);
+      return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
+    });
   }
 
   /**
@@ -93,9 +101,9 @@ export class AtividadesPage extends Page {
    * @param campo
    * @param dadosBasicos
    */
-  private async preencherInput(
+  private async preencherInputDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: { [campo: string]: string }
+    dadosBasicos: DadosBasicos
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);
@@ -109,16 +117,16 @@ export class AtividadesPage extends Page {
    * @param campo
    * @param dadosBasicos
    */
-  private async preencherSelect(
+  private async preencherSelectDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: { [campo: string]: string }
+    dadosBasicos: DadosBasicos
   ) {
     const path = `//app-atividade-cadastrar-editar//*[@role="${campo.role}"]`;
     await element(By.xpath(path)).click();
-    
+
     let prop = campo.cucumberLabel;
     if (!campo.cucumberLabel) {
-      await element(By.xpath(path)).sendKeys(dadosBasicos[campo.placeholder])
+      await element(By.xpath(path)).sendKeys(dadosBasicos[campo.placeholder]);
       prop = campo.placeholder;
     }
 
@@ -133,9 +141,9 @@ export class AtividadesPage extends Page {
    * @param campo
    * @param dadosBasicos
    */
-  private async preencherTextArea(
+  private async preencherTextAreaDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: { [campo: string]: string }
+    dadosBasicos: DadosBasicos
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);

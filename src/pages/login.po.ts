@@ -5,6 +5,7 @@
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom } from '../helpers/selectors';
+import { Usuario } from '../models/usuario';
 
 /**
  * Abstração da página de login
@@ -46,13 +47,13 @@ export class LoginPage {
    * @param senha
    * @param unidade
    */
-  async login(cpf: string, senha: string, unidade: string) {
+  async login(usuario: Usuario) {
     if (this.logado_) {
       return;
     }
-    await this.preencherCpf(cpf);
-    await this.preencherSenha(senha);
-    await this.selecionarUnidade(unidade);
+    await this.preencherCpf(usuario.cpf);
+    await this.preencherSenha(usuario.senha);
+    await this.selecionarUnidade(usuario.unidade);
     await this.clicarBotaoEntrar();
     this.logado_ = true;
   }
