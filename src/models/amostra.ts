@@ -1,9 +1,9 @@
 export interface Amostra {
-  número: string;
-  tipo_de_criadouro: string;
-  espécie: string;
-  fase: string;
-  quantidade: string;
+  readonly número: string;
+  readonly tipo_de_criadouro: string;
+  readonly espécie: string;
+  readonly fase: string;
+  readonly quantidade: string;
 }
 
 /**

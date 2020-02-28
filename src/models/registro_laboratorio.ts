@@ -1,8 +1,8 @@
 export interface RegistroDeLaboratorio {
-  data_de_entrada: string;
-  observação: string;
-  data_da_conclusão: string;
-  técnico_responsável: string;
+  readonly data_de_entrada: string;
+  readonly observação: string;
+  readonly data_da_conclusão: string;
+  readonly técnico_responsável: string;
 }
 
 /**
