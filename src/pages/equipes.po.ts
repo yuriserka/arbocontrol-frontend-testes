@@ -177,10 +177,10 @@ export class EquipesPage extends Page {
    * função auxiliar para a confirmação de exclusão tanto para a remoção de usuários quanto da equipe
    */
   private async confirmarExclusao() {
-    await CssEditor.alterar(
-      By.xpath('//div[contains(@class, "cdk-overlay-backdrop")]'),
-      [{ atributo: 'display', valor: 'none' }]
-    );
+    // await CssEditor.alterar(
+    //   By.xpath('//div[contains(@class, "cdk-overlay-backdrop")]'),
+    //   [{ atributo: 'display', valor: 'none' }]
+    // );
 
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);

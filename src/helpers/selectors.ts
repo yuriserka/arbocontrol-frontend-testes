@@ -36,16 +36,18 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
  * @param textoProcurado texto desejado a ser buscado
  * @param textLocator caminho para onde estará localizado o texto
  *
- * @example suponha que há uma tabela de dados do tipo
+ * suponha que há uma tabela de dados do tipo
  * ```gherkin
  * | nome | concluido |
  * | t1   | False     |
  * | t2   | True      |
  * ```
+ *
  * e cada linha da tabela é dada pelo xpath:
  * ```ts
  * const root_locator = '//tbody//tr'
  * ```
+ *
  * e o xpath da coluna nome seja:
  * ```ts
  * // atenção com o '.' no inicio para indicar que é um subnó
@@ -72,13 +74,10 @@ export async function getNodeWithText(
   rootLocator: Locator,
   textoProcurado: string,
   textLocator?: WebDriverLocator
-) {
+): Promise<ElementFinder> {
   const rows = await element.all(rootLocator);
   const nomes: string[] = await element.all(rootLocator).map(r => {
-    if (textLocator) {
-      return r?.element(textLocator).getText();
-    }
-    return r?.getText();
+    return textLocator ? r?.element(textLocator).getText() : r?.getText();
   });
 
   const index = nomes.indexOf(textoProcurado);

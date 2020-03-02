@@ -8,7 +8,7 @@ export interface Amostra {
 
 /**
  * retorna um Objeto que contem informações de uma Amostra
- * @param amostra 
+ * @param amostra
  */
 export function makeAmostra(amostra: { [key: string]: string }): Amostra {
   return {

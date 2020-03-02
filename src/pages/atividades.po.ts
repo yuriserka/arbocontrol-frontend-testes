@@ -5,10 +5,11 @@
 import { By, element, browser } from 'protractor';
 import { Page } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { selectFrom } from '../helpers/selectors';
+import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 import { Atividade, DadosBasicos } from '../models/atividade';
+import { CssEditor } from '../helpers/css_editor';
 
 interface CampoDeDado {
   tipo: string;
@@ -46,6 +47,18 @@ export class AtividadesPage extends Page {
     await this.navbar_.acessarAtividades();
   }
 
+  /**
+   * cadastra uma atividade partindo da página de gerenciamento de atividades
+   * @param atividade
+   */
+  async cadastrarAtividade(atividade: Atividade) {
+    await this.cadastroBasico(atividade);
+    await this.atribuirDemandas(atividade);
+    await this.atribuirImoveis(atividade);
+    await this.atribuirEquipes(atividade);
+    await this.salvar();
+  }
+
   async cadastroBasico(atividade: Atividade) {
     await element(this.botoes_.cadastrar).click();
 
@@ -59,14 +72,94 @@ export class AtividadesPage extends Page {
         campo.tipo === 'input'
           ? await this.preencherInputDadosBasicos(campo, atividade.dadosBasicos)
           : await this.preencherTextAreaDadosBasicos(
-              campo,
-              atividade.dadosBasicos
-            );
+            campo,
+            atividade.dadosBasicos
+          );
       }
       await browser.sleep(500);
     }
 
     await this.salvar();
+  }
+
+  /**
+   * a partir da página de edição de uma atividade atribui as demandas
+   * @param atividade
+   */
+  async atribuirDemandas(atividade: Atividade) {
+    await this.selecionarAba('Demandas');
+    await this.expandirHeaderVinculo();
+
+    for (let i = 0; i < atividade.demandas.length; ++i) {
+      const numDemanda = atividade.demandas[i];
+      await SmartWaiter.waitVisibility(
+        By.xpath(`(//app-demanda-listagem//tbody//tr)[${i + 1}]`)
+      );
+      const imovelRow = await getNodeWithText(
+        By.xpath('//app-demanda-listagem//tbody//tr'),
+        numDemanda,
+        By.xpath('.//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]')
+      );
+
+      await imovelRow
+        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
+        .click();
+      await this.confirmar();
+    }
+  }
+
+  /**
+   * a partir da página de edição de uma atividade atribui os imoveis
+   * @param atividade
+   */
+  async atribuirImoveis(atividade: Atividade) {
+    await this.selecionarAba('Imóveis');
+    await this.expandirHeaderVinculo();
+
+    for (let i = 0; i < atividade.imoveis.length; ++i) {
+      const logradouroImovel = atividade.imoveis[i];
+      await SmartWaiter.waitVisibility(
+        By.xpath(`(//app-imovel-listagem//tbody//tr)[${i + 1}]`)
+      );
+      const imovelRow = await getNodeWithText(
+        By.xpath('//app-imovel-listagem//tbody//tr'),
+        logradouroImovel,
+        By.xpath(
+          './/td[contains(@class, "logradouro")]//span[@class="span-link"]'
+        )
+      );
+
+      await imovelRow
+        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
+        .click();
+      await this.confirmar();
+    }
+  }
+
+  /**
+   * a partir da página de edição de uma atividade atribui as equipes
+   * @param atividade
+   */
+  async atribuirEquipes(atividade: Atividade) {
+    await this.selecionarAba('Equipe');
+    await this.expandirHeaderVinculo();
+
+    for (let i = 0; i < atividade.equipes.length; ++i) {
+      const nomeEquipe = atividade.equipes[i];
+      await SmartWaiter.waitVisibility(
+        By.xpath(`(//app-equipe-tabela//tbody//tr)[${i + 1}]`)
+      );
+      const equipeRow = await getNodeWithText(
+        By.xpath('//app-equipe-tabela//tbody//tr'),
+        nomeEquipe,
+        By.xpath('.//td[contains(@class, "nome")]//span[@class="span-link"]')
+      );
+
+      await equipeRow
+        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
+        .click();
+      await this.confirmar();
+    }
   }
 
   private async getCamposDadosBasicos(atividade: Atividade) {
@@ -159,5 +252,33 @@ export class AtividadesPage extends Page {
     await browser.sleep(1000);
     const url = `${baseUrl}/atividades`;
     await SmartWaiter.waitUrlContain(url);
+  }
+
+  private async expandirHeaderVinculo() {
+    await SmartWaiter.waitVisibility(
+      By.xpath('(//mat-expansion-panel-header)[1]')
+    );
+    await browser.sleep(1000);
+    await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
+  }
+
+  private async confirmar() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
+  }
+
+  private async selecionarAba(nome: string) {
+    return selectFrom(
+      By.xpath(
+        '//div[@cdkmonitorelementfocus]//div[@class="mat-tab-label-content"]'
+      ),
+      nome
+    );
   }
 }
