@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 
@@ -9,9 +5,6 @@ import { By as SeleniumBy } from 'selenium-webdriver';
  * Represena a barra de navegação superior do site arbocontrol
  */
 export class ToolBar {
-  /**
-   * botões que necessitam de ser clicados
-   */
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {

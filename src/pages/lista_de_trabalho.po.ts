@@ -1,9 +1,4 @@
-/**
- * @packageDocumentation
- */
-
-import { By as SeleniumBy } from 'selenium-webdriver';
-import { Page } from './page.po';
+import { SystemPage } from './page.po';
 import { element, By, browser } from 'protractor';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
@@ -14,6 +9,10 @@ import { selectFrom } from '../helpers/selectors';
 
 let contadorQtdeTratados = 0;
 
+/**
+ * interface que sintetiza informações dos campos que devem ser preenchidos na
+ * hora de se fazer o cadastro de uma Atividade
+ */
 interface CampoDeDado {
   tipo: string;
   ariaLabel: string;
@@ -24,26 +23,12 @@ interface CampoDeDado {
  * Abstração da página de gerenciamento de listas de trabalho
  * @category Páginas do sistema
  */
-export class ListaDeTrabalhoPage extends Page {
-  /**
-   * botões que necessitam de ser clicados
-   */
-  private botoes_: { [key: string]: SeleniumBy };
-  /**
-   * campos que devem ser preenchidos
-   */
-  private campos_: { [key: string]: SeleniumBy };
-
-  /**
-   * atividade que estará sendo manipulada
-   */
-  private atividade: string;
+export class ListaDeTrabalhoPage extends SystemPage {
+  private numAtividade: string;
 
   constructor() {
     super();
-    this.botoes_ = {};
-    this.campos_ = {};
-    this.atividade = '';
+    this.numAtividade = '0';
   }
 
   /**
@@ -54,7 +39,8 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * insere um registro de campo partindo da página de gerenciamento de
+   * lista de trabalho
    * @param numeroAtividade
    * @param logradouroDoImovel
    * @param registro
@@ -67,17 +53,15 @@ export class ListaDeTrabalhoPage extends Page {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
     await this.selecionarImovel(logradouroDoImovel);
-    const abaCampo = await element(
-      By.xpath('(//app-formulario-tabela-simples//tbody//tr//td//span)[1]')
-    ).getText();
-    await this.selecionarAba(abaCampo);
+    await this.selecionarAbaRegistroDeCampo();
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.salvar();
   }
 
   /**
-   *
+   * insere um registro de laboratorio partindo da página de gerenciamento de
+   * lista de trabalho
    * @param numeroAtividade
    * @param logradouroDoImovel
    * @param registro
@@ -90,13 +74,10 @@ export class ListaDeTrabalhoPage extends Page {
     amostras: Amostra[]
   ) {
     await this.selecionarAtividade(numeroAtividade);
-    this.atividade = numeroAtividade;
+    this.numAtividade = numeroAtividade;
     await browser.sleep(1000);
     await this.selecionarImovel(logradouroDoImovel);
-    const abaLab = await element(
-      By.xpath('(//app-formulario-tabela-simples//tbody//tr//td//span)[2]')
-    ).getText();
-    await this.selecionarAba(abaLab);
+    await this.selecionarAbaRegistroDeLaboratorio();
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.preencherAmostras(amostras);
@@ -104,7 +85,8 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * preenche de forma genérica os campos tanto para registros de campo e
+   * laboratorio como para amostras
    * @param registro
    */
   private async preencherCamposDeDados(
@@ -121,7 +103,9 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * mapeia quais são as informações que serão necessárias para que todos
+   * os campos do registro sejam preenchidos de forma correta e os filtra
+   * para serem apenas os quais deverão ser preenchidos
    * @param registro
    */
   private async getCampos(
@@ -149,7 +133,7 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * seleciona a atividade para qual as listas de trabalhos serão direcionados
    * @param numero
    */
   private async selecionarAtividade(numero: string) {
@@ -162,11 +146,11 @@ export class ListaDeTrabalhoPage extends Page {
       ),
       numero
     );
-    this.atividade = numero;
+    this.numAtividade = numero;
   }
 
   /**
-   *
+   * seleciona o imovel para qual as listas de trabalhos serão direcionados
    * @param codigo
    */
   private async selecionarImovel(logradouro: string) {
@@ -180,7 +164,7 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * preenche N amostras, amostras estão localizadas no registro de laboratorio
    * @param amostras
    */
   private async preencherAmostras(amostras: Amostra[]) {
@@ -192,7 +176,7 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * preenche o nó do tipo \<input\> com o valor apropriado
    * @param campo
    * @param registro
    */
@@ -211,7 +195,8 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
+   * preenche nós que precisam que algum item seja selecionado com o valor
+   * apropriado
    * @param campo
    * @param registro
    */
@@ -228,17 +213,21 @@ export class ListaDeTrabalhoPage extends Page {
   }
 
   /**
-   *
-   * @param nomeDaAba
+   * troca para a aba de cadastro de registro de campo
    */
-  private async selecionarAba(nomeDaAba: string) {
-    const isCampo = /[cC]ampo/g.test(nomeDaAba);
+  private async selecionarAbaRegistroDeCampo() {
     await element(
-      By.xpath(
-        `(//app-formulario-tabela-simples//tbody//tr//td//span)[${
-          isCampo ? 1 : 2
-        }]`
-      )
+      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[1]`)
+    ).click();
+    await browser.sleep(1000);
+  }
+
+  /**
+   * troca para a aba de cadastro de registro de laboratorio
+   */
+  private async selecionarAbaRegistroDeLaboratorio() {
+    await element(
+      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[2]`)
     ).click();
     await browser.sleep(1000);
   }
@@ -248,7 +237,7 @@ export class ListaDeTrabalhoPage extends Page {
    */
   private async salvar() {
     await element(By.xpath('//button[@color="primary"]')).click();
-    const url = `${baseUrl}/registros/${this.atividade}`;
+    const url = `${baseUrl}/registros/${this.numAtividade}`;
     await SmartWaiter.waitUrl(url);
   }
 }

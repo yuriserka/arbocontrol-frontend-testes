@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom } from '../helpers/selectors';
@@ -12,17 +8,12 @@ import { Usuario } from '../models/usuario';
  * @category Páginas do sistema
  */
 export class LoginPage {
-  /**
-   * botões que necessitam de ser clicados
-   */
   private botoes_: { [key: string]: SeleniumBy };
-  /**
-   * campos que devem ser preenchidos
-   */
   private campos_: { [key: string]: SeleniumBy };
 
   /**
-   * guarda o estado atual para evitar tentar fazer login novamente não estando na página correta
+   * guarda o estado atual para evitar tentar fazer login novamente não estando
+   * na página correta
    */
   private logado_: boolean;
 
@@ -59,7 +50,7 @@ export class LoginPage {
   }
 
   /**
-   * preenche o cpf
+   * preenche o cpf, o cpf deve estar formatado como no exemplo
    * @example const cpf = "111.111.111-11"
    * @param cpf
    */
@@ -75,6 +66,10 @@ export class LoginPage {
     await element(this.campos_.senha).sendKeys(senha);
   }
 
+  /**
+   * Seleciona a unidade dada a lista de unidades da qual o usuario faz parte
+   * @param nome
+   */
   private async selecionarUnidade(nome: string) {
     await element(this.campos_.unidade).click();
     await selectFrom(By.xpath('//*[@role="option"]//span//span'), nome);

@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from './smart_waiter';
@@ -10,9 +6,6 @@ import { SmartWaiter } from './smart_waiter';
  * Permite o acesso à todas as páginas do sistema
  */
 export class SideNav {
-  /**
-   * botões que necessitam de ser clicados
-   */
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {

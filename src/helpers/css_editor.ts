@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import { browser, element, Locator } from 'protractor';
 
 /**
@@ -15,7 +11,7 @@ export class CssEditor {
    * @param atributo
    * @param valor
    */
-  static async alterar(
+  static async execute(
     locator: Locator,
     estilos: Array<{ atributo: string; valor: string }>
   ) {

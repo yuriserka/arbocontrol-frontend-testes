@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import moment = require('moment');
 import { browser, By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
@@ -12,17 +8,8 @@ import { SmartWaiter } from './smart_waiter';
  * Responsável pelas interações com a extensão do Blaze Meter
  */
 export class Recorder {
-  /**
-   * botões que necessitam de ser clicados
-   */
   private botoes_: { [key: string]: SeleniumBy };
-  /**
-   * campos que devem ser preenchidos
-   */
   private campos_: { [key: string]: SeleniumBy };
-  /**
-   * data de geração do arquivo .jmx exportado
-   */
   private nomeArquivo_: string;
 
   /**
@@ -46,15 +33,6 @@ export class Recorder {
   }
 
   /**
-   * Acessa a página principal de configuração da extensão
-   */
-  private async get_() {
-    await browser.get(
-      'chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html'
-    );
-  }
-
-  /**
    * Realiza todo o procedimento necessário para começar uma
    * gravação e então inicia ela.
    */
@@ -63,8 +41,8 @@ export class Recorder {
     await browser.executeScript('window.open()');
     const handles = await browser.getAllWindowHandles();
     await browser.switchTo().window(handles[1]);
-    await this.get_();
-    await this.login(false);
+    await this.get();
+    await this.BlazeMeterlogin();
     await this.gravar();
 
     // retorna para a primeira aba aberta, para que os testes continuem
@@ -78,17 +56,25 @@ export class Recorder {
    */
   async terminar() {
     await browser.waitForAngularEnabled(false);
-    await this.get_();
+    await this.get();
     await this.parar();
     await this.salvar();
   }
 
   /**
-   * A partir da tela inicial da extensão, acessa a página de login
-   * e faz o login
-   * @param comGoogle
+   * Acessa a página principal de configuração da extensão
    */
-  private async login(comGoogle: boolean) {
+  private async get() {
+    await browser.get(
+      'chrome-extension://mbopgmdnpcbohhpnfglgohlbhfongabi/html/popup.html'
+    );
+  }
+
+  /**
+   * A partir da tela inicial da extensão, acessa a página de login
+   * e faz o login utilizando a conta do BlazeMeter
+   */
+  private async BlazeMeterlogin() {
     const blazeConfigPage = await browser.getWindowHandle();
     await element(this.botoes_.login).click();
 
@@ -97,7 +83,30 @@ export class Recorder {
     await browser.switchTo().window(handles[2]);
 
     const blaze = new BlazeMeterPage();
-    comGoogle ? await blaze.loginGoogle() : await blaze.login();
+    await blaze.login();
+
+    await SmartWaiter.waitUrl(
+      'https://a.blazemeter.com/app/#/welcome-screen',
+      5000
+    );
+    await browser.switchTo().window(blazeConfigPage);
+    await browser.navigate().refresh();
+  }
+
+  /**
+   * A partir da tela inicial da extensão, acessa a página de login
+   * e faz o login utilizando a conta do Google
+   */
+  private async Googlelogin() {
+    const blazeConfigPage = await browser.getWindowHandle();
+    await element(this.botoes_.login).click();
+
+    const handles = await browser.getAllWindowHandles();
+    await browser.waitForAngularEnabled(false);
+    await browser.switchTo().window(handles[2]);
+
+    const blaze = new BlazeMeterPage();
+    await blaze.googleLogin();
 
     await SmartWaiter.waitUrl(
       'https://a.blazemeter.com/app/#/welcome-screen',

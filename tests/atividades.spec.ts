@@ -1,6 +1,6 @@
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
-import { browser } from 'protractor';
+import { browser, element } from 'protractor';
 import { LoginPage } from '../src/pages/login.po';
 import { AtividadesPage } from '../src/pages/atividades.po';
 import { TableDefinition } from 'cucumber';
@@ -30,7 +30,9 @@ Then(
   'eu vou cadastrar uma atividade com os dados básicos',
   async (dataTable: TableDefinition) => {
     atividade.dadosBasicosData = dataTable.hashes()[0];
-    await atividadesPage.cadastroBasico(atividade);
+    await element(atividadesPage['botoes_']['cadastrar']).click();
+    await atividadesPage.cadastroBasico(atividade.dadosBasicos);
+    await atividadesPage['salvar']();
     expect(await browser.driver.getCurrentUrl()).include(
       'http://localhost/atividades/editar/'
     );

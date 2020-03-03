@@ -24,7 +24,7 @@ Given('que eu navego até a url do site do SisVetor', async () => {
   await browser.get(baseUrl);
   await browser.waitForAngular();
   if (recording) {
-    await CssEditor.alterar(
+    await CssEditor.execute(
       By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'),
       [{ atributo: 'display', valor: 'none' }]
     );

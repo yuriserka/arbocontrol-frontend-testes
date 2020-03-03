@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation Funções relacionadas a seleção de elementos da tela
- */
-
 import { element, ElementFinder, Locator } from 'protractor';
 import { WebDriverLocator } from 'protractor/built/locators';
 
@@ -9,7 +5,8 @@ import { WebDriverLocator } from 'protractor/built/locators';
  * Dada uma lista de opções (com caminho já apontando para os nós que
  * conterão o texto), seleciona a opção que conter o mesmo texto que
  * o passado em opcaoProcurada
- * @param locator caminho para um ou mais nós que possuam um texto dentro para ser comparado
+ * @param locator caminho para um ou mais nós que possuam um texto dentro para
+ * ser comparado
  * @param opcaoProcurada string que deverá ser comparada
  */
 export async function selectFrom(locator: Locator, opcaoProcurada: string) {
