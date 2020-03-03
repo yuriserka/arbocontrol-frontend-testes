@@ -54,8 +54,8 @@ Then(
   }
 );
 
-Then('selecionarei a aba {string}', async (nome: string) => {
-  await listaDeTrabalhoPage['selecionarAba'](nome);
+Then('selecionarei a aba de registros de laboratório', async () => {
+  await listaDeTrabalhoPage['selecionarAbaRegistroDeLaboratorio']();
 });
 
 Then(

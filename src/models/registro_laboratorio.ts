@@ -7,7 +7,7 @@ export interface RegistroDeLaboratorio {
 
 /**
  * retorna um Objeto que contem informações de um Registro de Laboratorio
- * @param registro 
+ * @param registro
  */
 export function makeRegistroDeLaboratorio(registro: {
   [key: string]: string;

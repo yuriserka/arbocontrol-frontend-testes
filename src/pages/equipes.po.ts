@@ -1,25 +1,14 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element, browser } from 'protractor';
-import { Page } from './page.po';
+import { SystemPage } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
-import { CssEditor } from '../helpers/css_editor';
 import { SmartWaiter } from '../helpers/smart_waiter';
 
 /**
  * Abstração da página de gerenciamento de equipes
  * @category Páginas do sistema
  */
-export class EquipesPage extends Page {
-  /**
-   * mapeamento do nome dos botões para a função que deve ser
-   * chamada
-   * @private
-   * @constant
-   */
+export class EquipesPage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {
@@ -86,7 +75,8 @@ export class EquipesPage extends Page {
 
   /**
    * desvincula os usuarios da equipe que foi selecionada anteriormente
-   * @param nomes array contendo o nome dos usuarios que devem ser excluidos, caso nenhum nome seja passado, todos serão excluidos
+   * @param nomes array contendo o nome dos usuarios que devem ser excluidos,
+   * caso nenhum nome seja passado, todos serão excluidos
    */
   async desvincularUsuarios(nomeEquipe: string, nomes?: string[]) {
     await this.selecionarEquipe(nomeEquipe);
@@ -113,9 +103,19 @@ export class EquipesPage extends Page {
   }
 
   /**
-   * Vincula uma lista de usuários à equipe selecionada
-   * @param equipe nome da equipe onde serão vinculados os usuários
-   * @param usuarios array de usuário contendo informação sobre nome e cargo
+   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
+   * @param equipe nome da equipe
+   */
+  private async selecionarEquipe(equipe: string) {
+    await selectFrom(
+      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      equipe
+    );
+  }
+
+  /**
+   * Desvincula um usuário da equipe
+   * @param nome
    */
   private async desvincularUsuario(nome: string) {
     const userRow = await this.getUsuarioRow(nome);
@@ -123,6 +123,21 @@ export class EquipesPage extends Page {
       .element(By.xpath('.//td[contains(@class, "cdk-column-acoes")]//button'))
       .click();
     await this.confirmarExclusao();
+  }
+
+  /**
+   * função auxiliar para a confirmação de exclusão tanto para a remoção de
+   * usuários quanto da equipe
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 
   /**
@@ -151,48 +166,6 @@ export class EquipesPage extends Page {
   }
 
   /**
-   * retorna a linha que contém as informações do usuario
-   * @param nome nome do usuario
-   */
-  private async getUsuarioRow(nome: string) {
-    return getNodeWithText(
-      By.xpath('//tbody//tr'),
-      nome,
-      By.xpath('.//td[contains(@class, "cdk-column-vinculo")]//a')
-    );
-  }
-
-  /**
-   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
-   * @param equipe nome da equipe
-   */
-  private async selecionarEquipe(equipe: string) {
-    await selectFrom(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
-      equipe
-    );
-  }
-
-  /**
-   * função auxiliar para a confirmação de exclusão tanto para a remoção de usuários quanto da equipe
-   */
-  private async confirmarExclusao() {
-    await CssEditor.alterar(
-      By.xpath('//div[contains(@class, "cdk-overlay-backdrop")]'),
-      [{ atributo: 'display', valor: 'none' }]
-    );
-
-    const dialog = By.xpath('//mat-dialog-container');
-    await SmartWaiter.waitVisibility(dialog);
-
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
-  }
-
-  /**
    * atribui um cargo ao usuario
    * @param usuario estrutura que contém informação sobre nome e cargo
    */
@@ -205,5 +178,17 @@ export class EquipesPage extends Page {
         )
       )
       .click();
+  }
+
+  /**
+   * retorna a linha que contém as informações do usuario
+   * @param nome nome do usuario
+   */
+  private async getUsuarioRow(nome: string) {
+    return getNodeWithText(
+      By.xpath('//tbody//tr'),
+      nome,
+      By.xpath('.//td[contains(@class, "cdk-column-vinculo")]//a')
+    );
   }
 }

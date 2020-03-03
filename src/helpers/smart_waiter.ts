@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import {
   browser,
   element,
@@ -41,7 +37,7 @@ export class SmartWaiter {
   }
 
   /**
-   * Espera até que a url tenha algum pedaço que de match com a string passada
+   * Espera até que a url tenha como substring a string passada
    *
    * @param str
    * @param tempoAdicional

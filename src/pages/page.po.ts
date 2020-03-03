@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- */
-
 import { SideNav } from '../helpers/sidenav';
 import { ToolBar } from '../helpers/toolbar';
 
@@ -9,7 +5,7 @@ import { ToolBar } from '../helpers/toolbar';
  * Abstração dos componentes basicos que todas as páginas possuem
  * @category Util
  */
-export class Page {
+export abstract class SystemPage {
   /**
    * barra de navegação superior visível em todas as paginas
    */
@@ -23,6 +19,8 @@ export class Page {
     this.toolbar_ = new ToolBar();
     this.navbar_ = new SideNav();
   }
+
+  abstract async get(): Promise<void>;
 
   /**
    * faz logout do sistema

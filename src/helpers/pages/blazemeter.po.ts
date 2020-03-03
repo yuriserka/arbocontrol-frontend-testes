@@ -1,24 +1,14 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { GoogleAccountPage } from './google_account.po';
 import { googleAccount, blazeMeterAccount } from '../../../config';
 
 /**
- * Responsável por prover interfaces para login utilizando o Google
- * quanto com uma conta do Blaze Meter
+ * Responsável por prover interfaces para login utilizando tanto uma conta do
+ * Google quanto com uma conta do Blaze Meter
  */
 export class BlazeMeterPage {
-  /**
-   * botões que necessitam de ser clicados
-   */
   private botoes_: { [key: string]: SeleniumBy };
-  /**
-   * campos que devem ser preenchidos
-   */
   private campos_: { [key: string]: SeleniumBy };
 
   constructor() {
@@ -36,7 +26,7 @@ export class BlazeMeterPage {
    * redireciona para a página de login do google e utiliza as
    * credenciais criadas.
    */
-  async loginGoogle() {
+  async googleLogin() {
     await element(this.botoes_.google).click();
     await new GoogleAccountPage().login(
       googleAccount.email,
