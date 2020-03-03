@@ -1,15 +1,15 @@
-/**
- * @packageDocumentation
- */
-
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { Page } from './page.po';
+import { SystemPage } from './page.po';
 import { By, element, browser } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 import { Imovel } from '../models/imovel';
 
+/**
+ * interface que sintetiza informações dos campos que devem ser preenchidos na
+ * hora de se fazer o cadastro de um Imóvel
+ */
 interface CampoDeDado {
   tipo: string;
   role: string;
@@ -21,15 +21,8 @@ interface CampoDeDado {
  * Abstração da página de gerenciamento de imóveis
  * @category Páginas do sistema
  */
-export class ImovelPage extends Page {
-  /**
-   * botões que necessitam de ser clicados
-   */
+export class ImovelPage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
-  /**
-   * campos que devem ser preenchidos
-   */
-  private campos_: { [key: string]: SeleniumBy };
 
   constructor() {
     super();
@@ -37,7 +30,6 @@ export class ImovelPage extends Page {
       filtrar: By.xpath('(//button[@color="primary"])[1]'),
       cadastrar: By.xpath('(//button[@color="primary"])[2]'),
     };
-    this.campos_ = {};
   }
 
   /**
@@ -48,7 +40,7 @@ export class ImovelPage extends Page {
   }
 
   /**
-   * cadastra um imóvel
+   * cadastra um imóvel partindo da página de gerenciamento de imóveis
    * @param imovel
    */
   async cadastrarImovel(imovel: Imovel) {
@@ -71,6 +63,12 @@ export class ImovelPage extends Page {
     await SmartWaiter.waitUrl(`${baseUrl}/imoveis`);
   }
 
+  /**
+   * mapeia quais são as informações que serão necessárias para que todos os
+   * campos do registro sejam preenchidos de forma correta e os filtra para
+   * serem apenas os quais deverão ser preenchidos
+   * @param imovel
+   */
   private async getCampos(imovel: Imovel) {
     const campos: CampoDeDado[] = await element
       .all(By.xpath('(//input|//textarea)[@placeholder]'))
@@ -89,7 +87,7 @@ export class ImovelPage extends Page {
   }
 
   /**
-   *
+   * preenche o nó do tipo \<input\> com o valor apropriado
    * @param campo
    * @param imovel
    */
@@ -102,7 +100,8 @@ export class ImovelPage extends Page {
   }
 
   /**
-   *
+   * preenche nós que precisam que algum item seja selecionado (role=option)
+   * com o valor apropriado
    * @param campo
    * @param imovel
    */
@@ -115,7 +114,7 @@ export class ImovelPage extends Page {
   }
 
   /**
-   *
+   * preenche o nó do tipo \<textarea\> com o valor apropriado
    * @param campo
    * @param imovel
    */

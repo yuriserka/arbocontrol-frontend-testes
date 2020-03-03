@@ -1,16 +1,15 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element, browser } from 'protractor';
-import { Page } from './page.po';
+import { SystemPage } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 import { Atividade, DadosBasicos } from '../models/atividade';
-import { CssEditor } from '../helpers/css_editor';
 
+/**
+ * interface que sintetiza informações dos campos que devem ser preenchidos na
+ * hora de se fazer o cadastro de uma Atividade
+ */
 interface CampoDeDado {
   tipo: string;
   role: string;
@@ -20,16 +19,10 @@ interface CampoDeDado {
 }
 
 /**
- * Abstração da página de gerenciamento de equipes
+ * Abstração da página de gerenciamento de atividades
  * @category Páginas do sistema
  */
-export class AtividadesPage extends Page {
-  /**
-   * mapeamento do nome dos botões para a função que deve ser
-   * chamada
-   * @private
-   * @constant
-   */
+export class AtividadesPage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {
@@ -52,34 +45,45 @@ export class AtividadesPage extends Page {
    * @param atividade
    */
   async cadastrarAtividade(atividade: Atividade) {
-    await this.cadastroBasico(atividade);
+    await element(this.botoes_.cadastrar).click();
+    await this.cadastroBasico(atividade.dadosBasicos);
+    await this.salvar();
+    await browser.sleep(1000);
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
+    // é necessário voltar à aba dos dados básicos para poder salvar
+    await this.selecionarAba('Dados Básicos');
     await this.salvar();
   }
 
-  async cadastroBasico(atividade: Atividade) {
-    await element(this.botoes_.cadastrar).click();
+  /**
+   * atualiza os dados básicos de uma atividade previamente cadastrada
+   * @param atividade
+   */
+  async atribuirDadosBasicos(atividade: Atividade) {
+    await this.selecionarAba('Dados Básicos');
+    await this.cadastroBasico(atividade.dadosBasicos);
+  }
 
-    const campos = await this.getCamposDadosBasicos(atividade);
-
+  /**
+   * faz um cadastro simples de uma atividade, ou seja, sem nenhum tipo de
+   * atribuição a ela
+   * @param dados
+   */
+  async cadastroBasico(dados: DadosBasicos) {
+    const campos = await this.getCamposDadosBasicos(dados);
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
       if (campo.role) {
-        await this.preencherSelectDadosBasicos(campo, atividade.dadosBasicos);
+        await this.preencherSelectDadosBasicos(campo, dados);
       } else {
         campo.tipo === 'input'
-          ? await this.preencherInputDadosBasicos(campo, atividade.dadosBasicos)
-          : await this.preencherTextAreaDadosBasicos(
-            campo,
-            atividade.dadosBasicos
-          );
+          ? await this.preencherInputDadosBasicos(campo, dados)
+          : await this.preencherTextAreaDadosBasicos(campo, dados);
       }
       await browser.sleep(500);
     }
-
-    await this.salvar();
   }
 
   /**
@@ -98,13 +102,15 @@ export class AtividadesPage extends Page {
       const imovelRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
         numDemanda,
-        By.xpath('.//td[contains(@class, "cdk-column-id")]//span[@class="span-link"]')
+        By.xpath(
+          './/td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
+        )
       );
 
       await imovelRow
         .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
         .click();
-      await this.confirmar();
+      await this.confirmarAcao();
     }
   }
 
@@ -132,7 +138,7 @@ export class AtividadesPage extends Page {
       await imovelRow
         .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
         .click();
-      await this.confirmar();
+      await this.confirmarAcao();
     }
   }
 
@@ -158,11 +164,17 @@ export class AtividadesPage extends Page {
       await equipeRow
         .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
         .click();
-      await this.confirmar();
+      await this.confirmarAcao();
     }
   }
 
-  private async getCamposDadosBasicos(atividade: Atividade) {
+  /**
+   * mapeia quais são as informações que serão necessárias para que todos os
+   * campos do registro sejam preenchidos de forma correta e os filtra para
+   * serem apenas os quais deverão ser preenchidos
+   * @param atividade
+   */
+  private async getCamposDadosBasicos(dados: DadosBasicos) {
     const campos: CampoDeDado[] = await element
       .all(
         By.xpath(
@@ -184,13 +196,13 @@ export class AtividadesPage extends Page {
       });
 
     return campos.filter(c => {
-      const keys = Object.keys(atividade.dadosBasicos);
+      const keys = Object.keys(dados);
       return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
     });
   }
 
   /**
-   *
+   * preenche o nó do tipo \<input\> com o valor apropriado
    * @param campo
    * @param dadosBasicos
    */
@@ -206,7 +218,8 @@ export class AtividadesPage extends Page {
   }
 
   /**
-   *
+   * preenche nós que precisam que algum item seja selecionado
+   * (role=[combobox | listbox]) com o valor apropriado
    * @param campo
    * @param dadosBasicos
    */
@@ -230,7 +243,7 @@ export class AtividadesPage extends Page {
   }
 
   /**
-   *
+   * preenche o nó do tipo \<textarea\> com o valor apropriado
    * @param campo
    * @param dadosBasicos
    */
@@ -254,6 +267,9 @@ export class AtividadesPage extends Page {
     await SmartWaiter.waitUrlContain(url);
   }
 
+  /**
+   * expande o menu de vinculação para demandas, imóveis e equipe
+   */
   private async expandirHeaderVinculo() {
     await SmartWaiter.waitVisibility(
       By.xpath('(//mat-expansion-panel-header)[1]')
@@ -262,7 +278,11 @@ export class AtividadesPage extends Page {
     await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
   }
 
-  private async confirmar() {
+  /**
+   * ao clicar para adicionar tanto para equipes, imoveis e demandas é necessário
+   * confirmar a operação de adição à atividade
+   */
+  private async confirmarAcao() {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
@@ -273,6 +293,10 @@ export class AtividadesPage extends Page {
     await browser.sleep(1000);
   }
 
+  /**
+   * Troca entre as abas da página de cadastro
+   * @param nome
+   */
   private async selecionarAba(nome: string) {
     return selectFrom(
       By.xpath(

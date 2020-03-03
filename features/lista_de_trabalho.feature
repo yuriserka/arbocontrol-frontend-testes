@@ -23,7 +23,7 @@ Exemplos:
 Esquema do Cenário: Inserção com sucesso de um registro de laboratório
     Então eu vou selecionar a atividade "<numero_atividade>"
     E selecionar o imovel "<logradouro_imovel>"
-    E selecionarei a aba "Laboratório - Dengue Por Amostra (Manaus-AM)"
+    E selecionarei a aba de registros de laboratório
     E irei cadastrar um registro de laboratório com os valores
     | data_de_entrada | observação | data_da_conclusão | técnico_responsável |
     | 10/10/2020      | nenhuma    | 11/10/2020        | exemplo_2           |

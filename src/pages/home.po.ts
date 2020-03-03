@@ -1,19 +1,11 @@
-/**
- * @packageDocumentation
- */
-
 import { By, element } from 'protractor';
-import { Page } from './page.po';
+import { SystemPage } from './page.po';
 
 /**
  * Abstração da página inicial após login
  * @category Páginas do sistema
  */
-export class HomePage extends Page {
-  /**
-   * mapeamento do nome dos botões para a função que deve ser
-   * chamada
-   */
+export class HomePage extends SystemPage {
   private btn2page_: { [key: string]: () => Promise<void> };
 
   constructor() {
@@ -35,6 +27,14 @@ export class HomePage extends Page {
       perfis_usuarios: () => this.navbar_.acessarPerfisDeUsuario(),
       perfil_usuario_unidade: () => this.navbar_.acessarUsuariosDaUnidade(),
     };
+  }
+
+  /**
+   * Ainda não há como acessar a página inicial do Sistema, apenas quando se
+   * entra pela primeira vez
+   */
+  async get() {
+    throw new Error('não é possível acessar a página inicial');
   }
 
   /**
