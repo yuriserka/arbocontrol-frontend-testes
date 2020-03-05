@@ -7,6 +7,12 @@ import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { makeUsuario } from '../src/models/usuario';
 import { Atividade } from '../src/models/atividade';
+import {
+  assertDemandaVinculada,
+  assertImovelVinculado,
+  assertEquipeVinculada,
+  assertAtividadeExiste,
+} from '../src/helpers/asserts/atividade';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -34,7 +40,7 @@ Then(
     await atividadesPage.cadastroBasico(atividade.dadosBasicos);
     await atividadesPage['salvar']();
     expect(await browser.driver.getCurrentUrl()).include(
-      'http://localhost/atividades/editar/'
+      'http://localhost/atividades/'
     );
   }
 );
@@ -45,6 +51,11 @@ Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
   expect(await browser.driver.getCurrentUrl()).include(
     'http://localhost/atividades/editar/'
   );
+
+  for (let i = 0; i < atividade.demandas.length; ++i) {
+    const demanda = atividade.demandas[i];
+    expect(await assertDemandaVinculada(demanda)).to.be.equal(true);
+  }
 });
 
 Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
@@ -53,6 +64,11 @@ Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
   expect(await browser.driver.getCurrentUrl()).include(
     'http://localhost/atividades/editar/'
   );
+
+  for (let i = 0; i < atividade.imoveis.length; ++i) {
+    const imovel = atividade.imoveis[i];
+    expect(await assertImovelVinculado(imovel)).to.be.equal(true);
+  }
 });
 
 Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
@@ -61,4 +77,16 @@ Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
   expect(await browser.driver.getCurrentUrl()).include(
     'http://localhost/atividades/editar/'
   );
+
+  for (let i = 0; i < atividade.equipes.length; ++i) {
+    const equipe = atividade.equipes[i];
+    expect(await assertEquipeVinculada(equipe)).to.be.equal(true);
+  }
+});
+
+Then('irei salvar', async () => {
+  await atividadesPage['salvar']();
+  expect(
+    await assertAtividadeExiste(atividade.dadosBasicos.titulo)
+  ).to.be.equal(true);
 });
