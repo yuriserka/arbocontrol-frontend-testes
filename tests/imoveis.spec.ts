@@ -7,6 +7,7 @@ import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { makeUsuario } from '../src/models/usuario';
 import { makeImovel } from '../src/models/imovel';
+import { assertImovelExiste } from '../src/helpers/asserts/imovel';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
@@ -31,4 +32,6 @@ Then('eu vou cadastrar o imovel', async (dataTable: TableDefinition) => {
   expect(await browser.driver.getCurrentUrl()).to.be.equal(
     `${baseUrl}/imoveis`
   );
+
+  expect(await assertImovelExiste(imovel.logradouro)).to.be.equal(true);
 });

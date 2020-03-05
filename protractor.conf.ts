@@ -23,11 +23,11 @@ export const config: Config = {
     },
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/atividades.feature'], // path relativo ao protractor.conf.js que está em build/
+  specs: ['../features/imoveis.feature'], // path relativo ao protractor.conf.js que está em build/
   stopSpecOnExpectationFailure: true,
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['tests/atividades.spec.js'], // path relativo ao protractor.conf.js que está em build/
+    require: ['tests/imoveis.spec.js'], // path relativo ao protractor.conf.js que está em build/
     format: ['json:./reports/results.json'],
     tags: false,
     strict: true,
