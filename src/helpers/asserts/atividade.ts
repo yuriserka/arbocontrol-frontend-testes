@@ -80,7 +80,9 @@ export async function assertEquipeVinculada(nomeDaEquipe: string) {
           ?.element(By.xpath('td[contains(@class, "vinculo")]'))
           .getText(),
         cargo: row
-          ?.element(By.xpath('td[contains(@class, "cdk-column-agente")]//input'))
+          ?.element(
+            By.xpath('td[contains(@class, "cdk-column-agente")]//input')
+          )
           .getAttribute('aria-checked')
           .then((val: string) => val === 'true')
           .then((equal: boolean) => (equal ? 'agente' : 'supervisor')),
