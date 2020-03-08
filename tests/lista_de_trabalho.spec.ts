@@ -9,12 +9,14 @@ import { makeUsuario } from '../src/models/usuario';
 import { makeRegistroDeCampo } from '../src/models/registro_campo';
 import { makeRegistroDeLaboratorio } from '../src/models/registro_laboratorio';
 import { makeAmostra } from '../src/models/amostra';
+import { assertRegistroInserido } from '../src/helpers/asserts/lista_de_trabalho';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
 let atividade: string;
+let qtdRegistrosAntes: number;
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -48,6 +50,10 @@ Then('selecionar o imovel {string}', async (logradouro: string) => {
 Then(
   'irei cadastrar um registro de campo com os valores',
   async (dataTable: TableDefinition) => {
+    qtdRegistrosAntes = await element
+      .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
+      .count();
+
     await element(By.xpath('//button[@color="primary"]')).click();
     const registroDeCampo = makeRegistroDeCampo(dataTable.hashes()[0]);
     await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeCampo);
@@ -61,6 +67,10 @@ Then('selecionarei a aba de registros de laboratório', async () => {
 Then(
   'irei cadastrar um registro de laboratório com os valores',
   async (dataTable: TableDefinition) => {
+    qtdRegistrosAntes = await element
+      .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
+      .count();
+
     await element(By.xpath('//button[@color="primary"]')).click();
     const registroDeLab = makeRegistroDeLaboratorio(dataTable.hashes()[0]);
     await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeLab);
@@ -77,4 +87,5 @@ Then('salvar', async () => {
   expect(await browser.getCurrentUrl()).to.be.equal(
     `${baseUrl}/registros/${atividade}`
   );
+  expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
 });

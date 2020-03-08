@@ -3,21 +3,14 @@ import { By, element } from 'protractor';
 import { baseUrl } from '../../../config';
 
 /**
- *
+ * checa se a quantidade de registros antes da inserção é menor que depois da inserção
  * @param quantidadeAntiga
  */
-export async function assertRegistroDeCampoInserido(quantidadeAntiga: number) {
-  await SmartWaiter.waitUrl(`${baseUrl}/lista_de_trabalho`);
-  return (await element.all(By.xpath('')).count()) > quantidadeAntiga;
-}
-
-/**
- *
- * @param quantidadeAntiga
- */
-export async function assertRegistroDeLaboratorioInserido(
-  quantidadeAntiga: number
-) {
-  await SmartWaiter.waitUrl(`${baseUrl}/lista_de_trabalho`);
-  return (await element.all(By.xpath('')).count()) > quantidadeAntiga;
+export async function assertRegistroInserido(quantidadeAntiga: number) {
+  await SmartWaiter.waitUrlContain(`${baseUrl}/registros`);
+  return (
+    (await element
+      .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
+      .count()) > quantidadeAntiga
+  );
 }
