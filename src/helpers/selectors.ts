@@ -3,8 +3,27 @@ import { WebDriverLocator } from 'protractor/built/locators';
 
 /**
  * Dada uma lista de opções (com caminho já apontando para os nós que
- * conterão o texto), seleciona a opção que conter o mesmo texto que
- * o passado em opcaoProcurada
+ * conterão o texto), seleciona a opção que contenha o mesmo texto que o
+ * procurado
+ * 
+ * suponha que há um campo \<select\> do tipo
+ * 
+ * espécie:
+ *  - Aedes aegypti
+ *  - Aedes albopictus
+ *  - Anopheles
+ * 
+ * e cada texto da opção é dada pelo xpath:
+ * ```ts
+ * const locator = By.xpath('//select//option//span')
+ * ```
+ * 
+ * e deseja-se selecionar a opção que contém o texto 'Anopheles',
+ * então a chamada para a função fica:
+ * ```ts
+ * await selectFrom(locator, 'Anopheles');
+ * ```
+ * 
  * @param locator caminho para um ou mais nós que possuam um texto dentro para
  * ser comparado
  * @param opcaoProcurada string que deverá ser comparada
@@ -42,18 +61,18 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
  *
  * e cada linha da tabela é dada pelo xpath:
  * ```ts
- * const root_locator = '//tbody//tr'
+ * const root_locator = By.xpath('//tbody//tr')
  * ```
  *
  * e o xpath da coluna nome seja:
  * ```ts
  * // atenção com o '.' no inicio para indicar que é um subnó
- * nome_locator = './/td//span[@id="nome"]'
+ * nome_locator = By.xpath('.//td//span//span')
  * ```
  * e a opção de concluido seja dado pelo xpath:
  * ```ts
  * // atenção com o '.' no inicio para indicar que é um subnó
- * opt_concluido = './/td//input[@type="checkbox"]'
+ * opt_concluido = By.xpath('.//td//input')
  * ```
  * Então, suponha que seja necessário alterar a coluna concluido com base
  * no nome que for passado.

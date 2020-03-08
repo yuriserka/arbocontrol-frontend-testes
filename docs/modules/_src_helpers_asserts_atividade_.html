@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;src/models/amostra&quot; | testes_web</title>
+	<title>&quot;src/helpers/asserts/atividade&quot; | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_src_models_amostra_.html">&quot;src/models/amostra&quot;</a>
+					<a href="_src_helpers_asserts_atividade_.html">&quot;src/helpers/asserts/atividade&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;src/models/amostra&quot;</h1>
+			<h1>External module &quot;src/helpers/asserts/atividade&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,15 +71,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-kind-icon">Amostra</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_models_amostra_.html#makeamostra" class="tsd-kind-icon">make<wbr>Amostra</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_asserts_atividade_.html#assertatividadeexiste" class="tsd-kind-icon">assert<wbr>Atividade<wbr>Existe</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_asserts_atividade_.html#assertdemandavinculada" class="tsd-kind-icon">assert<wbr>Demanda<wbr>Vinculada</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_asserts_atividade_.html#assertequipevinculada" class="tsd-kind-icon">assert<wbr>Equipe<wbr>Vinculada</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_helpers_asserts_atividade_.html#assertimovelvinculado" class="tsd-kind-icon">assert<wbr>Imovel<wbr>Vinculado</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,37 +85,122 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="makeamostra" class="tsd-anchor"></a>
-					<h3>make<wbr>Amostra</h3>
+					<a name="assertatividadeexiste" class="tsd-anchor"></a>
+					<h3>assert<wbr>Atividade<wbr>Existe</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Amostra<span class="tsd-signature-symbol">(</span>amostra<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-signature-type">Amostra</a></li>
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Atividade<wbr>Existe<span class="tsd-signature-symbol">(</span>nomeDaAtividade<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/amostra.ts#L13">src/models/amostra.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/helpers/asserts/atividade.ts#L12">src/helpers/asserts/atividade.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>retorna um Objeto que contem informações de uma Amostra</p>
+									<p>checa se a atividade existe na página de gerenciamento de atividades</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>amostra: <span class="tsd-signature-symbol">{}</span></h5>
+									<h5>nomeDaAtividade: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-										</li>
-									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-signature-type">Amostra</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="assertdemandavinculada" class="tsd-anchor"></a>
+					<h3>assert<wbr>Demanda<wbr>Vinculada</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Demanda<wbr>Vinculada<span class="tsd-signature-symbol">(</span>numeroDaDemanda<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/helpers/asserts/atividade.ts#L32">src/helpers/asserts/atividade.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>checa se a demanda foi corretamente atribuída à atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>numeroDaDemanda: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="assertequipevinculada" class="tsd-anchor"></a>
+					<h3>assert<wbr>Equipe<wbr>Vinculada</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Equipe<wbr>Vinculada<span class="tsd-signature-symbol">(</span>nomeDaEquipe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/helpers/asserts/atividade.ts#L72">src/helpers/asserts/atividade.ts:72</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>checa se a equipe foi corretamente vinculada à atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nomeDaEquipe: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="assertimovelvinculado" class="tsd-anchor"></a>
+					<h3>assert<wbr>Imovel<wbr>Vinculado</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Imovel<wbr>Vinculado<span class="tsd-signature-symbol">(</span>logradouroDoImovel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/helpers/asserts/atividade.ts#L52">src/helpers/asserts/atividade.ts:52</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>checa se o imóvel foi corretamente atribído à atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logradouroDoImovel: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -131,17 +213,23 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_src_models_amostra_.html">&quot;src/models/amostra&quot;</a>
+						<a href="_src_helpers_asserts_atividade_.html">&quot;src/helpers/asserts/atividade&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-kind-icon">Amostra</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_src_helpers_asserts_atividade_.html#assertatividadeexiste" class="tsd-kind-icon">assert<wbr>Atividade<wbr>Existe</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_src_models_amostra_.html#makeamostra" class="tsd-kind-icon">make<wbr>Amostra</a>
+						<a href="_src_helpers_asserts_atividade_.html#assertdemandavinculada" class="tsd-kind-icon">assert<wbr>Demanda<wbr>Vinculada</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_src_helpers_asserts_atividade_.html#assertequipevinculada" class="tsd-kind-icon">assert<wbr>Equipe<wbr>Vinculada</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_src_helpers_asserts_atividade_.html#assertimovelvinculado" class="tsd-kind-icon">assert<wbr>Imovel<wbr>Vinculado</a>
 					</li>
 				</ul>
 			</nav>
