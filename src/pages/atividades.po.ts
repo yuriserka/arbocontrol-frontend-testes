@@ -52,8 +52,6 @@ export class AtividadesPage extends SystemPage {
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
-    // é necessário voltar à aba dos dados básicos para poder salvar
-    await this.selecionarAba('Dados Básicos');
     await this.salvar();
   }
 
@@ -99,7 +97,7 @@ export class AtividadesPage extends SystemPage {
       await SmartWaiter.waitVisibility(
         By.xpath(`(//app-demanda-listagem//tbody//tr)[${i + 1}]`)
       );
-      const imovelRow = await getNodeWithText(
+      const demandaRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
         numDemanda,
         By.xpath(
@@ -107,7 +105,7 @@ export class AtividadesPage extends SystemPage {
         )
       );
 
-      await imovelRow
+      await demandaRow
         .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
         .click();
       await this.confirmarAcao();
@@ -178,7 +176,7 @@ export class AtividadesPage extends SystemPage {
     const campos: CampoDeDado[] = await element
       .all(
         By.xpath(
-          '//app-atividade-cadastrar-editar//*[@formcontrolname] | //app-atividade-cadastrar-editar//*[contains(@role, "box")]'
+          '//app-atividade-cadastrar-editar//*[@formcontrolname or contains(@role, "box")]'
         )
       )
       .map(elm => {
@@ -261,10 +259,13 @@ export class AtividadesPage extends SystemPage {
    * salva o registro que está sendo criado
    */
   private async salvar() {
-    await element(By.xpath('//button[@color="primary"]')).click();
+    // é necessário voltar à aba dos dados básicos para poder salvar
+    await this.selecionarAba('Dados Básicos');
     await browser.sleep(1000);
-    const url = `${baseUrl}/atividades`;
-    await SmartWaiter.waitUrlContain(url);
+    const botaoSalvar = By.xpath('//button[@color="primary"]');
+    await SmartWaiter.waitClick(botaoSalvar);
+    await element(botaoSalvar).click();
+    await SmartWaiter.waitUrlContain(`${baseUrl}/atividades`);
   }
 
   /**

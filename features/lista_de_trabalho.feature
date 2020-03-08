@@ -18,7 +18,7 @@ Esquema do Cenário: Inserção com sucesso de um registro de campo
 
 Exemplos:
 | numero_atividade | logradouro_imovel                  |
-| 5010             | RUA PE. AGOSTINHO CABALLERO MARTIN |
+| 5003             | RUA PE. AGOSTINHO CABALLERO MARTIN |
 
 Esquema do Cenário: Inserção com sucesso de um registro de laboratório
     Então eu vou selecionar a atividade "<numero_atividade>"
@@ -28,10 +28,11 @@ Esquema do Cenário: Inserção com sucesso de um registro de laboratório
     | data_de_entrada | observação | data_da_conclusão | técnico_responsável |
     | 10/10/2020      | nenhuma    | 11/10/2020        | exemplo_2           |
     E Adicionar as seguintes amostras
-    | número | tipo_de_criadouro | espécie       | fase  | quantidade |
-    | 10     | B                 | Aedes aegypti | Larva | 100        |
+    | número | tipo_de_criadouro | espécie          | fase   | quantidade |
+    | 10     | B                 | Aedes aegypti    | Larva     | 100        |
+    | 11     | E                 | Aedes albopictus | Adulto | 35         |
     E salvar
 
 Exemplos:
 | numero_atividade | logradouro_imovel                  |
-| 5010             | RUA PE. AGOSTINHO CABALLERO MARTIN |
+| 5003             | RUA PE. AGOSTINHO CABALLERO MARTIN |

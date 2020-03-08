@@ -12,15 +12,16 @@ Cenário: Cadastro com sucesso
     Então eu vou cadastrar uma atividade com os dados básicos
     | titulo             | descricao                  | dataInicio | dataFim    | abrangencia | tipo_de_atividade      |
     | teste_automatizado | fui inserido pelo cucumber | 20/02/2020 | 21/02/2020 | Imóvel      | PE - Ponto Estratégico |
-    Então irei atribuir as demandas
+    E irei atribuir as demandas
     | número |
     | 2004   |
     | 2033   |
     | 2045   |
-    Então irei atribuir os imoveis
+    E irei atribuir os imoveis
     | logradouro                                   |
     | Faculdade de Ciências da Saúde (FS) - Manual |
-    Então irei atribuir as equipes
+    E irei atribuir as equipes
     | nome                  |
     | equipe teste - Manual |
+    E irei salvar
     
