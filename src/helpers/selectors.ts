@@ -55,7 +55,7 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
  * // atenção com o '.' no inicio para indicar que é um subnó
  * opt_concluido = './/td//input[@type="checkbox"]'
  * ```
- * Então, suponha que seja necessário alternar a coluna concluido com base
+ * Então, suponha que seja necessário alterar a coluna concluido com base
  * no nome que for passado.
  * Logo, a chamada para esta função seria:
  * ```ts
@@ -72,7 +72,6 @@ export async function getNodeWithText(
   textoProcurado: string,
   textLocator?: WebDriverLocator
 ): Promise<ElementFinder> {
-  const rows = await element.all(rootLocator);
   const nomes: string[] = await element.all(rootLocator).map(r => {
     return textLocator ? r?.element(textLocator).getText() : r?.getText();
   });
@@ -83,5 +82,7 @@ export async function getNodeWithText(
       `não foi possivel encontrar o elemento com texto = '${textoProcurado}' na tabela`
     );
   }
-  return rows[index];
+
+  const el = element.all(rootLocator).get(index);
+  return el;
 }

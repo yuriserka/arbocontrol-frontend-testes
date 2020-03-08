@@ -28,9 +28,9 @@ Esquema do Cenário: Inserção com sucesso de um registro de laboratório
     | data_de_entrada | observação | data_da_conclusão | técnico_responsável |
     | 10/10/2020      | nenhuma    | 11/10/2020        | exemplo_2           |
     E Adicionar as seguintes amostras
-    | número | tipo_de_criadouro | espécie       | fase   | quantidade |
-    | 10     | B                 | Aedes aegypti | Larva  | 100        |
-    | 11     | E                 | Aedes aegypti | Adulto | 33         |
+    | número | tipo_de_criadouro | espécie          | fase   | quantidade |
+    | 10     | B                 | Aedes aegypti    | Larva     | 100        |
+    | 11     | E                 | Aedes albopictus | Adulto | 35         |
     E salvar
 
 Exemplos:
