@@ -87,6 +87,6 @@ Then('salvar', async () => {
   expect(await browser.getCurrentUrl()).to.be.equal(
     `${baseUrl}/registros/${atividade}`
   );
-  
+
   expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
 });
