@@ -1,11 +1,16 @@
 import { SmartWaiter } from '../smart_waiter';
-import { By, element } from 'protractor';
+import { By } from 'protractor';
 import { getNodeWithText } from '../selectors';
 import { baseUrl } from '../../../config';
 import { EquipesPage } from '../../pages/equipes.po';
 
 const equipesPage = new EquipesPage();
 
+/**
+ * verifica se a a equipe passada foi criada, ou seja, checando se a mesma
+ * consta na tabela na página de gerenciamento de equipes
+ * @param nomeDaEquipe
+ */
 export async function assertEquipeExiste(nomeDaEquipe: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/equipes`);
   const ok = true;
