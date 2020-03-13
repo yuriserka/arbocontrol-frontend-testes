@@ -46,11 +46,14 @@ Then('selecionar o formulario {string}', async (nomeDoFormulario: string) => {
   await listaDeTrabalhoPage['selecionarFormulario'](nomeDoFormulario);
 });
 
-Then('irei cadastrar um registro com os valores', async (dataTable: TableDefinition) => {
-  await element(By.xpath('//button[@color="primary"]')).click();
-  const registroDeCampo = dataTable.hashes()[0];
-  await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeCampo);
-});
+Then(
+  'irei cadastrar um registro com os valores',
+  async (dataTable: TableDefinition) => {
+    await element(By.xpath('//button[@color="primary"]')).click();
+    const registroDeCampo = dataTable.hashes()[0];
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeCampo);
+  }
+);
 
 Then('Adicionar as seguintes amostras', async (dataTable: TableDefinition) => {
   const amostras = dataTable.hashes();

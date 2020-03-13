@@ -70,7 +70,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     logradouroDoImovel: string,
     formulario: string,
     registro: { [key: string]: string },
-    amostras: { [key: string]: string }[]
+    amostras: Array<{ [key: string]: string }>
   ) {
     await this.selecionarAtividade(numeroAtividade);
     this.numAtividade = numeroAtividade;
@@ -88,9 +88,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * laboratorio como para amostras
    * @param registro
    */
-  private async preencherCamposDeDados(
-    registro: { [key: string]: string }
-  ) {
+  private async preencherCamposDeDados(registro: { [key: string]: string }) {
     const campos = await this.getCampos(registro);
 
     for (let i = 0; i < campos.length; ++i) {
@@ -107,9 +105,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * para serem apenas os quais deverão ser preenchidos
    * @param registro
    */
-  private async getCampos(
-    registro: { [key: string]: string }
-  ) {
+  private async getCampos(registro: { [key: string]: string }) {
     const campos: CampoDeDado[] = await element
       .all(By.xpath('//*[@aria-label]'))
       .map(elm => {
@@ -166,7 +162,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * preenche N amostras, amostras estão localizadas no registro de laboratorio
    * @param amostras
    */
-  private async preencherAmostras(amostras: { [key: string]: string }[]) {
+  private async preencherAmostras(amostras: Array<{ [key: string]: string }>) {
     for (let i = 0; i < amostras.length; ++i) {
       await element(By.xpath('//input[@value="( + ) Adicionar"]')).click();
       const amostra = amostras[i];
@@ -213,7 +209,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
 
   /**
    * seleciona o fórmulario que tenha o nome passado
-   * @param nome 
+   * @param nome
    */
   private async selecionarFormulario(nome: string) {
     await selectFrom(
