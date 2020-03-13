@@ -6,12 +6,14 @@ import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { makeUsuario } from '../src/models/usuario';
+import { assertRegistroInserido } from '../src/helpers/asserts/lista_de_trabalho';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
 let atividade: string;
+let qtdRegistrosAntes: number;
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -44,14 +46,17 @@ Then('selecionar o imovel {string}', async (logradouro: string) => {
 
 Then('selecionar o formulario {string}', async (nomeDoFormulario: string) => {
   await listaDeTrabalhoPage['selecionarFormulario'](nomeDoFormulario);
+  qtdRegistrosAntes = await element
+    .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
+    .count();
 });
 
 Then(
   'irei cadastrar um registro com os valores',
   async (dataTable: TableDefinition) => {
     await element(By.xpath('//button[@color="primary"]')).click();
-    const registroDeCampo = dataTable.hashes()[0];
-    await listaDeTrabalhoPage['preencherCamposDeDados'](registroDeCampo);
+    const registro = dataTable.hashes()[0];
+    await listaDeTrabalhoPage['preencherCamposDeDados'](registro);
   }
 );
 
@@ -65,4 +70,5 @@ Then('salvar', async () => {
   expect(await browser.getCurrentUrl()).to.be.equal(
     `${baseUrl}/registros/${atividade}`
   );
+  expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
 });

@@ -88,14 +88,17 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * laboratorio como para amostras
    * @param registro
    */
-  private async preencherCamposDeDados(registro: { [key: string]: string }) {
+  private async preencherCamposDeDados(
+    registro: { [key: string]: string },
+    amostraIndex?: number
+  ) {
     const campos = await this.getCampos(registro);
 
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
       campo.tipo === 'input'
-        ? await this.preencherInput(campo, registro)
-        : await this.preencherSelect(campo, registro);
+        ? await this.preencherInput(campo, registro, amostraIndex)
+        : await this.preencherSelect(campo, registro, amostraIndex);
     }
   }
 
@@ -166,7 +169,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     for (let i = 0; i < amostras.length; ++i) {
       await element(By.xpath('//input[@value="( + ) Adicionar"]')).click();
       const amostra = amostras[i];
-      await this.preencherCamposDeDados(amostra);
+      await this.preencherCamposDeDados(amostra, i + 1);
     }
   }
 
@@ -177,14 +180,18 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherInput(
     campo: CampoDeDado,
-    registro: { [key: string]: string }
+    registro: { [key: string]: string },
+    amostraIndex?: number
   ) {
-    let path = `//input[@aria-label="${campo.ariaLabel}"]`;
+    let path = `(//input[@aria-label="${campo.ariaLabel}"])${
+      amostraIndex ? `[${amostraIndex}]` : ''
+    }`;
     if ((await element.all(By.xpath(path))).length > 1) {
       path = `(${path})[${(contadorQtdeTratados++ % 2) + 1}]`;
     }
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
+      await element(input).clear();
       await element(input).sendKeys(registro[campo.cucumberLabel]);
     }
   }
@@ -197,9 +204,12 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherSelect(
     campo: CampoDeDado,
-    registro: { [key: string]: string }
+    registro: { [key: string]: string },
+    amostraIndex?: number
   ) {
-    const path = `//select[@aria-label="${campo.ariaLabel}"]`;
+    const path = `(//select[@aria-label="${campo.ariaLabel}"])${
+      amostraIndex ? `[${amostraIndex}]` : ''
+    }`;
     await element(By.xpath(path)).click();
     await selectFrom(
       By.xpath(`${path}//option`),
