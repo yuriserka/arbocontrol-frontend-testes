@@ -2,9 +2,6 @@ import { SystemPage } from './page.po';
 import { element, By, browser } from 'protractor';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
-import { Amostra } from '../models/amostra';
-import { RegistroDeCampo } from '../models/registro_campo';
-import { RegistroDeLaboratorio } from '../models/registro_laboratorio';
 import { selectFrom } from '../helpers/selectors';
 
 let contadorQtdeTratados = 0;
@@ -48,12 +45,13 @@ export class ListaDeTrabalhoPage extends SystemPage {
   async inserirRegistroDeCampo(
     numeroAtividade: string,
     logradouroDoImovel: string,
-    registro: RegistroDeCampo
+    formulario: string,
+    registro: { [key: string]: string }
   ) {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
     await this.selecionarImovel(logradouroDoImovel);
-    await this.selecionarAbaRegistroDeCampo();
+    await this.selecionarFormulario(formulario);
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.salvar();
@@ -70,14 +68,15 @@ export class ListaDeTrabalhoPage extends SystemPage {
   async inserirRegistroDeLaboratorio(
     numeroAtividade: string,
     logradouroDoImovel: string,
-    registro: RegistroDeLaboratorio,
-    amostras: Amostra[]
+    formulario: string,
+    registro: { [key: string]: string },
+    amostras: { [key: string]: string }[]
   ) {
     await this.selecionarAtividade(numeroAtividade);
     this.numAtividade = numeroAtividade;
     await browser.sleep(1000);
     await this.selecionarImovel(logradouroDoImovel);
-    await this.selecionarAbaRegistroDeLaboratorio();
+    await this.selecionarFormulario(formulario);
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
     await this.preencherAmostras(amostras);
@@ -90,16 +89,15 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param registro
    */
   private async preencherCamposDeDados(
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
-    amostraIndex?: number
+    registro: { [key: string]: string }
   ) {
     const campos = await this.getCampos(registro);
 
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
       campo.tipo === 'input'
-        ? await this.preencherInput(campo, registro, amostraIndex)
-        : await this.preencherSelect(campo, registro, amostraIndex);
+        ? await this.preencherInput(campo, registro)
+        : await this.preencherSelect(campo, registro);
     }
   }
 
@@ -110,7 +108,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param registro
    */
   private async getCampos(
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra
+    registro: { [key: string]: string }
   ) {
     const campos: CampoDeDado[] = await element
       .all(By.xpath('//*[@aria-label]'))
@@ -168,11 +166,11 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * preenche N amostras, amostras estão localizadas no registro de laboratorio
    * @param amostras
    */
-  private async preencherAmostras(amostras: Amostra[]) {
+  private async preencherAmostras(amostras: { [key: string]: string }[]) {
     for (let i = 0; i < amostras.length; ++i) {
       await element(By.xpath('//input[@value="( + ) Adicionar"]')).click();
       const amostra = amostras[i];
-      await this.preencherCamposDeDados(amostra, i + 1);
+      await this.preencherCamposDeDados(amostra);
     }
   }
 
@@ -183,18 +181,14 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherInput(
     campo: CampoDeDado,
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
-    amostraIndex?: number
+    registro: { [key: string]: string }
   ) {
-    let path = `(//input[@aria-label="${campo.ariaLabel}"])${
-      amostraIndex ? `[${amostraIndex}]` : ''
-    }`;
+    let path = `//input[@aria-label="${campo.ariaLabel}"]`;
     if ((await element.all(By.xpath(path))).length > 1) {
       path = `(${path})[${(contadorQtdeTratados++ % 2) + 1}]`;
     }
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
-      await element(input).clear();
       await element(input).sendKeys(registro[campo.cucumberLabel]);
     }
   }
@@ -207,12 +201,9 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherSelect(
     campo: CampoDeDado,
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
-    amostraIndex?: number
+    registro: { [key: string]: string }
   ) {
-    const path = `(//select[@aria-label="${campo.ariaLabel}"])${
-      amostraIndex ? `[${amostraIndex}]` : ''
-    }`;
+    const path = `//select[@aria-label="${campo.ariaLabel}"]`;
     await element(By.xpath(path)).click();
     await selectFrom(
       By.xpath(`${path}//option`),
@@ -221,22 +212,14 @@ export class ListaDeTrabalhoPage extends SystemPage {
   }
 
   /**
-   * troca para a aba de cadastro de registro de campo
+   * seleciona o fórmulario que tenha o nome passado
+   * @param nome 
    */
-  private async selecionarAbaRegistroDeCampo() {
-    await element(
-      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[1]`)
-    ).click();
-    await browser.sleep(1000);
-  }
-
-  /**
-   * troca para a aba de cadastro de registro de laboratorio
-   */
-  private async selecionarAbaRegistroDeLaboratorio() {
-    await element(
-      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[2]`)
-    ).click();
+  private async selecionarFormulario(nome: string) {
+    await selectFrom(
+      By.xpath('//app-formulario-tabela-simples//tbody//tr//td//span'),
+      nome
+    );
     await browser.sleep(1000);
   }
 
