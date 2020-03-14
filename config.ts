@@ -1,7 +1,7 @@
 import dotenv = require('dotenv');
 dotenv.config();
 
-export const baseUrl = process.env.VM_URL || 'http://localhost';
+export const baseUrl = process.env.URL_TO_TEST || 'http://localhost';
 
 export const blazeMeterAccount = {
   email: process.env.BLAZE_METER_EMAIL || 'none',
