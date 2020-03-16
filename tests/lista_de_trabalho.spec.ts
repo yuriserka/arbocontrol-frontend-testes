@@ -14,6 +14,7 @@ const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
 let atividade: string;
 let qtdRegistrosAntes: number;
+const idRegistros: Array<{ id: string; qtd_reg: number }> = [];
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -46,29 +47,60 @@ Then('selecionar o imovel {string}', async (logradouro: string) => {
 
 Then('selecionar o formulario {string}', async (nomeDoFormulario: string) => {
   await listaDeTrabalhoPage['selecionarFormulario'](nomeDoFormulario);
-  qtdRegistrosAntes = await element
-    .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
-    .count();
 });
 
 Then(
-  'irei cadastrar um registro com os valores',
+  'irei cadastrar registros com os valores',
   async (dataTable: TableDefinition) => {
-    await element(By.xpath('//button[@color="primary"]')).click();
-    const registro = dataTable.hashes()[0];
-    await listaDeTrabalhoPage['preencherCamposDeDados'](registro);
+    const registros = dataTable.hashes();
+    for (let i = 0; i < registros.length; ++i) {
+      qtdRegistrosAntes = await element
+        .all(By.xpath('//app-registro-atividade-tabela//tbody//tr'))
+        .count();
+
+      // cadastra o registro
+      await element(By.xpath('//button[@color="primary"]')).click();
+      await listaDeTrabalhoPage['preencherCamposDeDados'](registros[i]);
+      await listaDeTrabalhoPage['salvar']();
+
+      // verifica se foi inserido
+      expect(await browser.getCurrentUrl()).to.be.equal(
+        `${baseUrl}/registros/${atividade}`
+      );
+      expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
+
+      // caso seja para inserir as amostras, guarda os ids para acessar novamente
+      if (registros[i]['quantidade_de_amostras']) {
+        idRegistros.push({
+          id: await element(
+            // sempre que um novo registro é inserido ele vai para o topo
+            By.xpath(
+              '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span)[1]'
+            )
+          ).getText(),
+          qtd_reg: +registros[i]['quantidade_de_amostras'],
+        });
+      }
+    }
   }
 );
 
 Then('Adicionar as seguintes amostras', async (dataTable: TableDefinition) => {
   const amostras = dataTable.hashes();
-  await listaDeTrabalhoPage['preencherAmostras'](amostras);
-});
+  for (
+    let i = 0, amostraIBegin = 0;
+    i < idRegistros.length;
+    amostraIBegin += idRegistros[i].qtd_reg, ++i
+  ) {
+    const iterators = {
+      beg: amostraIBegin,
+      end: amostraIBegin + idRegistros[i].qtd_reg,
+    };
 
-Then('salvar', async () => {
-  await listaDeTrabalhoPage['salvar']();
-  expect(await browser.getCurrentUrl()).to.be.equal(
-    `${baseUrl}/registros/${atividade}`
-  );
-  expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
+    await listaDeTrabalhoPage['selecionarRegistro'](idRegistros[i].id);
+    await listaDeTrabalhoPage['preencherAmostras'](
+      amostras.slice(iterators.beg, iterators.end)
+    );
+    await listaDeTrabalhoPage['salvar']();
+  }
 });
