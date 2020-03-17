@@ -49,6 +49,38 @@ export class Atividade {
     this._imoveis = [];
   }
 
+  get dadosBasicosData() {
+    throw new Error('invalid getter');
+  }
+
+  get demandasData() {
+    throw new Error('invalid getter');
+  }
+
+  get equipesData() {
+    throw new Error('invalid getter');
+  }
+
+  get imoveisData() {
+    throw new Error('invalid getter');
+  }
+
+  set dadosBasicos(dados: DadosBasicos) {
+    throw new Error('invalid setter');
+  }
+
+  set demandas(dados: string[]) {
+    throw new Error('invalid setter');
+  }
+
+  set equipes(dados: string[]) {
+    throw new Error('invalid setter');
+  }
+
+  set imoveis(dados: string[]) {
+    throw new Error('invalid setter');
+  }
+
   /**
    * os dados de entrada devem estar no formato:
    * ```ts
