@@ -22,14 +22,6 @@ Exemplos:
 | Time 7          |
 | Exalta samba    |
 
-Esquema do Cenário: Excluir uma equipe
-    Então eu vou excluiur a equipe "<nome_da_equipe>"
-
-Exemplos:
-| nome_da_equipe |
-| Exalta samba   |
-| Time 7         |
-
 Esquema do Cenário: Desvincular usuarios de uma equipe
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
     | nome      |
@@ -38,3 +30,12 @@ Esquema do Cenário: Desvincular usuarios de uma equipe
 Exemplos:
 | nome_da_equipe  |
 | Turma do Pagode |
+
+Esquema do Cenário: Excluir uma equipe
+    Então eu vou excluir a equipe "<nome_da_equipe>"
+
+Exemplos:
+| nome_da_equipe  |
+| Exalta samba    |
+| Turma do Pagode |
+| Time 7          |

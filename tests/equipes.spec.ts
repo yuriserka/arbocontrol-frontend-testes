@@ -1,10 +1,10 @@
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+import { TableDefinition } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { LoginPage } from '../src/pages/login.po';
-import { EquipesPage } from '../src/pages/equipes.po';
-import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
+import { EquipesPage } from '../src/pages/equipes.po';
+import { LoginPage } from '../src/pages/login.po';
 import {
   assertEquipeExiste,
   assertEquipePossui,
@@ -12,8 +12,8 @@ import {
 import { makeUsuario } from '../src/models/usuario';
 
 setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
 const equipePage = new EquipesPage();
+const loginPage = new LoginPage();
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -29,7 +29,7 @@ When('eu acessar a pagina das equipes', async () => {
 });
 
 Then('eu vou cadastrar a equipe {string}', async (nomeDaEquipe: string) => {
-  await equipePage.criarEquipe(nomeDaEquipe);
+  await equipePage['criarEquipe'](nomeDaEquipe);
   expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
 
   expect(await assertEquipeExiste(nomeDaEquipe)).to.be.equal(true);
@@ -45,7 +45,7 @@ Then(
   }
 );
 
-Then('eu vou excluiur a equipe {string}', async (nomeDaEquipe: string) => {
+Then('eu vou excluir a equipe {string}', async (nomeDaEquipe: string) => {
   await equipePage.excluirEquipe(nomeDaEquipe);
   expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/equipes`);
 

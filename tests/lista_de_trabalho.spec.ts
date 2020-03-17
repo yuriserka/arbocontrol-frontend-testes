@@ -1,16 +1,16 @@
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, element, By } from 'protractor';
-import { LoginPage } from '../src/pages/login.po';
-import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
-import { makeUsuario } from '../src/models/usuario';
+import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
+import { LoginPage } from '../src/pages/login.po';
 import { assertRegistroInserido } from '../src/helpers/asserts/lista_de_trabalho';
+import { makeUsuario } from '../src/models/usuario';
 
 setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
+const loginPage = new LoginPage();
 
 let atividade: string;
 let qtdRegistrosAntes: number;

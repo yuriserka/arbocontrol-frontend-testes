@@ -56,32 +56,35 @@ export class AtividadesPage extends SystemPage {
   }
 
   /**
+   * exclui uma atividade partindo da pagina de gerenciamento de atividades
+   * @param titulo
+   */
+  async excluirAtividade(titulo: string) {
+    await this.selecionarAtividade(titulo);
+    await element(By.xpath('//button[@color="warn"]')).click();
+    await this.confirmarExclusao();
+  }
+
+  /**
+   * seleciona uma atividade da lista de atividades na pagina de gerenciamento de atividades
+   * @param titulo
+   */
+  async selecionarAtividade(titulo: string) {
+    await selectFrom(
+      By.xpath(
+        '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
+      ),
+      titulo
+    );
+  }
+
+  /**
    * atualiza os dados básicos de uma atividade previamente cadastrada
    * @param atividade
    */
   async atribuirDadosBasicos(atividade: Atividade) {
     await this.selecionarAba('Dados Básicos');
     await this.cadastroBasico(atividade.dadosBasicos);
-  }
-
-  /**
-   * faz um cadastro simples de uma atividade, ou seja, sem nenhum tipo de
-   * atribuição a ela
-   * @param dados
-   */
-  async cadastroBasico(dados: DadosBasicos) {
-    const campos = await this.getCamposDadosBasicos(dados);
-    for (let i = 0; i < campos.length; ++i) {
-      const campo = campos[i];
-      if (campo.role) {
-        await this.preencherSelectDadosBasicos(campo, dados);
-      } else {
-        campo.tipo === 'input'
-          ? await this.preencherInputDadosBasicos(campo, dados)
-          : await this.preencherTextAreaDadosBasicos(campo, dados);
-      }
-      await browser.sleep(500);
-    }
   }
 
   /**
@@ -163,6 +166,26 @@ export class AtividadesPage extends SystemPage {
         .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
         .click();
       await this.confirmarAcao();
+    }
+  }
+
+  /**
+   * faz um cadastro simples de uma atividade, ou seja, sem nenhum tipo de
+   * atribuição a ela
+   * @param dados
+   */
+  private async cadastroBasico(dados: DadosBasicos) {
+    const campos = await this.getCamposDadosBasicos(dados);
+    for (let i = 0; i < campos.length; ++i) {
+      const campo = campos[i];
+      if (campo.role) {
+        await this.preencherSelectDadosBasicos(campo, dados);
+      } else {
+        campo.tipo === 'input'
+          ? await this.preencherInputDadosBasicos(campo, dados)
+          : await this.preencherTextAreaDadosBasicos(campo, dados);
+      }
+      await browser.sleep(500);
     }
   }
 
@@ -305,5 +328,19 @@ export class AtividadesPage extends SystemPage {
       ),
       nome
     );
+  }
+
+  /*
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

@@ -1,17 +1,17 @@
 const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { LoginPage } from '../src/pages/login.po';
-import { ImovelPage } from '../src/pages/imoveis.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
+import { ImovelPage } from '../src/pages/imoveis.po';
+import { LoginPage } from '../src/pages/login.po';
+import { assertImovelExiste } from '../src/helpers/asserts/imovel';
 import { makeUsuario } from '../src/models/usuario';
 import { makeImovel } from '../src/models/imovel';
-import { assertImovelExiste } from '../src/helpers/asserts/imovel';
 
 setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
 const imovelPage = new ImovelPage();
+const loginPage = new LoginPage();
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -35,3 +35,12 @@ Then('eu vou cadastrar o imovel', async (dataTable: TableDefinition) => {
 
   expect(await assertImovelExiste(imovel.logradouro)).to.be.equal(true);
 });
+
+Then(
+  'eu vou excluir o imovel que possui logradouro igual a {string}',
+  async (logradouro: string) => {
+    await imovelPage.exluirImovel(logradouro);
+
+    expect(await assertImovelExiste(logradouro)).to.be.equal(false);
+  }
+);

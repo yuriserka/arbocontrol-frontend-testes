@@ -31,15 +31,24 @@ export class EquipesPage extends SystemPage {
   }
 
   /**
-   * Cadastra uma equipe no sistema sem nenhum usuário vinculado
-   * @param nome nome da equipe
+   * Cadastra uma equipe com os usuarios passados
+   *
+   * ```ts
+   * // os usuarios devem vir no formato
+   * const usuarios: {
+   *   nome: string;
+   *   cargo: string;
+   * }[]
+   * ```
+   * @param nome
+   * @param usuarios
    */
-  async criarEquipe(nome: string) {
-    await element(this.botoes_.cadastrar).click();
-    await element(By.xpath('//*[@formcontrolname="nome"]')).sendKeys(nome);
-    await element(
-      By.xpath('//*[@class = "mat-raised-button mat-button-base mat-primary"]')
-    ).click();
+  async cadastrarEquipe(
+    nome: string,
+    usuarios: Array<{ [col: string]: string }>
+  ) {
+    await this.criarEquipe(nome);
+    await this.vincularUsuarios(nome, usuarios);
   }
 
   /**
@@ -55,22 +64,14 @@ export class EquipesPage extends SystemPage {
   }
 
   /**
-   * Vincula uma lista de usuários à equipe selecionada
-   * @param equipe nome da equipe onde serão vinculados os usuários
-   * @param usuarios array de usuário contendo informação sobre nome e cargo
+   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
+   * @param nomeEquipe
    */
-  async vincularUsuarios(
-    equipe: string,
-    usuarios: Array<{ [col: string]: string }>
-  ) {
-    await this.selecionarEquipe(equipe);
-    for (let i = 0; i < usuarios.length; ++i) {
-      const usuario = usuarios[i];
-      await this.vincularUsuario(usuario);
-    }
-    await element(
-      By.xpath('//div[@class="linha-botoes"]//button[@color="primary"]')
-    ).click();
+  async selecionarEquipe(nomeEquipe: string) {
+    await selectFrom(
+      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      nomeEquipe
+    );
   }
 
   /**
@@ -96,48 +97,37 @@ export class EquipesPage extends SystemPage {
     }
 
     if (nomes) {
-      await element(
-        By.xpath('//div[@class="linha-botoes"]//button[@color="primary"]')
-      ).click();
+      await this.salvar();
     }
   }
 
   /**
-   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
-   * @param equipe nome da equipe
+   * Vincula uma lista de usuários à equipe selecionada
+   * @param equipe nome da equipe onde serão vinculados os usuários
+   * @param usuarios array de usuário contendo informação sobre nome e cargo
    */
-  private async selecionarEquipe(equipe: string) {
-    await selectFrom(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
-      equipe
-    );
+  async vincularUsuarios(
+    equipe: string,
+    usuarios: Array<{ [col: string]: string }>
+  ) {
+    await this.selecionarEquipe(equipe);
+    for (let i = 0; i < usuarios.length; ++i) {
+      const usuario = usuarios[i];
+      await this.vincularUsuario(usuario);
+    }
+    await this.salvar();
   }
 
   /**
-   * Desvincula um usuário da equipe
-   * @param nome
+   * Cadastra uma equipe no sistema sem nenhum usuário vinculado
+   * @param nome nome da equipe
    */
-  private async desvincularUsuario(nome: string) {
-    const userRow = await this.getUsuarioRow(nome);
-    await userRow
-      .element(By.xpath('.//td[contains(@class, "cdk-column-acoes")]//button'))
-      .click();
-    await this.confirmarExclusao();
-  }
-
-  /**
-   * função auxiliar para a confirmação de exclusão tanto para a remoção de
-   * usuários quanto da equipe
-   */
-  private async confirmarExclusao() {
-    const dialog = By.xpath('//mat-dialog-container');
-    await SmartWaiter.waitVisibility(dialog);
-
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+  private async criarEquipe(nome: string) {
+    await element(this.botoes_.cadastrar).click();
+    await element(By.xpath('//*[@formcontrolname="nome"]')).sendKeys(nome);
+    await element(
+      By.xpath('//*[@class = "mat-raised-button mat-button-base mat-primary"]')
+    ).click();
   }
 
   /**
@@ -178,6 +168,42 @@ export class EquipesPage extends SystemPage {
         )
       )
       .click();
+  }
+
+  /**
+   * Desvincula um usuário da equipe
+   * @param nome
+   */
+  private async desvincularUsuario(nome: string) {
+    const userRow = await this.getUsuarioRow(nome);
+    await userRow
+      .element(By.xpath('.//td[contains(@class, "cdk-column-acoes")]//button'))
+      .click();
+    await this.confirmarExclusao();
+  }
+
+  /**
+   * função auxiliar para a confirmação de exclusão tanto para a remoção de
+   * usuários quanto da equipe
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
+  }
+
+  /**
+   * clica para salvar as alterações na equipe
+   */
+  private async salvar() {
+    await element(
+      By.xpath('//div[@class="linha-botoes"]//button[@color="primary"]')
+    ).click();
   }
 
   /**

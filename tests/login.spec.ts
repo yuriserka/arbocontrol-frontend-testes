@@ -1,11 +1,11 @@
 const { Given, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, By } from 'protractor';
+import { baseUrl } from '../config';
 import { CssEditor } from '../src/helpers/css_editor';
 import { Recorder } from '../src/helpers/recorder';
 import { HomePage } from '../src/pages/home.po';
 import { LoginPage } from '../src/pages/login.po';
-import { baseUrl } from '../config';
 
 setDefaultTimeout(60 * 1000);
 const loginPage = new LoginPage();

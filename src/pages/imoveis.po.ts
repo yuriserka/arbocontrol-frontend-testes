@@ -1,7 +1,7 @@
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SystemPage } from './page.po';
 import { By, element, browser } from 'protractor';
-import { selectFrom } from '../helpers/selectors';
+import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
 import { Imovel } from '../models/imovel';
@@ -64,6 +64,30 @@ export class ImovelPage extends SystemPage {
   }
 
   /**
+   * exclui um imovel a partir da pagina de gerenciamento de imoveis
+   * @param logradouro
+   */
+  async exluirImovel(logradouro: string) {
+    await this.selecionarImovel(logradouro);
+    await element(By.xpath('//button[@color="warn"]')).click();
+    await this.confirmarExclusao();
+  }
+
+  /**
+   * seleciona um imovel baseado no logradouro que é mostrado na pagina de
+   * gerenciamento de imoveis
+   * @param logradouro
+   */
+  async selecionarImovel(logradouro: string) {
+    await selectFrom(
+      By.xpath(
+        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+      ),
+      logradouro
+    );
+  }
+
+  /**
    * mapeia quais são as informações que serão necessárias para que todos os
    * campos do registro sejam preenchidos de forma correta e os filtra para
    * serem apenas os quais deverão ser preenchidos
@@ -83,7 +107,9 @@ export class ImovelPage extends SystemPage {
         };
       });
 
-    return campos.filter(c => Object.keys(imovel).includes(c.cucumberLabel));
+    return campos
+      .filter(c => Object.keys(imovel).includes(c.cucumberLabel))
+      .filter(c => imovel[c.cucumberLabel] !== '');
   }
 
   /**
@@ -123,5 +149,19 @@ export class ImovelPage extends SystemPage {
     const input = By.xpath(path);
     await element(input).click();
     await element(input).sendKeys(imovel[campo.cucumberLabel]);
+  }
+
+  /*
+   * função auxiliar para a confirmação de exclusão do imovel
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

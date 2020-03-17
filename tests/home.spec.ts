@@ -8,15 +8,15 @@ const {
 } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { HomePage } from '../src/pages/home.po';
-import { LoginPage } from '../src/pages/login.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
+import { HomePage } from '../src/pages/home.po';
+import { LoginPage } from '../src/pages/login.po';
 import { makeUsuario } from '../src/models/usuario';
 
 setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
 const homePage = new HomePage();
+const loginPage = new LoginPage();
 
 BeforeAll(async () => {
   await browser.get(baseUrl);
@@ -38,10 +38,4 @@ When('clicar no botão {string}', async (btn: string) => {
 Then('a url deve ser {string}', async (url: string) => {
   const realUrl = url.replace('<env.url>', baseUrl);
   expect(await browser.getCurrentUrl()).to.be.equal(realUrl);
-});
-
-AfterAll(async () => {
-  await homePage.logout();
-  await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/login`);
 });
