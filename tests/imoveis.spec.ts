@@ -3,23 +3,22 @@ import { expect } from 'chai';
 import { browser } from 'protractor';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
-import { ImovelPage } from '../src/pages/imoveis.po';
-import { LoginPage } from '../src/pages/login.po';
-import { assertImovelExiste } from '../src/helpers/asserts/imovel';
+import { ImoveisPage } from '../src/pages/imoveis.po';
+import { assertImovelExiste } from './helpers/asserts/imovel';
 import { makeUsuario } from '../src/models/usuario';
 import { makeImovel } from '../src/models/imovel';
+import { login, getTestPage, timeout } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
-const imovelPage = new ImovelPage();
-const loginPage = new LoginPage();
+setDefaultTimeout(timeout);
+const imovelPage = new ImoveisPage();
 
 BeforeAll(async () => {
-  await browser.get(baseUrl);
+  await getTestPage();
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
+  await login(user);
 });
 
 When('eu acessar a pagina dos imoveis', async () => {

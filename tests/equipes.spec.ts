@@ -4,24 +4,23 @@ import { expect } from 'chai';
 import { browser } from 'protractor';
 import { baseUrl } from '../config';
 import { EquipesPage } from '../src/pages/equipes.po';
-import { LoginPage } from '../src/pages/login.po';
 import {
   assertEquipeExiste,
   assertEquipePossui,
-} from '../src/helpers/asserts/equipes';
+} from './helpers/asserts/equipes';
 import { makeUsuario } from '../src/models/usuario';
+import { login, timeout, getTestPage } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
 const equipePage = new EquipesPage();
-const loginPage = new LoginPage();
 
 BeforeAll(async () => {
-  await browser.get(baseUrl);
+  await getTestPage();
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
+  await login(user);
 });
 
 When('eu acessar a pagina das equipes', async () => {

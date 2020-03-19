@@ -1,62 +1,54 @@
-const {
-  Given,
-  BeforeAll,
-  setDefaultTimeout,
-  Then,
-  When,
-  AfterAll,
-} = require('cucumber');
+const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, element } from 'protractor';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
 import { AtividadesPage } from '../src/pages/atividades.po';
-import { EquipesPage } from '../src/pages/equipes.po';
-import { ImovelPage } from '../src/pages/imoveis.po';
-import { LoginPage } from '../src/pages/login.po';
 import {
   assertDemandaVinculada,
   assertImovelVinculado,
   assertEquipeVinculada,
   assertAtividadeExiste,
-} from '../src/helpers/asserts/atividade';
+} from './helpers/asserts/atividade';
 import { Atividade } from '../src/models/atividade';
 import { makeUsuario } from '../src/models/usuario';
 import { makeImovel, Imovel } from '../src/models/imovel';
+import {
+  login,
+  criarImovel,
+  criarEquipe,
+  deletarEquipe,
+  deletarImovel,
+  timeout,
+  getTestPage,
+} from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
+
 const atividadesPage = new AtividadesPage();
-const equipePage = new EquipesPage();
-const imovelPage = new ImovelPage();
-const loginPage = new LoginPage();
-
 const atividade = new Atividade();
 let imovel: Imovel;
 let nomeDaEquipe: string;
 
 BeforeAll(async () => {
-  await browser.get(baseUrl);
+  await getTestPage();
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
+  await login(user);
 });
 
 Given('que cadastrei o imovel', async (dataTable: TableDefinition) => {
-  await imovelPage.get();
   imovel = makeImovel(dataTable.hashes()[0]);
-  await imovelPage.cadastrarImovel(imovel);
-  await browser.sleep(1000);
+  await criarImovel(imovel);
 });
 
 Given(
   'que cadastrei a equipe {string} com os usuarios',
   async (nomeEquipe: string, dataTable: TableDefinition) => {
-    await equipePage.get();
-    await equipePage.cadastrarEquipe(nomeEquipe, dataTable.hashes());
+    const usuarios = dataTable.hashes();
+    await criarEquipe(nomeEquipe, usuarios);
     nomeDaEquipe = nomeEquipe;
-    await browser.sleep(1000);
   }
 );
 
@@ -130,10 +122,7 @@ Then('eu vou excluir a atividade {string}', async (titulo: string) => {
   ).to.be.equal(false);
 });
 
-AfterAll(async () => {
-  await imovelPage.get();
-  await imovelPage.exluirImovel(imovel.logradouro);
-
-  await equipePage.get();
-  await equipePage.excluirEquipe(nomeDaEquipe);
+Then('irei excluir as dependencias', async () => {
+  await deletarEquipe(nomeDaEquipe);
+  await deletarImovel(imovel);
 });

@@ -3,8 +3,9 @@ import { browser } from 'protractor';
 import { Recorder } from '../src/helpers/recorder';
 import { LoginPage } from '../src/pages/login.po';
 import { Usuario } from '../src/models/usuario';
+import { timeout } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
 const blazeRecorder = new Recorder();
 let baseTab: string;
 

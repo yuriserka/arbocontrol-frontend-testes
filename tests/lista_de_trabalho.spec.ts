@@ -4,25 +4,24 @@ import { browser, element, By } from 'protractor';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
-import { LoginPage } from '../src/pages/login.po';
-import { assertRegistroInserido } from '../src/helpers/asserts/lista_de_trabalho';
+import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
 import { makeUsuario } from '../src/models/usuario';
+import { timeout, getTestPage, login } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
-const loginPage = new LoginPage();
 
 let atividade: string;
 let qtdRegistrosAntes: number;
 const idRegistros: Array<{ id: string; qtd_reg: number }> = [];
 
 BeforeAll(async () => {
-  await browser.get(baseUrl);
+  await getTestPage();
 });
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
+  await login(user);
 });
 
 When('eu acessar a pagina da lista de trabalho', async () => {
