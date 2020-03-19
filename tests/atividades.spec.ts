@@ -130,10 +130,10 @@ Then('eu vou excluir a atividade {string}', async (titulo: string) => {
   ).to.be.equal(false);
 });
 
-// AfterAll(async () => {
-//   await imovelPage.get();
-//   await imovelPage.exluirImovel(imovel.logradouro);
+AfterAll(async () => {
+  await imovelPage.get();
+  await imovelPage.exluirImovel(imovel.logradouro);
 
-//   await equipePage.get();
-//   await equipePage.excluirEquipe(nomeDaEquipe);
-// });
+  await equipePage.get();
+  await equipePage.excluirEquipe(nomeDaEquipe);
+});
