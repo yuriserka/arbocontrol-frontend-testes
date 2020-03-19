@@ -1,4 +1,4 @@
-import { By, element } from 'protractor';
+import { By, element, browser } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from './smart_waiter';
 
@@ -19,9 +19,7 @@ export class SideNav {
       atividades: By.xpath('//a[@routerlink="atividades"]'),
       imoveis: By.xpath('//a[@routerlink="imoveis"]'),
       territorios: By.xpath('//a[@routerlink="territorios"]'),
-      rede_de_saude: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[1]'
-      ),
+      rede_de_saude: By.xpath('(//mat-list-item)[1]'),
       areas_gestao: By.xpath('//a[@routerlink="areas-gestao"]'),
       unidades: By.xpath('//a[@routerlink="unidades"]'),
       pessoas: By.xpath('//a[@routerlink="pessoas"]'),
@@ -30,9 +28,7 @@ export class SideNav {
       perfil_usuario_unidade: By.xpath(
         '//a[@routerlink="perfil-usuario-unidade"]'
       ),
-      tabelas_basicas: By.xpath(
-        '(//mat-list-item[@class="parent mat-list-item mat-list-item-avatar mat-list-item-with-avatar ng-star-inserted"])[2]'
-      ),
+      tabelas_basicas: By.xpath('(//mat-list-item)[2]'),
     };
   }
 
@@ -42,65 +38,26 @@ export class SideNav {
    *
    */
   async exibir() {
-    /**
-     * checa se a barra de navegação está sendo exibida
-     */
-    const isNavBarExibida = async () => {
-      return (
-        await element(
-          By.xpath(
-            '//*[contains(@class, "example-sidenav mat-drawer mat-sidenav")]'
-          )
-        ).getAttribute('class')
-      ).includes('mat-drawer-opened');
-    };
-
-    if (await isNavBarExibida()) {
+    if (await this.isNavBarExibida()) {
       return;
     }
-
     const btnNavBarLateral = By.xpath(
-      '//button[contains(@class, "mat-icon-button mat-button-base ng-star-inserted")]'
+      '//mat-toolbar//button/span/mat-icon[text()="menu"]'
     );
-    await SmartWaiter.waitClick(btnNavBarLateral);
+    await browser
+      .actions()
+      .mouseMove(await element(btnNavBarLateral).getWebElement())
+      .perform();
     await element(btnNavBarLateral).click();
-    // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
-    // await SmartWaiter.waitVisibility(this.botoes_.tabelas_basicas);
-    // await SmartWaiter.waitClick(this.botoes_.tabelas_basicas);
-    // await browser.sleep(2000);
   }
 
   /**
-   * Se a lista de opções da Rede de Saúde não estiver sendo
-   * exibida, então é clicado no botão para exibi-la, caso contrário não faz
-   * nada
-   *
+   * checa se a barra de navegação está sendo exibida
    */
-  private async expandirRedeSaude() {
-    this.exibir();
-    /**
-     * checa se a lista da Rede de Saúde está sendo exibida
-     *
-     */
-    const isRedeSaudeExibida = async () => {
-      return (
-        await element(
-          By.xpath('(//div[contains(@class, "submenu ng-star-inserted")])[1]')
-        ).getAttribute('class')
-      ).includes('expanded');
-    };
-
-    if (await isRedeSaudeExibida()) {
-      return;
-    }
-
-    await element(this.botoes_.rede_de_saude)
-      .element(By.xpath('.//div[@class="mat-list-item-content"]'))
-      .click();
-    // tentativa de fazer esperar o ultimo item da lista aparecer pra interagir
-    // await SmartWaiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
-    // await SmartWaiter.waitClick(this.botoes_.perfil_usuario_unidade);
-    // await browser.sleep(1500);
+  private async isNavBarExibida() {
+    return (
+      await element(By.xpath('//mat-sidenav')).getAttribute('class')
+    ).includes('mat-drawer-opened');
   }
 
   /**
@@ -266,5 +223,30 @@ export class SideNav {
     await SmartWaiter.waitVisibility(this.botoes_.perfil_usuario_unidade);
     await SmartWaiter.waitClick(this.botoes_.perfil_usuario_unidade);
     await element(this.botoes_.perfil_usuario_unidade).click();
+  }
+
+  /**
+   * Se a lista de opções da Rede de Saúde não estiver sendo exibida, então é
+   * clicado no botão para exibi-la, caso contrário não faz nada
+   */
+  private async expandirRedeSaude() {
+    await this.exibir();
+    if (await this.isRedeSaudeExibida()) {
+      return;
+    }
+    await element(this.botoes_.rede_de_saude)
+      .element(By.xpath('.//div[@class="mat-list-item-content"]'))
+      .click();
+  }
+
+  /**
+   * checa se a lista da Rede de Saúde está sendo exibida
+   */
+  private async isRedeSaudeExibida() {
+    return (
+      await element(
+        By.xpath('(//div[contains(@class, "submenu ng-star-inserted")])[1]')
+      ).getAttribute('class')
+    ).includes('expanded');
   }
 }
