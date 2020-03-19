@@ -34,11 +34,14 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
     const option = options[i];
     const text = await option.getText();
     if (text === opcaoProcurada) {
-      return option.click();
+      await option.click();
+      return;
     }
   }
   throw new Error(
-    `não foi possivel encontrar a opção = '${opcaoProcurada}' na lista de opções`
+    `não foi possivel encontrar a '${opcaoProcurada}' na lista ${await element
+      .all(locator)
+      .getText()}`
   );
 }
 
@@ -98,7 +101,7 @@ export async function getNodeWithText(
   const index = nomes.indexOf(textoProcurado);
   if (index < 0) {
     throw new Error(
-      `não foi possivel encontrar o elemento com texto = '${textoProcurado}' na tabela`
+      `não foi possivel encontrar o elemento com texto = '${textoProcurado}' na lista ${nomes}`
     );
   }
 

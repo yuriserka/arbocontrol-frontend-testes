@@ -21,7 +21,7 @@ interface CampoDeDado {
  * Abstração da página de gerenciamento de imóveis
  * @category Páginas do sistema
  */
-export class ImovelPage extends SystemPage {
+export class ImoveisPage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {
