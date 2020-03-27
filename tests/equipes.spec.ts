@@ -3,11 +3,11 @@ import { TableDefinition } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { baseUrl } from '../config';
-import { EquipesPage } from '../src/pages/equipes.po';
+import { EquipesPage } from '../src/pages/rede_de_saude/equipes.po';
 import {
   assertEquipeExiste,
   assertEquipePossui,
-} from './helpers/asserts/equipes';
+} from './helpers/asserts/equipe';
 import { makeUsuario } from '../src/models/usuario';
 import { login, timeout, getTestPage } from './helpers/common';
 

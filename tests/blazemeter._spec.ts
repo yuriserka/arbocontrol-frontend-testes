@@ -45,7 +45,7 @@ Then('navegarei até o site {string}', async (url: string) => {
 Then('farei login', async () => {
   const user: Usuario = {
     cpf: '055.232.031-57',
-    senha: '12345678@arbo',
+    senha: '12345678',
     unidade: 'SES - AM',
   };
   await new LoginPage().login(user);

@@ -1,8 +1,8 @@
 import { By, element, browser } from 'protractor';
-import { SystemPage } from './page.po';
+import { SystemPage } from '../page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
-import { selectFrom, getNodeWithText } from '../helpers/selectors';
-import { SmartWaiter } from '../helpers/smart_waiter';
+import { selectFrom, getNodeWithText } from '../../helpers/selectors';
+import { SmartWaiter } from '../../helpers/smart_waiter';
 
 /**
  * Abstração da página de gerenciamento de equipes
@@ -64,17 +64,6 @@ export class EquipesPage extends SystemPage {
   }
 
   /**
-   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
-   * @param nomeEquipe
-   */
-  async selecionarEquipe(nomeEquipe: string) {
-    await selectFrom(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
-      nomeEquipe
-    );
-  }
-
-  /**
    * desvincula os usuarios da equipe que foi selecionada anteriormente
    * @param nomes array contendo o nome dos usuarios que devem ser excluidos,
    * caso nenhum nome seja passado, todos serão excluidos
@@ -82,15 +71,15 @@ export class EquipesPage extends SystemPage {
   async desvincularUsuarios(nomeEquipe: string, nomes?: string[]) {
     await this.selecionarEquipe(nomeEquipe);
 
-    let usernames: string[] = await element
-      .all(
-        By.xpath('//tbody//tr//td[contains(@class, "cdk-column-vinculo")]//a')
-      )
-      .map(usernameLink => usernameLink?.getText());
-
-    if (nomes) {
-      usernames = usernames.filter(u => nomes.includes(u));
-    }
+    const usernames: string[] = nomes
+      ? nomes
+      : await element
+          .all(
+            By.xpath(
+              '//tbody//tr//td[contains(@class, "cdk-column-vinculo")]//a'
+            )
+          )
+          .map(usernameLink => usernameLink?.getText());
 
     for (let i = 0; i < usernames.length; ++i) {
       await this.desvincularUsuario(usernames[i]);
@@ -116,6 +105,17 @@ export class EquipesPage extends SystemPage {
       await this.vincularUsuario(usuario);
     }
     await this.salvar();
+  }
+
+  /**
+   * Seleciona uma equipe da lista de equipes na página de gerenciamento de equipes
+   * @param nomeEquipe
+   */
+  async selecionarEquipe(nomeEquipe: string) {
+    await selectFrom(
+      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      nomeEquipe
+    );
   }
 
   /**

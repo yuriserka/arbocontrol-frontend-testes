@@ -34,8 +34,7 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
     const option = options[i];
     const text = await option.getText();
     if (text === opcaoProcurada) {
-      await option.click();
-      return;
+      return option.click();
     }
   }
   throw new Error(

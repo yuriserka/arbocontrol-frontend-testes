@@ -1,6 +1,6 @@
 export interface DadosBasicos {
   readonly titulo: string;
-  readonly descricao: string;
+  readonly descricao?: string;
   readonly dataInicio: string;
   readonly dataFim: string;
   readonly abrangencia: string;
@@ -20,20 +20,24 @@ export interface DadosBasicos {
  * desta forma a aplicação desta classe faz-se
  * ```ts
  * const atividade = new Atividade();
- * atividade.imoveisData = ...; // mapeia o imoveisData -> string[]
- * imoveis: string[] = atividade.imoveis; // o getter retorna ainda o array de strings normalmente
+ *
+ * // setters
+ * atividade.demandasData = { número: string; }[]; // mapeia o demandasData -> string[],
+ * atividade.equipesData = { nome: string; }[]; // mapeia o equipesData -> string[],
+ * atividade.imoveisData = { logradouro: string; }[]; // mapeia o imoveisData -> string[],
+ *
+ * // getters
+ * num_das_ demandas: string[] = atividade.demandas; // o getter retorna ainda o array de strings normalmente
+ * nome_das_equipes: string[] = atividade.equipes; // o getter retorna ainda o array de strings normalmente
+ * logradouro_dos_imoveis: string[] = atividade.imoveis; // o getter retorna ainda o array de strings normalmente
  * ```
  * também não é possível fazer com que o getters *Data sejam privados a fim de se evitar confusões.
  */
 export class Atividade {
-  // private dadosBasicosData: { [campos: string]: string }
-  // private demandasData: { [campos: string]: string }[]
-  // private equipesData: { [campos: string]: string }[]
-  // private imoveisData: { [campos: string]: string }[]
   private _dadosBasicos: DadosBasicos;
-  private _demandas: string[];
-  private _equipes: string[];
-  private _imoveis: string[];
+  private _demandas: string[] = [];
+  private _equipes: string[] = [];
+  private _imoveis: string[] = [];
 
   constructor() {
     this._dadosBasicos = {
@@ -44,9 +48,6 @@ export class Atividade {
       abrangencia: 'none',
       tipo_de_atividade: 'none',
     };
-    this._demandas = [];
-    this._equipes = [];
-    this._imoveis = [];
   }
 
   get dadosBasicosData() {
@@ -86,7 +87,7 @@ export class Atividade {
    * ```ts
    * const dadosBasicosData = {
    *  titulo: string;
-   *  descricao: string;
+   *  descricao?: string;
    *  dataInicio: string;
    *  dataFim: string;
    *  abrangencia: string;

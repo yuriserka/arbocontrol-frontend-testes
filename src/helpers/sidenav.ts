@@ -56,7 +56,7 @@ export class SideNav {
    */
   private async isNavBarExibida() {
     return (
-      await element(By.xpath('//mat-sidenav')).getAttribute('class')
+      await element(By.xpath('(//mat-sidenav)[1]')).getAttribute('class')
     ).includes('mat-drawer-opened');
   }
 

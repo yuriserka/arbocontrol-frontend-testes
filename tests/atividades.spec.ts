@@ -20,12 +20,16 @@ import {
   deletarImovel,
   timeout,
   getTestPage,
+  criarTerritorio,
+  deletarTerritorio,
 } from './helpers/common';
+import { Territorio, makeTerritorio } from '../src/models/territorio';
 
 setDefaultTimeout(timeout);
 
 const atividadesPage = new AtividadesPage();
 const atividade = new Atividade();
+let territorio: Territorio;
 let imovel: Imovel;
 let nomeDaEquipe: string;
 
@@ -38,10 +42,20 @@ Given('que estou logado com', async (dataTable: TableDefinition) => {
   await login(user);
 });
 
-Given('que cadastrei o imovel', async (dataTable: TableDefinition) => {
-  imovel = makeImovel(dataTable.hashes()[0]);
-  await criarImovel(imovel);
+Given('que cadastrei o territorio', async (dataTable: TableDefinition) => {
+  territorio = makeTerritorio(dataTable.hashes()[0]);
+  await criarTerritorio(territorio);
 });
+
+Given(
+  'que cadastrei o imovel no territorio cadastrado',
+  async (dataTable: TableDefinition) => {
+    imovel = makeImovel(dataTable.hashes()[0], {
+      território: territorio.nome,
+    });
+    await criarImovel(imovel);
+  }
+);
 
 Given(
   'que cadastrei a equipe {string} com os usuarios',
@@ -123,6 +137,7 @@ Then('eu vou excluir a atividade {string}', async (titulo: string) => {
 });
 
 Then('irei excluir as dependencias', async () => {
-  await deletarEquipe(nomeDaEquipe);
   await deletarImovel(imovel);
+  await deletarEquipe(nomeDaEquipe);
+  await deletarTerritorio(territorio);
 });

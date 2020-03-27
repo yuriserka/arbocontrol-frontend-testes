@@ -4,7 +4,7 @@ import { By, element, browser } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
-import { Imovel } from '../models/imovel';
+import { Territorio } from '../models/territorio';
 
 /**
  * interface que sintetiza informações dos campos que devem ser preenchidos na
@@ -18,10 +18,10 @@ interface CampoDeDado {
 }
 
 /**
- * Abstração da página de gerenciamento de imóveis
+ * Abstração da página de gerenciamento de territórios
  * @category Páginas do sistema
  */
-export class ImoveisPage extends SystemPage {
+export class TerritoriosPage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
 
   constructor() {
@@ -33,57 +33,57 @@ export class ImoveisPage extends SystemPage {
   }
 
   /**
-   * acessa a página de gerenciamento dos imóveis
+   * acessa a página de gerenciamento dos territórios
    */
   async get() {
-    await this.navbar_.acessarImoveis();
+    await this.navbar_.acessarTerritorios();
   }
 
   /**
-   * cadastra um imóvel partindo da página de gerenciamento de imóveis
-   * @param imovel
+   * cadastra um imóvel partindo da página de gerenciamento de territórios
+   * @param territorio
    */
-  async cadastrarImovel(imovel: Imovel) {
+  async cadastrarTerritorio(territorio: Territorio) {
     await element(this.botoes_.cadastrar).click();
-    const campos = await this.getCampos(imovel);
+    const campos = await this.getCampos(territorio);
 
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
       if (campo.tipo === 'input') {
         campo.role
-          ? await this.preencherSelect(campo, imovel)
-          : await this.preencherInput(campo, imovel);
+          ? await this.preencherSelect(campo, territorio)
+          : await this.preencherInput(campo, territorio);
       } else {
-        await this.preencherTextArea(campo, imovel);
+        await this.preencherTextArea(campo, territorio);
       }
       await browser.sleep(500);
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();
-    await SmartWaiter.waitUrl(`${baseUrl}/imoveis`);
+    await SmartWaiter.waitUrl(`${baseUrl}/territorios`);
   }
 
   /**
-   * exclui um imovel a partir da pagina de gerenciamento de imoveis
-   * @param logradouro
+   * exclui um territorio a partir da pagina de gerenciamento de territorios
+   * @param nome
    */
-  async excluirImovel(logradouro: string) {
-    await this.selecionarImovel(logradouro);
+  async exluirTerritorio(nome: string) {
+    await this.selecionarTerritorio(nome);
     await element(By.xpath('//button[@color="warn"]')).click();
     await this.confirmarExclusao();
   }
 
   /**
-   * seleciona um imovel baseado no logradouro que é mostrado na pagina de
-   * gerenciamento de imoveis
-   * @param logradouro
+   * seleciona um territorio baseado no nome que é mostrado na pagina de
+   * gerenciamento de territorios
+   * @param nome
    */
-  async selecionarImovel(logradouro: string) {
+  async selecionarTerritorio(nome: string) {
     await selectFrom(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+        '//app-territorio-listagem//tbody//tr/td[contains(@class, "nome")]/span'
       ),
-      logradouro
+      nome
     );
   }
 
@@ -91,9 +91,9 @@ export class ImoveisPage extends SystemPage {
    * mapeia quais são as informações que serão necessárias para que todos os
    * campos do registro sejam preenchidos de forma correta e os filtra para
    * serem apenas os quais deverão ser preenchidos
-   * @param imovel
+   * @param territorio
    */
-  private async getCampos(imovel: Imovel) {
+  private async getCampos(territorio: Territorio) {
     const campos: CampoDeDado[] = await element
       .all(By.xpath('(//input|//textarea)[@placeholder]'))
       .map(elm => {
@@ -101,27 +101,31 @@ export class ImoveisPage extends SystemPage {
           tipo: elm?.getTagName(),
           role: elm?.getAttribute('role'),
           placeholder: elm?.getAttribute('placeholder'),
-          cucumberLabel: elm
-            ?.getAttribute('placeholder')
-            .then((val: string) => val.toLowerCase().replace(/\s+/g, '_')),
+          cucumberLabel: elm?.getAttribute('placeholder').then((val: string) =>
+            val
+              .toLowerCase()
+              .replace(/\s+/g, '_')
+              .replace(/[\(\)]/g, '')
+          ),
         };
       });
 
     return campos
-      .filter(c => Object.keys(imovel).includes(c.cucumberLabel))
-      .filter(c => imovel[c.cucumberLabel] !== '');
+      .filter(c => Object.keys(territorio).includes(c.cucumberLabel))
+      .filter(c => territorio[c.cucumberLabel])
+      .filter(c => territorio[c.cucumberLabel] !== '');
   }
 
   /**
    * preenche o nó do tipo \<input\> com o valor apropriado
    * @param campo
-   * @param imovel
+   * @param territorio
    */
-  private async preencherInput(campo: CampoDeDado, imovel: Imovel) {
+  private async preencherInput(campo: CampoDeDado, territorio: Territorio) {
     const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     if (await element(input).isEnabled()) {
-      await element(input).sendKeys(imovel[campo.cucumberLabel]);
+      await element(input).sendKeys(territorio[campo.cucumberLabel]);
     }
   }
 
@@ -129,30 +133,30 @@ export class ImoveisPage extends SystemPage {
    * preenche nós que precisam que algum item seja selecionado (role=option)
    * com o valor apropriado
    * @param campo
-   * @param imovel
+   * @param territorio
    */
-  private async preencherSelect(campo: CampoDeDado, imovel: Imovel) {
-    await this.preencherInput(campo, imovel);
+  private async preencherSelect(campo: CampoDeDado, territorio: Territorio) {
+    await this.preencherInput(campo, territorio);
     await selectFrom(
       By.xpath(`//*[@role="option"]//span//span`),
-      imovel[campo.cucumberLabel]
+      territorio[campo.cucumberLabel]
     );
   }
 
   /**
    * preenche o nó do tipo \<textarea\> com o valor apropriado
    * @param campo
-   * @param imovel
+   * @param territorio
    */
-  private async preencherTextArea(campo: CampoDeDado, imovel: Imovel) {
+  private async preencherTextArea(campo: CampoDeDado, territorio: Territorio) {
     const path = `//${campo.tipo}[@placeholder="${campo.placeholder}"]`;
     const input = By.xpath(path);
     await element(input).click();
-    await element(input).sendKeys(imovel[campo.cucumberLabel]);
+    await element(input).sendKeys(territorio[campo.cucumberLabel]);
   }
 
   /*
-   * função auxiliar para a confirmação de exclusão do imovel
+   * função auxiliar para a confirmação de exclusão do territorio
    */
   private async confirmarExclusao() {
     const dialog = By.xpath('//mat-dialog-container');

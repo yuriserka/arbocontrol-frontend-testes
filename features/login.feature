@@ -14,16 +14,16 @@ Esquema do Cenário: Login com sucesso
     E eu faço Logoff
 
 Exemplos:
-| cpf            | senha         | nome      | unidade  |
-| 111.111.111-11 | 12345678@arbo | Usuário 1 | SES - AM |
-| 222.222.222-22 | 12345678@arbo | Usuário 2 | SES - AM |
+| cpf            | senha    | nome      | unidade  |
+| 111.111.111-11 | 12345678 | Usuário 1 | SES - AM |
+| 222.222.222-22 | 12345678 | Usuário 2 | SES - AM |
 
 # Cenário: Login com sucesso Gravado pelo BlazeMeter
 #     Dado que eu desejo obter um script de carga para a funcionalidade "login"
 #     Então eu inicio uma gravação do BlazeMeter
 #     Dado que eu navego até a url do site do SisVetor
 #     Quando eu entro com meu cpf "111.111.111-11"
-#     E eu entro com minha senha "12345678@arbo"
+#     E eu entro com minha senha "12345678"
 #     E seleciono a unidade "SES - AM"
 #     Então eu clico para entrar
 #     E meu nome "Usuário 1" deve estar visível na página inicial

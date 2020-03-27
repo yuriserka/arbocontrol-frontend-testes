@@ -3,13 +3,13 @@ import { By, browser, element } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { baseUrl } from '../../../config';
 import { HomePage } from '../../../src/pages/home.po';
-import { assertEquipePossui } from './equipes';
+import { assertEquipePossui } from './equipe';
 
 /**
  * checa se a atividade existe na página de gerenciamento de atividades
- * @param nomeDaAtividade
+ * @param tituloDaAtividade
  */
-export async function assertAtividadeExiste(nomeDaAtividade: string) {
+export async function assertAtividadeExiste(tituloDaAtividade: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/atividades`);
   const ok = true;
   try {
@@ -17,7 +17,7 @@ export async function assertAtividadeExiste(nomeDaAtividade: string) {
       By.xpath(
         '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
       ),
-      nomeDaAtividade
+      tituloDaAtividade
     );
   } catch (err) {
     return !ok;

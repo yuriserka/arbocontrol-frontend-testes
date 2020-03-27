@@ -64,6 +64,39 @@ export class ListaDeTrabalhoPage extends SystemPage {
   }
 
   /**
+   * Exclui os registros partindo da página de gerenciamento da lista de trabalho
+   * @param numeroAtividade
+   * @param formulario
+   * @param idRegistros se não for especificado todos os registros da atividade no dado formulário serão excluidos
+   */
+  async excluirRegistros(
+    numeroAtividade: string,
+    formulario: string,
+    idRegistros?: string[]
+  ) {
+    if (!(await browser.getCurrentUrl()).includes(numeroAtividade)) {
+      await this.selecionarAtividade(numeroAtividade);
+    }
+
+    await this.selecionarFormulario(formulario);
+    const regRowsXPath = By.xpath(
+      '//tbody//tr//td[contains(@class, "column-id")]/span'
+    );
+
+    const regs: string[] = idRegistros
+      ? idRegistros
+      : await element.all(regRowsXPath).map(r => {
+          return r?.getText();
+        });
+
+    for (let i = 0; i < regs.length; ++i) {
+      await this.selecionarRegistro(regs[i]);
+      await element(By.xpath('//button[@color="warn"]')).click();
+      await this.confirmarExclusao();
+    }
+  }
+
+  /**
    * preenche de forma genérica os campos tanto para registros de campo e
    * laboratorio como para amostras
    * @param registro
@@ -217,6 +250,10 @@ export class ListaDeTrabalhoPage extends SystemPage {
     await browser.sleep(1000);
   }
 
+  /**
+   * seleciona um registro dado que uma atividade e um formulario já foram selecionados
+   * @param id
+   */
   private async selecionarRegistro(id: string) {
     await selectFrom(
       By.xpath(
@@ -238,5 +275,19 @@ export class ListaDeTrabalhoPage extends SystemPage {
     await element(btn).click();
     const url = `${baseUrl}/registros/${this.numAtividade}`;
     await SmartWaiter.waitUrl(url);
+  }
+
+  /*
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

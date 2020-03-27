@@ -5,21 +5,24 @@
  */
 
 import { AtividadesPage } from '../../src/pages/atividades.po';
-import { EquipesPage } from '../../src/pages/equipes.po';
+import { EquipesPage } from '../../src/pages/rede_de_saude/equipes.po';
 import { ImoveisPage } from '../../src/pages/imoveis.po';
 import { LoginPage } from '../../src/pages/login.po';
 import { Usuario } from '../../src/models/usuario';
-import { Imovel } from '../../src/models/imovel';
-import { Atividade } from '../../src/models/atividade';
-import { browser } from 'protractor';
-import { baseUrl } from '../../config';
+import { TerritoriosPage } from '../../src/pages/territorios.po';
 import { HomePage } from '../../src/pages/home.po';
+import { Imovel } from '../../src/models/imovel';
+import { browser } from 'protractor';
+import { Atividade } from '../../src/models/atividade';
+import { baseUrl } from '../../config';
+import { Territorio } from '../../src/models/territorio';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
 const imovelPage = new ImoveisPage();
 const loginPage = new LoginPage();
 const homePage = new HomePage();
+const territorioPage = new TerritoriosPage();
 
 /**
  * tempo de timeout para os testes
@@ -85,7 +88,25 @@ export async function criarImovel(imovel: Imovel) {
  */
 export async function deletarImovel(imovel: Imovel) {
   await imovelPage.get();
-  await imovelPage.exluirImovel(imovel.logradouro);
+  await imovelPage.excluirImovel(imovel.logradouro);
+}
+
+/**
+ * cria um territorio, uma vez que está logado
+ * @param territorio
+ */
+export async function criarTerritorio(territorio: Territorio) {
+  await territorioPage.get();
+  await territorioPage.cadastrarTerritorio(territorio);
+}
+
+/**
+ * deleta um territorio, uma vez que está logado
+ * @param territorio
+ */
+export async function deletarTerritorio(territorio: Territorio) {
+  await territorioPage.get();
+  await territorioPage.exluirTerritorio(territorio.nome);
 }
 
 /**
@@ -102,6 +123,14 @@ export async function criarAtividade(atividade: Atividade) {
  * @param atividade
  */
 export async function deletarAtividade(atividade: Atividade) {
+  await deletarAtividadePorTitulo(atividade.dadosBasicos.titulo);
+}
+
+/**
+ * deleta uma atividade baseado no titulo, uma vez que está logado
+ * @param atividade
+ */
+export async function deletarAtividadePorTitulo(titulo: string) {
   await atividadePage.get();
-  await atividadePage.excluirAtividade(atividade.dadosBasicos.titulo);
+  await atividadePage.excluirAtividade(titulo);
 }

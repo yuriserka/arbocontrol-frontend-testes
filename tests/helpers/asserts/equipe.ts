@@ -2,7 +2,7 @@ import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { baseUrl } from '../../../config';
-import { EquipesPage } from '../../../src/pages/equipes.po';
+import { EquipesPage } from '../../../src/pages/rede_de_saude/equipes.po';
 
 const equipesPage = new EquipesPage();
 
