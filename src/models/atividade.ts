@@ -1,4 +1,4 @@
-export interface DadosBasicos {
+export interface DadosBasicosAtividade {
   readonly titulo: string;
   readonly descricao?: string;
   readonly dataInicio: string;
@@ -34,7 +34,7 @@ export interface DadosBasicos {
  * também não é possível fazer com que o getters *Data sejam privados a fim de se evitar confusões.
  */
 export class Atividade {
-  private _dadosBasicos: DadosBasicos;
+  private _dadosBasicos: DadosBasicosAtividade;
   private _demandas: string[] = [];
   private _equipes: string[] = [];
   private _imoveis: string[] = [];
@@ -66,7 +66,7 @@ export class Atividade {
     throw new Error('invalid getter');
   }
 
-  set dadosBasicos(dados: DadosBasicos) {
+  set dadosBasicos(dados: DadosBasicosAtividade) {
     throw new Error('invalid setter');
   }
 
@@ -143,7 +143,7 @@ export class Atividade {
   }
 
   /**
-   * retorna um objeto representando a interface [[`DadosBasicos`]]
+   * retorna um objeto representando a interface [[`DadosBasicosAtividade`]]
    */
   get dadosBasicos() {
     return this._dadosBasicos;

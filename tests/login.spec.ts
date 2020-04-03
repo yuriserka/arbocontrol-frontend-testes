@@ -6,8 +6,9 @@ import { CssEditor } from '../src/helpers/css_editor';
 import { Recorder } from '../src/helpers/recorder';
 import { HomePage } from '../src/pages/home.po';
 import { LoginPage } from '../src/pages/login.po';
+import { timeout } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
 const loginPage = new LoginPage();
 const homePage = new HomePage();
 let recorder: Recorder;
@@ -54,12 +55,6 @@ Then(
     expect(await homePage.getUsuarioLogado()).to.be.equal(nome);
   }
 );
-
-Then('eu faço Logoff', async () => {
-  await homePage.logout();
-  await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/login`);
-});
 
 Then('eu inicio uma gravação do BlazeMeter', async () => {
   await recorder.iniciar();

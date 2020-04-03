@@ -18,9 +18,9 @@ Esquema do Cenário: Cadastro com sucesso
 
 Exemplos:
 | nome_da_equipe |
-| _Equipe_0      |
-| _Equipe_1      |
-| _Equipe_2      |
+| __Equipe_0__   |
+| __Equipe_1__   |
+| __Equipe_2__   |
 
 Esquema do Cenário: Desvincular usuarios de uma equipe
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
@@ -29,13 +29,13 @@ Esquema do Cenário: Desvincular usuarios de uma equipe
 
 Exemplos:
 | nome_da_equipe |
-| _Equipe_0      |
+| __Equipe_0__   |
 
 Esquema do Cenário: Excluir uma equipe
     Então eu vou excluir a equipe "<nome_da_equipe>"
 
 Exemplos:
 | nome_da_equipe |
-| _Equipe_1      |
-| _Equipe_2      |
-| _Equipe_0      |
+| __Equipe_1__   |
+| __Equipe_2__   |
+| __Equipe_0__   |

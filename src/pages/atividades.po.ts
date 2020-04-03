@@ -4,7 +4,7 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
-import { Atividade, DadosBasicos } from '../models/atividade';
+import { Atividade, DadosBasicosAtividade } from '../models/atividade';
 
 /**
  * interface que sintetiza informações dos campos que devem ser preenchidos na
@@ -48,7 +48,7 @@ export class AtividadesPage extends SystemPage {
     await element(this.botoes_.cadastrar).click();
     await this.cadastroBasico(atividade.dadosBasicos);
     await this.salvar();
-    await browser.sleep(1000);
+    await browser.sleep(1500);
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
@@ -61,7 +61,11 @@ export class AtividadesPage extends SystemPage {
    */
   async excluirAtividade(titulo: string) {
     await this.selecionarAtividade(titulo);
-    await element(By.xpath('//button[@color="warn"]')).click();
+    const btnExcluir = By.xpath(
+      '//div[@class="linha-botoes"]/button[@color="warn"]'
+    );
+    await SmartWaiter.waitClick(btnExcluir);
+    await element(btnExcluir).click();
     await this.confirmarExclusao();
   }
 
@@ -174,7 +178,7 @@ export class AtividadesPage extends SystemPage {
    * atribuição a ela
    * @param dados
    */
-  private async cadastroBasico(dados: DadosBasicos) {
+  private async cadastroBasico(dados: DadosBasicosAtividade) {
     const campos = await this.getCamposDadosBasicos(dados);
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
@@ -195,7 +199,7 @@ export class AtividadesPage extends SystemPage {
    * serem apenas os quais deverão ser preenchidos
    * @param atividade
    */
-  private async getCamposDadosBasicos(dados: DadosBasicos) {
+  private async getCamposDadosBasicos(dados: DadosBasicosAtividade) {
     const campos: CampoDeDado[] = await element
       .all(
         By.xpath(
@@ -229,7 +233,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherInputDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);
@@ -246,7 +250,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherSelectDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//app-atividade-cadastrar-editar//*[@role="${campo.role}"]`;
     await element(By.xpath(path)).click();
@@ -270,7 +274,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherTextAreaDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);
@@ -284,7 +288,6 @@ export class AtividadesPage extends SystemPage {
   private async salvar() {
     // é necessário voltar à aba dos dados básicos para poder salvar
     await this.selecionarAba('Dados Básicos');
-    await browser.sleep(1000);
     const botaoSalvar = By.xpath('//button[@color="primary"]');
     await SmartWaiter.waitClick(botaoSalvar);
     await element(botaoSalvar).click();
@@ -322,15 +325,16 @@ export class AtividadesPage extends SystemPage {
    * @param nome
    */
   private async selecionarAba(nome: string) {
-    return selectFrom(
+    await selectFrom(
       By.xpath(
         '//div[@cdkmonitorelementfocus]//div[@class="mat-tab-label-content"]'
       ),
       nome
     );
+    await browser.sleep(1000);
   }
 
-  /*
+  /**
    * função auxiliar para a confirmação de exclusão da atividade
    */
   private async confirmarExclusao() {

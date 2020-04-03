@@ -1,26 +1,16 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
-import { makeUsuario } from '../src/models/usuario';
 import { makeTerritorio, Territorio } from '../src/models/territorio';
-import { login, getTestPage, timeout } from './helpers/common';
 import { TerritoriosPage } from '../src/pages/territorios.po';
 import { assertTerritorioExiste } from './helpers/asserts/territorio';
+import { timeout } from './helpers/common';
 
 setDefaultTimeout(timeout);
 const territorioPage = new TerritoriosPage();
 let territorio: Territorio;
-
-BeforeAll(async () => {
-  await getTestPage();
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await login(user);
-});
 
 When('eu acessar a pagina dos territorios', async () => {
   await territorioPage.get();

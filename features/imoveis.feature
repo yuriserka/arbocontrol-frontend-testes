@@ -19,11 +19,16 @@ Cenário: Cadastro com sucesso
     | 1      | 1      | ALDEIA         | Faculdade de Ciências da Saúde (FS) | 10     | 1         | 1           | nenhum              | 70297-400 | [[-15.76749540860986,-47.86690056324006],[-15.768145891053692,-47.867758870124824],[-15.768693120700888,-47.867780327796936],[-15.770469025615412,-47.86647140979767],[-15.768971897500876,-47.86576330661774],[-15.767815487533298,-47.86598861217499],[-15.76749540860986,-47.86690056324006]] | 125                |
 
 Esquema do Cenário: Excluir um imóvel
+    Quando eu acessar a pagina dos imoveis
     Então eu vou excluir o imovel que possui logradouro igual a "<logradouro>"
 
 Exemplos:
 | logradouro                          |
 | Faculdade de Ciências da Saúde (FS) |
 
-Cenário: Excluir as dependencias de forma explicita (territorio)
-    Então irei excluir as dependencias
+Esquema do Cenário: Excluir as dependencias de forma explicita (territorio)
+    Então irei excluir a dependencia "<dep>"
+
+Exemplos:
+| dep        |
+| territorio |

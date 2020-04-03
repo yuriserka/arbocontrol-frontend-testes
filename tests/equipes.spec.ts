@@ -1,4 +1,4 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { TableDefinition } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
@@ -8,20 +8,10 @@ import {
   assertEquipeExiste,
   assertEquipePossui,
 } from './helpers/asserts/equipe';
-import { makeUsuario } from '../src/models/usuario';
-import { login, timeout, getTestPage } from './helpers/common';
+import { timeout } from './helpers/common';
 
 setDefaultTimeout(timeout);
 const equipePage = new EquipesPage();
-
-BeforeAll(async () => {
-  await getTestPage();
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await login(user);
-});
 
 When('eu acessar a pagina das equipes', async () => {
   await equipePage.get();

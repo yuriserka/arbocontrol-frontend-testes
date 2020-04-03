@@ -1,6 +1,6 @@
 #language:pt
 
-Funcionalidade: Acesso às funcionalidades do sistema
+Funcionalidade: Acessar as paginas
     Uma vez que estou logado, eu posso acessar as funcionalidades restritas
     aos meus privilégios de acesso.
 

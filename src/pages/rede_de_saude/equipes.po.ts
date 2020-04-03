@@ -14,12 +14,8 @@ export class EquipesPage extends SystemPage {
   constructor() {
     super();
     this.botoes_ = {
-      filtrar: By.xpath(
-        '(//*[@class = "mat-raised-button mat-button-base mat-primary"])[1]'
-      ),
-      cadastrar: By.xpath(
-        '(//*[@class = "mat-raised-button mat-button-base mat-primary"])[2]'
-      ),
+      filtrar: By.xpath('(//button[@color="primary"])[1]'),
+      cadastrar: By.xpath('(//button[@color="primary"])[2]'),
     };
   }
 
@@ -75,11 +71,9 @@ export class EquipesPage extends SystemPage {
       ? nomes
       : await element
           .all(
-            By.xpath(
-              '//tbody//tr//td[contains(@class, "cdk-column-vinculo")]//a'
-            )
+            By.xpath('//tbody//tr/td[contains(@class, "cdk-column-vinculo")]/a')
           )
-          .map(usernameLink => usernameLink?.getText());
+          .map(link => link?.getText());
 
     for (let i = 0; i < usernames.length; ++i) {
       await this.desvincularUsuario(usernames[i]);
@@ -112,8 +106,9 @@ export class EquipesPage extends SystemPage {
    * @param nomeEquipe
    */
   async selecionarEquipe(nomeEquipe: string) {
+    await SmartWaiter.waitVisibility(By.xpath('//app-equipe-tabela//tbody'));
     await selectFrom(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      By.xpath('//tbody//tr/td/span[@class="span-link"]'),
       nomeEquipe
     );
   }
@@ -123,11 +118,12 @@ export class EquipesPage extends SystemPage {
    * @param nome nome da equipe
    */
   private async criarEquipe(nome: string) {
+    await SmartWaiter.waitVisibility(this.botoes_.cadastrar);
     await element(this.botoes_.cadastrar).click();
-    await element(By.xpath('//*[@formcontrolname="nome"]')).sendKeys(nome);
-    await element(
-      By.xpath('//*[@class = "mat-raised-button mat-button-base mat-primary"]')
-    ).click();
+    const campoNome = By.xpath('//input[@formcontrolname="nome"]');
+    await SmartWaiter.waitVisibility(campoNome);
+    await element(campoNome).sendKeys(nome);
+    await element(By.xpath('//button[@color="primary"]')).click();
   }
 
   /**

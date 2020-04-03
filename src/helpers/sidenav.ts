@@ -235,7 +235,7 @@ export class SideNav {
       return;
     }
     await element(this.botoes_.rede_de_saude)
-      .element(By.xpath('.//div[@class="mat-list-item-content"]'))
+      .element(By.xpath('./div[@class="mat-list-item-content"]'))
       .click();
   }
 
@@ -245,7 +245,7 @@ export class SideNav {
   private async isRedeSaudeExibida() {
     return (
       await element(
-        By.xpath('(//div[contains(@class, "submenu ng-star-inserted")])[1]')
+        By.xpath('(//div[contains(@class, "submenu")])[1]')
       ).getAttribute('class')
     ).includes('expanded');
   }

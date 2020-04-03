@@ -48,6 +48,7 @@ export async function login(user: Usuario) {
  * retorna para a página de login
  */
 export async function logout() {
+  loginPage['logado_'] = false;
   await homePage.logout();
 }
 

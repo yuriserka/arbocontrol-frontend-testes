@@ -1,4 +1,4 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, element } from 'protractor';
 import { TableDefinition } from 'cucumber';
@@ -10,61 +10,13 @@ import {
   assertAtividadeExiste,
 } from './helpers/asserts/atividade';
 import { Atividade } from '../src/models/atividade';
-import { makeUsuario } from '../src/models/usuario';
-import { makeImovel, Imovel } from '../src/models/imovel';
-import {
-  login,
-  criarImovel,
-  criarEquipe,
-  deletarEquipe,
-  deletarImovel,
-  timeout,
-  getTestPage,
-  criarTerritorio,
-  deletarTerritorio,
-} from './helpers/common';
-import { Territorio, makeTerritorio } from '../src/models/territorio';
+import { timeout } from './helpers/common';
+import { baseUrl } from '../config';
 
 setDefaultTimeout(timeout);
 
 const atividadesPage = new AtividadesPage();
 const atividade = new Atividade();
-let territorio: Territorio;
-let imovel: Imovel;
-let nomeDaEquipe: string;
-
-BeforeAll(async () => {
-  await getTestPage();
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await login(user);
-});
-
-Given('que cadastrei o territorio', async (dataTable: TableDefinition) => {
-  territorio = makeTerritorio(dataTable.hashes()[0]);
-  await criarTerritorio(territorio);
-});
-
-Given(
-  'que cadastrei o imovel no territorio cadastrado',
-  async (dataTable: TableDefinition) => {
-    imovel = makeImovel(dataTable.hashes()[0], {
-      território: territorio.nome,
-    });
-    await criarImovel(imovel);
-  }
-);
-
-Given(
-  'que cadastrei a equipe {string} com os usuarios',
-  async (nomeEquipe: string, dataTable: TableDefinition) => {
-    const usuarios = dataTable.hashes();
-    await criarEquipe(nomeEquipe, usuarios);
-    nomeDaEquipe = nomeEquipe;
-  }
-);
 
 When('eu acessar a pagina de atividades', async () => {
   await atividadesPage.get();
@@ -78,7 +30,7 @@ Then(
     await atividadesPage['cadastroBasico'](atividade.dadosBasicos);
     await atividadesPage['salvar']();
     expect(await browser.driver.getCurrentUrl()).include(
-      'http://localhost/atividades/'
+      `${baseUrl}/atividades`
     );
   }
 );
@@ -87,7 +39,7 @@ Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
   atividade.demandasData = dataTable.hashes();
   await atividadesPage.atribuirDemandas(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.demandas.length; ++i) {
@@ -100,7 +52,7 @@ Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
   atividade.imoveisData = dataTable.hashes();
   await atividadesPage.atribuirImoveis(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.imoveis.length; ++i) {
@@ -113,7 +65,7 @@ Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
   atividade.equipesData = dataTable.hashes();
   await atividadesPage.atribuirEquipes(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.equipes.length; ++i) {
@@ -122,7 +74,7 @@ Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
   }
 });
 
-Then('irei salvar', async () => {
+Then('irei salvar a atividade', async () => {
   await atividadesPage['salvar']();
   expect(
     await assertAtividadeExiste(atividade.dadosBasicos.titulo)
@@ -134,10 +86,4 @@ Then('eu vou excluir a atividade {string}', async (titulo: string) => {
   expect(
     await assertAtividadeExiste(atividade.dadosBasicos.titulo)
   ).to.be.equal(false);
-});
-
-Then('irei excluir as dependencias', async () => {
-  await deletarImovel(imovel);
-  await deletarEquipe(nomeDaEquipe);
-  await deletarTerritorio(territorio);
 });

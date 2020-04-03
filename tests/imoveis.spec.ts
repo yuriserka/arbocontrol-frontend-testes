@@ -1,38 +1,16 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { ImoveisPage } from '../src/pages/imoveis.po';
 import { assertImovelExiste } from './helpers/asserts/imovel';
-import { makeUsuario } from '../src/models/usuario';
 import { makeImovel } from '../src/models/imovel';
-import {
-  login,
-  getTestPage,
-  timeout,
-  criarTerritorio,
-  deletarTerritorio,
-} from './helpers/common';
-import { Territorio, makeTerritorio } from '../src/models/territorio';
+import { timeout, deletarTerritorio } from './helpers/common';
+import { territorio } from './helpers/background.steps';
 
 setDefaultTimeout(timeout);
 const imovelPage = new ImoveisPage();
-let territorio: Territorio;
-
-BeforeAll(async () => {
-  await getTestPage();
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await login(user);
-});
-
-Given('que cadastrei o territorio', async (dataTable: TableDefinition) => {
-  territorio = makeTerritorio(dataTable.hashes()[0]);
-  await criarTerritorio(territorio);
-});
 
 When('eu acessar a pagina dos imoveis', async () => {
   await imovelPage.get();
@@ -60,7 +38,3 @@ Then(
     expect(await assertImovelExiste(logradouro)).to.be.equal(false);
   }
 );
-
-Then('irei excluir as dependencias', async () => {
-  await deletarTerritorio(territorio);
-});

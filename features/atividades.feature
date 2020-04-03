@@ -41,14 +41,21 @@ Cenário: Cadastro com sucesso de uma atividade
     E irei atribuir as equipes
     | nome       |
     | _Equipe__0 |
-    E irei salvar
+    E irei salvar a atividade
 
-Esquema do Cenário: Excluir a atividade recem cadastrada
+Esquema do Cenário: Excluir as atividades recem cadastradas
+    Quando eu acessar a pagina de atividades
     Então eu vou excluir a atividade "<titulo_atividade>"
 
 Exemplos:
 | titulo_atividade   |
 | teste_automatizado |
 
-Cenário: Excluir as dependencias de forma explicita (territorio, imovel, equipe)
-    Então irei excluir as dependencias
+Esquema do Cenário: Excluir as dependencias de forma explicita (territorio, imovel, equipe)
+    Então irei excluir a dependencia "<dep>"
+
+Exemplos:
+| dep        |
+| imovel     |
+| equipe     |
+| territorio |
