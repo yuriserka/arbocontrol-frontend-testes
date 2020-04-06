@@ -79,6 +79,7 @@ export class ImoveisPage extends SystemPage {
    * @param logradouro
    */
   async selecionarImovel(logradouro: string) {
+    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-listagem//tbody'));
     await selectFrom(
       By.xpath(
         '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
@@ -109,6 +110,7 @@ export class ImoveisPage extends SystemPage {
 
     return campos
       .filter(c => Object.keys(imovel).includes(c.cucumberLabel))
+      .filter(c => imovel[c.cucumberLabel])
       .filter(c => imovel[c.cucumberLabel] !== '');
   }
 

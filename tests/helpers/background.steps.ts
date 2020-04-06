@@ -7,6 +7,7 @@ import {
   criarImovel,
   criarTerritorio,
   criarAtividade,
+  criarPerfilDeUsuario,
 } from './common';
 import { Imovel, makeImovel } from '../../src/models/imovel';
 import { assertTerritorioExiste } from './asserts/territorio';
@@ -17,6 +18,8 @@ import { Atividade } from '../../src/models/atividade';
 import { By } from 'protractor';
 import { getNodeWithText } from '../../src/helpers/selectors';
 import { assertAtividadeExiste } from './asserts/atividade';
+import { PerfilUsuario } from '../../src/models/perfil_usuario';
+import { assertPerfilExiste } from './asserts/perfil_de_usuario';
 
 /**
  * usuario que está logado
@@ -44,6 +47,11 @@ export let nomeDaEquipe: string;
 export let atividades: {
   [sigla: string]: { atividade: Atividade; id: string };
 } = {};
+
+/**
+ * perfil de usuario que por ventura vá ser cadastrado e usado por algum teste
+ */
+export const perfil = new PerfilUsuario();
 
 Given('que estou logado com', async (dataTable: TableDefinition) => {
   user = makeUsuario(dataTable.hashes()[0]);
@@ -78,6 +86,26 @@ Given(
 );
 
 Given(
+  'que cadastrei o perfil de usuario {string} com acesso a todos os recursos e aos formularios',
+  async (nome: string, dataTable: TableDefinition) => {
+    perfil.dadosBasicosData = { nome };
+    perfil.recursosData = [
+      {
+        recurso: 'Todas',
+        autoridade: 'TODAS AÇÕES',
+      },
+    ];
+    perfil.formulariosData = dataTable.hashes();
+
+    await criarPerfilDeUsuario(perfil);
+
+    expect(await assertPerfilExiste(perfil.dadosBasicos.nome)).to.be.equal(
+      true
+    );
+  }
+);
+
+Given(
   'que cadastrei uma atividade do tipo {string} com o imovel e a equipe criados',
   async (tipo: string, dataTable: TableDefinition) => {
     const sigla = tipo.substr(0, tipo.indexOf(' -')).replace(/\s/g, '_');
@@ -88,12 +116,16 @@ Given(
       titulo: `${dataTable.hashes()[0].titulo}${sigla}`,
       tipo_de_atividade: tipo,
     };
-    atividade.equipesData = [nomeDaEquipe].map(n => {
-      return { nome: n };
-    });
-    atividade.imoveisData = [imovel].map(i => {
-      return { logradouro: i.logradouro };
-    });
+    atividade.equipesData = [
+      {
+        nome: nomeDaEquipe,
+      },
+    ];
+    atividade.imoveisData = [
+      {
+        logradouro: imovel.logradouro,
+      },
+    ];
 
     await criarAtividade(atividade);
 

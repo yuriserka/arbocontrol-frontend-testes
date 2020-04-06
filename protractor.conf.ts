@@ -44,11 +44,11 @@ export const config: Config = {
       maxInstances: 5,
       // path relativo ao protractor.conf.js que está em build/
       specs: [
-        '../features/perfis_de_usuario.feature',
-        '../features/login.feature',
-        '../features/home.feature',
-        '../features/territorios.feature',
-        '../features/equipes.feature',
+        // '../features/perfis_de_usuario.feature',
+        // '../features/login.feature',
+        // '../features/home.feature',
+        // '../features/territorios.feature',
+        // '../features/equipes.feature',
       ],
       metadata,
     },
@@ -56,7 +56,11 @@ export const config: Config = {
       browserName: 'chrome',
       chromeOptions: chromeOpts,
       // path relativo ao protractor.conf.js que está em build/
-      specs: ['../features/imoveis.feature', '../features/atividades.feature'],
+      specs: [
+        // '../features/imoveis.feature',
+        // '../features/atividades.feature',
+        '../features/lista_de_trabalho.feature',
+      ],
       metadata,
     },
   ],
@@ -64,7 +68,7 @@ export const config: Config = {
     compiler: 'ts:ts-node/register',
     require: ['tests/**/*.js'], // path relativo ao protractor.conf.js que está em build/
     format: [require.resolve('cucumber-pretty'), 'json:reports/results.json'],
-    'fail-fast': true,
+    // 'fail-fast': true,
     tags: false,
     strict: true,
     profile: false,

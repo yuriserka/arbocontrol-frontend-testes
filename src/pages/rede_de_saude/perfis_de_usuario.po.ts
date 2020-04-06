@@ -82,8 +82,8 @@ export class PerfisDeUsuarioPage extends SystemPage {
     const nomes: string[] = nomeRecursos
       ? nomeRecursos
       : await element
-          .all(By.xpath(`${recursoRowPath}/td[contains(@class, "recurso")]`))
-          .map(nome => nome?.getText());
+        .all(By.xpath(`${recursoRowPath}/td[contains(@class, "recurso")]`))
+        .map(nome => nome?.getText());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recursoRow = await getNodeWithText(
@@ -114,8 +114,8 @@ export class PerfisDeUsuarioPage extends SystemPage {
     const nomes: string[] = nomeFormularios
       ? nomeFormularios
       : await element
-          .all(By.xpath(`${formRowPath}/td[contains(@class, "formulario")]`))
-          .map(nome => nome?.getText());
+        .all(By.xpath(`${formRowPath}/td[contains(@class, "formulario")]`))
+        .map(nome => nome?.getText());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recurso = await getNodeWithText(
@@ -139,6 +139,9 @@ export class PerfisDeUsuarioPage extends SystemPage {
    * @param nome
    */
   async selecionarPerfil(nome: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-perfil-usuario-tabela//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-perfil-usuario-tabela//tbody//tr/td[contains(@class, "nome")]/a'
@@ -216,10 +219,12 @@ export class PerfisDeUsuarioPage extends SystemPage {
         };
       });
 
-    return campos.filter(c => {
-      const keys = Object.keys(dados);
-      return keys.includes(c.cucumberLabel);
-    });
+    return campos
+      .filter(c => dados[c.cucumberLabel])
+      .filter(c => {
+        const keys = Object.keys(dados);
+        return keys.includes(c.cucumberLabel);
+      });
   }
 
   /**
@@ -268,7 +273,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await element(
       By.xpath(
         `//button/span[text()="${
-          target === 'formulario' ? 'Salvar' : 'Adicionar'
+        target === 'formulario' ? 'Salvar' : 'Adicionar'
         }"]`
       )
     ).click();

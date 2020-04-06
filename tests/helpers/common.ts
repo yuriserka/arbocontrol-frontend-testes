@@ -16,6 +16,8 @@ import { browser } from 'protractor';
 import { Atividade } from '../../src/models/atividade';
 import { baseUrl } from '../../config';
 import { Territorio } from '../../src/models/territorio';
+import { PerfilUsuario } from '../../src/models/perfil_usuario';
+import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
@@ -23,6 +25,7 @@ const imovelPage = new ImoveisPage();
 const loginPage = new LoginPage();
 const homePage = new HomePage();
 const territorioPage = new TerritoriosPage();
+const perfilDeUsuarioPage = new PerfisDeUsuarioPage();
 
 /**
  * tempo de timeout para os testes
@@ -108,6 +111,24 @@ export async function criarTerritorio(territorio: Territorio) {
 export async function deletarTerritorio(territorio: Territorio) {
   await territorioPage.get();
   await territorioPage.exluirTerritorio(territorio.nome);
+}
+
+/**
+ * cria um perfil de usuario, uma vez que está logado
+ * @param perfil
+ */
+export async function criarPerfilDeUsuario(perfil: PerfilUsuario) {
+  await perfilDeUsuarioPage.get();
+  await perfilDeUsuarioPage.cadastrarPerfil(perfil);
+}
+
+/**
+ * deleta um perfil de usuario, uma vez que está logado
+ * @param perfil
+ */
+export async function deletarPerfilDeUsuario(perfil: PerfilUsuario) {
+  await perfilDeUsuarioPage.get();
+  await perfilDeUsuarioPage.excluirPerfil(perfil.dadosBasicos.nome);
 }
 
 /**

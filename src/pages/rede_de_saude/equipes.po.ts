@@ -108,7 +108,7 @@ export class EquipesPage extends SystemPage {
   async selecionarEquipe(nomeEquipe: string) {
     await SmartWaiter.waitVisibility(By.xpath('//app-equipe-tabela//tbody'));
     await selectFrom(
-      By.xpath('//tbody//tr/td/span[@class="span-link"]'),
+      By.xpath('//app-equipe-tabela//tbody//tr/td/span[@class="span-link"]'),
       nomeEquipe
     );
   }

@@ -79,6 +79,9 @@ export class TerritoriosPage extends SystemPage {
    * @param nome
    */
   async selecionarTerritorio(nome: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-territorio-listagem//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-territorio-listagem//tbody//tr/td[contains(@class, "nome")]/span'

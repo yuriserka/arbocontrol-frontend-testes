@@ -74,6 +74,7 @@ export class AtividadesPage extends SystemPage {
    * @param titulo
    */
   async selecionarAtividade(titulo: string) {
+    await SmartWaiter.waitVisibility(By.xpath('//app-atividade-tabela//tbody'));
     await selectFrom(
       By.xpath(
         '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
@@ -220,7 +221,9 @@ export class AtividadesPage extends SystemPage {
         };
       });
 
-    return campos.filter(c => {
+    return campos
+    .filter(c => dados[c.cucumberLabel] || dados[c.placeholder])
+    .filter(c => {
       const keys = Object.keys(dados);
       return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
     });

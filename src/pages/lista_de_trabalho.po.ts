@@ -148,6 +148,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
 
     return campos
       .filter(c => Object.keys(registro).includes(c.cucumberLabel))
+      .filter(c => registro[c.cucumberLabel])
       .filter(c => registro[c.cucumberLabel] !== '');
   }
 
@@ -173,7 +174,9 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param codigo
    */
   private async selecionarImovel(logradouro: string) {
-    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-tabela-simples'));
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-imovel-tabela-simples//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-logradouro")]//span'

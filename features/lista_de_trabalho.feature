@@ -7,6 +7,11 @@ Contexto:
     | cpf            | senha    | unidade  |
     | 111.111.111-11 | 12345678 | SES - AM |
 
+Cenário: Preparação do ambiente temporario para que possa cadastrar um registro na lista de trabalho
+    E que cadastrei o perfil de usuario "aa_full_admin" com acesso a todos os recursos e aos formularios
+    | formulario     | autoridade |
+    | Inspeção Geral | EDITAR     |
+
 # idealmente isto só precisa rodar uma vez, mas o background roda pra cada
 # novo cenário, e se esconder em um BeforeAll dentro do código fica dificil
 # pro leitor entender então o melhor é apenas considerar estes
@@ -34,17 +39,17 @@ Esquema do Cenário:
 Exemplos:
     | tipo                     |
     | PE - Ponto Estratégico   |
-    # | DF - Delimitação de Foco |
+    | DF - Delimitação de Foco |
 
 # Esquema do Cenário: Inserção com sucesso de um registro de campo
 #     Quando eu acessar a pagina da lista de trabalho
 #     Então eu vou selecionar a atividade do tipo "<tipo_atividade_sigla>"
-    # E selecionar o imovel "<logradouro_imovel>"
-    # E selecionar o formulario "<formulario>"
-    # E irei cadastrar registros com os valores
-    # | agente    | supervisor | latitude_atual | longitude_atual | tipo_de_atividade     | ciclo | data_inspeção | hora_da_entrada | hora_da_saída | tipo_de_visita | tipo_de_tratamento | pendência | a1_inspecionado | a1_positivo | a1_eliminado | a2_inspecionado | a2_positivo | a2_eliminado | b_inspecionado | b_positivo | b_eliminado | c_inspecionado | c_positivo | c_eliminado | d1_inspecionado | d1_positivo | d1_eliminado | d2_inspecionado | d2_positivo | d2_eliminado | e_inspecionado | e_positivo | e_eliminado | numero_inicial | número_final | qtde_tubitos | tipo_1   | qtde_tipo_1_g | qtde_tratados_1 | tipo_2    | qtde_tipo_2_g | qtde_tratados_2 | tipo_adulticida        | quantidade_cargas |
-    # | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 100             | 110           | Normal         | focal              | Fechado   | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1          | 1           | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
-    # | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 100             | 110           | Normal         | focal              | Fechado   | 4               | 4           | 4            | 4               | 4           | 4            | 4              | 4          | 4           | 4              | 4          | 4           | 4               | 4           | 4            | 4               | 4           | 4            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
+#     E selecionar o imovel "<logradouro_imovel>"
+#     E selecionar o formulario "<formulario>"
+#     E irei cadastrar registros com os valores
+#     | agente    | supervisor | latitude_atual | longitude_atual | tipo_de_atividade     | ciclo | data_inspeção | hora_da_entrada | hora_da_saída | tipo_de_visita | tipo_de_tratamento | pendência | a1_inspecionado | a1_positivo | a1_eliminado | a2_inspecionado | a2_positivo | a2_eliminado | b_inspecionado | b_positivo | b_eliminado | c_inspecionado | c_positivo | c_eliminado | d1_inspecionado | d1_positivo | d1_eliminado | d2_inspecionado | d2_positivo | d2_eliminado | e_inspecionado | e_positivo | e_eliminado | numero_inicial | número_final | qtde_tubitos | tipo_1   | qtde_tipo_1_g | qtde_tratados_1 | tipo_2    | qtde_tipo_2_g | qtde_tratados_2 | tipo_adulticida        | quantidade_cargas |
+#     | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 100             | 110           | Normal         | focal              | Fechado   | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1          | 1           | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
+#     | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 100             | 110           | Normal         | focal              | Fechado   | 4               | 4           | 4            | 4               | 4           | 4            | 4              | 4          | 4           | 4              | 4          | 4           | 4               | 4           | 4            | 4               | 4           | 4            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
 
 # Exemplos:
 # | tipo_atividade_sigla | logradouro_imovel                   | formulario                                                       |
@@ -108,12 +113,13 @@ Exemplos:
 #     | PE                   | Campo PE - Formulário de Ações de Campo para Pontos Estratégicos |
 #     | PE                   | Laboratório - Dengue Por Amostra (Manaus-AM)                     |
 
-Esquema do Cenário: Excluir as dependencias de forma explicita (imovel, equipe)
+Esquema do Cenário: Excluir as dependencias de forma explicita (atividades, imovel, equipe, perfil_admin)
     Então irei excluir a dependencia "<dep>"
 
 Exemplos:
-| dep        |
-| imovel     |
-| territorio |
-| equipe     |
-| atividades |
+| dep          |
+| atividades   |
+| imovel       |
+| territorio   |
+| equipe       |
+| perfil_admin |
