@@ -222,11 +222,11 @@ export class AtividadesPage extends SystemPage {
       });
 
     return campos
-    .filter(c => dados[c.cucumberLabel] || dados[c.placeholder])
-    .filter(c => {
-      const keys = Object.keys(dados);
-      return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
-    });
+      .filter(c => dados[c.cucumberLabel] || dados[c.placeholder])
+      .filter(c => {
+        const keys = Object.keys(dados);
+        return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
+      });
   }
 
   /**

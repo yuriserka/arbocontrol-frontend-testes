@@ -6,7 +6,7 @@ import { baseUrl } from '../config';
 import { ImoveisPage } from '../src/pages/imoveis.po';
 import { assertImovelExiste } from './helpers/asserts/imovel';
 import { makeImovel } from '../src/models/imovel';
-import { timeout, deletarTerritorio } from './helpers/common';
+import { timeout } from './helpers/common';
 import { territorio } from './helpers/background.steps';
 
 setDefaultTimeout(timeout);

@@ -1,4 +1,3 @@
-import { Territorio } from '../../../src/models/territorio';
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { baseUrl } from '../../../config';
 import { getNodeWithText } from '../../../src/helpers/selectors';

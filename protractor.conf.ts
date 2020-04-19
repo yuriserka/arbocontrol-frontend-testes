@@ -7,15 +7,15 @@ const chromeOpts = {
   args: ['disable-plugins', 'disable-infobars'],
 };
 
-const startTime = (() => {
+function getCurrentDateAndTime() {
   const date = new Date();
   return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-})();
+}
 
 const runInfoData = [
   { label: 'Project', value: 'ArboControl frontend tests' },
   { label: 'Release', value: '1.0.1' },
-  { label: 'Execution Start Time', value: startTime },
+  { label: 'Execution Start Time', value: getCurrentDateAndTime() },
   { label: 'Execution End Time', value: '' },
 ];
 
@@ -44,11 +44,11 @@ export const config: Config = {
       maxInstances: 5,
       // path relativo ao protractor.conf.js que está em build/
       specs: [
-        // '../features/perfis_de_usuario.feature',
-        // '../features/login.feature',
-        // '../features/home.feature',
-        // '../features/territorios.feature',
-        // '../features/equipes.feature',
+        '../features/perfis_de_usuario.feature',
+        '../features/login.feature',
+        '../features/home.feature',
+        '../features/territorios.feature',
+        '../features/equipes.feature',
       ],
       metadata,
     },
@@ -57,9 +57,9 @@ export const config: Config = {
       chromeOptions: chromeOpts,
       // path relativo ao protractor.conf.js que está em build/
       specs: [
-        // '../features/imoveis.feature',
-        // '../features/atividades.feature',
-        '../features/lista_de_trabalho.feature',
+        '../features/imoveis.feature',
+        '../features/atividades.feature',
+        // '../features/lista_de_trabalho.feature',
       ],
       metadata,
     },
@@ -83,8 +83,7 @@ export const config: Config = {
       .maximize();
   },
   onComplete: () => {
-    const date = new Date();
-    runInfoData[3].value = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    runInfoData[3].value = getCurrentDateAndTime();
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 30000,

@@ -60,7 +60,7 @@ export class EquipesPage extends SystemPage {
   }
 
   /**
-   * desvincula os usuarios da equipe que foi selecionada anteriormente
+   * desvincula os usuarios da equipe passada
    * @param nomes array contendo o nome dos usuarios que devem ser excluidos,
    * caso nenhum nome seja passado, todos serão excluidos
    */

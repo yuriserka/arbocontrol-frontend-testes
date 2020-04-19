@@ -7,15 +7,8 @@ import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
 import {
   timeout,
-  deletarEquipe,
-  deletarImovel,
-  deletarAtividadePorTitulo,
-  deletarTerritorio,
 } from './helpers/common';
 import {
-  nomeDaEquipe,
-  imovel,
-  territorio,
   atividades,
 } from './helpers/background.steps';
 
@@ -107,20 +100,8 @@ Then('Adicionar as seguintes amostras', async (dataTable: TableDefinition) => {
 });
 
 Then(
-  'irei excluir os registros da atividade do tipo {string} do formulario {string}',
+  'irei excluir todos os registros da atividade do tipo {string} do formulario {string}',
   async (sigla: string, form: string) => {
     await listaDeTrabalhoPage.excluirRegistros(atividades[sigla].id, form);
   }
 );
-
-Then('irei excluir as dependencias', async () => {
-  const keys = Object.keys(atividades);
-  for (let i = 0; i < keys.length; ++i) {
-    await deletarAtividadePorTitulo(
-      atividades[keys[i]].atividade.dadosBasicos.titulo
-    );
-  }
-  await deletarImovel(imovel);
-  await deletarEquipe(nomeDaEquipe);
-  await deletarTerritorio(territorio);
-});

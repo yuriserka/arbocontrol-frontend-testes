@@ -79,15 +79,22 @@ export class ListaDeTrabalhoPage extends SystemPage {
     }
 
     await this.selecionarFormulario(formulario);
-    const regRowsXPath = By.xpath(
-      '//tbody//tr//td[contains(@class, "column-id")]/span'
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
     );
+
+    const regRowsXPath = By.xpath(
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+    );
+    await SmartWaiter.waitTableRows(regRowsXPath);
 
     const regs: string[] = idRegistros
       ? idRegistros
       : await element.all(regRowsXPath).map(r => {
           return r?.getText();
         });
+
+    console.log(regs);
 
     for (let i = 0; i < regs.length; ++i) {
       await this.selecionarRegistro(regs[i]);
@@ -158,11 +165,11 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async selecionarAtividade(numero: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-atividade-tabela-simples')
+      By.xpath('//app-atividade-tabela-simples//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
       ),
       numero
     );
@@ -246,8 +253,11 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param nome
    */
   private async selecionarFormulario(nome: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-formulario-tabela-simples//tbody')
+    );
     await selectFrom(
-      By.xpath('//app-formulario-tabela-simples//tbody//tr//td//span'),
+      By.xpath('//app-formulario-tabela-simples//tbody/tr/td/span'),
       nome
     );
     await browser.sleep(1000);
@@ -258,6 +268,9 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param id
    */
   private async selecionarRegistro(id: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
