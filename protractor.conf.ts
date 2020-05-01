@@ -59,7 +59,7 @@ export const config: Config = {
       specs: [
         '../features/imoveis.feature',
         '../features/atividades.feature',
-        // '../features/lista_de_trabalho.feature',
+        '../features/lista_de_trabalho.feature',
       ],
       metadata,
     },

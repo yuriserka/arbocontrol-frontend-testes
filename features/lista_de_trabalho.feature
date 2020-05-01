@@ -7,20 +7,13 @@ Contexto:
     | cpf            | senha    | unidade  |
     | 111.111.111-11 | 12345678 | SES - AM |
 
-# Cenário: Preparação do ambiente temporario para que possa cadastrar um registro na lista de trabalho
-#     E que cadastrei o perfil de usuario "aa_full_admin" com acesso a todos os recursos e aos formularios
-#     | formulario     | autoridade |
-#     | Inspeção Geral | EDITAR     |
-#     E que defini o usuario logado no perfil de administrador
-#     E que a atividade pode ser editada na situação nova
+Esquema do Cenário: Criação de recursos necessários para a edição da lista de trabalho
+    E que o usuario atual pode editar novas atividades criadas
+    E que a atividade do tipo "<tipo_de_atividade>" possui o formulario "<nome_do_formulario>"
 
-# Esquema do Cenário: Atribuição dos formularios aos tipos de atividade
-#     E que o "<formulario>" foi atribuido a atividade do tipo "<tipo_atividade>"
-
-# Exemplos:
-#     | tipo_atividade         | formulario     |
-#     | PE - Ponto Estratégico | Inspeção Geral |
-#     | PE - Ponto Estratégico | Inspeção Geral |
+Exemplos:
+    | tipo_de_atividade      | nome_do_formulario |
+    | PE - Ponto Estratégico | Inspeção Geral	  |
 
 # idealmente isto só precisa rodar uma vez, mas o background roda pra cada
 # novo cenário, e se esconder em um BeforeAll dentro do código fica dificil
@@ -138,7 +131,7 @@ Exemplos:
     | PE                   | Inspeção Geral |
     # | PE                   | Laboratório - Dengue Por Amostra (Manaus-AM)                     |
 
-Esquema do Cenário: Excluir as dependencias de forma explicita (atividades, imovel, equipe, perfil_admin)
+Esquema do Cenário: Excluir as dependencias de forma explicita (atividades, imovel, territorio, equipe)
     Então irei excluir a dependencia "<dep>"
 
 Exemplos:
@@ -148,3 +141,9 @@ Exemplos:
 | territorio   |
 | equipe       |
 # | perfil_admin |
+
+Cenário: remover as dependencias de forma explicita (permissao de edição, formularios atribuidos)
+    Então irei remover a permissao para edicao de novas atividades
+    Então irei desatribuir os formularios dos tipos de atividades
+    | tipo_de_atividade      | nome_do_formulario |
+    | PE - Ponto Estratégico | Inspeção Geral	  |

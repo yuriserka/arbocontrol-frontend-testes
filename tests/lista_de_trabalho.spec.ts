@@ -5,12 +5,8 @@ import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
-import {
-  timeout,
-} from './helpers/common';
-import {
-  atividades,
-} from './helpers/background.steps';
+import { timeout } from './helpers/common';
+import { atividades } from './helpers/background.steps';
 
 setDefaultTimeout(timeout);
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();

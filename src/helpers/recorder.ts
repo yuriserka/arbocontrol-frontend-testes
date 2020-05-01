@@ -1,4 +1,4 @@
-import moment = require('moment');
+const moment = require('moment');
 import { browser, By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { BlazeMeterPage } from './pages/blazemeter.po';

@@ -5,6 +5,8 @@ import {
   deletarEquipe,
   deletarAtividade,
   deletarPerfilDeUsuario,
+  removerPermissaoDeEdicaoDeNovasAtividades,
+  removerFormularioAoTipoDeAtividade,
 } from './common';
 import {
   territorio,
@@ -19,6 +21,7 @@ import { assertEquipeExiste } from './asserts/equipe';
 import { expect } from 'chai';
 import { assertAtividadeExiste } from './asserts/atividade';
 import { assertPerfilExiste } from './asserts/perfil_de_usuario';
+import { TableDefinition } from 'cucumber';
 
 const deleters = {
   territorio: () => deletarTerritorio(territorio),
@@ -50,3 +53,20 @@ Then('irei excluir a dependencia {string}', async (nomeDependencia: string) => {
     expect(await asserts[nomeDependencia]()).to.be.equal(false);
   }
 });
+
+Then('irei remover a permissao para edicao de novas atividades', async () => {
+  await removerPermissaoDeEdicaoDeNovasAtividades();
+});
+
+Then(
+  'irei desatribuir os formularios dos tipos de atividades',
+  async (dataTable: TableDefinition) => {
+    const data = dataTable.hashes();
+    for (let i = 0; i < data.length; ++i) {
+      await removerFormularioAoTipoDeAtividade(
+        data[i]['tipo_de_atividade'],
+        data[i]['nome_do_formulario']
+      );
+    }
+  }
+);

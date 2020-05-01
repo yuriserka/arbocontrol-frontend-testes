@@ -29,6 +29,35 @@ export class SideNav {
         '//a[@routerlink="perfil-usuario-unidade"]'
       ),
       tabelas_basicas: By.xpath('(//mat-list-item)[2]'),
+      vetores: By.xpath('//a[@routerlink="gerenciar/vetor"]'),
+      situacao_atividade: By.xpath('//a[@routerlink="situacoes-atividade"]'),
+      tipos_de_atividade: By.xpath('//a[@routerlink="tipos-atividades"]'),
+      tipos_de_vinculo: By.xpath('//a[@routerlink="gerenciar/tipo-vinculo"]'),
+      cargos: By.xpath('//a[@routerlink="cargos"]'),
+      niveis_de_gestao: By.xpath('//a[@routerlink="niveis-gestao"]'),
+      fluxos_de_trabalho: By.xpath('//a[@routerlink="fluxos-trabalho"]'),
+      visoes: By.xpath('//a[@routerlink="visoes"]'),
+      tipos_de_territorio: By.xpath(
+        '//a[@routerlink="gerenciar/tipo-territorio"]'
+      ),
+      imoveis_tabelas: By.xpath('(//mat-list-item)[3]'),
+      tipos_de_imovel: By.xpath('//a[@routerlink="gerenciar/tipo-imovel"]'),
+      tipos_de_ponto_estrategico: By.xpath(
+        '//a[@routerlink="gerenciar/tipo-ponto-estrategico"]'
+      ),
+      demandas_tabelas: By.xpath('(//mat-list-item)[4]'),
+      solicitantes: By.xpath('//a[@routerlink="gerenciar/solicitante"]'),
+      origens_demanda: By.xpath('//a[@routerlink="gerenciar/origem-demanda"]'),
+      categoria_demanda: By.xpath(
+        '//a[@routerlink="gerenciar/categoria-demanda"]'
+      ),
+      abrangencias: By.xpath('//a[@routerlink="gerenciar/abrangencia"]'),
+      prioridade_demanda: By.xpath(
+        '//a[@routerlink="gerenciar/prioridade-demanda"]'
+      ),
+      situacao_demanda: By.xpath(
+        '//a[@routerlink="gerenciar/situacao-demanda"]'
+      ),
     };
   }
 
@@ -225,6 +254,125 @@ export class SideNav {
     await element(this.botoes_.perfil_usuario_unidade).click();
   }
 
+  async acessarVetores() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.vetores);
+    await SmartWaiter.waitClick(this.botoes_.vetores);
+    await element(this.botoes_.vetores).click();
+  }
+
+  async acessarSituacaoAtividade() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.situacao_atividade);
+    await SmartWaiter.waitClick(this.botoes_.situacao_atividade);
+    await element(this.botoes_.situacao_atividade).click();
+  }
+
+  async acessarTiposDeAtividades() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.tipos_de_atividade);
+    await SmartWaiter.waitClick(this.botoes_.tipos_de_atividade);
+    await element(this.botoes_.tipos_de_atividade).click();
+  }
+
+  async acessarTiposDeVinculos() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.tipos_de_vinculo);
+    await SmartWaiter.waitClick(this.botoes_.tipos_de_vinculo);
+    await element(this.botoes_.tipos_de_vinculo).click();
+  }
+
+  async acessarCargos() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.cargos);
+    await SmartWaiter.waitClick(this.botoes_.cargos);
+    await element(this.botoes_.cargos).click();
+  }
+
+  async acessarNiveisDeGestao() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.niveis_de_gestao);
+    await SmartWaiter.waitClick(this.botoes_.niveis_de_gestao);
+    await element(this.botoes_.niveis_de_gestao).click();
+  }
+
+  async acessarFluxosDeTrabalho() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.fluxos_de_trabalho);
+    await SmartWaiter.waitClick(this.botoes_.fluxos_de_trabalho);
+    await element(this.botoes_.fluxos_de_trabalho).click();
+  }
+
+  async acessarVisoes() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.visoes);
+    await SmartWaiter.waitClick(this.botoes_.visoes);
+    await element(this.botoes_.visoes).click();
+  }
+
+  async acessarTiposDeTerritorio() {
+    await this.expandirTabelasBasicas();
+    await SmartWaiter.waitVisibility(this.botoes_.tipos_de_territorio);
+    await SmartWaiter.waitClick(this.botoes_.tipos_de_territorio);
+    await element(this.botoes_.tipos_de_territorio).click();
+  }
+
+  async acessarTiposDeImovel() {
+    await this.expandirImoveisTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.tipos_de_imovel);
+    await SmartWaiter.waitClick(this.botoes_.tipos_de_imovel);
+    await element(this.botoes_.tipos_de_imovel).click();
+  }
+
+  async acessarTiposDePontoEstrategico() {
+    await this.expandirImoveisTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.tipos_de_ponto_estrategico);
+    await SmartWaiter.waitClick(this.botoes_.tipos_de_ponto_estrategico);
+    await element(this.botoes_.tipos_de_ponto_estrategico).click();
+  }
+
+  async acessarSolicitantes() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.solicitantes);
+    await SmartWaiter.waitClick(this.botoes_.solicitantes);
+    await element(this.botoes_.solicitantes).click();
+  }
+
+  async acessarOrigensDemanda() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.origens_demanda);
+    await SmartWaiter.waitClick(this.botoes_.origens_demanda);
+    await element(this.botoes_.origens_demanda).click();
+  }
+
+  async acessarCategoriaDemanda() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.categoria_demanda);
+    await SmartWaiter.waitClick(this.botoes_.categoria_demanda);
+    await element(this.botoes_.categoria_demanda).click();
+  }
+
+  async acessarAbrangencias() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.abrangencias);
+    await SmartWaiter.waitClick(this.botoes_.abrangencias);
+    await element(this.botoes_.abrangencias).click();
+  }
+
+  async acessarPrioridadeDemanda() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.prioridade_demanda);
+    await SmartWaiter.waitClick(this.botoes_.prioridade_demanda);
+    await element(this.botoes_.prioridade_demanda).click();
+  }
+
+  async acessarSituacaoDemanda() {
+    await this.expandirDemandasTabelas();
+    await SmartWaiter.waitVisibility(this.botoes_.situacao_demanda);
+    await SmartWaiter.waitClick(this.botoes_.situacao_demanda);
+    await element(this.botoes_.situacao_demanda).click();
+  }
+
   /**
    * Se a lista de opções da Rede de Saúde não estiver sendo exibida, então é
    * clicado no botão para exibi-la, caso contrário não faz nada
@@ -240,12 +388,89 @@ export class SideNav {
   }
 
   /**
+   * Se a lista de opções das Tabelas Basicas não estiver sendo exibida, então é
+   * clicado no botão para exibi-la, caso contrário não faz nada
+   */
+  private async expandirTabelasBasicas() {
+    await this.exibir();
+    if (await this.isTabelasBasicasExibida()) {
+      return;
+    }
+    await element(this.botoes_.tabelas_basicas)
+      .element(By.xpath('./div[@class="mat-list-item-content"]'))
+      .click();
+  }
+
+  /**
+   * Se a lista de opções para Imoveis Tabelas não estiver sendo exibida, então é
+   * clicado no botão para exibi-la, caso contrário não faz nada
+   */
+  private async expandirImoveisTabelas() {
+    await this.exibir();
+    await this.expandirTabelasBasicas();
+    if (await this.isImoveisTabelasExibida()) {
+      return;
+    }
+    await element(this.botoes_.tabelas_basicas)
+      .element(By.xpath('./div[@class="mat-list-item-content"]'))
+      .click();
+  }
+
+  /**
+   * Se a lista de opções para Demandas Tabelas não estiver sendo exibida, então é
+   * clicado no botão para exibi-la, caso contrário não faz nada
+   */
+  private async expandirDemandasTabelas() {
+    await this.exibir();
+    await this.expandirTabelasBasicas();
+    if (await this.isDemandasTabelasExibida()) {
+      return;
+    }
+    await element(this.botoes_.tabelas_basicas)
+      .element(By.xpath('./div[@class="mat-list-item-content"]'))
+      .click();
+  }
+
+  /**
    * checa se a lista da Rede de Saúde está sendo exibida
    */
   private async isRedeSaudeExibida() {
     return (
       await element(
         By.xpath('(//div[contains(@class, "submenu")])[1]')
+      ).getAttribute('class')
+    ).includes('expanded');
+  }
+
+  /**
+   * checa se a lista das Tabelas Básicas está sendo exibida
+   */
+  private async isTabelasBasicasExibida() {
+    return (
+      await element(
+        By.xpath('(//div[contains(@class, "submenu")])[2]')
+      ).getAttribute('class')
+    ).includes('expanded');
+  }
+
+  /**
+   * checa se a lista para Imoveis Tabelas está sendo exibida
+   */
+  private async isImoveisTabelasExibida() {
+    return (
+      await element(
+        By.xpath('(//div[contains(@class, "submenu")])[3]')
+      ).getAttribute('class')
+    ).includes('expanded');
+  }
+
+  /**
+   * checa se a lista para Demandas Tabelas está sendo exibida
+   */
+  private async isDemandasTabelasExibida() {
+    return (
+      await element(
+        By.xpath('(//div[contains(@class, "submenu")])[4]')
       ).getAttribute('class')
     ).includes('expanded');
   }

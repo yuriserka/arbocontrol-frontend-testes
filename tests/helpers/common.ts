@@ -18,6 +18,8 @@ import { baseUrl } from '../../config';
 import { Territorio } from '../../src/models/territorio';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';
+import { SituacoesDeAtividadePage } from '../../src/pages/tabelas_basicas/situacoes_de_atividade.po';
+import { TiposDeAtividadesPage } from '../../src/pages/tabelas_basicas/tipos_de_atividade.po';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
@@ -26,6 +28,8 @@ const loginPage = new LoginPage();
 const homePage = new HomePage();
 const territorioPage = new TerritoriosPage();
 const perfilDeUsuarioPage = new PerfisDeUsuarioPage();
+const situacaoDeAtividadePage = new SituacoesDeAtividadePage();
+const tipoDeAtividadePage = new TiposDeAtividadesPage();
 
 /**
  * tempo de timeout para os testes
@@ -155,4 +159,50 @@ export async function deletarAtividade(atividade: Atividade) {
 export async function deletarAtividadePorTitulo(titulo: string) {
   await atividadePage.get();
   await atividadePage.excluirAtividade(titulo);
+}
+
+/**
+ * permite que aividades com a situação "Nova" possam ser editadas, ou seja,
+ * possa ser possível a inserção de registros dado que esta logado
+ * @param tipo_de_atividade
+ */
+export async function permitirEdicaoDeNovasAtividades() {
+  await situacaoDeAtividadePage.get();
+  await situacaoDeAtividadePage.checkLiberadaParaEdicao('Nova');
+}
+
+/**
+ * remove a permissao de edição para atividades em situação "Nova", uma vez que
+ * está logado
+ */
+export async function removerPermissaoDeEdicaoDeNovasAtividades() {
+  await situacaoDeAtividadePage.get();
+  await situacaoDeAtividadePage.checkLiberadaParaEdicao('Nova');
+}
+
+/**
+ * adiciona formulario às atividades do tipo especificado, uma vez que está logado
+ * @param tipo
+ * @param form
+ */
+export async function adicionarFormularioAoTipoDeAtividade(
+  tipo: string,
+  form: string
+) {
+  await tipoDeAtividadePage.get();
+  await tipoDeAtividadePage.adicionarFormularioAoTipo(tipo, form, true);
+}
+
+/**
+ * remove o formulario passado das atividades do tipo especificado, uma vez que
+ * está logado
+ * @param tipo
+ * @param form
+ */
+export async function removerFormularioAoTipoDeAtividade(
+  tipo: string,
+  form: string
+) {
+  await tipoDeAtividadePage.get();
+  await tipoDeAtividadePage.removerFormularioDoTipo(tipo, form);
 }

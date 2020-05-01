@@ -8,6 +8,8 @@ import {
   criarTerritorio,
   criarAtividade,
   criarPerfilDeUsuario,
+  permitirEdicaoDeNovasAtividades,
+  adicionarFormularioAoTipoDeAtividade,
 } from './common';
 import { Imovel, makeImovel } from '../../src/models/imovel';
 import { assertTerritorioExiste } from './asserts/territorio';
@@ -15,7 +17,7 @@ import { expect } from 'chai';
 import { assertImovelExiste } from './asserts/imovel';
 import { assertEquipeExiste } from './asserts/equipe';
 import { Atividade } from '../../src/models/atividade';
-import { By } from 'protractor';
+import { By, element } from 'protractor';
 import { getNodeWithText } from '../../src/helpers/selectors';
 import { assertAtividadeExiste } from './asserts/atividade';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
@@ -145,5 +147,16 @@ Given(
           .getText()
       ),
     };
+  }
+);
+
+Given('que o usuario atual pode editar novas atividades criadas', async () => {
+  await permitirEdicaoDeNovasAtividades();
+});
+
+Given(
+  'que a atividade do tipo {string} possui o formulario {string}',
+  async (tipoAtividade: string, nomeFormulario: string) => {
+    await adicionarFormularioAoTipoDeAtividade(tipoAtividade, nomeFormulario);
   }
 );
