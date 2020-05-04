@@ -34,7 +34,7 @@ Cenário: Inserção das dependencias necessárias
 
 # Extensão ainda das dependencias, inserindo atividades de varios tipos para
 # testar o preenchimento de formularios
-Esquema do Cenário:  
+Esquema do Cenário: criação de atividades de diferentes tipos
     E que cadastrei uma atividade do tipo "<tipo>" com o imovel e a equipe criados
     | titulo     | descricao                  | dataInicio | dataFim    | abrangencia |
     | atividade_ | fui inserido pelo cucumber | 20/02/2020 | 21/02/2020 | Imóvel      |

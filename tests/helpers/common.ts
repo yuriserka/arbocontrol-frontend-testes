@@ -32,9 +32,9 @@ const situacaoDeAtividadePage = new SituacoesDeAtividadePage();
 const tipoDeAtividadePage = new TiposDeAtividadesPage();
 
 /**
- * tempo de timeout para os testes
+ * tempo de timeout de 2 minutos para os testes
  */
-export const timeout = 1000 * 60;
+export const timeout = 2 * 60 * 1000;
 
 /**
  * navega até a página que deve ser testada

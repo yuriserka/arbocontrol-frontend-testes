@@ -22,6 +22,8 @@ import { getNodeWithText } from '../../src/helpers/selectors';
 import { assertAtividadeExiste } from './asserts/atividade';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { assertPerfilExiste } from './asserts/perfil_de_usuario';
+import { assertSituacaoLiberadaParaEdicao } from './asserts/situacao_de_atividade';
+import { assertTipoDeAtividadePossuiFormulario } from './asserts/tipo_de_atividade';
 
 /**
  * usuario que está logado
@@ -152,11 +154,15 @@ Given(
 
 Given('que o usuario atual pode editar novas atividades criadas', async () => {
   await permitirEdicaoDeNovasAtividades();
+  expect(await assertSituacaoLiberadaParaEdicao('Nova')).to.be.equal(true);
 });
 
 Given(
   'que a atividade do tipo {string} possui o formulario {string}',
   async (tipoAtividade: string, nomeFormulario: string) => {
     await adicionarFormularioAoTipoDeAtividade(tipoAtividade, nomeFormulario);
+    expect(
+      await assertTipoDeAtividadePossuiFormulario(tipoAtividade, nomeFormulario)
+    ).to.be.equal(true);
   }
 );

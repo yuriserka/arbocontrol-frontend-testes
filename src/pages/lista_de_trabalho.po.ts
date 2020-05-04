@@ -94,8 +94,6 @@ export class ListaDeTrabalhoPage extends SystemPage {
           return r?.getText();
         });
 
-    console.log(regs);
-
     for (let i = 0; i < regs.length; ++i) {
       await this.selecionarRegistro(regs[i]);
       await element(By.xpath('//button[@color="warn"]')).click();
