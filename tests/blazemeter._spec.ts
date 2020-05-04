@@ -3,8 +3,9 @@ import { browser } from 'protractor';
 import { Recorder } from '../src/helpers/recorder';
 import { LoginPage } from '../src/pages/login.po';
 import { Usuario } from '../src/models/usuario';
+import { timeout } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(timeout);
 const blazeRecorder = new Recorder();
 let baseTab: string;
 
@@ -44,7 +45,7 @@ Then('navegarei até o site {string}', async (url: string) => {
 Then('farei login', async () => {
   const user: Usuario = {
     cpf: '055.232.031-57',
-    senha: '12345678@arbo',
+    senha: '12345678',
     unidade: 'SES - AM',
   };
   await new LoginPage().login(user);

@@ -4,8 +4,8 @@ Funcionalidade: Cadastrar uma equipe
 
 Contexto:
     Dado que estou logado com
-    | cpf            | senha         | unidade  |
-    | 111.111.111-11 | 12345678@arbo | SES - AM |
+    | cpf            | senha    | unidade  |
+    | 111.111.111-11 | 12345678 | SES - AM |
     Quando eu acessar a pagina das equipes
 
 Esquema do Cenário: Cadastro com sucesso
@@ -17,18 +17,10 @@ Esquema do Cenário: Cadastro com sucesso
     | Usuário 2 | agente     |
 
 Exemplos:
-| nome_da_equipe  |
-| Turma do Pagode |
-| Time 7          |
-| Exalta samba    |
-
-Esquema do Cenário: Excluir uma equipe
-    Então eu vou excluiur a equipe "<nome_da_equipe>"
-
-Exemplos:
 | nome_da_equipe |
-| Exalta samba   |
-| Time 7         |
+| __Equipe_0__   |
+| __Equipe_1__   |
+| __Equipe_2__   |
 
 Esquema do Cenário: Desvincular usuarios de uma equipe
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
@@ -36,5 +28,14 @@ Esquema do Cenário: Desvincular usuarios de uma equipe
     | Usuário 2 |
 
 Exemplos:
-| nome_da_equipe  |
-| Turma do Pagode |
+| nome_da_equipe |
+| __Equipe_0__   |
+
+Esquema do Cenário: Excluir uma equipe
+    Então eu vou excluir a equipe "<nome_da_equipe>"
+
+Exemplos:
+| nome_da_equipe |
+| __Equipe_1__   |
+| __Equipe_2__   |
+| __Equipe_0__   |

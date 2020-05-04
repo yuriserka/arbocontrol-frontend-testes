@@ -5,25 +5,25 @@ import { WebDriverLocator } from 'protractor/built/locators';
  * Dada uma lista de opções (com caminho já apontando para os nós que
  * conterão o texto), seleciona a opção que contenha o mesmo texto que o
  * procurado
- * 
+ *
  * suponha que há um campo \<select\> do tipo
- * 
+ *
  * espécie:
  *  - Aedes aegypti
  *  - Aedes albopictus
  *  - Anopheles
- * 
+ *
  * e cada texto da opção é dada pelo xpath:
  * ```ts
  * const locator = By.xpath('//select//option//span')
  * ```
- * 
+ *
  * e deseja-se selecionar a opção que contém o texto 'Anopheles',
  * então a chamada para a função fica:
  * ```ts
  * await selectFrom(locator, 'Anopheles');
  * ```
- * 
+ *
  * @param locator caminho para um ou mais nós que possuam um texto dentro para
  * ser comparado
  * @param opcaoProcurada string que deverá ser comparada
@@ -38,7 +38,9 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
     }
   }
   throw new Error(
-    `não foi possivel encontrar a opção = '${opcaoProcurada}' na lista de opções`
+    `não foi possivel encontrar a opção: '${opcaoProcurada}' na lista [${await element
+      .all(locator)
+      .getText()}]`
   );
 }
 
@@ -89,7 +91,7 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
 export async function getNodeWithText(
   rootLocator: Locator,
   textoProcurado: string,
-  textLocator?: WebDriverLocator
+  textLocator?: Locator
 ): Promise<ElementFinder> {
   const nomes: string[] = await element.all(rootLocator).map(r => {
     return textLocator ? r?.element(textLocator).getText() : r?.getText();
@@ -98,7 +100,7 @@ export async function getNodeWithText(
   const index = nomes.indexOf(textoProcurado);
   if (index < 0) {
     throw new Error(
-      `não foi possivel encontrar o elemento com texto = '${textoProcurado}' na tabela`
+      `não foi possivel encontrar o elemento com texto='${textoProcurado}' na lista [${nomes}]`
     );
   }
 

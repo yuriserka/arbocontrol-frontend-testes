@@ -16,7 +16,6 @@ const timeout = 10000;
 export class SmartWaiter {
   /**
    * Espera o elemento estar disponivel para ser clicado
-   *
    * @param locator
    * @param tempoAdicional
    */
@@ -38,7 +37,6 @@ export class SmartWaiter {
 
   /**
    * Espera até que a url tenha como substring a string passada
-   *
    * @param str
    * @param tempoAdicional
    */
@@ -48,7 +46,6 @@ export class SmartWaiter {
 
   /**
    * Espera o elemento estar visível
-   *
    * @param locator
    * @param tempoAdicional
    */
@@ -60,8 +57,21 @@ export class SmartWaiter {
   }
 
   /**
+   * Espera até que a quantidade de elementos seja maior do que 0, ou seja, que
+   * tenha dados presentes
+   * @param locator
+   * @param tempoAdicional
+   */
+  static async waitTableRows(locator: Locator, tempoAdicional = 0) {
+    await browser.wait(async () => {
+      const rows = element.all(locator);
+      const countValue = await rows.count();
+      return countValue > 0;
+    }, timeout + tempoAdicional);
+  }
+
+  /**
    * Espera o texto dentro do elemento ser o passado
-   *
    * @param locator
    * @param texto
    * @param tempoAdicional

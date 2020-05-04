@@ -3,50 +3,105 @@ import { Reporter } from './src/helpers/reporter';
 const fs = require('fs');
 import path = require('path');
 
+const chromeOpts = {
+  args: ['disable-plugins', 'disable-infobars'],
+};
+
+function getCurrentDateAndTime() {
+  const date = new Date();
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+}
+
+const runInfoData = [
+  { label: 'Project', value: 'ArboControl frontend tests' },
+  { label: 'Release', value: '1.0.1' },
+  { label: 'Execution Start Time', value: getCurrentDateAndTime() },
+  { label: 'Execution End Time', value: '' },
+];
+
+const metadata = {
+  browser: {
+    name: 'chrome',
+    version: '80.0.3987.163',
+  },
+  device: 'Local test machine',
+  platform: {
+    name: 'windows',
+    version: '10',
+  },
+};
+
 export const config: Config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
-  capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      args: [
-        // 'load-extension=C:/Users/YSerk/AppData/Local/Google/Chrome/User Data/Default/Extensions/mbopgmdnpcbohhpnfglgohlbhfongabi/4.8.0_0',
-        'disable-plugins',
-        'disable-infobars',
-      ],
-      // extensions: [
-      //   fs.readFileSync(
-      //     path.resolve('./extensions', 'blazemeter_4_8_0_0.crx'),
-      //     { encoding: 'base64' }
-      //   ),
-      // ],
-    },
-  },
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../features/lista_de_trabalho.feature'], // path relativo ao protractor.conf.js que está em build/
   stopSpecOnExpectationFailure: true,
+  multiCapabilities: [
+    {
+      browserName: 'chrome',
+      chromeOptions: chromeOpts,
+      shardTestFiles: true,
+      maxInstances: 5,
+      // path relativo ao protractor.conf.js que está em build/
+      specs: [
+        '../features/perfis_de_usuario.feature',
+        '../features/login.feature',
+        '../features/home.feature',
+        '../features/territorios.feature',
+        '../features/equipes.feature',
+      ],
+      metadata,
+    },
+    {
+      browserName: 'chrome',
+      chromeOptions: chromeOpts,
+      // path relativo ao protractor.conf.js que está em build/
+      specs: [
+        '../features/imoveis.feature',
+        '../features/atividades.feature',
+        '../features/lista_de_trabalho.feature',
+      ],
+      metadata,
+    },
+  ],
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['tests/lista_de_trabalho.spec.js'], // path relativo ao protractor.conf.js que está em build/
-    format: ['json:./reports/results.json'],
+    require: ['tests/**/*.js'], // path relativo ao protractor.conf.js que está em build/
+    format: [require.resolve('cucumber-pretty'), 'json:reports/results.json'],
+    // 'fail-fast': true,
     tags: false,
     strict: true,
     profile: false,
     'no-source': true,
     'dry-run': false,
   },
-  onPrepare: () => {
-    browser
+  onPrepare: async () => {
+    Reporter.criarDiretorio('reports');
+    await browser
       .manage()
       .window()
       .maximize();
-
-    Reporter.criarDiretorio('reports');
   },
   onComplete: () => {
-    Reporter.gerarRelatorioCucumber();
+    runInfoData[3].value = getCurrentDateAndTime();
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 30000,
-  plugins: [],
+  plugins: [
+    {
+      package: 'protractor-multiple-cucumber-html-reporter-plugin',
+      options: {
+        automaticallyGenerateReport: true,
+        removeExistingJsonReportFile: true,
+        removeOriginalJsonReportFile: true,
+        saveCollectedJSON: true,
+        displayDuration: true,
+        pageTitle: 'Relatório Testes - ArboControl',
+        customData: {
+          title: 'Run info',
+          data: runInfoData,
+        },
+      },
+    },
+  ],
 };

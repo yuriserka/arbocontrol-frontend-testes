@@ -2,10 +2,8 @@ import { SystemPage } from './page.po';
 import { element, By, browser } from 'protractor';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
-import { Amostra } from '../models/amostra';
-import { RegistroDeCampo } from '../models/registro_campo';
-import { RegistroDeLaboratorio } from '../models/registro_laboratorio';
 import { selectFrom } from '../helpers/selectors';
+import { Registro } from '../models/registro';
 
 let contadorQtdeTratados = 0;
 
@@ -39,49 +37,68 @@ export class ListaDeTrabalhoPage extends SystemPage {
   }
 
   /**
-   * insere um registro de campo partindo da página de gerenciamento de
-   * lista de trabalho
+   * insere um registro na lista de trabalho da atividade no imovel
    * @param numeroAtividade
    * @param logradouroDoImovel
+   * @param formulario
    * @param registro
+   * @param amostras
    */
-  async inserirRegistroDeCampo(
+  async inserirRegistro(
     numeroAtividade: string,
     logradouroDoImovel: string,
-    registro: RegistroDeCampo
+    formulario: string,
+    registro: Registro,
+    amostras?: Registro[]
   ) {
     await this.selecionarAtividade(numeroAtividade);
     await browser.sleep(1000);
     await this.selecionarImovel(logradouroDoImovel);
-    await this.selecionarAbaRegistroDeCampo();
+    await this.selecionarFormulario(formulario);
     await element(By.xpath('//button[@color="primary"]')).click();
     await this.preencherCamposDeDados(registro);
+    if (amostras) {
+      await this.preencherAmostras(amostras);
+    }
     await this.salvar();
   }
 
   /**
-   * insere um registro de laboratorio partindo da página de gerenciamento de
-   * lista de trabalho
+   * Exclui os registros partindo da página de gerenciamento da lista de trabalho
    * @param numeroAtividade
-   * @param logradouroDoImovel
-   * @param registro
-   * @param amostras
+   * @param formulario
+   * @param idRegistros se não for especificado todos os registros da atividade no dado formulário serão excluidos
    */
-  async inserirRegistroDeLaboratorio(
+  async excluirRegistros(
     numeroAtividade: string,
-    logradouroDoImovel: string,
-    registro: RegistroDeLaboratorio,
-    amostras: Amostra[]
+    formulario: string,
+    idRegistros?: string[]
   ) {
-    await this.selecionarAtividade(numeroAtividade);
-    this.numAtividade = numeroAtividade;
-    await browser.sleep(1000);
-    await this.selecionarImovel(logradouroDoImovel);
-    await this.selecionarAbaRegistroDeLaboratorio();
-    await element(By.xpath('//button[@color="primary"]')).click();
-    await this.preencherCamposDeDados(registro);
-    await this.preencherAmostras(amostras);
-    await this.salvar();
+    if (!(await browser.getCurrentUrl()).includes(numeroAtividade)) {
+      await this.selecionarAtividade(numeroAtividade);
+    }
+
+    await this.selecionarFormulario(formulario);
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
+    );
+
+    const regRowsXPath = By.xpath(
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+    );
+    await SmartWaiter.waitTableRows(regRowsXPath);
+
+    const regs: string[] = idRegistros
+      ? idRegistros
+      : await element.all(regRowsXPath).map(r => {
+          return r?.getText();
+        });
+
+    for (let i = 0; i < regs.length; ++i) {
+      await this.selecionarRegistro(regs[i]);
+      await element(By.xpath('//button[@color="warn"]')).click();
+      await this.confirmarExclusao();
+    }
   }
 
   /**
@@ -90,10 +107,16 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param registro
    */
   private async preencherCamposDeDados(
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
+    registro: Registro,
     amostraIndex?: number
   ) {
-    const campos = await this.getCampos(registro);
+    let campos = await this.getCampos(registro);
+
+    // força a ter o tamanho de apenas uma amostra, ou seja, só
+    // precisa preencher uma vez os campos
+    if (amostraIndex) {
+      campos = campos.slice(0, Object.keys(registro).length);
+    }
 
     for (let i = 0; i < campos.length; ++i) {
       const campo = campos[i];
@@ -109,9 +132,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * para serem apenas os quais deverão ser preenchidos
    * @param registro
    */
-  private async getCampos(
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra
-  ) {
+  private async getCampos(registro: Registro) {
     const campos: CampoDeDado[] = await element
       .all(By.xpath('//*[@aria-label]'))
       .map(elm => {
@@ -130,7 +151,10 @@ export class ListaDeTrabalhoPage extends SystemPage {
         };
       });
 
-    return campos.filter(c => Object.keys(registro).includes(c.cucumberLabel));
+    return campos
+      .filter(c => Object.keys(registro).includes(c.cucumberLabel))
+      .filter(c => registro[c.cucumberLabel])
+      .filter(c => registro[c.cucumberLabel] !== '');
   }
 
   /**
@@ -139,11 +163,11 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async selecionarAtividade(numero: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-atividade-tabela-simples')
+      By.xpath('//app-atividade-tabela-simples//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
       ),
       numero
     );
@@ -155,7 +179,9 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param codigo
    */
   private async selecionarImovel(logradouro: string) {
-    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-tabela-simples'));
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-imovel-tabela-simples//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-logradouro")]//span'
@@ -168,7 +194,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * preenche N amostras, amostras estão localizadas no registro de laboratorio
    * @param amostras
    */
-  private async preencherAmostras(amostras: Amostra[]) {
+  private async preencherAmostras(amostras: Array<{ [key: string]: string }>) {
     for (let i = 0; i < amostras.length; ++i) {
       await element(By.xpath('//input[@value="( + ) Adicionar"]')).click();
       const amostra = amostras[i];
@@ -183,7 +209,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherInput(
     campo: CampoDeDado,
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
+    registro: Registro,
     amostraIndex?: number
   ) {
     let path = `(//input[@aria-label="${campo.ariaLabel}"])${
@@ -207,7 +233,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async preencherSelect(
     campo: CampoDeDado,
-    registro: RegistroDeCampo | RegistroDeLaboratorio | Amostra,
+    registro: Registro,
     amostraIndex?: number
   ) {
     const path = `(//select[@aria-label="${campo.ariaLabel}"])${
@@ -221,31 +247,61 @@ export class ListaDeTrabalhoPage extends SystemPage {
   }
 
   /**
-   * troca para a aba de cadastro de registro de campo
+   * seleciona o fórmulario que tenha o nome passado
+   * @param nome
    */
-  private async selecionarAbaRegistroDeCampo() {
-    await element(
-      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[1]`)
-    ).click();
+  private async selecionarFormulario(nome: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-formulario-tabela-simples//tbody')
+    );
+    await selectFrom(
+      By.xpath('//app-formulario-tabela-simples//tbody/tr/td/span'),
+      nome
+    );
     await browser.sleep(1000);
   }
 
   /**
-   * troca para a aba de cadastro de registro de laboratorio
+   * seleciona um registro dado que uma atividade e um formulario já foram selecionados
+   * @param id
    */
-  private async selecionarAbaRegistroDeLaboratorio() {
-    await element(
-      By.xpath(`(//app-formulario-tabela-simples//tbody//tr//td//span)[2]`)
-    ).click();
-    await browser.sleep(1000);
+  private async selecionarRegistro(id: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
+    );
+    await selectFrom(
+      By.xpath(
+        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
+      ),
+      id
+    );
   }
 
   /**
    * salva o registro que está sendo criado
    */
   private async salvar() {
-    await element(By.xpath('//button[@color="primary"]')).click();
+    const btn = By.xpath('//button//span[text()=" Salvar "]');
+    await browser
+      .actions()
+      .mouseMove(await element(btn).getWebElement())
+      .perform();
+    await element(btn).click();
     const url = `${baseUrl}/registros/${this.numAtividade}`;
     await SmartWaiter.waitUrl(url);
+  }
+
+  /*
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }
