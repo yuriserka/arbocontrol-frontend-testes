@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;src/models/amostra&quot; | testes_web</title>
+	<title>&quot;src/models/territorio&quot; | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_src_models_amostra_.html">&quot;src/models/amostra&quot;</a>
+					<a href="_src_models_territorio_.html">&quot;src/models/territorio&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;src/models/amostra&quot;</h1>
+			<h1>External module &quot;src/models/territorio&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -73,13 +73,13 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-kind-icon">Amostra</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_src_models_territorio_.territorio.html" class="tsd-kind-icon">Territorio</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_models_amostra_.html#makeamostra" class="tsd-kind-icon">make<wbr>Amostra</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_models_territorio_.html#maketerritorio" class="tsd-kind-icon">make<wbr>Territorio</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,37 +88,41 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="makeamostra" class="tsd-anchor"></a>
-					<h3>make<wbr>Amostra</h3>
+					<a name="maketerritorio" class="tsd-anchor"></a>
+					<h3>make<wbr>Territorio</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Amostra<span class="tsd-signature-symbol">(</span>amostra<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-signature-type">Amostra</a></li>
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Territorio<span class="tsd-signature-symbol">(</span>territorioData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, preBuiltValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_territorio_.territorio.html" class="tsd-signature-type">Territorio</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/amostra.ts#L13">src/models/amostra.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/territorio.ts#L26">src/models/territorio.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>retorna um Objeto que contem informações de uma Amostra</p>
+									<p>retorna um Objeto que contem informações de um Território</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>amostra: <span class="tsd-signature-symbol">{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
+									<h5>territorioData: <span class="tsd-signature-symbol">{}</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+											<h5><span class="tsd-signature-symbol">[</span>campo: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
 										</li>
 									</ul>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> preBuiltValues: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>um objeto que contenha qualquer um dos valores da interface <a href="../interfaces/_src_models_territorio_.territorio.html">Territorio</a> que irá substituir o valor do territorioData</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-signature-type">Amostra</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_territorio_.territorio.html" class="tsd-signature-type">Territorio</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -131,17 +135,17 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_src_models_amostra_.html">&quot;src/models/amostra&quot;</a>
+						<a href="_src_models_territorio_.html">&quot;src/models/territorio&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_src_models_amostra_.amostra.html" class="tsd-kind-icon">Amostra</a>
+						<a href="../interfaces/_src_models_territorio_.territorio.html" class="tsd-kind-icon">Territorio</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_src_models_amostra_.html#makeamostra" class="tsd-kind-icon">make<wbr>Amostra</a>
+						<a href="_src_models_territorio_.html#maketerritorio" class="tsd-kind-icon">make<wbr>Territorio</a>
 					</li>
 				</ul>
 			</nav>
