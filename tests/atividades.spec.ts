@@ -25,7 +25,7 @@ When('eu acessar a pagina de atividades', async () => {
 Then(
   'eu vou cadastrar uma atividade com os dados básicos',
   async (dataTable: TableDefinition) => {
-    atividade.dadosBasicosData = dataTable.hashes()[0];
+    atividade.setDadosBasicos(dataTable.hashes()[0]);
     await element(atividadesPage['botoes_']['cadastrar']).click();
     await atividadesPage['cadastroBasico'](atividade.dadosBasicos);
     await atividadesPage['salvar']();
@@ -36,7 +36,7 @@ Then(
 );
 
 Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
-  atividade.demandasData = dataTable.hashes();
+  atividade.setDemandas(dataTable.hashes());
   await atividadesPage.atribuirDemandas(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
     `${baseUrl}/atividades/editar`
@@ -49,7 +49,7 @@ Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
 });
 
 Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
-  atividade.imoveisData = dataTable.hashes();
+  atividade.setImoveis(dataTable.hashes());
   await atividadesPage.atribuirImoveis(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
     `${baseUrl}/atividades/editar`
@@ -62,7 +62,7 @@ Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
 });
 
 Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
-  atividade.equipesData = dataTable.hashes();
+  atividade.setEquipes(dataTable.hashes());
   await atividadesPage.atribuirEquipes(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
     `${baseUrl}/atividades/editar`

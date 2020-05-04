@@ -20,58 +20,18 @@ export interface ControleFormulario {
 }
 
 /**
- * abstração das informações necessárias para um Perfil de Usuario
- *
- *
- * os únicos setters válidos sao os *Data, porém nao possuem getter
- * dado que o TS não permite que o set e get tenham tipos diferentes.
- * desta forma a aplicação desta classe faz-se
- * ```ts
- * const perfil = new PerfilUsuario();
- *
- * // setters
- * perfil.recursosData = { nomeRecurso: string; autoridade: 'INSERIR' | 'VISUALIZAR' | 'DELETAR' | 'EDITAR' | 'TODAS AÇÕES' }[];
- * perfil.formulariosData = { nomeFormulario: string; autoridade: 'VISUALIZAR' | 'EDITAR' }[];
- *
- * // getters
- * recursos: ControleRecurso[] = perfil.recursos;
- * forms: ControleFormulario[] = perfil.formularios;
- * ```
+ * abstração das informações necessárias para um Perfil de Usuario.
  */
 export class PerfilUsuario {
-  private _dadosBasicos: DadosBasicosPerfilUsuario;
-  private _recursos: ControleRecurso[] = [];
-  private _formularios: ControleFormulario[] = [];
+  dadosBasicos: DadosBasicosPerfilUsuario;
+  recursos: ControleRecurso[] = [];
+  formularios: ControleFormulario[] = [];
 
   constructor() {
-    this._dadosBasicos = {
+    this.dadosBasicos = {
       nome: 'none',
       descricao: 'none',
     };
-  }
-
-  get dadosBasicosData() {
-    throw new Error('invalid getter');
-  }
-
-  get recursosData() {
-    throw new Error('invalid getter');
-  }
-
-  get formulariosData() {
-    throw new Error('invalid getter');
-  }
-
-  set dadosBasicos(dados: DadosBasicosPerfilUsuario) {
-    throw new Error('invalid setter');
-  }
-
-  set recursos(dados: ControleRecurso[]) {
-    throw new Error('invalid setter');
-  }
-
-  set formularios(dados: ControleFormulario[]) {
-    throw new Error('invalid setter');
   }
 
   /**
@@ -83,8 +43,8 @@ export class PerfilUsuario {
    * };
    * ```
    */
-  set dadosBasicosData(dadosBasicosData: { [campo: string]: string }) {
-    this._dadosBasicos = {
+  setDadosBasicos(dadosBasicosData: { [campo: string]: string }) {
+    this.dadosBasicos = {
       nome: dadosBasicosData['nome'],
       descricao: dadosBasicosData['descricao'],
     };
@@ -99,8 +59,8 @@ export class PerfilUsuario {
    * }[];
    * ```
    */
-  set recursosData(recursosData: Array<{ [campo: string]: string }>) {
-    this._recursos = recursosData.map(r => {
+  setRecursos(recursosData: Array<{ [campo: string]: string }>) {
+    this.recursos = recursosData.map(r => {
       return {
         recurso: r['recurso'],
         autoridade: r['autoridade'].toUpperCase(),
@@ -117,33 +77,12 @@ export class PerfilUsuario {
    * }[];
    * ```
    */
-  set formulariosData(equipesData: Array<{ [campo: string]: string }>) {
-    this._formularios = equipesData.map(f => {
+  setFormularios(equipesData: Array<{ [campo: string]: string }>) {
+    this.formularios = equipesData.map(f => {
       return {
         formulario: f['formulario'],
         autoridade: f['autoridade'].toUpperCase(),
       };
     });
-  }
-
-  /**
-   * retorna um objeto representando a interface [[`DadosBasicosPerfilUsuario]]
-   */
-  get dadosBasicos() {
-    return this._dadosBasicos;
-  }
-
-  /**
-   * retorna um [[Array<ControleRecurso>]] representando o recurso e a autoridade sobre ele
-   */
-  get recursos() {
-    return this._recursos;
-  }
-
-  /**
-   * retorna um [[Array<ControleFormulario>]] representando o formulario e a autoridade sobre ele
-   */
-  get formularios() {
-    return this._formularios;
   }
 }

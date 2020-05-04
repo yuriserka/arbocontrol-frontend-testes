@@ -24,7 +24,7 @@ When('eu acessar a pagina de Perfis de Usuario', async () => {
 Then(
   'eu vou cadastrar um perfil com os dados básicos',
   async (dataTable: TableDefinition) => {
-    perfil.dadosBasicosData = dataTable.hashes()[0];
+    perfil.setDadosBasicos(dataTable.hashes()[0]);
     await element(perfisUsuarioPage['botoes_']['cadastrar']).click();
     await perfisUsuarioPage['cadastroBasico'](perfil.dadosBasicos);
     await perfisUsuarioPage['salvar']();
@@ -39,7 +39,7 @@ Then(
 );
 
 Then('irei atribuir os recursos', async (dataTable: TableDefinition) => {
-  perfil.recursosData = dataTable.hashes();
+  perfil.setRecursos(dataTable.hashes());
   await perfisUsuarioPage.selecionarPerfil(perfil.dadosBasicos.nome);
   await perfisUsuarioPage.atribuirRecursos(perfil);
 
@@ -50,7 +50,7 @@ Then('irei atribuir os recursos', async (dataTable: TableDefinition) => {
 });
 
 Then('irei atribuir os formularios', async (dataTable: TableDefinition) => {
-  perfil.formulariosData = dataTable.hashes();
+  perfil.setFormularios(dataTable.hashes());
   await perfisUsuarioPage.atribuirFormularios(perfil);
 
   for (let i = 0; i < perfil.recursos.length; ++i) {

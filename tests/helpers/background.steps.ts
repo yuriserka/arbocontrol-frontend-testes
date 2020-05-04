@@ -17,7 +17,7 @@ import { expect } from 'chai';
 import { assertImovelExiste } from './asserts/imovel';
 import { assertEquipeExiste } from './asserts/equipe';
 import { Atividade } from '../../src/models/atividade';
-import { By, element } from 'protractor';
+import { By } from 'protractor';
 import { getNodeWithText } from '../../src/helpers/selectors';
 import { assertAtividadeExiste } from './asserts/atividade';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
@@ -92,14 +92,14 @@ Given(
 Given(
   'que cadastrei o perfil de usuario {string} com acesso a todos os recursos e aos formularios',
   async (nome: string, dataTable: TableDefinition) => {
-    perfil.dadosBasicosData = { nome };
-    perfil.recursosData = [
+    perfil.setDadosBasicos({ nome });
+    perfil.setRecursos([
       {
         recurso: 'Todas',
         autoridade: 'TODAS AÇÕES',
       },
-    ];
-    perfil.formulariosData = dataTable.hashes();
+    ]);
+    perfil.setFormularios(dataTable.hashes());
 
     await criarPerfilDeUsuario(perfil);
 
@@ -115,21 +115,21 @@ Given(
     const sigla = tipo.substr(0, tipo.indexOf(' -')).replace(/\s/g, '_');
     const atividade = new Atividade();
 
-    atividade.dadosBasicosData = {
+    atividade.setDadosBasicos({
       ...dataTable.hashes()[0],
       titulo: `${dataTable.hashes()[0].titulo}${sigla}`,
       tipo_de_atividade: tipo,
-    };
-    atividade.equipesData = [
+    });
+    atividade.setEquipes([
       {
         nome: nomeDaEquipe,
       },
-    ];
-    atividade.imoveisData = [
+    ]);
+    atividade.setImoveis([
       {
         logradouro: imovel.logradouro,
       },
-    ];
+    ]);
 
     await criarAtividade(atividade);
 
