@@ -1,32 +1,22 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, element } from 'protractor';
-import { LoginPage } from '../src/pages/login.po';
-import { AtividadesPage } from '../src/pages/atividades.po';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
-import { makeUsuario } from '../src/models/usuario';
-import { Atividade } from '../src/models/atividade';
+import { AtividadesPage } from '../src/pages/atividades.po';
 import {
   assertDemandaVinculada,
   assertImovelVinculado,
   assertEquipeVinculada,
   assertAtividadeExiste,
-} from '../src/helpers/asserts/atividade';
+} from './helpers/asserts/atividade';
+import { Atividade } from '../src/models/atividade';
+import { timeout } from './helpers/common';
+import { baseUrl } from '../config';
 
-setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
+setDefaultTimeout(timeout);
+
 const atividadesPage = new AtividadesPage();
 const atividade = new Atividade();
-
-BeforeAll(async () => {
-  await browser.get(baseUrl);
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
-});
 
 When('eu acessar a pagina de atividades', async () => {
   await atividadesPage.get();
@@ -35,21 +25,21 @@ When('eu acessar a pagina de atividades', async () => {
 Then(
   'eu vou cadastrar uma atividade com os dados básicos',
   async (dataTable: TableDefinition) => {
-    atividade.dadosBasicosData = dataTable.hashes()[0];
+    atividade.setDadosBasicos(dataTable.hashes()[0]);
     await element(atividadesPage['botoes_']['cadastrar']).click();
-    await atividadesPage.cadastroBasico(atividade.dadosBasicos);
+    await atividadesPage['cadastroBasico'](atividade.dadosBasicos);
     await atividadesPage['salvar']();
     expect(await browser.driver.getCurrentUrl()).include(
-      'http://localhost/atividades/'
+      `${baseUrl}/atividades`
     );
   }
 );
 
 Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
-  atividade.demandasData = dataTable.hashes();
+  atividade.setDemandas(dataTable.hashes());
   await atividadesPage.atribuirDemandas(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.demandas.length; ++i) {
@@ -59,10 +49,10 @@ Then('irei atribuir as demandas', async (dataTable: TableDefinition) => {
 });
 
 Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
-  atividade.imoveisData = dataTable.hashes();
+  atividade.setImoveis(dataTable.hashes());
   await atividadesPage.atribuirImoveis(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.imoveis.length; ++i) {
@@ -72,10 +62,10 @@ Then('irei atribuir os imoveis', async (dataTable: TableDefinition) => {
 });
 
 Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
-  atividade.equipesData = dataTable.hashes();
+  atividade.setEquipes(dataTable.hashes());
   await atividadesPage.atribuirEquipes(atividade);
   expect(await browser.driver.getCurrentUrl()).include(
-    'http://localhost/atividades/editar/'
+    `${baseUrl}/atividades/editar`
   );
 
   for (let i = 0; i < atividade.equipes.length; ++i) {
@@ -84,9 +74,16 @@ Then('irei atribuir as equipes', async (dataTable: TableDefinition) => {
   }
 });
 
-Then('irei salvar', async () => {
+Then('irei salvar a atividade', async () => {
   await atividadesPage['salvar']();
   expect(
     await assertAtividadeExiste(atividade.dadosBasicos.titulo)
   ).to.be.equal(true);
+});
+
+Then('eu vou excluir a atividade {string}', async (titulo: string) => {
+  await atividadesPage.excluirAtividade(titulo);
+  expect(
+    await assertAtividadeExiste(atividade.dadosBasicos.titulo)
+  ).to.be.equal(false);
 });

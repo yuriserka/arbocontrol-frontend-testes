@@ -38,7 +38,9 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
     }
   }
   throw new Error(
-    `não foi possivel encontrar a opção = '${opcaoProcurada}' na lista de opções`
+    `não foi possivel encontrar a opção: '${opcaoProcurada}' na lista [${await element
+      .all(locator)
+      .getText()}]`
   );
 }
 
@@ -89,7 +91,7 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
 export async function getNodeWithText(
   rootLocator: Locator,
   textoProcurado: string,
-  textLocator?: WebDriverLocator
+  textLocator?: Locator
 ): Promise<ElementFinder> {
   const nomes: string[] = await element.all(rootLocator).map(r => {
     return textLocator ? r?.element(textLocator).getText() : r?.getText();
@@ -98,7 +100,7 @@ export async function getNodeWithText(
   const index = nomes.indexOf(textoProcurado);
   if (index < 0) {
     throw new Error(
-      `não foi possivel encontrar o elemento com texto = '${textoProcurado}' na tabela`
+      `não foi possivel encontrar o elemento com texto='${textoProcurado}' na lista [${nomes}]`
     );
   }
 

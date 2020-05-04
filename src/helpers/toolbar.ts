@@ -1,4 +1,4 @@
-import { By, element } from 'protractor';
+import { By, element, browser } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 
 /**
@@ -9,9 +9,7 @@ export class ToolBar {
 
   constructor() {
     this.botoes_ = {
-      sair: By.xpath(
-        '//button[@class="mat-button mat-button-base ng-star-inserted"]'
-      ),
+      sair: By.xpath('//button/span[text()="Sair"]'),
     };
   }
 
@@ -19,6 +17,10 @@ export class ToolBar {
    * clica no botão de sair
    */
   async logout() {
+    await browser
+      .actions()
+      .mouseMove(await element(this.botoes_.sair).getWebElement())
+      .perform();
     await element(this.botoes_.sair).click();
   }
 }

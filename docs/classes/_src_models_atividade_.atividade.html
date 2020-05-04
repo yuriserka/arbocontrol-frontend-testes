@@ -80,8 +80,16 @@
 					<p>dado que o TS não permite que o set e get tenham tipos diferentes.
 					desta forma a aplicação desta classe faz-se</p>
 					<pre><code class="language-ts"><span class="hljs-keyword">const</span> atividade = <span class="hljs-keyword">new</span> Atividade();
-atividade.imoveisData = ...; <span class="hljs-comment">// mapeia o imoveisData -&gt; string[]</span>
-imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span class="hljs-comment">// o getter retorna ainda o array de strings normalmente</span></code></pre>
+
+<span class="hljs-comment">// setters</span>
+atividade.demandasData = { número: <span class="hljs-built_in">string</span>; }[]; <span class="hljs-comment">// mapeia o demandasData -&gt; string[],</span>
+atividade.equipesData = { nome: <span class="hljs-built_in">string</span>; }[]; <span class="hljs-comment">// mapeia o equipesData -&gt; string[],</span>
+atividade.imoveisData = { logradouro: <span class="hljs-built_in">string</span>; }[]; <span class="hljs-comment">// mapeia o imoveisData -&gt; string[],</span>
+
+<span class="hljs-comment">// getters</span>
+num_das_ demandas: <span class="hljs-built_in">string</span>[] = atividade.demandas; <span class="hljs-comment">// o getter retorna ainda o array de strings normalmente</span>
+nome_das_equipes: <span class="hljs-built_in">string</span>[] = atividade.equipes; <span class="hljs-comment">// o getter retorna ainda o array de strings normalmente</span>
+logradouro_dos_imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span class="hljs-comment">// o getter retorna ainda o array de strings normalmente</span></code></pre>
 					<p>também não é possível fazer com que o getters *Data sejam privados a fim de se evitar confusões.</p>
 				</div>
 			</section>
@@ -115,14 +123,14 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#dadosbasicos" class="tsd-kind-icon">dados<wbr>Basicos</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#dadosbasicosdata" class="tsd-kind-icon">dados<wbr>Basicos<wbr>Data</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#demandas" class="tsd-kind-icon">demandas</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#demandasdata" class="tsd-kind-icon">demandas<wbr>Data</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#equipes" class="tsd-kind-icon">equipes</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#equipesdata" class="tsd-kind-icon">equipes<wbr>Data</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#imoveis" class="tsd-kind-icon">imoveis</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#imoveisdata" class="tsd-kind-icon">imoveis<wbr>Data</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#dadosbasicos" class="tsd-kind-icon">dados<wbr>Basicos</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#dadosbasicosdata" class="tsd-kind-icon">dados<wbr>Basicos<wbr>Data</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#demandas" class="tsd-kind-icon">demandas</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#demandasdata" class="tsd-kind-icon">demandas<wbr>Data</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#equipes" class="tsd-kind-icon">equipes</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#equipesdata" class="tsd-kind-icon">equipes<wbr>Data</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#imoveis" class="tsd-kind-icon">imoveis</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_atividade_.atividade.html#imoveisdata" class="tsd-kind-icon">imoveis<wbr>Data</a></li>
 							</ul>
 						</section>
 					</div>
@@ -140,7 +148,7 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L36">src/models/atividade.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L40">src/models/atividade.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_models_atividade_.atividade.html" class="tsd-signature-type">Atividade</a></h4>
@@ -153,79 +161,100 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_dadosbasicos" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _dados<wbr>Basicos</h3>
-					<div class="tsd-signature tsd-kind-icon">_dados<wbr>Basicos<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_models_atividade_.dadosbasicos.html" class="tsd-signature-type">DadosBasicos</a></div>
+					<div class="tsd-signature tsd-kind-icon">_dados<wbr>Basicos<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-signature-type">DadosBasicosAtividade</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L33">src/models/atividade.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L37">src/models/atividade.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_demandas" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _demandas</h3>
-					<div class="tsd-signature tsd-kind-icon">_demandas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">_demandas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L34">src/models/atividade.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L38">src/models/atividade.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_equipes" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _equipes</h3>
-					<div class="tsd-signature tsd-kind-icon">_equipes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">_equipes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L35">src/models/atividade.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L39">src/models/atividade.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_imoveis" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _imoveis</h3>
-					<div class="tsd-signature tsd-kind-icon">_imoveis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">_imoveis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L36">src/models/atividade.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L40">src/models/atividade.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="dadosbasicos" class="tsd-anchor"></a>
 					<h3>dados<wbr>Basicos</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dadosBasicos<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_atividade_.dadosbasicos.html" class="tsd-signature-type">DadosBasicos</a></li>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dadosBasicos<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-signature-type">DadosBasicosAtividade</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> dadosBasicos<span class="tsd-signature-symbol">(</span>dados<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-signature-type">DadosBasicosAtividade</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L115">src/models/atividade.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L148">src/models/atividade.ts:148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>retorna um objeto representando a interface [[<code>DadosBasicos</code>]]</p>
+									<p>retorna um objeto representando a interface <a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html"><code>DadosBasicosAtividade</code></a></p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_atividade_.dadosbasicos.html" class="tsd-signature-type">DadosBasicos</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-signature-type">DadosBasicosAtividade</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L69">src/models/atividade.ts:69</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>retorna um objeto representando a interface <a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html"><code>DadosBasicosAtividade</code></a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dados: <a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-signature-type">DadosBasicosAtividade</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="dadosbasicosdata" class="tsd-anchor"></a>
 					<h3>dados<wbr>Basicos<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dadosBasicosData<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span></li>
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> dadosBasicosData<span class="tsd-signature-symbol">(</span>dadosBasicosData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L65">src/models/atividade.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L53">src/models/atividade.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,7 +262,33 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 									<p>os dados de entrada devem estar no formato:</p>
 									<pre><code class="language-ts"><span class="hljs-keyword">const</span> dadosBasicosData = {
  titulo: <span class="hljs-built_in">string</span>;
- descricao: <span class="hljs-built_in">string</span>;
+ descricao?: <span class="hljs-built_in">string</span>;
+ dataInicio: <span class="hljs-built_in">string</span>;
+ dataFim: <span class="hljs-built_in">string</span>;
+ abrangencia: <span class="hljs-built_in">string</span>;
+ tipo_de_atividade: <span class="hljs-built_in">string</span>;
+};</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-index-signature">
+									<h5><span class="tsd-signature-symbol">[</span>campo: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L98">src/models/atividade.ts:98</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>os dados de entrada devem estar no formato:</p>
+									<pre><code class="language-ts"><span class="hljs-keyword">const</span> dadosBasicosData = {
+ titulo: <span class="hljs-built_in">string</span>;
+ descricao?: <span class="hljs-built_in">string</span>;
  dataInicio: <span class="hljs-built_in">string</span>;
  dataFim: <span class="hljs-built_in">string</span>;
  abrangencia: <span class="hljs-built_in">string</span>;
@@ -256,17 +311,18 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="demandas" class="tsd-anchor"></a>
 					<h3>demandas</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> demandas<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> demandas<span class="tsd-signature-symbol">(</span>dados<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L122">src/models/atividade.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L155">src/models/atividade.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,19 +332,55 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L73">src/models/atividade.ts:73</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>retorna um [[Array<string>]] representando o número das demandas da atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dados: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="demandasdata" class="tsd-anchor"></a>
 					<h3>demandas<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> demandasData<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></li>
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> demandasData<span class="tsd-signature-symbol">(</span>demandasData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L84">src/models/atividade.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L57">src/models/atividade.ts:57</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>os dados de entrada devem estar no formato:</p>
+									<pre><code class="language-ts"><span class="hljs-keyword">const</span> demandasData = {
+ número: <span class="hljs-built_in">string</span>;
+}[];</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L117">src/models/atividade.ts:117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -309,17 +401,18 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="equipes" class="tsd-anchor"></a>
 					<h3>equipes</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> equipes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> equipes<span class="tsd-signature-symbol">(</span>dados<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L129">src/models/atividade.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L162">src/models/atividade.ts:162</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,19 +422,55 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L77">src/models/atividade.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>retorna um [[Array<string>]] representando o nome das equipes da atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dados: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="equipesdata" class="tsd-anchor"></a>
 					<h3>equipes<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> equipesData<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></li>
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> equipesData<span class="tsd-signature-symbol">(</span>equipesData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L96">src/models/atividade.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L61">src/models/atividade.ts:61</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>os dados de entrada devem estar no formato:</p>
+									<pre><code class="language-ts"><span class="hljs-keyword">const</span> equipesData = {
+ nome: <span class="hljs-built_in">string</span>;
+}[];</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L129">src/models/atividade.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,17 +491,18 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="imoveis" class="tsd-anchor"></a>
 					<h3>imoveis</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> imoveis<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> imoveis<span class="tsd-signature-symbol">(</span>dados<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L136">src/models/atividade.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L169">src/models/atividade.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,19 +512,55 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L81">src/models/atividade.ts:81</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>retorna um [[Array<string>]] representando o logradouro dos imoveis da atividade</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dados: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="imoveisdata" class="tsd-anchor"></a>
 					<h3>imoveis<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> imoveisData<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></li>
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> imoveisData<span class="tsd-signature-symbol">(</span>imoveisData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/937b423/src/models/atividade.ts#L108">src/models/atividade.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L65">src/models/atividade.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>os dados de entrada devem estar no formato:</p>
+									<pre><code class="language-ts"><span class="hljs-keyword">const</span> imoveisData = {
+ logradouro: <span class="hljs-built_in">string</span>;
+}[];</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6ee798d/src/models/atividade.ts#L141">src/models/atividade.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -450,28 +616,28 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_models_atividade_.atividade.html#_imoveis" class="tsd-kind-icon">_imoveis</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#dadosbasicos" class="tsd-kind-icon">dados<wbr>Basicos</a>
 							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#dadosbasicosdata" class="tsd-kind-icon">dados<wbr>Basicos<wbr>Data</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#demandas" class="tsd-kind-icon">demandas</a>
 							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#demandasdata" class="tsd-kind-icon">demandas<wbr>Data</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#equipes" class="tsd-kind-icon">equipes</a>
 							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#equipesdata" class="tsd-kind-icon">equipes<wbr>Data</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#imoveis" class="tsd-kind-icon">imoveis</a>
 							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_atividade_.atividade.html#imoveisdata" class="tsd-kind-icon">imoveis<wbr>Data</a>
 							</li>
 						</ul>
@@ -479,7 +645,7 @@ imoveis: <span class="hljs-built_in">string</span>[] = atividade.imoveis; <span 
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_src_models_atividade_.dadosbasicos.html" class="tsd-kind-icon">Dados<wbr>Basicos</a>
+						<a href="../interfaces/_src_models_atividade_.dadosbasicosatividade.html" class="tsd-kind-icon">Dados<wbr>Basicos<wbr>Atividade</a>
 					</li>
 				</ul>
 			</nav>

@@ -1,39 +1,29 @@
-const { Given, BeforeAll, setDefaultTimeout, Then, When } = require('cucumber');
+const { setDefaultTimeout, Then, When } = require('cucumber');
 import { expect } from 'chai';
 import { browser, element, By } from 'protractor';
-import { LoginPage } from '../src/pages/login.po';
-import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
-import { makeUsuario } from '../src/models/usuario';
-import { assertRegistroInserido } from '../src/helpers/asserts/lista_de_trabalho';
+import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
+import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
+import { timeout } from './helpers/common';
+import { atividades } from './helpers/background.steps';
 
-setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
+setDefaultTimeout(timeout);
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
-let atividade: string;
+let atividadeAtual: string;
 let qtdRegistrosAntes: number;
 const idRegistros: Array<{ id: string; qtd_reg: number }> = [];
-
-BeforeAll(async () => {
-  await browser.get(baseUrl);
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
-});
 
 When('eu acessar a pagina da lista de trabalho', async () => {
   await listaDeTrabalhoPage.get();
 });
 
 Then(
-  'eu vou selecionar a atividade {string}',
-  async (numeroAtividade: string) => {
-    await listaDeTrabalhoPage['selecionarAtividade'](numeroAtividade);
-    atividade = numeroAtividade;
+  'eu vou selecionar a atividade do tipo {string}',
+  async (sigla: string) => {
+    atividadeAtual = atividades[sigla].id;
+    await listaDeTrabalhoPage['selecionarAtividade'](atividadeAtual);
     await browser.sleep(1000);
   }
 );
@@ -41,7 +31,7 @@ Then(
 Then('selecionar o imovel {string}', async (logradouro: string) => {
   await listaDeTrabalhoPage['selecionarImovel'](logradouro);
   expect(await browser.getCurrentUrl()).to.be.equal(
-    `${baseUrl}/registros/${atividade}`
+    `${baseUrl}/registros/${atividadeAtual}`
   );
 });
 
@@ -65,7 +55,7 @@ Then(
 
       // verifica se foi inserido
       expect(await browser.getCurrentUrl()).to.be.equal(
-        `${baseUrl}/registros/${atividade}`
+        `${baseUrl}/registros/${atividadeAtual}`
       );
       expect(await assertRegistroInserido(qtdRegistrosAntes)).to.be.equal(true);
 
@@ -104,3 +94,10 @@ Then('Adicionar as seguintes amostras', async (dataTable: TableDefinition) => {
     await listaDeTrabalhoPage['salvar']();
   }
 });
+
+Then(
+  'irei excluir todos os registros da atividade do tipo {string} do formulario {string}',
+  async (sigla: string, form: string) => {
+    await listaDeTrabalhoPage.excluirRegistros(atividades[sigla].id, form);
+  }
+);

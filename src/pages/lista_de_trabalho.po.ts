@@ -64,6 +64,44 @@ export class ListaDeTrabalhoPage extends SystemPage {
   }
 
   /**
+   * Exclui os registros partindo da página de gerenciamento da lista de trabalho
+   * @param numeroAtividade
+   * @param formulario
+   * @param idRegistros se não for especificado todos os registros da atividade no dado formulário serão excluidos
+   */
+  async excluirRegistros(
+    numeroAtividade: string,
+    formulario: string,
+    idRegistros?: string[]
+  ) {
+    if (!(await browser.getCurrentUrl()).includes(numeroAtividade)) {
+      await this.selecionarAtividade(numeroAtividade);
+    }
+
+    await this.selecionarFormulario(formulario);
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
+    );
+
+    const regRowsXPath = By.xpath(
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+    );
+    await SmartWaiter.waitTableRows(regRowsXPath);
+
+    const regs: string[] = idRegistros
+      ? idRegistros
+      : await element.all(regRowsXPath).map(r => {
+          return r?.getText();
+        });
+
+    for (let i = 0; i < regs.length; ++i) {
+      await this.selecionarRegistro(regs[i]);
+      await element(By.xpath('//button[@color="warn"]')).click();
+      await this.confirmarExclusao();
+    }
+  }
+
+  /**
    * preenche de forma genérica os campos tanto para registros de campo e
    * laboratorio como para amostras
    * @param registro
@@ -115,6 +153,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
 
     return campos
       .filter(c => Object.keys(registro).includes(c.cucumberLabel))
+      .filter(c => registro[c.cucumberLabel])
       .filter(c => registro[c.cucumberLabel] !== '');
   }
 
@@ -124,11 +163,11 @@ export class ListaDeTrabalhoPage extends SystemPage {
    */
   private async selecionarAtividade(numero: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-atividade-tabela-simples')
+      By.xpath('//app-atividade-tabela-simples//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-numero")]//span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
       ),
       numero
     );
@@ -140,7 +179,9 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param codigo
    */
   private async selecionarImovel(logradouro: string) {
-    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-tabela-simples'));
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-imovel-tabela-simples//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-imovel-tabela-simples//tbody//tr//td[contains(@class, "cdk-column-logradouro")]//span'
@@ -210,14 +251,24 @@ export class ListaDeTrabalhoPage extends SystemPage {
    * @param nome
    */
   private async selecionarFormulario(nome: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-formulario-tabela-simples//tbody')
+    );
     await selectFrom(
-      By.xpath('//app-formulario-tabela-simples//tbody//tr//td//span'),
+      By.xpath('//app-formulario-tabela-simples//tbody/tr/td/span'),
       nome
     );
     await browser.sleep(1000);
   }
 
+  /**
+   * seleciona um registro dado que uma atividade e um formulario já foram selecionados
+   * @param id
+   */
   private async selecionarRegistro(id: string) {
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-registro-atividade-tabela//tbody')
+    );
     await selectFrom(
       By.xpath(
         '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
@@ -238,5 +289,19 @@ export class ListaDeTrabalhoPage extends SystemPage {
     await element(btn).click();
     const url = `${baseUrl}/registros/${this.numAtividade}`;
     await SmartWaiter.waitUrl(url);
+  }
+
+  /*
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

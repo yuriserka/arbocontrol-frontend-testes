@@ -4,7 +4,7 @@ import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
-import { Atividade, DadosBasicos } from '../models/atividade';
+import { Atividade, DadosBasicosAtividade } from '../models/atividade';
 
 /**
  * interface que sintetiza informações dos campos que devem ser preenchidos na
@@ -48,11 +48,39 @@ export class AtividadesPage extends SystemPage {
     await element(this.botoes_.cadastrar).click();
     await this.cadastroBasico(atividade.dadosBasicos);
     await this.salvar();
-    await browser.sleep(1000);
+    await browser.sleep(1500);
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
     await this.salvar();
+  }
+
+  /**
+   * exclui uma atividade partindo da pagina de gerenciamento de atividades
+   * @param titulo
+   */
+  async excluirAtividade(titulo: string) {
+    await this.selecionarAtividade(titulo);
+    const btnExcluir = By.xpath(
+      '//div[@class="linha-botoes"]/button[@color="warn"]'
+    );
+    await SmartWaiter.waitClick(btnExcluir);
+    await element(btnExcluir).click();
+    await this.confirmarExclusao();
+  }
+
+  /**
+   * seleciona uma atividade da lista de atividades na pagina de gerenciamento de atividades
+   * @param titulo
+   */
+  async selecionarAtividade(titulo: string) {
+    await SmartWaiter.waitVisibility(By.xpath('//app-atividade-tabela//tbody'));
+    await selectFrom(
+      By.xpath(
+        '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
+      ),
+      titulo
+    );
   }
 
   /**
@@ -62,26 +90,6 @@ export class AtividadesPage extends SystemPage {
   async atribuirDadosBasicos(atividade: Atividade) {
     await this.selecionarAba('Dados Básicos');
     await this.cadastroBasico(atividade.dadosBasicos);
-  }
-
-  /**
-   * faz um cadastro simples de uma atividade, ou seja, sem nenhum tipo de
-   * atribuição a ela
-   * @param dados
-   */
-  async cadastroBasico(dados: DadosBasicos) {
-    const campos = await this.getCamposDadosBasicos(dados);
-    for (let i = 0; i < campos.length; ++i) {
-      const campo = campos[i];
-      if (campo.role) {
-        await this.preencherSelectDadosBasicos(campo, dados);
-      } else {
-        campo.tipo === 'input'
-          ? await this.preencherInputDadosBasicos(campo, dados)
-          : await this.preencherTextAreaDadosBasicos(campo, dados);
-      }
-      await browser.sleep(500);
-    }
   }
 
   /**
@@ -167,12 +175,32 @@ export class AtividadesPage extends SystemPage {
   }
 
   /**
+   * faz um cadastro simples de uma atividade, ou seja, sem nenhum tipo de
+   * atribuição a ela
+   * @param dados
+   */
+  private async cadastroBasico(dados: DadosBasicosAtividade) {
+    const campos = await this.getCamposDadosBasicos(dados);
+    for (let i = 0; i < campos.length; ++i) {
+      const campo = campos[i];
+      if (campo.role) {
+        await this.preencherSelectDadosBasicos(campo, dados);
+      } else {
+        campo.tipo === 'input'
+          ? await this.preencherInputDadosBasicos(campo, dados)
+          : await this.preencherTextAreaDadosBasicos(campo, dados);
+      }
+      await browser.sleep(500);
+    }
+  }
+
+  /**
    * mapeia quais são as informações que serão necessárias para que todos os
    * campos do registro sejam preenchidos de forma correta e os filtra para
    * serem apenas os quais deverão ser preenchidos
    * @param atividade
    */
-  private async getCamposDadosBasicos(dados: DadosBasicos) {
+  private async getCamposDadosBasicos(dados: DadosBasicosAtividade) {
     const campos: CampoDeDado[] = await element
       .all(
         By.xpath(
@@ -193,10 +221,12 @@ export class AtividadesPage extends SystemPage {
         };
       });
 
-    return campos.filter(c => {
-      const keys = Object.keys(dados);
-      return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
-    });
+    return campos
+      .filter(c => dados[c.cucumberLabel] || dados[c.placeholder])
+      .filter(c => {
+        const keys = Object.keys(dados);
+        return keys.includes(c.cucumberLabel) || keys.includes(c.placeholder);
+      });
   }
 
   /**
@@ -206,7 +236,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherInputDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);
@@ -223,7 +253,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherSelectDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//app-atividade-cadastrar-editar//*[@role="${campo.role}"]`;
     await element(By.xpath(path)).click();
@@ -247,7 +277,7 @@ export class AtividadesPage extends SystemPage {
    */
   private async preencherTextAreaDadosBasicos(
     campo: CampoDeDado,
-    dadosBasicos: DadosBasicos
+    dadosBasicos: DadosBasicosAtividade
   ) {
     const path = `//${campo.tipo}[@formcontrolname="${campo.formcontrolname}"]`;
     const input = By.xpath(path);
@@ -261,7 +291,6 @@ export class AtividadesPage extends SystemPage {
   private async salvar() {
     // é necessário voltar à aba dos dados básicos para poder salvar
     await this.selecionarAba('Dados Básicos');
-    await browser.sleep(1000);
     const botaoSalvar = By.xpath('//button[@color="primary"]');
     await SmartWaiter.waitClick(botaoSalvar);
     await element(botaoSalvar).click();
@@ -299,11 +328,26 @@ export class AtividadesPage extends SystemPage {
    * @param nome
    */
   private async selecionarAba(nome: string) {
-    return selectFrom(
+    await selectFrom(
       By.xpath(
         '//div[@cdkmonitorelementfocus]//div[@class="mat-tab-label-content"]'
       ),
       nome
     );
+    await browser.sleep(1000);
+  }
+
+  /**
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

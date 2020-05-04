@@ -1,6 +1,6 @@
-export interface DadosBasicos {
+export interface DadosBasicosAtividade {
   readonly titulo: string;
-  readonly descricao: string;
+  readonly descricao?: string;
   readonly dataInicio: string;
   readonly dataFim: string;
   readonly abrangencia: string;
@@ -8,35 +8,16 @@ export interface DadosBasicos {
 }
 
 /**
- * abstração das informações necessárias para uma Atividade
- *
- *
- * os únicos setters válidos sao os *Data, pois infelizmente não é possivel fazer apenas
- * ```ts
- * set demandas(demandasData: Array<{ [campo: string]: string }>) { ... }
- * get demandas() { ... }
- * ```
- * dado que o TS não permite que o set e get tenham tipos diferentes.
- * desta forma a aplicação desta classe faz-se
- * ```ts
- * const atividade = new Atividade();
- * atividade.imoveisData = ...; // mapeia o imoveisData -> string[]
- * imoveis: string[] = atividade.imoveis; // o getter retorna ainda o array de strings normalmente
- * ```
- * também não é possível fazer com que o getters *Data sejam privados a fim de se evitar confusões.
+ * abstração das informações necessárias para uma Atividade.
  */
 export class Atividade {
-  // private dadosBasicosData: { [campos: string]: string }
-  // private demandasData: { [campos: string]: string }[]
-  // private equipesData: { [campos: string]: string }[]
-  // private imoveisData: { [campos: string]: string }[]
-  private _dadosBasicos: DadosBasicos;
-  private _demandas: string[];
-  private _equipes: string[];
-  private _imoveis: string[];
+  dadosBasicos: DadosBasicosAtividade;
+  demandas: string[] = [];
+  equipes: string[] = [];
+  imoveis: string[] = [];
 
   constructor() {
-    this._dadosBasicos = {
+    this.dadosBasicos = {
       titulo: 'none',
       descricao: 'none',
       dataInicio: 'none',
@@ -44,41 +25,6 @@ export class Atividade {
       abrangencia: 'none',
       tipo_de_atividade: 'none',
     };
-    this._demandas = [];
-    this._equipes = [];
-    this._imoveis = [];
-  }
-
-  get dadosBasicosData() {
-    throw new Error('invalid getter');
-  }
-
-  get demandasData() {
-    throw new Error('invalid getter');
-  }
-
-  get equipesData() {
-    throw new Error('invalid getter');
-  }
-
-  get imoveisData() {
-    throw new Error('invalid getter');
-  }
-
-  set dadosBasicos(dados: DadosBasicos) {
-    throw new Error('invalid setter');
-  }
-
-  set demandas(dados: string[]) {
-    throw new Error('invalid setter');
-  }
-
-  set equipes(dados: string[]) {
-    throw new Error('invalid setter');
-  }
-
-  set imoveis(dados: string[]) {
-    throw new Error('invalid setter');
   }
 
   /**
@@ -86,7 +32,7 @@ export class Atividade {
    * ```ts
    * const dadosBasicosData = {
    *  titulo: string;
-   *  descricao: string;
+   *  descricao?: string;
    *  dataInicio: string;
    *  dataFim: string;
    *  abrangencia: string;
@@ -94,8 +40,8 @@ export class Atividade {
    * };
    * ```
    */
-  set dadosBasicosData(dadosBasicosData: { [campo: string]: string }) {
-    this._dadosBasicos = {
+  setDadosBasicos(dadosBasicosData: { [campo: string]: string }) {
+    this.dadosBasicos = {
       titulo: dadosBasicosData['titulo'],
       descricao: dadosBasicosData['descricao'],
       dataInicio: dadosBasicosData['dataInicio'],
@@ -113,8 +59,8 @@ export class Atividade {
    * }[];
    * ```
    */
-  set demandasData(demandasData: Array<{ [campo: string]: string }>) {
-    this._demandas = demandasData.map(d => d['número']);
+  setDemandas(demandasData: Array<{ [campo: string]: string }>) {
+    this.demandas = demandasData.map(d => d['número']);
   }
 
   /**
@@ -125,8 +71,8 @@ export class Atividade {
    * }[];
    * ```
    */
-  set equipesData(equipesData: Array<{ [campo: string]: string }>) {
-    this._equipes = equipesData.map(e => e['nome']);
+  setEquipes(equipesData: Array<{ [campo: string]: string }>) {
+    this.equipes = equipesData.map(e => e['nome']);
   }
 
   /**
@@ -137,35 +83,7 @@ export class Atividade {
    * }[];
    * ```
    */
-  set imoveisData(imoveisData: Array<{ [campo: string]: string }>) {
-    this._imoveis = imoveisData.map(i => i['logradouro']);
-  }
-
-  /**
-   * retorna um objeto representando a interface [[`DadosBasicos`]]
-   */
-  get dadosBasicos() {
-    return this._dadosBasicos;
-  }
-
-  /**
-   * retorna um [[Array<string>]] representando o número das demandas da atividade
-   */
-  get demandas() {
-    return this._demandas;
-  }
-
-  /**
-   * retorna um [[Array<string>]] representando o nome das equipes da atividade
-   */
-  get equipes() {
-    return this._equipes;
-  }
-
-  /**
-   * retorna um [[Array<string>]] representando o logradouro dos imoveis da atividade
-   */
-  get imoveis() {
-    return this._imoveis;
+  setImoveis(imoveisData: Array<{ [campo: string]: string }>) {
+    this.imoveis = imoveisData.map(i => i['logradouro']);
   }
 }

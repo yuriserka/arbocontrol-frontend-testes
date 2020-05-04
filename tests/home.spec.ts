@@ -1,31 +1,12 @@
-const {
-  AfterAll,
-  BeforeAll,
-  setDefaultTimeout,
-  Given,
-  When,
-  Then,
-} = require('cucumber');
+const { setDefaultTimeout, When, Then } = require('cucumber');
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { HomePage } from '../src/pages/home.po';
-import { LoginPage } from '../src/pages/login.po';
-import { TableDefinition } from 'cucumber';
 import { baseUrl } from '../config';
-import { makeUsuario } from '../src/models/usuario';
+import { HomePage } from '../src/pages/home.po';
+import { timeout } from './helpers/common';
 
-setDefaultTimeout(60 * 1000);
-const loginPage = new LoginPage();
+setDefaultTimeout(timeout);
 const homePage = new HomePage();
-
-BeforeAll(async () => {
-  await browser.get(baseUrl);
-});
-
-Given('que estou logado com', async (dataTable: TableDefinition) => {
-  const user = makeUsuario(dataTable.hashes()[0]);
-  await loginPage.login(user);
-});
 
 When('eu clicar para expandir a barra de navegação', async () => {
   await homePage.mostrarSideNav();
@@ -38,10 +19,4 @@ When('clicar no botão {string}', async (btn: string) => {
 Then('a url deve ser {string}', async (url: string) => {
   const realUrl = url.replace('<env.url>', baseUrl);
   expect(await browser.getCurrentUrl()).to.be.equal(realUrl);
-});
-
-AfterAll(async () => {
-  await homePage.logout();
-  await browser.waitForAngular();
-  expect(await browser.getCurrentUrl()).to.be.equal(`${baseUrl}/login`);
 });
