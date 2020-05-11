@@ -10,6 +10,7 @@ import {
   criarPerfilDeUsuario,
   permitirEdicaoDeNovasAtividades,
   adicionarFormularioAoTipoDeAtividade,
+  criarRegistroNaListaDeTrabalho,
 } from './common';
 import { Imovel, makeImovel } from '../../src/models/imovel';
 import { assertTerritorioExiste } from './asserts/territorio';
@@ -51,6 +52,11 @@ export let nomeDaEquipe: string;
 export let atividades: {
   [sigla: string]: { atividade: Atividade; id: string };
 } = {};
+
+/**
+ * Nome do formulário que por ventura será utilizado na lista de trabalho por algum teste
+ */
+export let nomeDoFormulario: string;
 
 /**
  * perfil de usuario que por ventura vá ser cadastrado e usado por algum teste
@@ -164,5 +170,21 @@ Given(
     expect(
       await assertTipoDeAtividadePossuiFormulario(tipoAtividade, nomeFormulario)
     ).to.be.equal(true);
+    nomeDoFormulario = nomeFormulario;
+  }
+);
+
+Given(
+  'que inseri os registros na lista de trabalho da atividade do tipo {string} no imovel e formulario criados',
+  async (sigla: string, dataTable: TableDefinition) => {
+    const registros = dataTable.hashes();
+    for (let i = 0; i < registros.length; ++i) {
+      await criarRegistroNaListaDeTrabalho(
+        atividades[sigla].id,
+        imovel,
+        nomeDoFormulario,
+        registros[i]
+      );
+    }
   }
 );

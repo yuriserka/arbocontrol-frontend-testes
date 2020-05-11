@@ -20,6 +20,8 @@ import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';
 import { SituacoesDeAtividadePage } from '../../src/pages/tabelas_basicas/situacoes_de_atividade.po';
 import { TiposDeAtividadesPage } from '../../src/pages/tabelas_basicas/tipos_de_atividade.po';
+import { ListaDeTrabalhoPage } from '../../src/pages/lista_de_trabalho.po';
+import { Registro } from '../../src/models/registro';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
@@ -30,6 +32,7 @@ const territorioPage = new TerritoriosPage();
 const perfilDeUsuarioPage = new PerfisDeUsuarioPage();
 const situacaoDeAtividadePage = new SituacoesDeAtividadePage();
 const tipoDeAtividadePage = new TiposDeAtividadesPage();
+const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 
 /**
  * tempo de timeout de 2 minutos para os testes
@@ -205,4 +208,39 @@ export async function removerFormularioAoTipoDeAtividade(
 ) {
   await tipoDeAtividadePage.get();
   await tipoDeAtividadePage.removerFormularioDoTipo(tipo, form);
+}
+
+/**
+ * Insere um registro na lista de trabalho para a atividade no formulario e imovel passados
+ * @param idAtividade
+ * @param imovel
+ * @param form
+ * @param reg
+ */
+export async function criarRegistroNaListaDeTrabalho(
+  idAtividade: string,
+  imovel: Imovel,
+  form: string,
+  reg: Registro
+) {
+  await listaDeTrabalhoPage.get();
+  await listaDeTrabalhoPage.inserirRegistro(
+    idAtividade,
+    imovel.logradouro,
+    form,
+    reg
+  );
+}
+
+/**
+ * exclui todos os registros da lista de trbalho da atividade no imovel passado
+ * @param idAtividade
+ * @param form
+ */
+export async function deletarRegistrosNaListaDeTrabalho(
+  idAtividade: string,
+  form: string
+) {
+  await listaDeTrabalhoPage.get();
+  await listaDeTrabalhoPage.excluirRegistros(idAtividade, form);
 }

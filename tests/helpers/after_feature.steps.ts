@@ -7,6 +7,7 @@ import {
   deletarPerfilDeUsuario,
   removerPermissaoDeEdicaoDeNovasAtividades,
   removerFormularioAoTipoDeAtividade,
+  deletarRegistrosNaListaDeTrabalho,
 } from './common';
 import {
   territorio,
@@ -14,6 +15,7 @@ import {
   nomeDaEquipe,
   atividades,
   perfil,
+  nomeDoFormulario,
 } from './background.steps';
 import { assertTerritorioExiste } from './asserts/territorio';
 import { assertImovelExiste } from './asserts/imovel';
@@ -29,6 +31,8 @@ const deleters = {
   equipe: () => deletarEquipe(nomeDaEquipe),
   perfil_admin: () => deletarPerfilDeUsuario(perfil),
   atividades: (tipo: string) => deletarAtividade(atividades[tipo].atividade),
+  lista_de_trabalho: (tipo: string) =>
+    deletarRegistrosNaListaDeTrabalho(atividades[tipo].id, nomeDoFormulario),
 };
 
 const asserts = {
