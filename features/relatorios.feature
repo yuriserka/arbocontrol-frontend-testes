@@ -43,13 +43,14 @@ Exemplos:
     | PE - Ponto Estratégico   |
 
 Cenário: inserção de registros na lista de trabalho
-    E que inseri os registros na lista de trabalho da atividade do tipo "PE - Ponto Estratégico" no imovel e formulario criados
+    E que inseri os registros na lista de trabalho da atividade do tipo "PE" no imovel e formulario criados
     | agente    | supervisor | latitude_atual | longitude_atual | tipo_de_atividade     | ciclo | data_inspeção | hora_da_entrada | hora_da_saída | tipo_de_visita | tipo_de_tratamento | pendência | a1_inspecionado | a1_positivo | a1_eliminado | a2_inspecionado | a2_positivo | a2_eliminado | b_inspecionado | b_positivo | b_eliminado | c_inspecionado | c_positivo | c_eliminado | d1_inspecionado | d1_positivo | d1_eliminado | d2_inspecionado | d2_positivo | d2_eliminado | e_inspecionado | e_positivo | e_eliminado | numero_inicial | número_final | qtde_tubitos | tipo_1   | qtde_tipo_1_g | qtde_tratados_1 | tipo_2    | qtde_tipo_2_g | qtde_tratados_2 | tipo_adulticida        | quantidade_cargas |
     | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 1000            | 1100          | Normal         | focal              | Fechado   | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1          | 1           | 1               | 1           | 1            | 1               | 1           | 1            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
     | Usuário 1 | Usuário 3  | 1              | 1               | PE: Ponto Estratégico | 1     | 05/02/2020    | 1000            | 1100          | Normal         | focal              | Fechado   | 4               | 4           | 4            | 4               | 4           | 4            | 4              | 4          | 4           | 4              | 4          | 4           | 4               | 4           | 4            | 4               | 4           | 4            | 1              | 1          | 1           | 1              | 1            | 1            | Temephós | 1             | 1               | Novaluron | 5             | 10              | Alfacypermetrina SC 20 | 1                 |
     
 
 Cenário: Cadastro com sucesso
+    Quando eu acessar a pagina dos relatorios
     Então eu vou cadastrar o relatorio para o formulario: "Inspeção Geral"
     | campos                                                                                                                       | titulo          | tipo      |
     | Agente, Supervisor, Latitude Atual, Longitude Atual, Tipo de Atividade, Ciclo, Data Inspeção, Hora da entrada, Hora da saída | relatorio_teste | Relatório |
