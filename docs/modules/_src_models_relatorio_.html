@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;tests/helpers/asserts/territorio&quot; | testes_web</title>
+	<title>&quot;src/models/relatorio&quot; | testes_web</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_tests_helpers_asserts_territorio_.html">&quot;tests/helpers/asserts/territorio&quot;</a>
+					<a href="_src_models_relatorio_.html">&quot;src/models/relatorio&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;tests/helpers/asserts/territorio&quot;</h1>
+			<h1>External module &quot;src/models/relatorio&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,9 +71,15 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-kind-icon">Relatorio</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_tests_helpers_asserts_territorio_.html#assertterritorioexiste" class="tsd-kind-icon">assert<wbr>Territorio<wbr>Existe</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_models_relatorio_.html#makerelatorio" class="tsd-kind-icon">make<wbr>Relatorio</a></li>
 							</ul>
 						</section>
 					</div>
@@ -82,25 +88,41 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="assertterritorioexiste" class="tsd-anchor"></a>
-					<h3>assert<wbr>Territorio<wbr>Existe</h3>
+					<a name="makerelatorio" class="tsd-anchor"></a>
+					<h3>make<wbr>Relatorio</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">assert<wbr>Territorio<wbr>Existe<span class="tsd-signature-symbol">(</span>nome<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Relatorio<span class="tsd-signature-symbol">(</span>relatorioData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, preBuiltValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-signature-type">Relatorio</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/8a42d1e/tests/helpers/asserts/territorio.ts#L6">tests/helpers/asserts/territorio.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/8a42d1e/src/models/relatorio.ts#L15">src/models/relatorio.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>retorna um Objeto que contem informações de um Relatório</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>nome: <span class="tsd-signature-type">string</span></h5>
+									<h5>relatorioData: <span class="tsd-signature-symbol">{}</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> preBuiltValues: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>um objeto que contenha qualquer um dos valores da interface <a href="../interfaces/_src_models_relatorio_.relatorio.html">Relatorio</a> que irá substituir o valor do relatorioData</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-signature-type">Relatorio</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -113,14 +135,17 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_tests_helpers_asserts_territorio_.html">&quot;tests/helpers/asserts/territorio&quot;</a>
+						<a href="_src_models_relatorio_.html">&quot;src/models/relatorio&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-kind-icon">Relatorio</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_tests_helpers_asserts_territorio_.html#assertterritorioexiste" class="tsd-kind-icon">assert<wbr>Territorio<wbr>Existe</a>
+						<a href="_src_models_relatorio_.html#makerelatorio" class="tsd-kind-icon">make<wbr>Relatorio</a>
 					</li>
 				</ul>
 			</nav>

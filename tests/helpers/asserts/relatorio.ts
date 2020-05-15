@@ -35,23 +35,23 @@ export async function assertRelatorioExiste(nomeDoRelatorio: string) {
  * @param relatorio
  */
 export async function assertRelatorioPossuiQuantidadeCorretaDeRegistros(
-  relatorio: Relatorio
+  relatorio: Relatorio,
+  siglaTipoDeAtividade: string
 ) {
   await SmartWaiter.waitUrlContain(`${baseUrl}/relatorios`);
   const ok = true;
   try {
     await relatoriosPage.selecionarRelatorio(relatorio.titulo);
-    await relatoriosPage.pesquisar('01/01/2019', '12/12/2020');
-    await browser.sleep(2000);
+    // await relatoriosPage.pesquisar('01/01/2019', '12/12/2020');
     const totalRegistros = +(await element(
       By.xpath('//*[contains(@class, "wdr-cell wdr-total wdr-grand-total")]')
     ).getText());
-    console.log(totalRegistros, Object.keys(atividades).length);
-    if (Object.keys(atividades).length !== totalRegistros) {
-      throw Error();
+    if (
+      atividades[siglaTipoDeAtividade].idRegistros.length !== totalRegistros
+    ) {
+      return !ok;
     }
   } catch (err) {
-    console.log(err);
     return !ok;
   }
   return ok;

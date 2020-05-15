@@ -51,10 +51,17 @@ Cenário: inserção de registros na lista de trabalho
 
 Cenário: Cadastro com sucesso
     Quando eu acessar a pagina dos relatorios
-    Então eu vou cadastrar o relatorio para o formulario: "Inspeção Geral"
+    Então eu vou cadastrar o relatorio para o formulario: "Inspeção Geral" tendo como base os registros da atividade do tipo "PE"
     | campos                                                                                                                       | titulo          | tipo      |
     | Agente, Supervisor, Latitude Atual, Longitude Atual, Tipo de Atividade, Ciclo, Data Inspeção, Hora da entrada, Hora da saída | relatorio_teste | Relatório |
 
+Esquema do Cenário: Excluir os relatorios recem cadastrados
+    Quando eu acessar a pagina dos relatorios
+    Então eu vou excluir o relatorio "<titulo_relatorio>" do formulario "<nome_do_formulario>"
+
+Exemplos:
+| titulo_relatorio | nome_do_formulario |
+| relatorio_teste  | Inspeção Geral     |
 
 Esquema do Cenário: Excluir os registros que foram inseridos na lista de trabalho
     Quando eu acessar a pagina da lista de trabalho

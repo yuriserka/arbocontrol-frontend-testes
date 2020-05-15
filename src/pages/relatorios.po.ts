@@ -43,7 +43,8 @@ export class RelatoriosPage extends SystemPage {
     await element(By.xpath('(//button[@color="primary"])[1]')).click();
     await browser.sleep(1500);
     await SmartWaiter.waitTableRows(
-      By.xpath('//app-formulario-seletor-campos//tbody//tr')
+      By.xpath('//app-formulario-seletor-campos//tbody//tr'),
+      10000
     );
     for (let i = 0; i < relatorio.campos.length; ++i) {
       const campoRow = await getNodeWithText(
@@ -80,6 +81,26 @@ export class RelatoriosPage extends SystemPage {
     await element(By.xpath('(//button[@color="primary"])[1]')).click();
   }
 
+  async excluirRelatorio(titulo: string, formulario: string) {
+    await element(this.botoes_.cadastrar).click();
+    await selectFrom(
+      By.xpath(
+        '//app-formulario-listar//tbody/tr/td[contains(@class, "titulo")]/a'
+      ),
+      formulario
+    );
+    const relatorioRow = await getNodeWithText(
+      By.xpath('//app-relatorio-listar//tbody//tr'),
+      titulo,
+      By.xpath('./td[contains(@class, "titulo")]/a')
+    );
+    await relatorioRow
+      .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
+      .click();
+    await element(By.xpath('(//*[@role="menuitem"])[2]')).click();
+    await this.confirmarExclusao();
+  }
+
   /**
    * seleciona um relatorio partindo da pagina de gerenciamento de relatorios
    * @param titulo
@@ -91,5 +112,19 @@ export class RelatoriosPage extends SystemPage {
       ),
       titulo
     );
+  }
+
+  /**
+   * função auxiliar para a confirmação de exclusão da atividade
+   */
+  private async confirmarExclusao() {
+    const dialog = By.xpath('//mat-dialog-container');
+    await SmartWaiter.waitVisibility(dialog);
+
+    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
+    await SmartWaiter.waitVisibility(botaoConfirmacao);
+    await SmartWaiter.waitClick(botaoConfirmacao);
+    await element(botaoConfirmacao).click();
+    await browser.sleep(1000);
   }
 }

@@ -19,13 +19,27 @@ When('eu acessar a pagina dos relatorios', async () => {
 });
 
 Then(
-  'eu vou cadastrar o relatorio para o formulario: {string}',
-  async (formularioAlvo: string, dataTable: TableDefinition) => {
+  'eu vou cadastrar o relatorio para o formulario: {string} tendo como base os registros da atividade do tipo {string}',
+  async (
+    formularioAlvo: string,
+    siglaAtividade: string,
+    dataTable: TableDefinition
+  ) => {
     relatorio = makeRelatorio(dataTable.hashes()[0]);
     await relatorioPage.cadastrarRelatorio(relatorio, formularioAlvo);
     expect(await assertRelatorioExiste(relatorio.titulo)).to.be.equal(true);
     expect(
-      await assertRelatorioPossuiQuantidadeCorretaDeRegistros(relatorio)
+      await assertRelatorioPossuiQuantidadeCorretaDeRegistros(
+        relatorio,
+        siglaAtividade
+      )
     ).to.be.equal(true);
+  }
+);
+
+Then(
+  'eu vou excluir o relatorio {string} do formulario {string}',
+  async (titulo: string, nomeFormulario: string) => {
+    await relatorioPage.excluirRelatorio(titulo, nomeFormulario);
   }
 );

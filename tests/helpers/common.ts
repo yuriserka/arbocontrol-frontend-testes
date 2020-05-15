@@ -22,6 +22,8 @@ import { SituacoesDeAtividadePage } from '../../src/pages/tabelas_basicas/situac
 import { TiposDeAtividadesPage } from '../../src/pages/tabelas_basicas/tipos_de_atividade.po';
 import { ListaDeTrabalhoPage } from '../../src/pages/lista_de_trabalho.po';
 import { Registro } from '../../src/models/registro';
+import { RelatoriosPage } from '../../src/pages/relatorios.po';
+import { Relatorio } from '../../src/models/relatorio';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
@@ -33,6 +35,7 @@ const perfilDeUsuarioPage = new PerfisDeUsuarioPage();
 const situacaoDeAtividadePage = new SituacoesDeAtividadePage();
 const tipoDeAtividadePage = new TiposDeAtividadesPage();
 const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
+const relatorioPage = new RelatoriosPage();
 
 /**
  * tempo de timeout de 2 minutos para os testes
@@ -140,6 +143,7 @@ export async function deletarPerfilDeUsuario(perfil: PerfilUsuario) {
 
 /**
  * cria uma atividade, uma vez que está logado
+ * é necessário a criação de imoveis, equipes e opcionalmente demandas
  * @param atividade
  */
 export async function criarAtividade(atividade: Atividade) {
@@ -243,4 +247,25 @@ export async function deletarRegistrosNaListaDeTrabalho(
 ) {
   await listaDeTrabalhoPage.get();
   await listaDeTrabalhoPage.excluirRegistros(idAtividade, form);
+}
+
+/**
+ * cria um relatorio, uma vez que está logado
+ * é necessária a inserção de registros na lista de trabalho primeiro
+ * @param relatorio
+ * @param form
+ */
+export async function criarRelatorio(relatorio: Relatorio, form: string) {
+  await relatorioPage.get();
+  await relatorioPage.cadastrarRelatorio(relatorio, form);
+}
+
+/**
+ * deleta o relatorio que possuir o titulo passado, uma vez que está logado
+ * @param relatorio
+ * @param form
+ */
+export async function deletarRelatorio(relatorio: Relatorio, form: string) {
+  await relatorioPage.get();
+  await relatorioPage.excluirRelatorio(relatorio.titulo, form);
 }

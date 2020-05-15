@@ -18,7 +18,7 @@ import { expect } from 'chai';
 import { assertImovelExiste } from './asserts/imovel';
 import { assertEquipeExiste } from './asserts/equipe';
 import { Atividade } from '../../src/models/atividade';
-import { By } from 'protractor';
+import { By, element } from 'protractor';
 import { getNodeWithText } from '../../src/helpers/selectors';
 import { assertAtividadeExiste } from './asserts/atividade';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
@@ -50,7 +50,20 @@ export let nomeDaEquipe: string;
  * atividades que por ventura vão ser cadastradas e usadas por algum teste
  */
 export let atividades: {
-  [sigla: string]: { atividade: Atividade; id: string };
+  [sigla: string]: {
+    /**
+     * guarda a estrutura de dados que corresponde a atividade em si
+     */
+    atividade: Atividade;
+    /**
+     * id da atividade que foi cadastrada
+     */
+    id: string;
+    /**
+     * id dos registros da lista de trabalho associados a esta atividade
+     */
+    idRegistros: string[];
+  };
 } = {};
 
 /**
@@ -154,6 +167,7 @@ Given(
           .element(By.xpath('./td[contains(@class, "column-id")]/span'))
           .getText()
       ),
+      idRegistros: [],
     };
   }
 );
@@ -185,6 +199,13 @@ Given(
         nomeDoFormulario,
         registros[i]
       );
+      const registroId = await element(
+        // sempre que um novo registro é inserido ele vai para o topo
+        By.xpath(
+          '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span)[1]'
+        )
+      ).getText();
+      atividades[sigla].idRegistros.push(registroId);
     }
   }
 );
