@@ -54,21 +54,21 @@ export const config: Config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   stopSpecOnExpectationFailure: true,
   multiCapabilities: [
-    // {
-    //   browserName: 'chrome',
-    //   chromeOptions: chromeOpts,
-    //   shardTestFiles: true,
-    //   maxInstances: 5,
-    //   // path relativo ao protractor.conf.js que está em build/
-    //   specs: [
-    //     '../features/perfis_de_usuario.feature',
-    //     '../features/login.feature',
-    //     '../features/home.feature',
-    //     '../features/territorios.feature',
-    //     '../features/equipes.feature',
-    //   ],
-    //   metadata,
-    // },
+    {
+      browserName: 'chrome',
+      chromeOptions: chromeOpts,
+      shardTestFiles: true,
+      maxInstances: 5,
+      // path relativo ao protractor.conf.js que está em build/
+      specs: [
+        // '../features/perfis_de_usuario.feature',
+        // '../features/login.feature',
+        '../features/home.feature',
+        // '../features/territorios.feature',
+        // '../features/equipes.feature',
+      ],
+      metadata,
+    },
     // {
     //   browserName: 'chrome',
     //   chromeOptions: {
@@ -81,18 +81,18 @@ export const config: Config = {
     //   specs: ['../features/**/relatorios.feature'],
     //   metadata,
     // },
-    {
-      browserName: 'chrome',
-      chromeOptions: chromeOpts,
-      // path relativo ao protractor.conf.js que está em build/
-      specs: [
-        // '../features/imoveis.feature',
-        '../features/atividades.feature',
-        // '../features/lista_de_trabalho.feature',
-        // '../features/relatorios.feature',
-      ],
-      metadata,
-    },
+    // {
+    //   browserName: 'chrome',
+    //   chromeOptions: chromeOpts,
+    //   // path relativo ao protractor.conf.js que está em build/
+    //   specs: [
+    //     // '../features/imoveis.feature',
+    //     '../features/atividades.feature',
+    //     // '../features/lista_de_trabalho.feature',
+    //     // '../features/relatorios.feature',
+    //   ],
+    //   metadata,
+    // },
   ],
   cucumberOpts: {
     compiler: 'ts:ts-node/register',

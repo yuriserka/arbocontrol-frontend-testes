@@ -95,4 +95,14 @@ export class SmartWaiter {
       timeout + tempoAdicionalMs
     );
   }
+
+  static async safeClick(locator: Locator, tempoAdicionalMs = 0) {
+    await SmartWaiter.waitVisibility(locator, tempoAdicionalMs);
+    await SmartWaiter.waitClick(locator, tempoAdicionalMs);
+    await browser
+      .actions()
+      .mouseMove(await element(locator).getWebElement())
+      .perform();
+    await element(locator).click();
+  }
 }

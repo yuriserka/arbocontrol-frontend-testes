@@ -77,7 +77,7 @@ export class Recorder {
    */
   private async BlazeMeterlogin() {
     const blazeConfigPage = await browser.getWindowHandle();
-    await element(this.botoes_.login).click();
+    await SmartWaiter.safeClick(this.botoes_.login);
 
     const handles = await browser.getAllWindowHandles();
     await browser.waitForAngularEnabled(false);
@@ -97,7 +97,7 @@ export class Recorder {
    */
   private async Googlelogin() {
     const blazeConfigPage = await browser.getWindowHandle();
-    await element(this.botoes_.login).click();
+    await SmartWaiter.safeClick(this.botoes_.login);
 
     const handles = await browser.getAllWindowHandles();
     await browser.waitForAngularEnabled(false);
@@ -119,21 +119,21 @@ export class Recorder {
    */
   private async gravar() {
     await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
-    await element(this.botoes_.gravar).click();
+    await SmartWaiter.safeClick(this.botoes_.gravar);
   }
 
   /**
    * para a gravação do script
    */
   private async parar() {
-    await element(this.botoes_.parar).click();
+    await SmartWaiter.safeClick(this.botoes_.parar);
   }
 
   /**
    * pausa a gravação do script
    */
   private async pause() {
-    await element(this.botoes_.pausar).click();
+    await SmartWaiter.safeClick(this.botoes_.pausar);
   }
 
   /**
@@ -141,9 +141,9 @@ export class Recorder {
    * então baixa o arquivo na pasta "Downloads"
    */
   private async salvar() {
-    await element(this.botoes_.salvar).click();
-    await element(By.css('#chk-jmx')).click();
-
+    await SmartWaiter.safeClick(this.botoes_.salvar);
+    await SmartWaiter.safeClick(By.css('#chk-jmx'));
+    
     element.all(By.name('domains')).each(async domain => {
       if (!domain || (await domain.isSelected())) {
         return;
@@ -155,8 +155,7 @@ export class Recorder {
     const btnDownload = By.css(
       '#run-overlay > div.download-body.body > div.button.download-button'
     );
-    await SmartWaiter.waitClick(btnDownload);
-    await element(btnDownload).click();
+    await SmartWaiter.safeClick(btnDownload);
 
     const filename = path.join(
       process.cwd(),

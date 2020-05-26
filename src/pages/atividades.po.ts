@@ -112,9 +112,9 @@ export class AtividadesPage extends SystemPage {
           './td[contains(@class, "cdk-column-id")]/span[@class="span-link"]'
         )
       );
-      await demandaRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
+      const btn = demandaRow
+        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'));
+      await SmartWaiter.safeClick(btn.locator());
       await this.confirmarAcao();
     }
   }
@@ -139,16 +139,10 @@ export class AtividadesPage extends SystemPage {
           './td[contains(@class, "logradouro")]/span[@class="span-link"]'
         )
       );
-      await browser
-        .actions()
-        .mouseMove(
-          imovelRow
-            .element(
-              By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
-            )
-            .getWebElement()
-        )
-        .perform();
+      const btn = imovelRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await SmartWaiter.safeClick(btn.locator());
       await this.confirmarAcao();
     }
   }
@@ -171,9 +165,9 @@ export class AtividadesPage extends SystemPage {
         nomeEquipe,
         By.xpath('./td[contains(@class, "nome")]/span[@class="span-link"]')
       );
-      await equipeRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
+      const btn = equipeRow
+        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'));
+      await SmartWaiter.safeClick(btn.locator());
       await this.confirmarAcao();
     }
   }
