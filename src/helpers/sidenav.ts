@@ -73,11 +73,7 @@ export class SideNav {
     const btnNavBarLateral = By.xpath(
       '//mat-toolbar//button/span/mat-icon[text()="menu"]'
     );
-    await browser
-      .actions()
-      .mouseMove(await element(btnNavBarLateral).getWebElement())
-      .perform();
-    await element(btnNavBarLateral).click();
+    await SmartWaiter.safeClick(btnNavBarLateral);
   }
 
   /**
@@ -347,7 +343,7 @@ export class SideNav {
     if (await this.isImoveisTabelasExibida()) {
       return;
     }
-    await element(this.botoes_.tabelas_basicas)
+    await element(this.botoes_.imoveis_tabelas)
       .element(By.xpath('./div[@class="mat-list-item-content"]'))
       .click();
   }
@@ -362,7 +358,7 @@ export class SideNav {
     if (await this.isDemandasTabelasExibida()) {
       return;
     }
-    await element(this.botoes_.tabelas_basicas)
+    await element(this.botoes_.demandas_tabelas)
       .element(By.xpath('./div[@class="mat-list-item-content"]'))
       .click();
   }
@@ -371,43 +367,55 @@ export class SideNav {
    * checa se a lista da Rede de Saúde está sendo exibida
    */
   private async isRedeSaudeExibida() {
-    return (
-      await element(
+    try {
+      const redeSaudeClass = await element(
         By.xpath('(//div[contains(@class, "submenu")])[1]')
-      ).getAttribute('class')
-    ).includes('expanded');
+      ).getAttribute('class');
+      return redeSaudeClass.includes('expanded');
+    } catch (err) {
+      return false;
+    }
   }
 
   /**
    * checa se a lista das Tabelas Básicas está sendo exibida
    */
   private async isTabelasBasicasExibida() {
-    return (
-      await element(
+    try {
+      const tabelasBasicasClass = await element(
         By.xpath('(//div[contains(@class, "submenu")])[2]')
-      ).getAttribute('class')
-    ).includes('expanded');
+      ).getAttribute('class');
+      return tabelasBasicasClass.includes('expanded');
+    } catch (err) {
+      return false;
+    }
   }
 
   /**
    * checa se a lista para Imoveis Tabelas está sendo exibida
    */
   private async isImoveisTabelasExibida() {
-    return (
-      await element(
+    try {
+      const imoveisTabelaClass = await element(
         By.xpath('(//div[contains(@class, "submenu")])[3]')
-      ).getAttribute('class')
-    ).includes('expanded');
+      ).getAttribute('class');
+      return imoveisTabelaClass.includes('expanded');
+    } catch (err) {
+      return false;
+    }
   }
 
   /**
    * checa se a lista para Demandas Tabelas está sendo exibida
    */
   private async isDemandasTabelasExibida() {
-    return (
-      await element(
+    try {
+      const demandasTabelaClass = await element(
         By.xpath('(//div[contains(@class, "submenu")])[4]')
-      ).getAttribute('class')
-    ).includes('expanded');
+      ).getAttribute('class');
+      return demandasTabelaClass.includes('expanded');
+    } catch (err) {
+      return false;
+    }
   }
 }
