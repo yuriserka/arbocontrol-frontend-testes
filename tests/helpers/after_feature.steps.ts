@@ -1,4 +1,4 @@
-const { Then } = require('cucumber');
+import { Then } from 'cucumber';
 import {
   deletarImovel,
   deletarTerritorio,

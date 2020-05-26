@@ -4,6 +4,7 @@ import {
   ExpectedConditions as EC,
   Locator,
 } from 'protractor';
+import * as fs from 'fs';
 
 /**
  * Representa o tempo máximo de espera para as condições
@@ -79,6 +80,18 @@ export class SmartWaiter {
   static async waitText(locator: Locator, texto: string, tempoAdicionalMs = 0) {
     await browser.wait(
       EC.textToBePresentInElement(element(locator), texto),
+      timeout + tempoAdicionalMs
+    );
+  }
+
+  /**
+   * Espera que o arquivo com o nome passado exista no sistema de arquivos
+   * @param filename
+   * @param tempoAdicionalMs
+   */
+  static async waitFile(filename: string, tempoAdicionalMs = 0) {
+    await browser.wait(
+      () => fs.existsSync(filename),
       timeout + tempoAdicionalMs
     );
   }

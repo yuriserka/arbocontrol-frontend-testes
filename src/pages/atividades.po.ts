@@ -100,21 +100,20 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Demandas');
     await this.expandirHeaderVinculo();
 
+    await SmartWaiter.waitTableRows(
+      By.xpath('//app-demanda-listagem//tbody//tr')
+    );
     for (let i = 0; i < atividade.demandas.length; ++i) {
       const numDemanda = atividade.demandas[i];
-      await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-demanda-listagem//tbody//tr)[${i + 1}]`)
-      );
       const demandaRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
         numDemanda,
         By.xpath(
-          './/td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
+          './td[contains(@class, "cdk-column-id")]/span[@class="span-link"]'
         )
       );
-
       await demandaRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
+        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
         .click();
       await this.confirmarAcao();
     }
@@ -128,22 +127,28 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Imóveis');
     await this.expandirHeaderVinculo();
 
+    await SmartWaiter.waitTableRows(
+      By.xpath('//app-imovel-listagem//tbody//tr')
+    );
     for (let i = 0; i < atividade.imoveis.length; ++i) {
       const logradouroImovel = atividade.imoveis[i];
-      await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-imovel-listagem//tbody//tr)[${i + 1}]`)
-      );
       const imovelRow = await getNodeWithText(
         By.xpath('//app-imovel-listagem//tbody//tr'),
         logradouroImovel,
         By.xpath(
-          './/td[contains(@class, "logradouro")]//span[@class="span-link"]'
+          './td[contains(@class, "logradouro")]/span[@class="span-link"]'
         )
       );
-
-      await imovelRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
-        .click();
+      await browser
+        .actions()
+        .mouseMove(
+          imovelRow
+            .element(
+              By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+            )
+            .getWebElement()
+        )
+        .perform();
       await this.confirmarAcao();
     }
   }
@@ -156,19 +161,18 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Equipe');
     await this.expandirHeaderVinculo();
 
+    await SmartWaiter.waitVisibility(
+      By.xpath('//app-equipe-tabela//tbody//tr')
+    );
     for (let i = 0; i < atividade.equipes.length; ++i) {
       const nomeEquipe = atividade.equipes[i];
-      await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-equipe-tabela//tbody//tr)[${i + 1}]`)
-      );
       const equipeRow = await getNodeWithText(
         By.xpath('//app-equipe-tabela//tbody//tr'),
         nomeEquipe,
-        By.xpath('.//td[contains(@class, "nome")]//span[@class="span-link"]')
+        By.xpath('./td[contains(@class, "nome")]/span[@class="span-link"]')
       );
-
       await equipeRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
+        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
         .click();
       await this.confirmarAcao();
     }
@@ -306,6 +310,7 @@ export class AtividadesPage extends SystemPage {
     );
     await browser.sleep(1000);
     await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
+    await browser.sleep(1000);
   }
 
   /**

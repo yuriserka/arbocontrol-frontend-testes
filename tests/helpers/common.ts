@@ -40,7 +40,16 @@ const relatorioPage = new RelatoriosPage();
 /**
  * tempo de timeout de 2 minutos para os testes
  */
-export const timeout = 2 * 60 * 1000;
+export const timeout = 10 * 60 * 1000;
+
+/**
+ * usuário padrão utilizado nos testes
+ */
+export const userTest: Usuario = {
+  cpf: '111.111.111-11',
+  senha: '12345678',
+  unidade: 'SES - AM',
+};
 
 /**
  * navega até a página que deve ser testada

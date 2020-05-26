@@ -1,4 +1,4 @@
-const { setDefaultTimeout, When, Then } = require('cucumber');
+import { setDefaultTimeout, When, Then } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { baseUrl } from '../config';

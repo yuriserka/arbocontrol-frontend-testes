@@ -1,8 +1,19 @@
 #language:pt
 
-Funcionalidade: Login
+@Record
+Funcionalidade: Gravar requisições http para login
     Sendo eu um usuário já cadastrado por um administrador,
     espero conseguir acessar o sistema.
+
+@Blaze
+Cenário: Login no BlazeMeter e inicio da gravação
+    Dado que eu desejo obter um script de carga para a funcionalidade "login"
+    Então eu inicio uma gravação do BlazeMeter
+
+Cenário:
+    Dado que estou logado com
+    | cpf            | senha    | unidade  |
+    | 111.111.111-11 | 12345678 | SES - AM |
 
 Esquema do Cenário: Login com sucesso
     Dado que eu navego até a url do site do SisVetor
@@ -16,3 +27,7 @@ Exemplos:
 | cpf            | senha    | nome      | unidade  |
 | 111.111.111-11 | 12345678 | Usuário 1 | SES - AM |
 | 222.222.222-22 | 12345678 | Usuário 2 | SES - AM |
+
+@Blaze
+Cenário: TearDown
+    E paro a gravação do BlazeMeter

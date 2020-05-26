@@ -1,4 +1,4 @@
-const { setDefaultTimeout, Then } = require('cucumber');
+import { setDefaultTimeout, Then } from 'cucumber';
 import { expect } from 'chai';
 import { TableDefinition, When } from 'cucumber';
 import { RelatoriosPage } from '../src/pages/relatorios.po';

@@ -1,4 +1,4 @@
-const { Given, setDefaultTimeout, Then, When } = require('cucumber');
+import { Given, setDefaultTimeout, Then, When } from 'cucumber';
 import { browser } from 'protractor';
 import { Recorder } from '../src/helpers/recorder';
 import { LoginPage } from '../src/pages/login.po';
@@ -29,7 +29,7 @@ When(
 );
 
 Then('farei login com os dados disponibilizados', async () => {
-  await blazeRecorder['login'](/* comGoogle= */ false);
+  await blazeRecorder['BlazeMeterlogin']();
 });
 
 When('eu acionar o botão de gravação', async () => {
@@ -44,7 +44,7 @@ Then('navegarei até o site {string}', async (url: string) => {
 
 Then('farei login', async () => {
   const user: Usuario = {
-    cpf: '055.232.031-57',
+    cpf: '111.111.111-11',
     senha: '12345678',
     unidade: 'SES - AM',
   };

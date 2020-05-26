@@ -1,9 +1,7 @@
-const { Given, setDefaultTimeout, Then, When } = require('cucumber');
+import { Given, setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
-import { browser, By } from 'protractor';
+import { browser } from 'protractor';
 import { baseUrl } from '../config';
-import { CssEditor } from '../src/helpers/css_editor';
-import { Recorder } from '../src/helpers/recorder';
 import { HomePage } from '../src/pages/home.po';
 import { LoginPage } from '../src/pages/login.po';
 import { timeout } from './helpers/common';
@@ -11,25 +9,9 @@ import { timeout } from './helpers/common';
 setDefaultTimeout(timeout);
 const loginPage = new LoginPage();
 const homePage = new HomePage();
-let recorder: Recorder;
-let recording = false;
-
-Given(
-  'que eu desejo obter um script de carga para a funcionalidade {string}',
-  (funcionalidade: string) => {
-    recorder = new Recorder(funcionalidade);
-  }
-);
 
 Given('que eu navego até a url do site do SisVetor', async () => {
   await browser.get(baseUrl);
-  await browser.waitForAngular();
-  if (recording) {
-    await CssEditor.execute(
-      By.xpath('//div[@class="ui-draggable ui-draggable-handle"]'),
-      [{ atributo: 'display', valor: 'none' }]
-    );
-  }
 });
 
 When('eu entro com meu cpf {string}', async (cpf: string) => {
@@ -55,12 +37,3 @@ Then(
     expect(await homePage.getUsuarioLogado()).to.be.equal(nome);
   }
 );
-
-Then('eu inicio uma gravação do BlazeMeter', async () => {
-  await recorder.iniciar();
-  recording = true;
-});
-
-Then('paro a gravação do BlazeMeter', async () => {
-  await recorder.terminar();
-});
