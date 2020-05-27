@@ -54,7 +54,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await this.selecionarPerfil(perfil.dadosBasicos.nome);
     await this.atribuirRecursos(perfil);
     await this.atribuirFormularios(perfil);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await this.salvar();
   }
 
@@ -92,10 +92,14 @@ export class PerfisDeUsuarioPage extends SystemPage {
         By.xpath('./td[contains(@class, "recurso")]')
       );
 
-      await recursoRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
-
+      const btn = recursoRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarExclusao();
     }
 
@@ -123,9 +127,15 @@ export class PerfisDeUsuarioPage extends SystemPage {
         nomes[i],
         By.xpath('./td[contains(@class, "formulario")]')
       );
-      await recurso
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
+      const btn = recurso.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarExclusao();
     }
 
@@ -167,7 +177,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await this.selecionarAba('Recursos/Autoridades');
 
     for (let i = 0; i < perfil.recursos.length; ++i) {
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
       await this.preencherSelects(perfil.recursos[i], 'recurso-autoridade');
     }
   }
@@ -181,7 +191,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await element(By.xpath('//button[@color="primary"]')).click();
 
     for (let i = 0; i < perfil.formularios.length; ++i) {
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
       await this.preencherSelects(perfil.formularios[i], 'formulario');
     }
   }
@@ -198,7 +208,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
       campo.tipo === 'input'
         ? await this.preencherInputDadosBasicos(campo, dados)
         : await this.preencherTextAreaDadosBasicos(campo, dados);
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
   }
 
@@ -300,7 +310,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   private async salvar() {
     // é necessário voltar à aba dos dados básicos para poder salvar
     await this.selecionarAba('Dados Basicos');
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     const botaoSalvar = By.xpath('//button[@color="primary"]');
     await SmartWaiter.waitClick(botaoSalvar);
     await element(botaoSalvar).click();
@@ -318,7 +328,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
       ),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -329,10 +339,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

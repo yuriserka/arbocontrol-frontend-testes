@@ -96,6 +96,12 @@ export class SmartWaiter {
     );
   }
 
+  /**
+   * Espera a visibilidade do elemento, espera ele ser clicavel, move o mouse
+   * até a devida posição e entao realiza o clique
+   * @param locator
+   * @param tempoAdicionalMs
+   */
   static async safeClick(locator: Locator, tempoAdicionalMs = 0) {
     await SmartWaiter.waitVisibility(locator, tempoAdicionalMs);
     await SmartWaiter.waitClick(locator, tempoAdicionalMs);
@@ -104,5 +110,13 @@ export class SmartWaiter {
       .mouseMove(await element(locator).getWebElement())
       .perform();
     await element(locator).click();
+  }
+
+  /**
+   * Espera 1 segundo
+   * @param tempoAdicionalMs
+   */
+  static async waitOneSecond(tempoAdicionalSegundos = 0) {
+    await browser.sleep((1 + tempoAdicionalSegundos) * 1000);
   }
 }

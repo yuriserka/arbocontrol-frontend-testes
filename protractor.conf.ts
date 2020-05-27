@@ -61,11 +61,11 @@ export const config: Config = {
       maxInstances: 5,
       // path relativo ao protractor.conf.js que está em build/
       specs: [
-        // '../features/perfis_de_usuario.feature',
-        // '../features/login.feature',
+        '../features/perfis_de_usuario.feature',
+        '../features/login.feature',
         '../features/home.feature',
-        // '../features/territorios.feature',
-        // '../features/equipes.feature',
+        '../features/territorios.feature',
+        '../features/equipes.feature',
       ],
       metadata,
     },
@@ -81,18 +81,18 @@ export const config: Config = {
     //   specs: ['../features/**/relatorios.feature'],
     //   metadata,
     // },
-    // {
-    //   browserName: 'chrome',
-    //   chromeOptions: chromeOpts,
-    //   // path relativo ao protractor.conf.js que está em build/
-    //   specs: [
-    //     // '../features/imoveis.feature',
-    //     '../features/atividades.feature',
-    //     // '../features/lista_de_trabalho.feature',
-    //     // '../features/relatorios.feature',
-    //   ],
-    //   metadata,
-    // },
+    {
+      browserName: 'chrome',
+      chromeOptions: chromeOpts,
+      // path relativo ao protractor.conf.js que está em build/
+      specs: [
+        '../features/imoveis.feature',
+        '../features/atividades.feature',
+        '../features/lista_de_trabalho.feature',
+        '../features/relatorios.feature',
+      ],
+      metadata,
+    },
   ],
   cucumberOpts: {
     compiler: 'ts:ts-node/register',

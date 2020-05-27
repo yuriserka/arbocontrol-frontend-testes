@@ -143,7 +143,7 @@ export class Recorder {
   private async salvar() {
     await SmartWaiter.safeClick(this.botoes_.salvar);
     await SmartWaiter.safeClick(By.css('#chk-jmx'));
-    
+
     element.all(By.name('domains')).each(async domain => {
       if (!domain || (await domain.isSelected())) {
         return;

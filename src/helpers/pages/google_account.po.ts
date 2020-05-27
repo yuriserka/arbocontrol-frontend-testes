@@ -31,7 +31,7 @@ export class GoogleAccountPage {
    */
   async login(email: string, senha: string) {
     await this.preencherEmail(email);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await SmartWaiter.waitVisibility(this.campos_.senha);
     await SmartWaiter.waitClick(this.botoes_.proximo_senha);
     await this.preencherSenha(senha);

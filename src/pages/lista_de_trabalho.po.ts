@@ -52,7 +52,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     amostras?: Registro[]
   ) {
     await this.selecionarAtividade(numeroAtividade);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await this.selecionarImovel(logradouroDoImovel);
     await this.selecionarFormulario(formulario);
     await element(By.xpath('//button[@color="primary"]')).click();
@@ -258,7 +258,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
       By.xpath('//app-formulario-tabela-simples//tbody/tr/td/span'),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -298,10 +298,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

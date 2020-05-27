@@ -48,7 +48,7 @@ export class AtividadesPage extends SystemPage {
     await element(this.botoes_.cadastrar).click();
     await this.cadastroBasico(atividade.dadosBasicos);
     await this.salvar();
-    await browser.sleep(1500);
+    await SmartWaiter.waitOneSecond();
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
@@ -61,11 +61,9 @@ export class AtividadesPage extends SystemPage {
    */
   async excluirAtividade(titulo: string) {
     await this.selecionarAtividade(titulo);
-    const btnExcluir = By.xpath(
-      '//div[@class="linha-botoes"]/button[@color="warn"]'
+    await SmartWaiter.safeClick(
+      By.xpath('//div[@class="linha-botoes"]/button[@color="warn"]')
     );
-    await SmartWaiter.waitClick(btnExcluir);
-    await element(btnExcluir).click();
     await this.confirmarExclusao();
   }
 
@@ -100,10 +98,10 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Demandas');
     await this.expandirHeaderVinculo();
 
-    await SmartWaiter.waitTableRows(
-      By.xpath('//app-demanda-listagem//tbody//tr')
-    );
     for (let i = 0; i < atividade.demandas.length; ++i) {
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-demanda-listagem//tbody//tr')
+      );
       const numDemanda = atividade.demandas[i];
       const demandaRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
@@ -112,9 +110,14 @@ export class AtividadesPage extends SystemPage {
           './td[contains(@class, "cdk-column-id")]/span[@class="span-link"]'
         )
       );
-      const btn = demandaRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'));
-      await SmartWaiter.safeClick(btn.locator());
+      const btn = demandaRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
@@ -127,10 +130,10 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Imóveis');
     await this.expandirHeaderVinculo();
 
-    await SmartWaiter.waitTableRows(
-      By.xpath('//app-imovel-listagem//tbody//tr')
-    );
     for (let i = 0; i < atividade.imoveis.length; ++i) {
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-imovel-listagem//tbody//tr')
+      );
       const logradouroImovel = atividade.imoveis[i];
       const imovelRow = await getNodeWithText(
         By.xpath('//app-imovel-listagem//tbody//tr'),
@@ -142,7 +145,11 @@ export class AtividadesPage extends SystemPage {
       const btn = imovelRow.element(
         By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
       );
-      await SmartWaiter.safeClick(btn.locator());
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
@@ -155,19 +162,24 @@ export class AtividadesPage extends SystemPage {
     await this.selecionarAba('Equipe');
     await this.expandirHeaderVinculo();
 
-    await SmartWaiter.waitVisibility(
-      By.xpath('//app-equipe-tabela//tbody//tr')
-    );
     for (let i = 0; i < atividade.equipes.length; ++i) {
+      await SmartWaiter.waitVisibility(
+        By.xpath('//app-equipe-tabela//tbody//tr')
+      );
       const nomeEquipe = atividade.equipes[i];
       const equipeRow = await getNodeWithText(
         By.xpath('//app-equipe-tabela//tbody//tr'),
         nomeEquipe,
         By.xpath('./td[contains(@class, "nome")]/span[@class="span-link"]')
       );
-      const btn = equipeRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'));
-      await SmartWaiter.safeClick(btn.locator());
+      const btn = equipeRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
@@ -188,7 +200,7 @@ export class AtividadesPage extends SystemPage {
           ? await this.preencherInputDadosBasicos(campo, dados)
           : await this.preencherTextAreaDadosBasicos(campo, dados);
       }
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
   }
 
@@ -302,9 +314,9 @@ export class AtividadesPage extends SystemPage {
     await SmartWaiter.waitVisibility(
       By.xpath('(//mat-expansion-panel-header)[1]')
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -315,11 +327,8 @@ export class AtividadesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -333,7 +342,7 @@ export class AtividadesPage extends SystemPage {
       ),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -343,10 +352,7 @@ export class AtividadesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

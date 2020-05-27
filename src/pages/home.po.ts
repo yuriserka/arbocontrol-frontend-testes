@@ -36,12 +36,14 @@ export class HomePage extends SystemPage {
       visoes: () => this.navbar_.acessarVisoes(),
       gerenciar_tipo_territorio: () => this.navbar_.acessarTiposDeTerritorio(),
       gerenciar_tipo_imovel: () => this.navbar_.acessarTiposDeImovel(),
-      gerenciar_tipo_ponto_estrategico: () => this.navbar_.acessarTiposDePontoEstrategico(),
+      gerenciar_tipo_ponto_estrategico: () =>
+        this.navbar_.acessarTiposDePontoEstrategico(),
       gerenciar_solicitante: () => this.navbar_.acessarSolicitantes(),
       gerenciar_origem_demanda: () => this.navbar_.acessarOrigensDemanda(),
       gerenciar_categoria_demanda: () => this.navbar_.acessarCategoriaDemanda(),
       gerenciar_abrangencia: () => this.navbar_.acessarAbrangencias(),
-      gerenciar_prioridade_demanda: () => this.navbar_.acessarPrioridadeDemanda(),
+      gerenciar_prioridade_demanda: () =>
+        this.navbar_.acessarPrioridadeDemanda(),
       gerenciar_situacao_demanda: () => this.navbar_.acessarSituacaoDemanda(),
     };
   }
