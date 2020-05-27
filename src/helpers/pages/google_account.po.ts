@@ -31,7 +31,7 @@ export class GoogleAccountPage {
    */
   async login(email: string, senha: string) {
     await this.preencherEmail(email);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await SmartWaiter.waitVisibility(this.campos_.senha);
     await SmartWaiter.waitClick(this.botoes_.proximo_senha);
     await this.preencherSenha(senha);
@@ -43,7 +43,7 @@ export class GoogleAccountPage {
    */
   private async preencherEmail(email: string) {
     await element(this.campos_.email).sendKeys(email);
-    await element(this.botoes_.proximo_email).click();
+    await SmartWaiter.safeClick(this.botoes_.proximo_email);
   }
 
   /**
@@ -53,6 +53,6 @@ export class GoogleAccountPage {
    */
   private async preencherSenha(senha: string) {
     await element(this.campos_.senha).sendKeys(senha);
-    await element(this.botoes_.proximo_senha).click();
+    await SmartWaiter.safeClick(this.botoes_.proximo_senha);
   }
 }

@@ -1,5 +1,4 @@
 import { element, ElementFinder, Locator } from 'protractor';
-import { WebDriverLocator } from 'protractor/built/locators';
 
 /**
  * Dada uma lista de opções (com caminho já apontando para os nós que

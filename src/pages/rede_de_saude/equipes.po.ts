@@ -1,4 +1,4 @@
-import { By, element, browser } from 'protractor';
+import { By, element } from 'protractor';
 import { SystemPage } from '../page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../../helpers/selectors';
@@ -186,11 +186,8 @@ export class EquipesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 
   /**

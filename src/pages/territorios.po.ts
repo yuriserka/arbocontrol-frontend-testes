@@ -1,6 +1,6 @@
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SystemPage } from './page.po';
-import { By, element, browser } from 'protractor';
+import { By, element } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
 import { baseUrl } from '../../config';
@@ -56,7 +56,7 @@ export class TerritoriosPage extends SystemPage {
       } else {
         await this.preencherTextArea(campo, territorio);
       }
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
 
     await element(By.xpath('//button[@color="primary"]')).click();
@@ -165,10 +165,7 @@ export class TerritoriosPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

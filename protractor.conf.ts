@@ -1,11 +1,7 @@
 import { Config, browser } from 'protractor';
 import { Reporter } from './src/helpers/reporter';
-const fs = require('fs');
-import path = require('path');
-
-const chromeOpts = {
-  args: ['disable-plugins', 'disable-infobars'],
-};
+import * as path from 'path';
+import * as fs from 'fs';
 
 function getCurrentDateAndTime() {
   const date = new Date();
@@ -22,12 +18,33 @@ const runInfoData = [
 const metadata = {
   browser: {
     name: 'chrome',
-    version: '80.0.3987.163',
+    version: '83.0.4103.61',
   },
   device: 'Local test machine',
   platform: {
     name: 'windows',
     version: '10',
+  },
+};
+
+/**
+ * retorna uma string base64 encoded dos arquivos de extensão do chrome '.crx'
+ */
+function loadExtensions() {
+  const basePath = path.join(__dirname, '..', './extensions');
+  return ['blazemeter_4_9_1_0.crx']
+    .map(extName => path.join(basePath, extName))
+    .map(f => fs.readFileSync(f).toString('base64'));
+}
+
+const chromeOpts = {
+  args: ['disable-plugins', 'disable-infobars'],
+  prefs: {
+    download: {
+      prompt_for_download: false,
+      directory_upgrade: true,
+      default_directory: path.join(__dirname, '..', 'reports', 'downloads'),
+    },
   },
 };
 
@@ -52,6 +69,18 @@ export const config: Config = {
       ],
       metadata,
     },
+    // {
+    //   browserName: 'chrome',
+    //   chromeOptions: {
+    //     ...chromeOpts,
+    //     extensions: loadExtensions(),
+    //   },
+    //   shardTestFiles: true,
+    //   maxInstances: 1,
+    //   // path relativo ao protractor.conf.js que está em build/
+    //   specs: ['../features/**/relatorios.feature'],
+    //   metadata,
+    // },
     {
       browserName: 'chrome',
       chromeOptions: chromeOpts,
@@ -60,6 +89,7 @@ export const config: Config = {
         '../features/imoveis.feature',
         '../features/atividades.feature',
         '../features/lista_de_trabalho.feature',
+        '../features/relatorios.feature',
       ],
       metadata,
     },
@@ -68,7 +98,7 @@ export const config: Config = {
     compiler: 'ts:ts-node/register',
     require: ['tests/**/*.js'], // path relativo ao protractor.conf.js que está em build/
     format: [require.resolve('cucumber-pretty'), 'json:reports/results.json'],
-    // 'fail-fast': true,
+    'fail-fast': true,
     tags: false,
     strict: true,
     profile: false,

@@ -24,10 +24,8 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
-    "@types/cucumber": "^6.0.0",
+    "@types/cucumber": "^6.0.1",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^10.0.3",
-    "@types/selenium-webdriver": "^3.0.10",
     "chai": "^4.2.0",
     "cucumber-html-reporter": "^5.1.0",
     "cucumber-pretty": "^6.0.0",
