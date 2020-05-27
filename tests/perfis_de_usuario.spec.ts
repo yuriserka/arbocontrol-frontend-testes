@@ -10,7 +10,7 @@ import {
   assertRecursoVinculado,
   assertFormularioVinculado,
 } from './helpers/asserts/perfil_de_usuario';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 
 setDefaultTimeout(timeout);
 

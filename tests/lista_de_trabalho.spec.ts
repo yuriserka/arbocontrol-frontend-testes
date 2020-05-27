@@ -2,7 +2,7 @@ import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser, element, By } from 'protractor';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
 import { timeout } from './helpers/common';

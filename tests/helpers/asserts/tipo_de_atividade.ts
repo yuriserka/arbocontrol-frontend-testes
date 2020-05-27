@@ -1,5 +1,5 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { By } from 'protractor';
 import { TiposDeAtividadesPage } from '../../../src/pages/tabelas_basicas/tipos_de_atividade.po';

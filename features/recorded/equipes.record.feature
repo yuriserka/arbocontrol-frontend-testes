@@ -8,11 +8,7 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "equipes"
     Então eu inicio uma gravação do BlazeMeter
 
-Cenário:
-    Dado que estou logado com
-    | cpf            | senha    | unidade  |
-    | 111.111.111-11 | 12345678 | SES - AM |
-
+@NeedLogin
 Esquema do Cenário: Cadastro com sucesso
     Quando eu acessar a pagina das equipes
     Então eu vou cadastrar a equipe "<nome_da_equipe>"
@@ -28,6 +24,7 @@ Exemplos:
 | __Equipe_1__   |
 | __Equipe_2__   |
 
+@NeedLogin
 Esquema do Cenário: Desvincular usuarios de uma equipe
     Quando eu acessar a pagina das equipes
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
@@ -38,6 +35,7 @@ Exemplos:
 | nome_da_equipe |
 | __Equipe_0__   |
 
+@NeedLogin
 Esquema do Cenário: Excluir uma equipe
     Quando eu acessar a pagina das equipes
     Então eu vou excluir a equipe "<nome_da_equipe>"
@@ -50,4 +48,4 @@ Exemplos:
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

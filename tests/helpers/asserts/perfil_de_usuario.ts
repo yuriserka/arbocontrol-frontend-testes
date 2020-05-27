@@ -1,4 +1,4 @@
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { By } from 'protractor';

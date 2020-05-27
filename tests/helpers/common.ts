@@ -14,7 +14,7 @@ import { HomePage } from '../../src/pages/home.po';
 import { Imovel } from '../../src/models/imovel';
 import { browser } from 'protractor';
 import { Atividade } from '../../src/models/atividade';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../../src/common';
 import { Territorio } from '../../src/models/territorio';
 import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';

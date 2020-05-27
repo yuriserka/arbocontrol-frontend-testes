@@ -1,7 +1,7 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By, browser, element } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { HomePage } from '../../../src/pages/home.po';
 import { assertEquipePossui } from './equipe';
 

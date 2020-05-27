@@ -8,15 +8,11 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "atividades"
     Então eu inicio uma gravação do BlazeMeter
 
-Cenário:
-    Dado que estou logado com
-    | cpf            | senha    | unidade  |
-    | 111.111.111-11 | 12345678 | SES - AM |
-
 # idealmente isto só precisa rodar uma vez, mas o background roda pra cada
 # novo cenário, e se esconder em um BeforeAll dentro do código fica dificil
 # pro leitor entender então o melhor é apenas considerar estes
 # passos como uma extensão do contexto, mas sem estar lá.
+@NeedLogin
 Cenário: Inserção das dependencias necessárias (territorio -> imovel, equipe)
     E que cadastrei o territorio
     | tipo_de_territorio | nome | polígono                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | tipo_de_zona |
@@ -30,6 +26,7 @@ Cenário: Inserção das dependencias necessárias (territorio -> imovel, equipe
     | Usuário 1 | agente     |
     | Usuário 2 | agente     |
 
+@NeedLogin
 Cenário: Cadastro com sucesso de uma atividade
     Quando eu acessar a pagina de atividades
     Então eu vou cadastrar uma atividade com os dados básicos
@@ -49,6 +46,7 @@ Cenário: Cadastro com sucesso de uma atividade
     | _Equipe__0 |
     E irei salvar a atividade
 
+@NeedLogin
 Esquema do Cenário: Excluir as atividades recem cadastradas
     Quando eu acessar a pagina de atividades
     Então eu vou excluir a atividade "<titulo_atividade>"
@@ -57,6 +55,7 @@ Exemplos:
 | titulo_atividade   |
 | teste_automatizado |
 
+@NeedLogin
 Esquema do Cenário: Excluir as dependencias de forma explicita (territorio, imovel, equipe)
     Então irei excluir a dependencia "<dep>"
 
@@ -68,4 +67,4 @@ Exemplos:
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

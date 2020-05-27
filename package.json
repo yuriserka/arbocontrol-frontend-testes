@@ -4,7 +4,8 @@
   "description": "testes desenvolvidos para o sistema Arbocontrol",
   "main": "protractor.conf.ts",
   "scripts": {
-    "test": "yarn compile && ./node_modules/.bin/protractor ./build/protractor.conf.js",
+    "test": "yarn compile && ./node_modules/.bin/protractor ./build/configs/protractor.test.conf.js",
+    "test:jmx": "yarn compile && ./node_modules/.bin/protractor ./build/configs/protractor.jmx.conf.js",
     "docs": "./node_modules/.bin/typedoc --tsconfig",
     "webdriver:start": "node_modules/.bin/webdriver-manager update && node_modules/.bin/webdriver-manager start",
     "check": "gts check",

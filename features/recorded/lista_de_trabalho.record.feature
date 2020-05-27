@@ -8,11 +8,7 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "lista_de_trabalho"
     Então eu inicio uma gravação do BlazeMeter
 
-Cenário:
-    Dado que estou logado com
-    | cpf            | senha    | unidade  |
-    | 111.111.111-11 | 12345678 | SES - AM |
-
+@NeedLogin
 Esquema do Cenário: Criação de recursos necessários para a edição da lista de trabalho
     E que o usuario atual pode editar novas atividades criadas
     E que a atividade do tipo "<tipo_de_atividade>" possui o formulario "<nome_do_formulario>"
@@ -25,6 +21,7 @@ Exemplos:
 # novo cenário, e se esconder em um BeforeAll dentro do código fica dificil
 # pro leitor entender então o melhor é apenas considerar estes
 # passos como uma extensão do contexto, mas sem estar lá.
+@NeedLogin
 Cenário: Inserção das dependencias necessárias
     E que cadastrei o territorio
     | tipo_de_territorio | nome | polígono                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | tipo_de_zona |
@@ -40,6 +37,7 @@ Cenário: Inserção das dependencias necessárias
 
 # Extensão ainda das dependencias, inserindo atividades de varios tipos para
 # testar o preenchimento de formularios
+@NeedLogin
 Esquema do Cenário: criação de atividades de diferentes tipos
     E que cadastrei uma atividade do tipo "<tipo>" com o imovel e a equipe criados
     | titulo     | descricao                  | dataInicio | dataFim    | abrangencia |
@@ -49,6 +47,7 @@ Exemplos:
     | tipo                     |
     | PE - Ponto Estratégico   |
 
+@NeedLogin
 Esquema do Cenário: Inserção com sucesso de registros para o formulario de inspeção geral
     Quando eu acessar a pagina da lista de trabalho
     Então eu vou selecionar a atividade do tipo "<tipo_atividade_sigla>"
@@ -63,6 +62,7 @@ Exemplos:
 | tipo_atividade_sigla | logradouro_imovel                   | formulario     |
 | PE                   | Faculdade de Ciências da Saúde (FS) | Inspeção Geral |
 
+@NeedLogin
 Esquema do Cenário: Excluir os registros que foram inseridos na lista de trabalho
     Quando eu acessar a pagina da lista de trabalho
     Então irei excluir todos os registros da atividade do tipo "<tipo_atividade_sigla>" do formulario "<formulario>"
@@ -71,6 +71,7 @@ Exemplos:
     | tipo_atividade_sigla | formulario     |
     | PE                   | Inspeção Geral |
 
+@NeedLogin
 Esquema do Cenário: Excluir as dependencias de forma explicita (atividades, imovel, territorio, equipe)
     Então irei excluir a dependencia "<dep>"
 
@@ -81,6 +82,7 @@ Exemplos:
 | territorio   |
 | equipe       |
 
+@NeedLogin
 Cenário: remover as dependencias de forma explicita (permissao de edição, formularios atribuidos)
     Então irei remover a permissao para edicao de novas atividades
     Então irei desatribuir os formularios dos tipos de atividades
@@ -89,4 +91,4 @@ Cenário: remover as dependencias de forma explicita (permissao de edição, for
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

@@ -11,7 +11,7 @@ import {
 } from './helpers/asserts/atividade';
 import { Atividade } from '../src/models/atividade';
 import { timeout } from './helpers/common';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 
 setDefaultTimeout(timeout);
 

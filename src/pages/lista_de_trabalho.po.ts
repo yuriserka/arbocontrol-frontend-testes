@@ -1,7 +1,7 @@
 import { SystemPage } from './page.po';
 import { element, By, browser } from 'protractor';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { selectFrom } from '../helpers/selectors';
 import { Registro } from '../models/registro';
 

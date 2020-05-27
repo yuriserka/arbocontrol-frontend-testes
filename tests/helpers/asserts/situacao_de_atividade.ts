@@ -1,7 +1,7 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { getNodeWithText, selectFrom } from '../../../src/helpers/selectors';
 import { By, browser, element } from 'protractor';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 
 export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/situacoes-atividade`);

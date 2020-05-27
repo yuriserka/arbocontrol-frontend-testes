@@ -2,7 +2,7 @@ import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { makeTerritorio, Territorio } from '../src/models/territorio';
 import { TerritoriosPage } from '../src/pages/territorios.po';
 import { assertTerritorioExiste } from './helpers/asserts/territorio';

@@ -2,7 +2,7 @@ import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { ImoveisPage } from '../src/pages/imoveis.po';
 import { assertImovelExiste } from './helpers/asserts/imovel';
 import { makeImovel } from '../src/models/imovel';

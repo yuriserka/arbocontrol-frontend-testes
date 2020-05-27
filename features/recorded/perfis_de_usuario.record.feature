@@ -8,11 +8,7 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "perfis_de_usuario"
     Então eu inicio uma gravação do BlazeMeter
 
-Cenário:
-    Dado que estou logado com
-    | cpf            | senha    | unidade  |
-    | 111.111.111-11 | 12345678 | SES - AM |
-
+@NeedLogin
 Cenário: Cadastro com sucesso de um Perfil com todas as Autoridades sobre tudo
     Quando eu acessar a pagina de Perfis de Usuario
     Então eu vou cadastrar um perfil com os dados básicos
@@ -26,6 +22,7 @@ Cenário: Cadastro com sucesso de um Perfil com todas as Autoridades sobre tudo
     | Inspeção Geral | EDITAR     |
     E irei salvar o perfil
 
+@NeedLogin
 Esquema do Cenário: Excluir o perfil de usuario recem cadastrado
     Quando eu acessar a pagina de Perfis de Usuario
     Então eu vou excluir o perfil de usuario "<nome_perfil>"
@@ -36,4 +33,4 @@ Exemplos:
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

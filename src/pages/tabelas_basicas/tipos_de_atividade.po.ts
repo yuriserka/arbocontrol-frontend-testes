@@ -3,7 +3,7 @@ import { element, browser } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../../helpers/selectors';
 import { SmartWaiter } from '../../helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../common';
 import { By as SeleniumBy } from 'selenium-webdriver';
 
 export class TiposDeAtividadesPage extends SystemPage {

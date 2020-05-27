@@ -3,7 +3,7 @@ import { SystemPage } from './page.po';
 import { By, element } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { Imovel } from '../models/imovel';
 
 /**

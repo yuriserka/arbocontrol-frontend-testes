@@ -2,7 +2,7 @@ import { setDefaultTimeout, Then, When } from 'cucumber';
 import { TableDefinition } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { EquipesPage } from '../src/pages/rede_de_saude/equipes.po';
 import {
   assertEquipeExiste,

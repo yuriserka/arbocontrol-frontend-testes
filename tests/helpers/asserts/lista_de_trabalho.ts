@@ -1,6 +1,6 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By, element } from 'protractor';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 
 /**
  * checa se a quantidade de registros antes da inserção é menor que depois da inserção

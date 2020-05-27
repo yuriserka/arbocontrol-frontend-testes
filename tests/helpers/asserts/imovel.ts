@@ -1,7 +1,7 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 
 /**
  * verifica se a o imovel passado foi criado, ou seja, checando se o mesmo

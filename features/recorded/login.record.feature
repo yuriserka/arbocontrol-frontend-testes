@@ -10,13 +10,7 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "login"
     Então eu inicio uma gravação do BlazeMeter
 
-Cenário:
-    Dado que estou logado com
-    | cpf            | senha    | unidade  |
-    | 111.111.111-11 | 12345678 | SES - AM |
-
 Esquema do Cenário: Login com sucesso
-    Dado que eu navego até a url do site do SisVetor
     Quando eu entro com meu cpf "<cpf>"
     E eu entro com minha senha "<senha>"
     E seleciono a unidade "<unidade>"
@@ -30,4 +24,4 @@ Exemplos:
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

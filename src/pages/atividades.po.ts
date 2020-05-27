@@ -3,7 +3,7 @@ import { SystemPage } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { Atividade, DadosBasicosAtividade } from '../models/atividade';
 
 /**

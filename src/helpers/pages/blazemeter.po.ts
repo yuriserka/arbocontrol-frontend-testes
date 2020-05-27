@@ -1,7 +1,7 @@
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { GoogleAccountPage } from './google_account.po';
-import { googleAccount, blazeMeterAccount } from '../../../config';
+import { googleAccount, blazeMeterAccount } from '../../common';
 import { SmartWaiter } from '../smart_waiter';
 
 /**

@@ -99,4 +99,4 @@ Cenário: remover as dependencias de forma explicita (permissao de edição, for
 
 @Blaze
 Cenário: TearDown
-    E paro a gravação do BlazeMeter
+    Então paro a gravação do BlazeMeter

@@ -1,5 +1,5 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { By } from 'selenium-webdriver';
 import { Relatorio } from '../../../src/models/relatorio';

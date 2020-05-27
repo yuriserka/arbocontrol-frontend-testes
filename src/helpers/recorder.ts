@@ -12,6 +12,7 @@ export class Recorder {
   private botoes_: { [key: string]: SeleniumBy };
   private campos_: { [key: string]: SeleniumBy };
   private nomeArquivo_: string;
+  private logado = false;
 
   /**
    * @param funcionalidade nome da funcionalidade que será gravada
@@ -43,7 +44,11 @@ export class Recorder {
     const handles = await browser.getAllWindowHandles();
     await browser.switchTo().window(handles[1]);
     await this.get();
-    await this.BlazeMeterlogin();
+
+    if (!(await this.isLogado())) {
+      await this.BlazeMeterlogin();
+    }
+
     await this.gravar();
 
     // retorna para a primeira aba aberta, para que os testes continuem
@@ -119,21 +124,21 @@ export class Recorder {
    */
   private async gravar() {
     await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
-    await SmartWaiter.safeClick(this.botoes_.gravar);
+    await element(this.botoes_.gravar).click();
   }
 
   /**
    * para a gravação do script
    */
   private async parar() {
-    await SmartWaiter.safeClick(this.botoes_.parar);
+    await element(this.botoes_.parar).click();
   }
 
   /**
    * pausa a gravação do script
    */
   private async pause() {
-    await SmartWaiter.safeClick(this.botoes_.pausar);
+    await element(this.botoes_.pausar).click();
   }
 
   /**
@@ -141,8 +146,8 @@ export class Recorder {
    * então baixa o arquivo na pasta "Downloads"
    */
   private async salvar() {
-    await SmartWaiter.safeClick(this.botoes_.salvar);
-    await SmartWaiter.safeClick(By.css('#chk-jmx'));
+    await element(this.botoes_.salvar).click();
+    await element(By.css('#chk-jmx')).click();
 
     element.all(By.name('domains')).each(async domain => {
       if (!domain || (await domain.isSelected())) {
@@ -151,19 +156,38 @@ export class Recorder {
       await domain.click();
     });
 
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     const btnDownload = By.css(
       '#run-overlay > div.download-body.body > div.button.download-button'
     );
-    await SmartWaiter.safeClick(btnDownload);
+    await SmartWaiter.waitClick(btnDownload);
+    await element(btnDownload).click();
 
     const filename = path.join(
-      process.cwd(),
+      __dirname,
+      '..',
+      '..',
+      '..',
       'reports',
       'downloads',
       `${this.nomeArquivo_}.jmx`
     );
 
     await SmartWaiter.waitFile(filename, 10000);
+  }
+
+  private async isLogado() {
+    if (this.logado) {
+      return true;
+    }
+    try {
+      const blazeUserLoggedName = await element(
+        By.xpath('//div[@class="welcome"]/a')
+      ).getText();
+      this.logado = blazeUserLoggedName === 'Arbo';
+    } catch (err) {
+      return false;
+    }
+    return this.logado;
   }
 }

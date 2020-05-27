@@ -1,7 +1,7 @@
 import { setDefaultTimeout, When, Then } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { HomePage } from '../src/pages/home.po';
 import { timeout } from './helpers/common';
 
