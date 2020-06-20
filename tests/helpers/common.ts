@@ -4,25 +4,25 @@
  * classes
  */
 
+import { browser } from 'protractor';
+import { baseUrl } from '../../src/common';
 import { AtividadesPage } from '../../src/pages/atividades.po';
 import { EquipesPage } from '../../src/pages/rede_de_saude/equipes.po';
 import { ImoveisPage } from '../../src/pages/imoveis.po';
 import { LoginPage } from '../../src/pages/login.po';
-import { Usuario } from '../../src/models/usuario';
 import { TerritoriosPage } from '../../src/pages/territorios.po';
 import { HomePage } from '../../src/pages/home.po';
-import { Imovel } from '../../src/models/imovel';
-import { browser } from 'protractor';
-import { Atividade } from '../../src/models/atividade';
-import { baseUrl } from '../../src/common';
-import { Territorio } from '../../src/models/territorio';
-import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';
 import { SituacoesDeAtividadePage } from '../../src/pages/tabelas_basicas/situacoes_de_atividade.po';
 import { TiposDeAtividadesPage } from '../../src/pages/tabelas_basicas/tipos_de_atividade.po';
 import { ListaDeTrabalhoPage } from '../../src/pages/lista_de_trabalho.po';
-import { Registro } from '../../src/models/registro';
 import { RelatoriosPage } from '../../src/pages/relatorios.po';
+import { PerfilUsuario } from '../../src/models/perfil_usuario';
+import { Imovel } from '../../src/models/imovel';
+import { Atividade } from '../../src/models/atividade';
+import { Territorio } from '../../src/models/territorio';
+import { Registro } from '../../src/models/registro';
+import { Usuario } from '../../src/models/usuario';
 import { Relatorio } from '../../src/models/relatorio';
 
 const atividadePage = new AtividadesPage();
@@ -43,7 +43,7 @@ const relatorioPage = new RelatoriosPage();
 export const timeout = 10 * 60 * 1000;
 
 /**
- * usuário padrão utilizado nos testes
+ * usuário padrão utilizado nos testes que usam o BlazeMeter
  */
 export const userTest: Usuario = {
   cpf: '111.111.111-11',
