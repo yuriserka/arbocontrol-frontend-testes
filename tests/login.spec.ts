@@ -12,6 +12,7 @@ const homePage = new HomePage();
 
 Given('que eu navego até a url do site do SisVetor', async () => {
   await browser.get(baseUrl);
+  expect(await browser.getTitle()).to.be.equal('SisVetor - Gestor');
 });
 
 When('eu entro com meu cpf {string}', async (cpf: string) => {
@@ -29,11 +30,5 @@ When('seleciono a unidade {string}', async (nomeDaUnidade: string) => {
 Then('eu clico para entrar', async () => {
   await loginPage['clicarBotaoEntrar']();
   await browser.waitForAngular();
+  expect(await browser.getTitle()).to.be.equal('SisVetor - Gestor');
 });
-
-Then(
-  'meu nome {string} deve estar visível na página inicial',
-  async (nome: string) => {
-    expect(await homePage.getUsuarioLogado()).to.be.equal(nome);
-  }
-);

@@ -11,6 +11,7 @@ export class HomePage extends SystemPage {
   constructor() {
     super();
     this.btn2page_ = {
+      painel: () => this.navbar_.acessarPainel(),
       formularios: () => this.navbar_.acessarFormularios(),
       relatorios_indices: () => this.navbar_.acessarRelatorios(),
       exportar: () => this.navbar_.acessarExportacao(),
@@ -62,15 +63,5 @@ export class HomePage extends SystemPage {
    */
   async acessar(nomeBotao: string) {
     await this.btn2page_[nomeBotao]();
-  }
-
-  /**
-   * Retorna o nome do usuário escrito no Card
-   * @returns nome do usuário logado
-   */
-  async getUsuarioLogado() {
-    return element(
-      By.xpath('.//mat-card-title[@class="mat-card-title"]')
-    ).getText();
   }
 }

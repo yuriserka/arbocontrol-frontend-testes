@@ -10,6 +10,7 @@ export class SideNav {
 
   constructor() {
     this.botoes_ = {
+      painel: By.xpath('//a[@routerlink="/painel"]'),
       formularios: By.xpath('//a[@routerlink="formularios"]'),
       relatorios_indices: By.xpath('//a[@routerlink="relatorios-indices"]'),
       exportar: By.xpath('//a[@routerlink="exportar"]'),
@@ -73,7 +74,11 @@ export class SideNav {
     const btnNavBarLateral = By.xpath(
       '//mat-toolbar//button/span/mat-icon[text()="menu"]'
     );
-    await SmartWaiter.safeClick(btnNavBarLateral);
+    await browser
+      .actions()
+      .mouseMove(await element(btnNavBarLateral).getWebElement())
+      .perform();
+    await element(btnNavBarLateral).click();
   }
 
   /**
@@ -83,6 +88,15 @@ export class SideNav {
     return (
       await element(By.xpath('(//mat-sidenav)[1]')).getAttribute('class')
     ).includes('mat-drawer-opened');
+  }
+
+  /**
+   * acessa a página de "Painel" a partir da barra de
+   * navegação lateral
+   */
+  async acessarPainel() {
+    await this.exibir();
+    await SmartWaiter.safeClick(this.botoes_.painel);
   }
 
   /**

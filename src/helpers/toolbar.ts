@@ -1,4 +1,4 @@
-import { By, element, browser } from 'protractor';
+import { By, browser } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SmartWaiter } from './smart_waiter';
 
@@ -18,6 +18,7 @@ export class ToolBar {
    * clica no botão de sair
    */
   async logout() {
+    await browser.executeScript('window.scrollTo(0,0);');
     await SmartWaiter.safeClick(this.botoes_.sair);
   }
 }

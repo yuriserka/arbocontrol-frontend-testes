@@ -13,7 +13,7 @@ export async function assertPerfilExiste(nome: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-perfil-usuario-tabela//tbody//tr/td[contains(@class, "nome")]/a'
+        '//app-perfil-usuario-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       nome
     );
@@ -52,7 +52,7 @@ export async function assertFormularioVinculado(
   const ok = true;
   try {
     const recursoRow = await getNodeWithText(
-      By.xpath('//app-perfil-usuario-formulario-tabela//tbody//tr'),
+      By.xpath('//app-perfil-usuario-formulario-listar//tbody//tr'),
       formulario.formulario,
       By.xpath('./td[contains(@class, "formulario")]')
     );

@@ -114,7 +114,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
    */
   async desvincularFormularios(nomeFormularios?: string[]) {
     await this.selecionarAba('Formulários');
-    const formRowPath = '//app-perfil-usuario-formulario-tabela//tbody/tr';
+    const formRowPath = '//app-perfil-usuario-formulario-listar//tbody/tr';
     const nomes: string[] = nomeFormularios
       ? nomeFormularios
       : await element
@@ -150,11 +150,11 @@ export class PerfisDeUsuarioPage extends SystemPage {
    */
   async selecionarPerfil(nome: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-perfil-usuario-tabela//tbody')
+      By.xpath('//app-perfil-usuario-listar//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-perfil-usuario-tabela//tbody//tr/td[contains(@class, "nome")]/a'
+        '//app-perfil-usuario-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       nome
     );
@@ -271,10 +271,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
 
     await selectFrom(
       optsPath,
-      (() => {
-        const t = target === 'formulario' ? 'formulario' : 'recurso';
-        return dado[t] === 'Todas' ? 'Todasinfo' : dado[t];
-      })()
+      dado[target === 'formulario' ? 'formulario' : 'recurso']
     );
 
     await element(By.xpath(selectAutoridade)).click();
