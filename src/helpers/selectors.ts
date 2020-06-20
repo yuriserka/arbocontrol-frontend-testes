@@ -31,7 +31,7 @@ export async function selectFrom(locator: Locator, opcaoProcurada: string) {
   const options: ElementFinder[] = await element.all(locator);
   for (let i = 0; i < options.length; ++i) {
     const option = options[i];
-    const text = await option.getText();
+    const text = (await option.getText()).replace(/info$/, '');
     if (text === opcaoProcurada) {
       return option.click();
     }
@@ -91,7 +91,7 @@ export async function getNodeWithText(
   rootLocator: Locator,
   textoProcurado: string,
   textLocator?: Locator
-): Promise<ElementFinder> {
+) {
   const nomes: string[] = await element.all(rootLocator).map(r => {
     return textLocator ? r?.element(textLocator).getText() : r?.getText();
   });
@@ -103,6 +103,5 @@ export async function getNodeWithText(
     );
   }
 
-  const el = element.all(rootLocator).get(index);
-  return el;
+  return element.all(rootLocator).then(items => items[index]);
 }
