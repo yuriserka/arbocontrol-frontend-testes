@@ -1,7 +1,6 @@
 import { Config, browser } from 'protractor';
 import { Reporter } from '../src/helpers/reporter';
 import * as path from 'path';
-import * as fs from 'fs';
 
 function getCurrentDateAndTime() {
   const date = new Date();
@@ -14,45 +13,6 @@ const defaultRunInfoData = [
   { label: 'Execution Start Time', value: getCurrentDateAndTime() },
   { label: 'Execution End Time', value: '' },
 ];
-
-export const defaultMetadata = {
-  browser: {
-    name: 'chrome',
-    version: '83.0.4103.61',
-  },
-  device: 'Local test machine',
-  platform: {
-    name: 'windows',
-    version: '10',
-  },
-};
-
-/**
- * retorna uma string base64 encoded dos arquivos de extensão do chrome '.crx'
- */
-export function loadExtensions() {
-  const basePath = path.join(__dirname, '..', '..', 'extensions');
-  return ['blazemeter_4_9_1_0.crx']
-    .map(extName => path.join(basePath, extName))
-    .map(f => fs.readFileSync(f).toString('base64'));
-}
-
-export const defaultChromeOpts = {
-  args: ['disable-plugins', 'disable-infobars'],
-  prefs: {
-    download: {
-      prompt_for_download: false,
-      directory_upgrade: true,
-      default_directory: path.join(
-        __dirname,
-        '..',
-        '..',
-        'reports',
-        'downloads'
-      ),
-    },
-  },
-};
 
 export const baseConfig: Config = {
   framework: 'custom',

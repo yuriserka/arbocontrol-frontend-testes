@@ -1,10 +1,6 @@
 import { Config } from 'protractor';
-import {
-  baseConfig,
-  defaultChromeOpts,
-  loadExtensions,
-  defaultMetadata,
-} from './protractor.base.conf';
+import { baseConfig } from './protractor.base.conf';
+import { extensions, defaultChromeOpts, defaultMetadata } from './utils';
 import * as path from 'path';
 
 function loadFeatureFiles(fnames: string[]) {
@@ -19,38 +15,40 @@ export const config: Config = {
     tags: '@Record',
   },
   multiCapabilities: [
+    // {
+    //   browserName: 'chrome',
+    //   chromeOptions: {
+    //     ...defaultChromeOpts,
+    //     extensions,
+    //   },
+    //   shardTestFiles: true,
+    //   maxInstances: 3,
+    //   specs: loadFeatureFiles([
+    //     'perfis_de_usuario',
+    //     'login',
+    //     'home',
+    //     'territorios',
+    //     'equipes',
+    //   ]),
+    //   metadata: {
+    //     ...defaultMetadata,
+    //   },
+    // },
     {
       browserName: 'chrome',
       chromeOptions: {
         ...defaultChromeOpts,
-        extensions: loadExtensions(),
+        extensions,
       },
       specs: loadFeatureFiles([
-        // 'perfis_de_usuario',
-        'login',
-        'home',
-        // 'territorios',
-        // 'equipes',
+        // 'imoveis',
+        // 'atividades',
+        // 'lista_de_trabalho',
+        'relatorios',
       ]),
       metadata: {
         ...defaultMetadata,
       },
     },
-    // {
-    //   browserName: 'chrome',
-    //   chromeOptions: {
-    //     ...defaultChromeOpts,
-    //     extensions: loadExtensions(),
-    //   },
-    //   specs: loadFeatureFiles([
-    //     'imoveis',
-    //     'atividades',
-    //     'lista_de_trabalho',
-    //     'relatorios',
-    //   ]),
-    //   metadata: {
-    //     ...defaultMetadata
-    //   },
-    // },
   ],
 };

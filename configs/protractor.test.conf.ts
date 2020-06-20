@@ -1,10 +1,7 @@
 import { Config } from 'protractor';
-import {
-  baseConfig,
-  defaultChromeOpts,
-  defaultMetadata,
-} from './protractor.base.conf';
+import { baseConfig } from './protractor.base.conf';
 import * as path from 'path';
+import { defaultChromeOpts, defaultMetadata } from './utils';
 
 function loadFeatureFiles(fnames: string[]) {
   const featuresPath = path.join(__dirname, '..', '..', 'features');
@@ -18,30 +15,30 @@ export const config: Config = {
       browserName: 'chrome',
       chromeOptions: defaultChromeOpts,
       shardTestFiles: true,
-      maxInstances: 5,
+      maxInstances: 1,
       specs: loadFeatureFiles([
-        'perfis_de_usuario',
-        'login',
+        // 'login',
         'home',
-        'territorios',
-        'equipes',
+        // 'perfis_de_usuario',
+        // 'equipes',
+        // 'territorios',
       ]),
       metadata: {
         ...defaultMetadata,
       },
     },
-    {
-      browserName: 'chrome',
-      chromeOptions: defaultChromeOpts,
-      specs: loadFeatureFiles([
-        'imoveis',
-        'atividades',
-        'lista_de_trabalho',
-        'relatorios',
-      ]),
-      metadata: {
-        ...defaultMetadata,
-      },
-    },
+    // {
+    //   browserName: 'chrome',
+    //   chromeOptions: defaultChromeOpts,
+    //   specs: loadFeatureFiles([
+    //     'imoveis',
+    //     'atividades',
+    //     'lista_de_trabalho',
+    //     'relatorios',
+    //   ]),
+    //   metadata: {
+    //     ...defaultMetadata,
+    //   },
+    // },
   ],
 };
