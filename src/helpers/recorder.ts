@@ -6,13 +6,17 @@ import { SmartWaiter } from './smart_waiter';
 import * as path from 'path';
 
 /**
+ * variavel responsavel por indicar se ja foi feito um login para usar o blazemeter
+ */
+let logado = false;
+
+/**
  * Responsável pelas interações com a extensão do Blaze Meter
  */
 export class Recorder {
   private botoes_: { [key: string]: SeleniumBy };
   private campos_: { [key: string]: SeleniumBy };
   private nomeArquivo_: string;
-  private logado = false;
 
   /**
    * @param funcionalidade nome da funcionalidade que será gravada
@@ -44,6 +48,9 @@ export class Recorder {
     const handles = await browser.getAllWindowHandles();
     await browser.switchTo().window(handles[1]);
     await this.get();
+
+    // espera 2 segundos para carregar a informação se está logado ou nao
+    await SmartWaiter.waitOneSecondPlus(1);
 
     if (!(await this.isLogado())) {
       await this.BlazeMeterlogin();
@@ -92,6 +99,8 @@ export class Recorder {
     await blaze.login();
 
     await SmartWaiter.waitUrlContain('https://a.blazemeter.com/app/', 10000);
+
+    await browser.close();
     await browser.switchTo().window(blazeConfigPage);
     await browser.navigate().refresh();
   }
@@ -123,7 +132,9 @@ export class Recorder {
    * inicia a gravação do script
    */
   private async gravar() {
-    await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
+    const filenameField = element(this.campos_.nome_arquivo);
+    await filenameField.clear();
+    await filenameField.sendKeys(this.nomeArquivo_);
     await element(this.botoes_.gravar).click();
   }
 
@@ -177,17 +188,16 @@ export class Recorder {
   }
 
   private async isLogado() {
-    if (this.logado) {
+    if (logado) {
       return true;
     }
     try {
-      const blazeUserLoggedName = await element(
-        By.xpath('//div[@class="welcome"]/a')
-      ).getText();
-      this.logado = blazeUserLoggedName === 'Arbo';
+      await element(By.xpath('//div[@class="welcome"]')).getWebElement();
+      logado = true;
     } catch (err) {
-      return false;
+      console.log({ err });
+      logado = false;
     }
-    return this.logado;
+    return logado;
   }
 }

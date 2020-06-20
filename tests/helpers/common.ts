@@ -63,6 +63,14 @@ export async function getTestPage() {
  * @param user
  */
 export async function login(user: Usuario) {
+  try {
+    const currUrl = await browser.getCurrentUrl();
+    if (!currUrl.includes('/login')) {
+      await getTestPage();
+    }
+  } catch (err) {
+    await getTestPage();
+  }
   await loginPage.login(user);
 }
 

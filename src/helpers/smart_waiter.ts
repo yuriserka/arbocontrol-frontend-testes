@@ -116,7 +116,15 @@ export class SmartWaiter {
    * Espera 1 segundo
    * @param tempoAdicionalMs
    */
-  static async waitOneSecond(tempoAdicionalSegundos = 0) {
+  static async waitOneSecond() {
+    await browser.sleep(1000);
+  }
+
+  /**
+   * Espera 1 segundo mais um adicional em segundos
+   * @param tempoAdicionalMs
+   */
+  static async waitOneSecondPlus(tempoAdicionalSegundos = 0) {
     await browser.sleep((1 + tempoAdicionalSegundos) * 1000);
   }
 }
