@@ -10,12 +10,17 @@ Cenário: Login no BlazeMeter e inicio da gravação
     Dado que eu desejo obter um script de carga para a funcionalidade "login"
     Então eu inicio uma gravação do BlazeMeter
 
+# para poder dar trigger no outro cenário e desativar o popup do blaze
+# a tag é para evitar o logout
+@Blaze
+Cenário: Entrar na página
+    Dado que eu navego até a url do site do SisVetor
+
 Esquema do Cenário: Login com sucesso
     Quando eu entro com meu cpf "<cpf>"
     E eu entro com minha senha "<senha>"
     E seleciono a unidade "<unidade>"
     Então eu clico para entrar
-    E meu nome "<nome>" deve estar visível na página inicial
 
 Exemplos:
 | cpf            | senha    | nome      | unidade  |
