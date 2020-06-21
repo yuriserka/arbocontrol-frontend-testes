@@ -34,7 +34,6 @@ export class HomePage extends SystemPage {
       cargos: () => this.navbar_.acessarCargos(),
       niveis_gestao: () => this.navbar_.acessarNiveisDeGestao(),
       fluxos_trabalho: () => this.navbar_.acessarFluxosDeTrabalho(),
-      visoes: () => this.navbar_.acessarVisoes(),
       gerenciar_tipo_territorio: () => this.navbar_.acessarTiposDeTerritorio(),
       gerenciar_tipo_imovel: () => this.navbar_.acessarTiposDeImovel(),
       gerenciar_tipo_ponto_estrategico: () =>

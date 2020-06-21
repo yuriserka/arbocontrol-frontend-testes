@@ -16,7 +16,6 @@ Esquema do Cenário: Acessar todas as áreas do sistema sendo super admin
 
 Exemplos:
 | nome_botao                       | url                                        |
-| painel                           | <env.url>/painel                           |
 | formularios                      | <env.url>/formularios                      |
 | relatorios_indices               | <env.url>/relatorios-indices               |
 | exportar                         | <env.url>/exportar                         |
@@ -36,10 +35,9 @@ Exemplos:
 | situacoes_atividade              | <env.url>/situacoes-atividade              |
 | tipos_atividades                 | <env.url>/tipos-atividades                 |
 | gerenciar_tipo_vinculo           | <env.url>/gerenciar/tipo-vinculo           |
-| cargos                           | <env.url>/cargos                           |
-| niveis_gestao                    | <env.url>/niveis-gestao                    |
+| cargos                           | <env.url>/gerenciar/cargo                  |
+| niveis_gestao                    | <env.url>/gerenciar/nivel-gestao           |
 | fluxos_trabalho                  | <env.url>/fluxos-trabalho                  |
-| visoes                           | <env.url>/visoes                           |
 | gerenciar_tipo_territorio        | <env.url>/gerenciar/tipo-territorio        |
 | gerenciar_tipo_imovel            | <env.url>/gerenciar/tipo-imovel            |
 | gerenciar_tipo_ponto_estrategico | <env.url>/gerenciar/tipo-ponto-estrategico |

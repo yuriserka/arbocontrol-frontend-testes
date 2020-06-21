@@ -18,7 +18,6 @@ Esquema do Cenário: Acessar todas as áreas do sistema sendo super admin
 
 Exemplos:
 | nome_botao                       | url                                        |
-| painel                           | <env.url>/painel                           |
 | formularios                      | <env.url>/formularios                      |
 | relatorios_indices               | <env.url>/relatorios-indices               |
 | exportar                         | <env.url>/exportar                         |

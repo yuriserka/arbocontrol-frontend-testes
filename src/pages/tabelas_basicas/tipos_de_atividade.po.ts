@@ -106,7 +106,7 @@ export class TiposDeAtividadesPage extends SystemPage {
   async selecionarTipo(tipo: string) {
     await selectFrom(
       By.xpath(
-        '//app-tipo-atividade-tabela//tbody//tr/td[contains(@class, "nome")]/span'
+        '//app-atividade-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       tipo
     );

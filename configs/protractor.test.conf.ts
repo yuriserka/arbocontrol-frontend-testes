@@ -15,13 +15,13 @@ export const config: Config = {
       browserName: 'chrome',
       chromeOptions: defaultChromeOpts,
       shardTestFiles: true,
-      maxInstances: 1,
+      maxInstances: 5,
       specs: loadFeatureFiles([
-        // 'login',
+        'login',
         'home',
-        // 'perfis_de_usuario',
-        // 'equipes',
-        // 'territorios',
+        'perfis_de_usuario',
+        'equipes',
+        'territorios',
       ]),
       metadata: {
         ...defaultMetadata,

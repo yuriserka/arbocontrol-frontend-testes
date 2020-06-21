@@ -34,10 +34,9 @@ export class SideNav {
       situacao_atividade: By.xpath('//a[@routerlink="situacoes-atividade"]'),
       tipos_de_atividade: By.xpath('//a[@routerlink="tipos-atividades"]'),
       tipos_de_vinculo: By.xpath('//a[@routerlink="gerenciar/tipo-vinculo"]'),
-      cargos: By.xpath('//a[@routerlink="cargos"]'),
-      niveis_de_gestao: By.xpath('//a[@routerlink="niveis-gestao"]'),
+      cargos: By.xpath('//a[@routerlink="gerenciar/cargo"]'),
+      niveis_de_gestao: By.xpath('//a[@routerlink="gerenciar/nivel-gestao"]'),
       fluxos_de_trabalho: By.xpath('//a[@routerlink="fluxos-trabalho"]'),
-      visoes: By.xpath('//a[@routerlink="visoes"]'),
       tipos_de_territorio: By.xpath(
         '//a[@routerlink="gerenciar/tipo-territorio"]'
       ),
@@ -267,11 +266,6 @@ export class SideNav {
   async acessarFluxosDeTrabalho() {
     await this.expandirTabelasBasicas();
     await SmartWaiter.safeClick(this.botoes_.fluxos_de_trabalho);
-  }
-
-  async acessarVisoes() {
-    await this.expandirTabelasBasicas();
-    await SmartWaiter.safeClick(this.botoes_.visoes);
   }
 
   async acessarTiposDeTerritorio() {
