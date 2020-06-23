@@ -29,17 +29,19 @@ import { element, ElementFinder, Locator } from 'protractor';
  */
 export async function selectFrom(locator: Locator, opcaoProcurada: string) {
   const options: ElementFinder[] = await element.all(locator);
+  const texts: string[] = [];
+
   for (let i = 0; i < options.length; ++i) {
     const option = options[i];
-    const text = (await option.getText()).replace(/info$/, '').trim();
+    const text = (await option.getText()).trim().replace(/info$/gm, '');
+    texts.push(text);
     if (text === opcaoProcurada) {
       return option.click();
     }
   }
+
   throw new Error(
-    `não foi possivel encontrar a opção: '${opcaoProcurada}' na lista [${await element
-      .all(locator)
-      .getText()}]`
+    `não foi possivel encontrar a opção: '${opcaoProcurada}' na lista [${texts}]`
   );
 }
 
@@ -95,12 +97,12 @@ export async function getNodeWithText(
   let nomes: string[] = await element.all(rootLocator).map(r => {
     return textLocator ? r?.element(textLocator).getText() : r?.getText();
   });
-  nomes = nomes.map(n => n.trim());
+  nomes = nomes.map(n => n.trim().replace(/info$/gm, ''));
 
   const index = nomes.indexOf(textoProcurado);
   if (index < 0) {
     throw new Error(
-      `não foi possivel encontrar o elemento com texto='${textoProcurado}' na lista [${nomes}]`
+      `não foi possivel encontrar o elemento com texto: '${textoProcurado}' na lista [${nomes}]`
     );
   }
 

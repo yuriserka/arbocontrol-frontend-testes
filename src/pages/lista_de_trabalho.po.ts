@@ -84,7 +84,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
 
     const regRowsXPath = By.xpath(
-      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]'
     );
     await SmartWaiter.waitTableRows(regRowsXPath);
 
@@ -167,7 +167,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]'
       ),
       numero
     );
@@ -271,7 +271,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
+        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]'
       ),
       id
     );

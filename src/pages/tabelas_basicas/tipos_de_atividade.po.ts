@@ -39,7 +39,7 @@ export class TiposDeAtividadesPage extends SystemPage {
     const formRow = await getNodeWithText(
       By.xpath('//app-formulario-listagem//tbody//tr'),
       nomeFormulario,
-      By.xpath('./td[contains(@class, "titulo")]/span')
+      By.xpath('./td[contains(@class, "titulo")]')
     );
 
     const btn = formRow.element(
