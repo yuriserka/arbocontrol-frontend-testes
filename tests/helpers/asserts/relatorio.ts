@@ -5,7 +5,7 @@ import { By } from 'selenium-webdriver';
 import { Relatorio } from '../../../src/models/relatorio';
 import { element, browser } from 'protractor';
 import { RelatoriosPage } from '../../../src/pages/relatorios.po';
-import { atividades } from '../background.steps';
+import { idRegistros } from '../background.steps';
 
 const relatoriosPage = new RelatoriosPage();
 
@@ -20,7 +20,7 @@ export async function assertRelatorioExiste(nomeDoRelatorio: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-relatorio-tabela//tbody//tr/td[contains(@class, "titulo")]/a'
+        '//app-relatorio-tabela//tbody//tr/td[contains(@class, "titulo")]'
       ),
       nomeDoRelatorio
     );
@@ -34,25 +34,33 @@ export async function assertRelatorioExiste(nomeDoRelatorio: string) {
  *
  * @param relatorio
  */
-export async function assertRelatorioPossuiQuantidadeCorretaDeRegistros(
-  relatorio: Relatorio,
-  siglaTipoDeAtividade: string
-) {
+export async function assertRelatorioPossuiRegistros(relatorio: Relatorio) {
   await SmartWaiter.waitUrlContain(`${baseUrl}/relatorios`);
   const ok = true;
   try {
     await relatoriosPage.selecionarRelatorio(relatorio.titulo);
-    // await relatoriosPage.pesquisar('01/01/2019', '12/12/2020');
-    const totalRegistros = +(await element(
-      By.xpath('//*[contains(@class, "wdr-cell wdr-total wdr-grand-total")]')
-    ).getText());
-    if (
-      atividades[siglaTipoDeAtividade].idRegistros.length !== totalRegistros
-    ) {
-      return !ok;
-    }
+    await SmartWaiter.waitOneSecond();
+
+    let ids: string[] = await element
+      .all(
+        By.xpath('//div[starts-with(text(), "(") and contains(text(), ")")]')
+      )
+      .map(id => id?.getText());
+    ids = ids.map(id => id.slice(1, id.length - 1)).sort();
+    idRegistros.sort();
+
+    const eqArr = (a: string[], b: string[]) => {
+      if (a === b) return true;
+      if (a == null || b == null) return !ok;
+      if (a.length !== b.length) return !ok;
+
+      for (let i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return !ok;
+      }
+      return ok;
+    };
+    return eqArr(idRegistros.sort(), ids);
   } catch (err) {
     return !ok;
   }
-  return ok;
 }

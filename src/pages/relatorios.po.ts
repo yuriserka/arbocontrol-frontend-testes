@@ -46,21 +46,32 @@ export class RelatoriosPage extends SystemPage {
       By.xpath('//app-formulario-seletor-campos//tbody//tr'),
       10000
     );
-    for (let i = 0; i < relatorio.campos.length; ++i) {
-      const campoRow = await getNodeWithText(
-        By.xpath('//app-formulario-seletor-campos//tbody//tr'),
-        relatorio.campos[i],
-        By.xpath('./td[contains(@class, "titulo")]')
-      );
-      const btn = campoRow.element(
-        By.xpath('./td[contains(@class, "select")]/mat-checkbox')
-      );
+
+    if (relatorio.campos.length) {
+      for (let i = 0; i < relatorio.campos.length; ++i) {
+        const campoRow = await getNodeWithText(
+          By.xpath('//app-formulario-seletor-campos//tbody//tr'),
+          relatorio.campos[i],
+          By.xpath('./td[contains(@class, "titulo")]')
+        );
+        const btn = campoRow.element(
+          By.xpath('./td[contains(@class, "select")]/mat-checkbox')
+        );
+        await browser
+          .actions()
+          .mouseMove(btn.getWebElement())
+          .perform();
+        await btn.click();
+      }
+    } else {
+      const btn = element(By.xpath('//thead/tr/th/mat-checkbox'));
       await browser
         .actions()
         .mouseMove(btn.getWebElement())
         .perform();
       await btn.click();
     }
+
     await element(By.xpath('(//button[@color="primary"])[1]')).click();
     await element(By.xpath('(//button[@color="primary"])[2]')).click();
     await element(By.xpath('//*[@formcontrolname="titulo"]')).sendKeys(
@@ -120,7 +131,7 @@ export class RelatoriosPage extends SystemPage {
   async selecionarRelatorio(titulo: string) {
     await selectFrom(
       By.xpath(
-        '//app-relatorio-tabela//tbody//tr/td[contains(@class, "titulo")]/a'
+        '//app-relatorio-tabela//tbody//tr/td[contains(@class, "titulo")]'
       ),
       titulo
     );

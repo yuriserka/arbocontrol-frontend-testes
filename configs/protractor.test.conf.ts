@@ -11,30 +11,30 @@ function loadFeatureFiles(fnames: string[]) {
 export const config: Config = {
   ...baseConfig,
   multiCapabilities: [
-    // {
-    //   browserName: 'chrome',
-    //   chromeOptions: defaultChromeOpts,
-    //   shardTestFiles: true,
-    //   maxInstances: 5,
-    //   specs: loadFeatureFiles([
-    //     'login',
-    //     'home',
-    //     'perfis_de_usuario',
-    //     'equipes',
-    //     'territorios',
-    //   ]),
-    //   metadata: {
-    //     ...defaultMetadata,
-    //   },
-    // },
+    {
+      browserName: 'chrome',
+      chromeOptions: defaultChromeOpts,
+      shardTestFiles: true,
+      maxInstances: 5,
+      specs: loadFeatureFiles([
+        'login',
+        'home',
+        'perfis_de_usuario',
+        'equipes',
+        'territorios',
+      ]),
+      metadata: {
+        ...defaultMetadata,
+      },
+    },
     {
       browserName: 'chrome',
       chromeOptions: defaultChromeOpts,
       specs: loadFeatureFiles([
-        // 'imoveis',
-        // 'atividades',
+        'imoveis',
+        'atividades',
         'lista_de_trabalho',
-        // 'relatorios',
+        'relatorios',
       ]),
       metadata: {
         ...defaultMetadata,

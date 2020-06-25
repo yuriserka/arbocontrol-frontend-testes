@@ -88,11 +88,13 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await SmartWaiter.waitTableRows(regRowsXPath);
 
-    const regs: string[] = idRegistros
+    let regs: string[] = idRegistros
       ? idRegistros
       : await element.all(regRowsXPath).map(r => {
           return r?.getText();
         });
+
+    regs = regs.map(r => r.trim());
 
     for (let i = 0; i < regs.length; ++i) {
       await this.selecionarRegistro(regs[i]);

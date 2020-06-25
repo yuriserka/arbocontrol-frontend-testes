@@ -67,7 +67,7 @@ export class EquipesPage extends SystemPage {
   async desvincularUsuarios(nomeEquipe: string, nomes?: string[]) {
     await this.selecionarEquipe(nomeEquipe);
 
-    const vinculos: string[] = nomes
+    let vinculos: string[] = nomes
       ? nomes
       : await element
           .all(
@@ -76,6 +76,8 @@ export class EquipesPage extends SystemPage {
             )
           )
           .map(link => link?.getText());
+
+    vinculos = vinculos.map(v => v.trim());
 
     for (let i = 0; i < vinculos.length; ++i) {
       await this.desvincularUsuario(vinculos[i]);
