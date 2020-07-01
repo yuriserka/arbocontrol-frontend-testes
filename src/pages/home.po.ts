@@ -11,6 +11,7 @@ export class HomePage extends SystemPage {
   constructor() {
     super();
     this.btn2page_ = {
+      painel: () => this.navbar_.acessarPainel(),
       formularios: () => this.navbar_.acessarFormularios(),
       relatorios_indices: () => this.navbar_.acessarRelatorios(),
       exportar: () => this.navbar_.acessarExportacao(),
@@ -26,6 +27,24 @@ export class HomePage extends SystemPage {
       equipes: () => this.navbar_.acessarEquipes(),
       perfis_usuarios: () => this.navbar_.acessarPerfisDeUsuario(),
       perfil_usuario_unidade: () => this.navbar_.acessarUsuariosDaUnidade(),
+      gerenciar_vetor: () => this.navbar_.acessarVetores(),
+      situacoes_atividade: () => this.navbar_.acessarSituacaoAtividade(),
+      tipos_atividades: () => this.navbar_.acessarTiposDeAtividades(),
+      gerenciar_tipo_vinculo: () => this.navbar_.acessarTiposDeVinculos(),
+      cargos: () => this.navbar_.acessarCargos(),
+      niveis_gestao: () => this.navbar_.acessarNiveisDeGestao(),
+      fluxos_trabalho: () => this.navbar_.acessarFluxosDeTrabalho(),
+      gerenciar_tipo_territorio: () => this.navbar_.acessarTiposDeTerritorio(),
+      gerenciar_tipo_imovel: () => this.navbar_.acessarTiposDeImovel(),
+      gerenciar_tipo_ponto_estrategico: () =>
+        this.navbar_.acessarTiposDePontoEstrategico(),
+      gerenciar_solicitante: () => this.navbar_.acessarSolicitantes(),
+      gerenciar_origem_demanda: () => this.navbar_.acessarOrigensDemanda(),
+      gerenciar_categoria_demanda: () => this.navbar_.acessarCategoriaDemanda(),
+      gerenciar_abrangencia: () => this.navbar_.acessarAbrangencias(),
+      gerenciar_prioridade_demanda: () =>
+        this.navbar_.acessarPrioridadeDemanda(),
+      gerenciar_situacao_demanda: () => this.navbar_.acessarSituacaoDemanda(),
     };
   }
 
@@ -43,15 +62,5 @@ export class HomePage extends SystemPage {
    */
   async acessar(nomeBotao: string) {
     await this.btn2page_[nomeBotao]();
-  }
-
-  /**
-   * Retorna o nome do usuário escrito no Card
-   * @returns nome do usuário logado
-   */
-  async getUsuarioLogado(): Promise<string> {
-    return element(
-      By.xpath('.//mat-card-title[@class="mat-card-title"]')
-    ).getText();
   }
 }

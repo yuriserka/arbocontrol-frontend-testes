@@ -1,7 +1,7 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By, browser, element } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { HomePage } from '../../../src/pages/home.po';
 import { assertEquipePossui } from './equipe';
 
@@ -15,7 +15,7 @@ export async function assertAtividadeExiste(tituloDaAtividade: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
+        '//app-atividade-tabela//tbody//tr/td[contains(@class, "titulo")]'
       ),
       tituloDaAtividade
     );
@@ -35,7 +35,7 @@ export async function assertDemandaVinculada(numeroDaDemanda: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-demanda-atividade-tabela//tbody//tr//td[contains(@class, "numero")]'
+        '//app-demanda-atividade-tabela//tbody//tr/td[contains(@class, "numero")]'
       ),
       numeroDaDemanda
     );
@@ -55,7 +55,7 @@ export async function assertImovelVinculado(logradouroDoImovel: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-atividade-imovel-tabela//tbody//tr//td[contains(@class, "logradouro")]'
+        '//app-atividade-imovel-tabela//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouroDoImovel
     );

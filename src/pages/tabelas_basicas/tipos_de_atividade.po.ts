@@ -3,7 +3,7 @@ import { element, browser } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../../helpers/selectors';
 import { SmartWaiter } from '../../helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../common';
 import { By as SeleniumBy } from 'selenium-webdriver';
 
 export class TiposDeAtividadesPage extends SystemPage {
@@ -39,12 +39,17 @@ export class TiposDeAtividadesPage extends SystemPage {
     const formRow = await getNodeWithText(
       By.xpath('//app-formulario-listagem//tbody//tr'),
       nomeFormulario,
-      By.xpath('./td[contains(@class, "titulo")]/span')
+      By.xpath('./td[contains(@class, "titulo")]')
     );
 
-    await formRow
-      .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-      .click();
+    const btn = formRow.element(
+      By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+    );
+    await browser
+      .actions()
+      .mouseMove(btn.getWebElement())
+      .perform();
+    await btn.click();
     await this.confirmarAcao();
 
     if (principal) {
@@ -80,9 +85,15 @@ export class TiposDeAtividadesPage extends SystemPage {
       By.xpath('./td[contains(@class, "titulo")]')
     );
 
-    await formRow
-      .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-      .click();
+    const btn = formRow.element(
+      By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+    );
+    await browser
+      .actions()
+      .mouseMove(btn.getWebElement())
+      .perform();
+    await btn.click();
+
     await this.confirmarAcao();
     await this.salvar();
   }
@@ -95,7 +106,7 @@ export class TiposDeAtividadesPage extends SystemPage {
   async selecionarTipo(tipo: string) {
     await selectFrom(
       By.xpath(
-        '//app-tipo-atividade-tabela//tbody//tr/td[contains(@class, "nome")]/span'
+        '//app-atividade-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       tipo
     );
@@ -112,7 +123,7 @@ export class TiposDeAtividadesPage extends SystemPage {
       ),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -123,7 +134,7 @@ export class TiposDeAtividadesPage extends SystemPage {
       By.xpath('(//mat-expansion-panel-header)[1]')
     );
     await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -134,11 +145,8 @@ export class TiposDeAtividadesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 
   /**

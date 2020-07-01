@@ -1,8 +1,9 @@
 import { SystemPage } from '../page.po';
-import { element, browser } from 'protractor';
+import { element } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { selectFrom } from '../../helpers/selectors';
 import { By as SeleniumBy } from 'selenium-webdriver';
+import { SmartWaiter } from '../../helpers/smart_waiter';
 
 export class SituacoesDeAtividadePage extends SystemPage {
   private botoes_: { [key: string]: SeleniumBy };
@@ -51,9 +52,11 @@ export class SituacoesDeAtividadePage extends SystemPage {
   async selecionarSituacao(situacao: string) {
     await element(By.xpath('//mat-paginator//mat-select')).click();
     await selectFrom(By.xpath('//mat-option/span'), '30');
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await selectFrom(
-      By.xpath('//tbody//tr/td[contains(@class, "nome")]/a'),
+      By.xpath(
+        '//app-area-gestao-tabela//tbody//tr/td[contains(@class, "nome")]/a'
+      ),
       situacao
     );
   }

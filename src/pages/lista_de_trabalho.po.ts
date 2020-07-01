@@ -1,7 +1,7 @@
 import { SystemPage } from './page.po';
 import { element, By, browser } from 'protractor';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { selectFrom } from '../helpers/selectors';
 import { Registro } from '../models/registro';
 
@@ -52,7 +52,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     amostras?: Registro[]
   ) {
     await this.selecionarAtividade(numeroAtividade);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await this.selecionarImovel(logradouroDoImovel);
     await this.selecionarFormulario(formulario);
     await element(By.xpath('//button[@color="primary"]')).click();
@@ -84,15 +84,17 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
 
     const regRowsXPath = By.xpath(
-      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]'
     );
     await SmartWaiter.waitTableRows(regRowsXPath);
 
-    const regs: string[] = idRegistros
+    let regs: string[] = idRegistros
       ? idRegistros
       : await element.all(regRowsXPath).map(r => {
           return r?.getText();
         });
+
+    regs = regs.map(r => r.trim());
 
     for (let i = 0; i < regs.length; ++i) {
       await this.selecionarRegistro(regs[i]);
@@ -167,7 +169,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]'
       ),
       numero
     );
@@ -258,7 +260,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
       By.xpath('//app-formulario-tabela-simples//tbody/tr/td/span'),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -271,7 +273,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
+        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]'
       ),
       id
     );
@@ -298,10 +300,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

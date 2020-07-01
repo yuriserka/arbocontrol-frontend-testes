@@ -1,5 +1,6 @@
-import { By, element, browser } from 'protractor';
+import { By, browser } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
+import { SmartWaiter } from './smart_waiter';
 
 /**
  * Represena a barra de navegação superior do site arbocontrol
@@ -17,10 +18,7 @@ export class ToolBar {
    * clica no botão de sair
    */
   async logout() {
-    await browser
-      .actions()
-      .mouseMove(await element(this.botoes_.sair).getWebElement())
-      .perform();
-    await element(this.botoes_.sair).click();
+    await browser.executeScript('window.scrollTo(0,0);');
+    await SmartWaiter.safeClick(this.botoes_.sair);
   }
 }

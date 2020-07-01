@@ -1,4 +1,4 @@
-const { setDefaultTimeout, Then, When } = require('cucumber');
+import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { TableDefinition } from 'cucumber';
 import { timeout } from './helpers/common';
@@ -10,7 +10,7 @@ import {
   assertRecursoVinculado,
   assertFormularioVinculado,
 } from './helpers/asserts/perfil_de_usuario';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 
 setDefaultTimeout(timeout);
 

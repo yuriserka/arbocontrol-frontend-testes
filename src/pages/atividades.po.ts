@@ -3,7 +3,7 @@ import { SystemPage } from './page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { Atividade, DadosBasicosAtividade } from '../models/atividade';
 
 /**
@@ -48,7 +48,7 @@ export class AtividadesPage extends SystemPage {
     await element(this.botoes_.cadastrar).click();
     await this.cadastroBasico(atividade.dadosBasicos);
     await this.salvar();
-    await browser.sleep(1500);
+    await SmartWaiter.waitOneSecond();
     await this.atribuirDemandas(atividade);
     await this.atribuirImoveis(atividade);
     await this.atribuirEquipes(atividade);
@@ -61,11 +61,9 @@ export class AtividadesPage extends SystemPage {
    */
   async excluirAtividade(titulo: string) {
     await this.selecionarAtividade(titulo);
-    const btnExcluir = By.xpath(
-      '//div[@class="linha-botoes"]/button[@color="warn"]'
+    await SmartWaiter.safeClick(
+      By.xpath('//div[@class="linha-botoes"]/button[@color="warn"]')
     );
-    await SmartWaiter.waitClick(btnExcluir);
-    await element(btnExcluir).click();
     await this.confirmarExclusao();
   }
 
@@ -101,27 +99,30 @@ export class AtividadesPage extends SystemPage {
     await this.expandirHeaderVinculo();
 
     for (let i = 0; i < atividade.demandas.length; ++i) {
-      const numDemanda = atividade.demandas[i];
-      await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-demanda-listagem//tbody//tr)[${i + 1}]`)
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-demanda-listagem//tbody//tr')
       );
+      const numDemanda = atividade.demandas[i];
       const demandaRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
         numDemanda,
-        By.xpath(
-          './/td[contains(@class, "cdk-column-id")]//span[@class="span-link"]'
-        )
+        By.xpath('./td[contains(@class, "cdk-column-id")]')
       );
-
-      await demandaRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
-        .click();
+      const btn = demandaRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
 
   /**
    * a partir da página de edição de uma atividade atribui os imoveis
+   * somente se a abrangencia for de imóveis
    * @param atividade
    */
   async atribuirImoveis(atividade: Atividade) {
@@ -129,21 +130,54 @@ export class AtividadesPage extends SystemPage {
     await this.expandirHeaderVinculo();
 
     for (let i = 0; i < atividade.imoveis.length; ++i) {
-      const logradouroImovel = atividade.imoveis[i];
-      await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-imovel-listagem//tbody//tr)[${i + 1}]`)
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-imovel-listagem//tbody//tr')
       );
+      const logradouroImovel = atividade.imoveis[i];
       const imovelRow = await getNodeWithText(
         By.xpath('//app-imovel-listagem//tbody//tr'),
         logradouroImovel,
-        By.xpath(
-          './/td[contains(@class, "logradouro")]//span[@class="span-link"]'
-        )
+        By.xpath('./td[contains(@class, "logradouro")]')
       );
+      const btn = imovelRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
+      await this.confirmarAcao();
+    }
+  }
 
-      await imovelRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
-        .click();
+  /**
+   * a partir da página de edição de uma atividade atribui os territorios,
+   * somente se a abrangencia for de territórios
+   * @param atividade
+   */
+  async atribuirTerritorios(atividade: Atividade) {
+    await this.selecionarAba('Territórios');
+    await this.expandirHeaderVinculo();
+
+    for (let i = 0; i < atividade.territorios.length; ++i) {
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-territorio-tabela//tbody//tr')
+      );
+      const nomeTerritorio = atividade.territorios[i];
+      const territorioRow = await getNodeWithText(
+        By.xpath('//app-territorio-tabela//tbody//tr'),
+        nomeTerritorio,
+        By.xpath('./td[contains(@class, "nome")]')
+      );
+      const btn = territorioRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
@@ -157,19 +191,23 @@ export class AtividadesPage extends SystemPage {
     await this.expandirHeaderVinculo();
 
     for (let i = 0; i < atividade.equipes.length; ++i) {
-      const nomeEquipe = atividade.equipes[i];
       await SmartWaiter.waitVisibility(
-        By.xpath(`(//app-equipe-tabela//tbody//tr)[${i + 1}]`)
+        By.xpath('//app-equipe-tabela//tbody//tr')
       );
+      const nomeEquipe = atividade.equipes[i];
       const equipeRow = await getNodeWithText(
         By.xpath('//app-equipe-tabela//tbody//tr'),
         nomeEquipe,
-        By.xpath('.//td[contains(@class, "nome")]//span[@class="span-link"]')
+        By.xpath('./td[contains(@class, "nome")]')
       );
-
-      await equipeRow
-        .element(By.xpath('.//td[contains(@class, "acoes")]//button'))
-        .click();
+      const btn = equipeRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarAcao();
     }
   }
@@ -190,7 +228,7 @@ export class AtividadesPage extends SystemPage {
           ? await this.preencherInputDadosBasicos(campo, dados)
           : await this.preencherTextAreaDadosBasicos(campo, dados);
       }
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
   }
 
@@ -304,8 +342,9 @@ export class AtividadesPage extends SystemPage {
     await SmartWaiter.waitVisibility(
       By.xpath('(//mat-expansion-panel-header)[1]')
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await element(By.xpath('(//mat-expansion-panel-header)[1]')).click();
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -316,11 +355,8 @@ export class AtividadesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -334,7 +370,7 @@ export class AtividadesPage extends SystemPage {
       ),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -344,10 +380,7 @@ export class AtividadesPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

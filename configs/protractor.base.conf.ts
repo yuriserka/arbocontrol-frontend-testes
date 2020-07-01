@@ -1,72 +1,27 @@
 import { Config, browser } from 'protractor';
-import { Reporter } from './src/helpers/reporter';
-const fs = require('fs');
-import path = require('path');
-
-const chromeOpts = {
-  args: ['disable-plugins', 'disable-infobars'],
-};
+import { Reporter } from '../src/helpers/reporter';
+import * as path from 'path';
 
 function getCurrentDateAndTime() {
   const date = new Date();
   return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 }
 
-const runInfoData = [
+const defaultRunInfoData = [
   { label: 'Project', value: 'ArboControl frontend tests' },
   { label: 'Release', value: '1.0.1' },
   { label: 'Execution Start Time', value: getCurrentDateAndTime() },
   { label: 'Execution End Time', value: '' },
 ];
 
-const metadata = {
-  browser: {
-    name: 'chrome',
-    version: '80.0.3987.163',
-  },
-  device: 'Local test machine',
-  platform: {
-    name: 'windows',
-    version: '10',
-  },
-};
-
-export const config: Config = {
+export const baseConfig: Config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   seleniumAddress: 'http://localhost:4444/wd/hub',
   stopSpecOnExpectationFailure: true,
-  multiCapabilities: [
-    {
-      browserName: 'chrome',
-      chromeOptions: chromeOpts,
-      shardTestFiles: true,
-      maxInstances: 5,
-      // path relativo ao protractor.conf.js que está em build/
-      specs: [
-        '../features/perfis_de_usuario.feature',
-        '../features/login.feature',
-        '../features/home.feature',
-        '../features/territorios.feature',
-        '../features/equipes.feature',
-      ],
-      metadata,
-    },
-    {
-      browserName: 'chrome',
-      chromeOptions: chromeOpts,
-      // path relativo ao protractor.conf.js que está em build/
-      specs: [
-        '../features/imoveis.feature',
-        '../features/atividades.feature',
-        '../features/lista_de_trabalho.feature',
-      ],
-      metadata,
-    },
-  ],
   cucumberOpts: {
     compiler: 'ts:ts-node/register',
-    require: ['tests/**/*.js'], // path relativo ao protractor.conf.js que está em build/
+    require: [path.resolve(process.cwd(), './build/tests/**/*.js')],
     format: [require.resolve('cucumber-pretty'), 'json:reports/results.json'],
     // 'fail-fast': true,
     tags: false,
@@ -83,7 +38,7 @@ export const config: Config = {
       .maximize();
   },
   onComplete: () => {
-    runInfoData[3].value = getCurrentDateAndTime();
+    defaultRunInfoData[3].value = getCurrentDateAndTime();
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 30000,
@@ -99,7 +54,7 @@ export const config: Config = {
         pageTitle: 'Relatório Testes - ArboControl',
         customData: {
           title: 'Run info',
-          data: runInfoData,
+          data: defaultRunInfoData,
         },
       },
     },

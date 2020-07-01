@@ -3,6 +3,9 @@ import fs = require('fs');
 import mkdirp = require('mkdirp');
 import path = require('path');
 
+/**
+ * diretorio destino onde serão salvos os relatorios dos testes
+ */
 let outDir: string;
 
 /**

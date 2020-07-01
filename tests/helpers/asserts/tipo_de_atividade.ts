@@ -1,11 +1,16 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { getNodeWithText } from '../../../src/helpers/selectors';
 import { By } from 'protractor';
 import { TiposDeAtividadesPage } from '../../../src/pages/tabelas_basicas/tipos_de_atividade.po';
 
 const tiposAtividadePage = new TiposDeAtividadesPage();
 
+/**
+ * checa se as atividades do tipo passando possuem um relatorio especifico
+ * @param tipo
+ * @param nomeFormulario
+ */
 export async function assertTipoDeAtividadePossuiFormulario(
   tipo: string,
   nomeFormulario: string

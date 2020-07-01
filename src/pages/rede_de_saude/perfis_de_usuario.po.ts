@@ -3,7 +3,7 @@ import { SystemPage } from '../page.po';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { selectFrom, getNodeWithText } from '../../helpers/selectors';
 import { SmartWaiter } from '../../helpers/smart_waiter';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../common';
 import {
   PerfilUsuario,
   DadosBasicosPerfilUsuario,
@@ -44,7 +44,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * cadastra um perfil de usuario
    * @param perfil
    */
   async cadastrarPerfil(perfil: PerfilUsuario) {
@@ -54,12 +54,13 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await this.selecionarPerfil(perfil.dadosBasicos.nome);
     await this.atribuirRecursos(perfil);
     await this.atribuirFormularios(perfil);
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     await this.salvar();
   }
 
   /**
-   *
+   * exclui o perfil com o nome passado e remove os formularios e recursos do
+   * mesmo
    * @param nome
    */
   async excluirPerfil(nome: string) {
@@ -72,18 +73,20 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * exclui os recursos do perfil, dado que ele ja foi selecionado anteriormente
    * @param nomeRecursos
    */
   async desvincularRecursos(nomeRecursos?: string[]) {
     await this.selecionarAba('Recursos/Autoridades');
     const recursoRowPath =
       '//app-perfil-usuario-recurso-autoridade-tabela//tbody/tr';
-    const nomes: string[] = nomeRecursos
+    let nomes: string[] = nomeRecursos
       ? nomeRecursos
       : await element
           .all(By.xpath(`${recursoRowPath}/td[contains(@class, "recurso")]`))
           .map(nome => nome?.getText());
+
+    nomes = nomes.map(n => n.trim());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recursoRow = await getNodeWithText(
@@ -92,10 +95,14 @@ export class PerfisDeUsuarioPage extends SystemPage {
         By.xpath('./td[contains(@class, "recurso")]')
       );
 
-      await recursoRow
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
-
+      const btn = recursoRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarExclusao();
     }
 
@@ -105,17 +112,19 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * exclui o formulario do perfil, dado que ele ja foi selecionado anteriormente
    * @param nomeFormularios
    */
   async desvincularFormularios(nomeFormularios?: string[]) {
     await this.selecionarAba('Formulários');
-    const formRowPath = '//app-perfil-usuario-formulario-tabela//tbody/tr';
-    const nomes: string[] = nomeFormularios
+    const formRowPath = '//app-perfil-usuario-formulario-listar//tbody/tr';
+    let nomes: string[] = nomeFormularios
       ? nomeFormularios
       : await element
           .all(By.xpath(`${formRowPath}/td[contains(@class, "formulario")]`))
           .map(nome => nome?.getText());
+
+    nomes = nomes.map(n => n.trim());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recurso = await getNodeWithText(
@@ -123,9 +132,15 @@ export class PerfisDeUsuarioPage extends SystemPage {
         nomes[i],
         By.xpath('./td[contains(@class, "formulario")]')
       );
-      await recurso
-        .element(By.xpath('./td[contains(@class, "cdk-column-acoes")]/button'))
-        .click();
+      const btn = recurso.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
       await this.confirmarExclusao();
     }
 
@@ -135,23 +150,23 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * seleciona um perfil de usuario
    * @param nome
    */
   async selecionarPerfil(nome: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-perfil-usuario-tabela//tbody')
+      By.xpath('//app-perfil-usuario-listar//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-perfil-usuario-tabela//tbody//tr/td[contains(@class, "nome")]/a'
+        '//app-perfil-usuario-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       nome
     );
   }
 
   /**
-   *
+   * edita os dados básicos de um perfil
    * @param dados
    */
   async atribuirDadosBasicos(dados: DadosBasicosPerfilUsuario) {
@@ -160,20 +175,20 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * atribui os recursos especificados ao perfil selecionado
    * @param perfil
    */
   async atribuirRecursos(perfil: PerfilUsuario) {
     await this.selecionarAba('Recursos/Autoridades');
 
     for (let i = 0; i < perfil.recursos.length; ++i) {
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
       await this.preencherSelects(perfil.recursos[i], 'recurso-autoridade');
     }
   }
 
   /**
-   *
+   * atribui os formularios especificados ao perfil selecionado
    * @param perfil
    */
   async atribuirFormularios(perfil: PerfilUsuario) {
@@ -181,7 +196,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await element(By.xpath('//button[@color="primary"]')).click();
 
     for (let i = 0; i < perfil.formularios.length; ++i) {
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
       await this.preencherSelects(perfil.formularios[i], 'formulario');
     }
   }
@@ -198,7 +213,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
       campo.tipo === 'input'
         ? await this.preencherInputDadosBasicos(campo, dados)
         : await this.preencherTextAreaDadosBasicos(campo, dados);
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
   }
 
@@ -228,7 +243,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   * preenche o nó do tipo \<input\> com o valor apropriado
+   * preenche os nós do tipo \<input\> com o valor apropriado
    * @param campo
    * @param dadosBasicos
    */
@@ -242,7 +257,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * seleciona os elementos que são do tipo \<select\> de forma correta
    * @param dado
    * @param target
    */
@@ -261,10 +276,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
 
     await selectFrom(
       optsPath,
-      (() => {
-        const t = target === 'formulario' ? 'formulario' : 'recurso';
-        return dado[t] === 'Todas' ? 'Todasinfo' : dado[t];
-      })()
+      dado[target === 'formulario' ? 'formulario' : 'recurso']
     );
 
     await element(By.xpath(selectAutoridade)).click();
@@ -300,7 +312,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   private async salvar() {
     // é necessário voltar à aba dos dados básicos para poder salvar
     await this.selecionarAba('Dados Basicos');
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     const botaoSalvar = By.xpath('//button[@color="primary"]');
     await SmartWaiter.waitClick(botaoSalvar);
     await element(botaoSalvar).click();
@@ -318,7 +330,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
       ),
       nome
     );
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
   }
 
   /**
@@ -329,10 +341,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

@@ -4,22 +4,26 @@
  * classes
  */
 
+import { browser } from 'protractor';
+import { baseUrl } from '../../src/common';
 import { AtividadesPage } from '../../src/pages/atividades.po';
 import { EquipesPage } from '../../src/pages/rede_de_saude/equipes.po';
 import { ImoveisPage } from '../../src/pages/imoveis.po';
 import { LoginPage } from '../../src/pages/login.po';
-import { Usuario } from '../../src/models/usuario';
 import { TerritoriosPage } from '../../src/pages/territorios.po';
 import { HomePage } from '../../src/pages/home.po';
-import { Imovel } from '../../src/models/imovel';
-import { browser } from 'protractor';
-import { Atividade } from '../../src/models/atividade';
-import { baseUrl } from '../../config';
-import { Territorio } from '../../src/models/territorio';
-import { PerfilUsuario } from '../../src/models/perfil_usuario';
 import { PerfisDeUsuarioPage } from '../../src/pages/rede_de_saude/perfis_de_usuario.po';
 import { SituacoesDeAtividadePage } from '../../src/pages/tabelas_basicas/situacoes_de_atividade.po';
 import { TiposDeAtividadesPage } from '../../src/pages/tabelas_basicas/tipos_de_atividade.po';
+import { ListaDeTrabalhoPage } from '../../src/pages/lista_de_trabalho.po';
+import { RelatoriosPage } from '../../src/pages/relatorios.po';
+import { PerfilUsuario } from '../../src/models/perfil_usuario';
+import { Imovel } from '../../src/models/imovel';
+import { Atividade } from '../../src/models/atividade';
+import { Territorio } from '../../src/models/territorio';
+import { Registro } from '../../src/models/registro';
+import { Usuario } from '../../src/models/usuario';
+import { Relatorio } from '../../src/models/relatorio';
 
 const atividadePage = new AtividadesPage();
 const equipePage = new EquipesPage();
@@ -30,11 +34,22 @@ const territorioPage = new TerritoriosPage();
 const perfilDeUsuarioPage = new PerfisDeUsuarioPage();
 const situacaoDeAtividadePage = new SituacoesDeAtividadePage();
 const tipoDeAtividadePage = new TiposDeAtividadesPage();
+const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
+const relatorioPage = new RelatoriosPage();
 
 /**
- * tempo de timeout de 2 minutos para os testes
+ * tempo total de timeout para os testes
  */
-export const timeout = 2 * 60 * 1000;
+export const timeout = 10 * 60 * 1000;
+
+/**
+ * usuário padrão utilizado nos testes que usam o BlazeMeter
+ */
+export const userTest: Usuario = {
+  cpf: '111.111.111-11',
+  senha: '12345678',
+  unidade: 'SES - AM',
+};
 
 /**
  * navega até a página que deve ser testada
@@ -48,6 +63,14 @@ export async function getTestPage() {
  * @param user
  */
 export async function login(user: Usuario) {
+  try {
+    const currUrl = await browser.getCurrentUrl();
+    if (!currUrl.includes('/login')) {
+      await getTestPage();
+    }
+  } catch (err) {
+    await getTestPage();
+  }
   await loginPage.login(user);
 }
 
@@ -137,6 +160,7 @@ export async function deletarPerfilDeUsuario(perfil: PerfilUsuario) {
 
 /**
  * cria uma atividade, uma vez que está logado
+ * é necessário a criação de imoveis, equipes e opcionalmente demandas
  * @param atividade
  */
 export async function criarAtividade(atividade: Atividade) {
@@ -205,4 +229,60 @@ export async function removerFormularioAoTipoDeAtividade(
 ) {
   await tipoDeAtividadePage.get();
   await tipoDeAtividadePage.removerFormularioDoTipo(tipo, form);
+}
+
+/**
+ * Insere um registro na lista de trabalho para a atividade no formulario e imovel passados
+ * @param idAtividade
+ * @param imovel
+ * @param form
+ * @param reg
+ */
+export async function criarRegistroNaListaDeTrabalho(
+  idAtividade: string,
+  imovel: Imovel,
+  form: string,
+  reg: Registro
+) {
+  await listaDeTrabalhoPage.get();
+  await listaDeTrabalhoPage.inserirRegistro(
+    idAtividade,
+    imovel.logradouro,
+    form,
+    reg
+  );
+}
+
+/**
+ * exclui todos os registros da lista de trbalho da atividade no imovel passado
+ * @param idAtividade
+ * @param form
+ */
+export async function deletarRegistrosNaListaDeTrabalho(
+  idAtividade: string,
+  form: string
+) {
+  await listaDeTrabalhoPage.get();
+  await listaDeTrabalhoPage.excluirRegistros(idAtividade, form);
+}
+
+/**
+ * cria um relatorio, uma vez que está logado
+ * é necessária a inserção de registros na lista de trabalho primeiro
+ * @param relatorio
+ * @param form
+ */
+export async function criarRelatorio(relatorio: Relatorio, form: string) {
+  await relatorioPage.get();
+  await relatorioPage.cadastrarRelatorio(relatorio, form);
+}
+
+/**
+ * deleta o relatorio que possuir o titulo passado, uma vez que está logado
+ * @param relatorio
+ * @param form
+ */
+export async function deletarRelatorio(relatorio: Relatorio, form: string) {
+  await relatorioPage.get();
+  await relatorioPage.excluirRelatorio(relatorio.titulo, form);
 }

@@ -1,13 +1,13 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 import { EquipesPage } from '../../../src/pages/rede_de_saude/equipes.po';
 
 const equipesPage = new EquipesPage();
 
 /**
- * verifica se a a equipe passada foi criada, ou seja, checando se a mesma
+ * verifica se a equipe passada foi criada, ou seja, checando se a mesma
  * consta na tabela na página de gerenciamento de equipes
  * @param nomeDaEquipe
  */
@@ -16,7 +16,7 @@ export async function assertEquipeExiste(nomeDaEquipe: string) {
   const ok = true;
   try {
     await getNodeWithText(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      By.xpath('//app-equipe-tabela//tbody//tr/td[contains(@class, "nome")]'),
       nomeDaEquipe
     );
   } catch (err) {
@@ -45,7 +45,7 @@ export async function assertEquipePossui(
       const ariaChecked = await userRow
         .element(
           By.xpath(
-            `.//td[contains(@class, "cdk-column-${usuarioInfo['cargo']}")]//input`
+            `./td[contains(@class, "cdk-column-${usuarioInfo['cargo']}")]//input`
           )
         )
         .getAttribute('aria-checked');

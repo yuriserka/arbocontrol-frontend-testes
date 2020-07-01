@@ -1,4 +1,4 @@
-const { setDefaultTimeout, Then, When } = require('cucumber');
+import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser, element } from 'protractor';
 import { TableDefinition } from 'cucumber';
@@ -11,7 +11,7 @@ import {
 } from './helpers/asserts/atividade';
 import { Atividade } from '../src/models/atividade';
 import { timeout } from './helpers/common';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 
 setDefaultTimeout(timeout);
 

@@ -1,9 +1,9 @@
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { SystemPage } from './page.po';
-import { By, element, browser } from 'protractor';
+import { By, element } from 'protractor';
 import { selectFrom } from '../helpers/selectors';
 import { SmartWaiter } from '../helpers/smart_waiter';
-import { baseUrl } from '../../config';
+import { baseUrl } from '../common';
 import { Imovel } from '../models/imovel';
 
 /**
@@ -56,10 +56,10 @@ export class ImoveisPage extends SystemPage {
       } else {
         await this.preencherTextArea(campo, imovel);
       }
-      await browser.sleep(500);
+      await SmartWaiter.waitOneSecond();
     }
 
-    await element(By.xpath('//button[@color="primary"]')).click();
+    await SmartWaiter.safeClick(By.xpath('//button[@color="primary"]'));
     await SmartWaiter.waitUrl(`${baseUrl}/imoveis`);
   }
 
@@ -82,7 +82,7 @@ export class ImoveisPage extends SystemPage {
     await SmartWaiter.waitVisibility(By.xpath('//app-imovel-listagem//tbody'));
     await selectFrom(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouro
     );
@@ -160,10 +160,7 @@ export class ImoveisPage extends SystemPage {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
 
-    const botaoConfirmacao = By.xpath('(//mat-dialog-actions//button)[1]');
-    await SmartWaiter.waitVisibility(botaoConfirmacao);
-    await SmartWaiter.waitClick(botaoConfirmacao);
-    await element(botaoConfirmacao).click();
-    await browser.sleep(1000);
+    await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
+    await SmartWaiter.waitOneSecond();
   }
 }

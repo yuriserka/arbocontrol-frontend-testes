@@ -1,8 +1,8 @@
-const { setDefaultTimeout, Then, When } = require('cucumber');
+import { setDefaultTimeout, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser, element, By } from 'protractor';
 import { TableDefinition } from 'cucumber';
-import { baseUrl } from '../config';
+import { baseUrl } from '../src/common';
 import { ListaDeTrabalhoPage } from '../src/pages/lista_de_trabalho.po';
 import { assertRegistroInserido } from './helpers/asserts/lista_de_trabalho';
 import { timeout } from './helpers/common';
@@ -62,12 +62,14 @@ Then(
       // caso seja para inserir as amostras, guarda os ids para acessar novamente
       if (registros[i]['quantidade_de_amostras']) {
         idRegistros.push({
-          id: await element(
-            // sempre que um novo registro é inserido ele vai para o topo
-            By.xpath(
-              '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span)[1]'
-            )
-          ).getText(),
+          id: (
+            await element(
+              // sempre que um novo registro é inserido ele vai para o topo
+              By.xpath(
+                '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span)[1]'
+              )
+            ).getText()
+          ).trim(),
           qtd_reg: +registros[i]['quantidade_de_amostras'],
         });
       }

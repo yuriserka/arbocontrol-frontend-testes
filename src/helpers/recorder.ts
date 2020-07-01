@@ -3,6 +3,12 @@ import { browser, By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { BlazeMeterPage } from './pages/blazemeter.po';
 import { SmartWaiter } from './smart_waiter';
+import * as path from 'path';
+
+/**
+ * variavel responsavel por indicar se ja foi feito um login para usar o blazemeter
+ */
+let logado = false;
 
 /**
  * Responsável pelas interações com a extensão do Blaze Meter
@@ -42,7 +48,14 @@ export class Recorder {
     const handles = await browser.getAllWindowHandles();
     await browser.switchTo().window(handles[1]);
     await this.get();
-    await this.BlazeMeterlogin();
+
+    // espera 2 segundos para carregar a informação se está logado ou nao
+    await SmartWaiter.waitOneSecondPlus(1);
+
+    if (!(await this.isLogado())) {
+      await this.BlazeMeterlogin();
+    }
+
     await this.gravar();
 
     // retorna para a primeira aba aberta, para que os testes continuem
@@ -76,7 +89,7 @@ export class Recorder {
    */
   private async BlazeMeterlogin() {
     const blazeConfigPage = await browser.getWindowHandle();
-    await element(this.botoes_.login).click();
+    await SmartWaiter.safeClick(this.botoes_.login);
 
     const handles = await browser.getAllWindowHandles();
     await browser.waitForAngularEnabled(false);
@@ -85,10 +98,9 @@ export class Recorder {
     const blaze = new BlazeMeterPage();
     await blaze.login();
 
-    await SmartWaiter.waitUrl(
-      'https://a.blazemeter.com/app/#/welcome-screen',
-      5000
-    );
+    await SmartWaiter.waitUrlContain('https://a.blazemeter.com/app/', 10000);
+
+    await browser.close();
     await browser.switchTo().window(blazeConfigPage);
     await browser.navigate().refresh();
   }
@@ -99,7 +111,7 @@ export class Recorder {
    */
   private async Googlelogin() {
     const blazeConfigPage = await browser.getWindowHandle();
-    await element(this.botoes_.login).click();
+    await SmartWaiter.safeClick(this.botoes_.login);
 
     const handles = await browser.getAllWindowHandles();
     await browser.waitForAngularEnabled(false);
@@ -120,7 +132,9 @@ export class Recorder {
    * inicia a gravação do script
    */
   private async gravar() {
-    await element(this.campos_.nome_arquivo).sendKeys(this.nomeArquivo_);
+    const filenameField = element(this.campos_.nome_arquivo);
+    await filenameField.clear();
+    await filenameField.sendKeys(this.nomeArquivo_);
     await element(this.botoes_.gravar).click();
   }
 
@@ -147,25 +161,47 @@ export class Recorder {
     await element(By.css('#chk-jmx')).click();
 
     element.all(By.name('domains')).each(async domain => {
-      if (!domain) {
-        return;
-      }
-      const isSelected = await domain.isSelected();
-      if (isSelected) {
+      if (!domain || (await domain.isSelected())) {
         return;
       }
       await domain.click();
     });
 
-    await browser.sleep(1000);
+    await SmartWaiter.waitOneSecond();
     const btnDownload = By.css(
       '#run-overlay > div.download-body.body > div.button.download-button'
     );
     await SmartWaiter.waitClick(btnDownload);
     await element(btnDownload).click();
 
-    // depois é melhor criar uma função que checa se o arquivo terminou de ser
-    // baixado
-    await browser.sleep(10000);
+    const filename = path.join(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'reports',
+      'downloads',
+      `${this.nomeArquivo_}.jmx`
+    );
+
+    await SmartWaiter.waitFile(filename, 10000);
+  }
+
+  /**
+   * Verifica se já existe um usuario logado, para evitar uma tentativa de
+   * login novamente
+   */
+  private async isLogado() {
+    if (logado) {
+      return true;
+    }
+    try {
+      await element(By.xpath('//div[@class="welcome"]')).getWebElement();
+      logado = true;
+    } catch (err) {
+      console.log({ err });
+      logado = false;
+    }
+    return logado;
   }
 }

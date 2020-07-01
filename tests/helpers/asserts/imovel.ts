@@ -1,7 +1,7 @@
 import { SmartWaiter } from '../../../src/helpers/smart_waiter';
 import { By } from 'protractor';
 import { getNodeWithText } from '../../../src/helpers/selectors';
-import { baseUrl } from '../../../config';
+import { baseUrl } from '../../../src/common';
 
 /**
  * verifica se a o imovel passado foi criado, ou seja, checando se o mesmo
@@ -14,7 +14,7 @@ export async function assertImovelExiste(logradouro: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouro
     );

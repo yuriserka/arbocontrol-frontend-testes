@@ -1,7 +1,8 @@
 import { By, element } from 'protractor';
 import { By as SeleniumBy } from 'selenium-webdriver';
 import { GoogleAccountPage } from './google_account.po';
-import { googleAccount, blazeMeterAccount } from '../../../config';
+import { googleAccount, blazeMeterAccount } from '../../common';
+import { SmartWaiter } from '../smart_waiter';
 
 /**
  * Responsável por prover interfaces para login utilizando tanto uma conta do
@@ -27,7 +28,7 @@ export class BlazeMeterPage {
    * credenciais criadas.
    */
   async googleLogin() {
-    await element(this.botoes_.google).click();
+    await SmartWaiter.safeClick(this.botoes_.google);
     await new GoogleAccountPage().login(
       googleAccount.email,
       googleAccount.senha
@@ -40,6 +41,6 @@ export class BlazeMeterPage {
   async login() {
     await element(this.campos_.email).sendKeys(blazeMeterAccount.email);
     await element(this.campos_.senha).sendKeys(blazeMeterAccount.senha);
-    await element(this.botoes_.login).click();
+    await SmartWaiter.safeClick(this.botoes_.login);
   }
 }
