@@ -6,7 +6,7 @@ import { By } from 'protractor';
 /**
  * verifica se o territorio passado foi criado, ou seja, checando se o mesmo
  * consta na tabela na página de gerenciamento de territorios
- * @param nome 
+ * @param nome
  */
 export async function assertTerritorioExiste(nome: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/territorios`);

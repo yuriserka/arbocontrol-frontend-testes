@@ -99,8 +99,8 @@ export class RelatoriosPage extends SystemPage {
 
   /**
    * exclui o relatorio do formulario passado
-   * @param titulo 
-   * @param formulario 
+   * @param titulo
+   * @param formulario
    */
   async excluirRelatorio(titulo: string, formulario: string) {
     await element(this.botoes_.cadastrar).click();

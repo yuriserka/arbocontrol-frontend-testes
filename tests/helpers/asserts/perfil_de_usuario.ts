@@ -10,7 +10,7 @@ import {
 /**
  * verifica se o perfil de suario passado foi criado, ou seja, checando se o mesmo
  * consta na tabela na página de gerenciamento de perfis de usuario
- * @param nome 
+ * @param nome
  */
 export async function assertPerfilExiste(nome: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/perfis-usuarios`);
@@ -31,7 +31,7 @@ export async function assertPerfilExiste(nome: string) {
 /**
  * verifica se os recursos vinculados ao perfil foram criados, ou seja, checando se os mesmos
  * constam na tabela na página de gerenciamento de recursos na aba de recursos do perfil de usuario.
- * @param recurso 
+ * @param recurso
  */
 export async function assertRecursoVinculado(recurso: ControleRecurso) {
   await SmartWaiter.waitUrlContain(`${baseUrl}/perfis-usuarios/editar`);
@@ -58,7 +58,7 @@ export async function assertRecursoVinculado(recurso: ControleRecurso) {
 /**
  * verifica se os formularios vinculados ao perfil foram criados, ou seja, checando se os mesmos
  * constam na tabela na página de gerenciamento de formularios na aba de formularios do perfil de usuario.
- * @param formulario 
+ * @param formulario
  */
 export async function assertFormularioVinculado(
   formulario: ControleFormulario

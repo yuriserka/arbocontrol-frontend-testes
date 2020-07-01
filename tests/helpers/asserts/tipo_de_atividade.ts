@@ -8,8 +8,8 @@ const tiposAtividadePage = new TiposDeAtividadesPage();
 
 /**
  * checa se as atividades do tipo passando possuem um relatorio especifico
- * @param tipo 
- * @param nomeFormulario 
+ * @param tipo
+ * @param nomeFormulario
  */
 export async function assertTipoDeAtividadePossuiFormulario(
   tipo: string,

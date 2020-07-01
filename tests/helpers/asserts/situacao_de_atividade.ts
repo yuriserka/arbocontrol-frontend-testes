@@ -5,7 +5,7 @@ import { baseUrl } from '../../../src/common';
 
 /**
  * checa se a situação está liberada para edição
- * @param situacao 
+ * @param situacao
  */
 export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/situacoes-atividade`);
@@ -34,7 +34,7 @@ export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
 
 /**
  * checa se a situação exige justificativa
- * @param situacao 
+ * @param situacao
  */
 export async function assertSituacaoExigeJustificativa(situacao: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/situacoes-atividade`);

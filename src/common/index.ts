@@ -7,7 +7,7 @@ dotenv.config();
 export const baseUrl = process.env.URL_TO_TEST || 'http://localhost';
 
 /**
- * conta do blazemeter utilizada 
+ * conta do blazemeter utilizada
  */
 export const blazeMeterAccount = {
   email: process.env.BLAZE_METER_EMAIL || 'none',
