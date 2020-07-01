@@ -20,7 +20,6 @@ Exemplos:
 | nome_da_equipe |
 | __Equipe_0__   |
 | __Equipe_1__   |
-| __Equipe_2__   |
 
 Esquema do Cenário: Desvincular usuarios de uma equipe
     Então eu irei desvincular os usuarios da equipe "<nome_da_equipe>"
@@ -37,5 +36,4 @@ Esquema do Cenário: Excluir uma equipe
 Exemplos:
 | nome_da_equipe |
 | __Equipe_1__   |
-| __Equipe_2__   |
 | __Equipe_0__   |

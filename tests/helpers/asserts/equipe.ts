@@ -16,7 +16,7 @@ export async function assertEquipeExiste(nomeDaEquipe: string) {
   const ok = true;
   try {
     await getNodeWithText(
-      By.xpath('//tbody//tr//td//span[@class="span-link"]'),
+      By.xpath('//app-equipe-tabela//tbody//tr/td[contains(@class, "nome")]'),
       nomeDaEquipe
     );
   } catch (err) {
@@ -45,7 +45,7 @@ export async function assertEquipePossui(
       const ariaChecked = await userRow
         .element(
           By.xpath(
-            `.//td[contains(@class, "cdk-column-${usuarioInfo['cargo']}")]//input`
+            `./td[contains(@class, "cdk-column-${usuarioInfo['cargo']}")]//input`
           )
         )
         .getAttribute('aria-checked');

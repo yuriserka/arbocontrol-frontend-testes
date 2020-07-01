@@ -106,9 +106,7 @@ export class AtividadesPage extends SystemPage {
       const demandaRow = await getNodeWithText(
         By.xpath('//app-demanda-listagem//tbody//tr'),
         numDemanda,
-        By.xpath(
-          './td[contains(@class, "cdk-column-id")]/span[@class="span-link"]'
-        )
+        By.xpath('./td[contains(@class, "cdk-column-id")]')
       );
       const btn = demandaRow.element(
         By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
@@ -124,6 +122,7 @@ export class AtividadesPage extends SystemPage {
 
   /**
    * a partir da página de edição de uma atividade atribui os imoveis
+   * somente se a abrangencia for de imóveis
    * @param atividade
    */
   async atribuirImoveis(atividade: Atividade) {
@@ -138,11 +137,40 @@ export class AtividadesPage extends SystemPage {
       const imovelRow = await getNodeWithText(
         By.xpath('//app-imovel-listagem//tbody//tr'),
         logradouroImovel,
-        By.xpath(
-          './td[contains(@class, "logradouro")]/span[@class="span-link"]'
-        )
+        By.xpath('./td[contains(@class, "logradouro")]')
       );
       const btn = imovelRow.element(
+        By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
+      );
+      await browser
+        .actions()
+        .mouseMove(btn.getWebElement())
+        .perform();
+      await btn.click();
+      await this.confirmarAcao();
+    }
+  }
+
+  /**
+   * a partir da página de edição de uma atividade atribui os territorios,
+   * somente se a abrangencia for de territórios
+   * @param atividade
+   */
+  async atribuirTerritorios(atividade: Atividade) {
+    await this.selecionarAba('Territórios');
+    await this.expandirHeaderVinculo();
+
+    for (let i = 0; i < atividade.territorios.length; ++i) {
+      await SmartWaiter.waitTableRows(
+        By.xpath('//app-territorio-tabela//tbody//tr')
+      );
+      const nomeTerritorio = atividade.territorios[i];
+      const territorioRow = await getNodeWithText(
+        By.xpath('//app-territorio-tabela//tbody//tr'),
+        nomeTerritorio,
+        By.xpath('./td[contains(@class, "nome")]')
+      );
+      const btn = territorioRow.element(
         By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')
       );
       await browser
@@ -170,7 +198,7 @@ export class AtividadesPage extends SystemPage {
       const equipeRow = await getNodeWithText(
         By.xpath('//app-equipe-tabela//tbody//tr'),
         nomeEquipe,
-        By.xpath('./td[contains(@class, "nome")]/span[@class="span-link"]')
+        By.xpath('./td[contains(@class, "nome")]')
       );
       const btn = equipeRow.element(
         By.xpath('./td[contains(@class, "cdk-column-acoes")]/button')

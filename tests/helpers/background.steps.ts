@@ -59,12 +59,13 @@ export let atividades: {
      * id da atividade que foi cadastrada
      */
     id: string;
-    /**
-     * id dos registros da lista de trabalho associados a esta atividade
-     */
-    idRegistros: string[];
   };
 } = {};
+
+/**
+ * id dos registros inseridos
+ */
+export const idRegistros: string[] = [];
 
 /**
  * Nome do formulário que por ventura será utilizado na lista de trabalho por algum teste
@@ -161,13 +162,10 @@ Given(
       id: await getNodeWithText(
         By.xpath('//app-atividade-tabela//tbody//tr'),
         atividade.dadosBasicos.titulo,
-        By.xpath('./td[contains(@class, "titulo")]/span')
+        By.xpath('./td[contains(@class, "titulo")]')
       ).then(row =>
-        row
-          .element(By.xpath('./td[contains(@class, "column-id")]/span'))
-          .getText()
+        row.element(By.xpath('./td[contains(@class, "column-id")]')).getText()
       ),
-      idRegistros: [],
     };
   }
 );
@@ -199,13 +197,13 @@ Given(
         nomeDoFormulario,
         registros[i]
       );
-      const registroId = await element(
+      const regId = await element(
         // sempre que um novo registro é inserido ele vai para o topo
         By.xpath(
-          '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span)[1]'
+          '(//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")])[1]'
         )
       ).getText();
-      atividades[sigla].idRegistros.push(registroId);
+      idRegistros.push(regId.trim());
     }
   }
 );

@@ -82,7 +82,7 @@ export class ImoveisPage extends SystemPage {
     await SmartWaiter.waitVisibility(By.xpath('//app-imovel-listagem//tbody'));
     await selectFrom(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouro
     );

@@ -80,11 +80,11 @@ export class TerritoriosPage extends SystemPage {
    */
   async selecionarTerritorio(nome: string) {
     await SmartWaiter.waitVisibility(
-      By.xpath('//app-territorio-listagem//tbody')
+      By.xpath('//app-territorio-listar//tbody')
     );
     await selectFrom(
       By.xpath(
-        '//app-territorio-listagem//tbody//tr/td[contains(@class, "nome")]/span'
+        '//app-territorio-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       nome
     );

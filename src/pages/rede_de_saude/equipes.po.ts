@@ -67,16 +67,20 @@ export class EquipesPage extends SystemPage {
   async desvincularUsuarios(nomeEquipe: string, nomes?: string[]) {
     await this.selecionarEquipe(nomeEquipe);
 
-    const usernames: string[] = nomes
+    let vinculos: string[] = nomes
       ? nomes
       : await element
           .all(
-            By.xpath('//tbody//tr/td[contains(@class, "cdk-column-vinculo")]/a')
+            By.xpath(
+              '//app-equipe-vinculo-tabela//tbody//tr/td[contains(@class, "vinculo")]'
+            )
           )
           .map(link => link?.getText());
 
-    for (let i = 0; i < usernames.length; ++i) {
-      await this.desvincularUsuario(usernames[i]);
+    vinculos = vinculos.map(v => v.trim());
+
+    for (let i = 0; i < vinculos.length; ++i) {
+      await this.desvincularUsuario(vinculos[i]);
     }
 
     if (nomes) {
@@ -108,7 +112,7 @@ export class EquipesPage extends SystemPage {
   async selecionarEquipe(nomeEquipe: string) {
     await SmartWaiter.waitVisibility(By.xpath('//app-equipe-tabela//tbody'));
     await selectFrom(
-      By.xpath('//app-equipe-tabela//tbody//tr/td/span[@class="span-link"]'),
+      By.xpath('//app-equipe-tabela//tbody//tr/td[contains(@class, "nome")]'),
       nomeEquipe
     );
   }
@@ -141,13 +145,14 @@ export class EquipesPage extends SystemPage {
    */
   private async adicionarUsuario(nome: string) {
     const campoNomeUsuario = By.xpath(
-      '//input[@placeholder="Agente a Adicionar"]'
+      '//input[@placeholder="Adicionar membro"]'
     );
     await element(campoNomeUsuario).click();
     await element(campoNomeUsuario).sendKeys(nome);
     await selectFrom(By.xpath('//mat-option//span//span'), nome);
-    const botaoAdicionar = By.xpath('(//button[@color="primary"])[1]');
-    await element(botaoAdicionar).click();
+    await SmartWaiter.safeClick(
+      By.xpath('//button/span[text()=" Adicionar "]')
+    );
     await element(campoNomeUsuario).clear();
   }
 
@@ -156,11 +161,12 @@ export class EquipesPage extends SystemPage {
    * @param usuario estrutura que contém informação sobre nome e cargo
    */
   private async setCargo(usuario: { [key: string]: string }) {
+    await SmartWaiter.waitOneSecond();
     const userRow = await this.getUsuarioRow(usuario['nome']);
     await userRow
       .element(
         By.xpath(
-          `.//td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
+          `./td[contains(@class, "cdk-column-${usuario['cargo']}")]//div[@class="mat-slide-toggle-thumb"]`
         )
       )
       .click();
@@ -185,7 +191,6 @@ export class EquipesPage extends SystemPage {
   private async confirmarExclusao() {
     const dialog = By.xpath('//mat-dialog-container');
     await SmartWaiter.waitVisibility(dialog);
-
     await SmartWaiter.safeClick(By.xpath('(//mat-dialog-actions//button)[1]'));
     await SmartWaiter.waitOneSecond();
   }
@@ -205,9 +210,9 @@ export class EquipesPage extends SystemPage {
    */
   private async getUsuarioRow(nome: string) {
     return getNodeWithText(
-      By.xpath('//tbody//tr'),
+      By.xpath('//app-equipe-vinculo-tabela//tbody//tr'),
       nome,
-      By.xpath('.//td[contains(@class, "cdk-column-vinculo")]//a')
+      By.xpath('.//td[contains(@class, "vinculo")]')
     );
   }
 }

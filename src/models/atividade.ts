@@ -15,6 +15,7 @@ export class Atividade {
   demandas: string[] = [];
   equipes: string[] = [];
   imoveis: string[] = [];
+  territorios: string[] = [];
 
   constructor() {
     this.dadosBasicos = {
@@ -85,5 +86,17 @@ export class Atividade {
    */
   setImoveis(imoveisData: Array<{ [campo: string]: string }>) {
     this.imoveis = imoveisData.map(i => i['logradouro']);
+  }
+
+  /**
+   * os dados de entrada devem estar no formato:
+   * ```ts
+   * const territoriosData = {
+   *  nome: string;
+   * }[];
+   * ```
+   */
+  setTerritorios(territoriosData: Array<{ [campo: string]: string }>) {
+    this.territorios = territoriosData.map(t => t['nome']);
   }
 }

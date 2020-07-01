@@ -51,7 +51,7 @@ Cenário: inserção de registros na lista de trabalho
 
 Cenário: Cadastro com sucesso
     Quando eu acessar a pagina dos relatorios
-    Então eu vou cadastrar o relatorio para o formulario: "Inspeção Geral" tendo como base os registros da atividade do tipo "PE"
+    Então eu vou cadastrar o relatorio para o formulario: "Inspeção Geral" tendo como base os registros inseridos
     | campos                                                                                                                       | titulo          | tipo      |
     | Agente, Supervisor, Latitude Atual, Longitude Atual, Tipo de Atividade, Ciclo, Data Inspeção, Hora da entrada, Hora da saída | relatorio_teste | Relatório |
 

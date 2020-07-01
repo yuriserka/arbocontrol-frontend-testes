@@ -14,7 +14,7 @@ export async function assertImovelExiste(logradouro: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]/span'
+        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouro
     );

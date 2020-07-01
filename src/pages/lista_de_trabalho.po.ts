@@ -84,15 +84,17 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
 
     const regRowsXPath = By.xpath(
-      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]/span'
+      '//app-registro-atividade-tabela//tbody//tr/td[contains(@class, "column-id")]'
     );
     await SmartWaiter.waitTableRows(regRowsXPath);
 
-    const regs: string[] = idRegistros
+    let regs: string[] = idRegistros
       ? idRegistros
       : await element.all(regRowsXPath).map(r => {
           return r?.getText();
         });
+
+    regs = regs.map(r => r.trim());
 
     for (let i = 0; i < regs.length; ++i) {
       await this.selecionarRegistro(regs[i]);
@@ -167,7 +169,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]/span[@class="span-link"]'
+        '//app-atividade-tabela-simples//tbody//tr/td[contains(@class, "cdk-column-numero")]'
       ),
       numero
     );
@@ -271,7 +273,7 @@ export class ListaDeTrabalhoPage extends SystemPage {
     );
     await selectFrom(
       By.xpath(
-        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]//span'
+        '//app-registro-atividade-tabela//tbody//tr//td[contains(@class, "id")]'
       ),
       id
     );

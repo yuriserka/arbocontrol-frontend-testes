@@ -79,11 +79,13 @@ export class PerfisDeUsuarioPage extends SystemPage {
     await this.selecionarAba('Recursos/Autoridades');
     const recursoRowPath =
       '//app-perfil-usuario-recurso-autoridade-tabela//tbody/tr';
-    const nomes: string[] = nomeRecursos
+    let nomes: string[] = nomeRecursos
       ? nomeRecursos
       : await element
           .all(By.xpath(`${recursoRowPath}/td[contains(@class, "recurso")]`))
           .map(nome => nome?.getText());
+
+    nomes = nomes.map(n => n.trim());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recursoRow = await getNodeWithText(
@@ -115,11 +117,13 @@ export class PerfisDeUsuarioPage extends SystemPage {
   async desvincularFormularios(nomeFormularios?: string[]) {
     await this.selecionarAba('Formulários');
     const formRowPath = '//app-perfil-usuario-formulario-listar//tbody/tr';
-    const nomes: string[] = nomeFormularios
+    let nomes: string[] = nomeFormularios
       ? nomeFormularios
       : await element
           .all(By.xpath(`${formRowPath}/td[contains(@class, "formulario")]`))
           .map(nome => nome?.getText());
+
+    nomes = nomes.map(n => n.trim());
 
     for (let i = 0; i < nomes.length; ++i) {
       const recurso = await getNodeWithText(

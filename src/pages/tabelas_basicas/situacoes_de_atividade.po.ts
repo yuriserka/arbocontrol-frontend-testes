@@ -54,7 +54,9 @@ export class SituacoesDeAtividadePage extends SystemPage {
     await selectFrom(By.xpath('//mat-option/span'), '30');
     await SmartWaiter.waitOneSecond();
     await selectFrom(
-      By.xpath('//tbody//tr/td[contains(@class, "nome")]/a'),
+      By.xpath(
+        '//app-area-gestao-tabela//tbody//tr/td[contains(@class, "nome")]/a'
+      ),
       situacao
     );
   }

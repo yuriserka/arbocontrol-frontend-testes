@@ -15,30 +15,30 @@ export const config: Config = {
       browserName: 'chrome',
       chromeOptions: defaultChromeOpts,
       shardTestFiles: true,
-      maxInstances: 1,
+      maxInstances: 5,
       specs: loadFeatureFiles([
-        // 'login',
+        'login',
         'home',
-        // 'perfis_de_usuario',
-        // 'equipes',
-        // 'territorios',
+        'perfis_de_usuario',
+        'equipes',
+        'territorios',
       ]),
       metadata: {
         ...defaultMetadata,
       },
     },
-    // {
-    //   browserName: 'chrome',
-    //   chromeOptions: defaultChromeOpts,
-    //   specs: loadFeatureFiles([
-    //     'imoveis',
-    //     'atividades',
-    //     'lista_de_trabalho',
-    //     'relatorios',
-    //   ]),
-    //   metadata: {
-    //     ...defaultMetadata,
-    //   },
-    // },
+    {
+      browserName: 'chrome',
+      chromeOptions: defaultChromeOpts,
+      specs: loadFeatureFiles([
+        'imoveis',
+        'atividades',
+        'lista_de_trabalho',
+        'relatorios',
+      ]),
+      metadata: {
+        ...defaultMetadata,
+      },
+    },
   ],
 };

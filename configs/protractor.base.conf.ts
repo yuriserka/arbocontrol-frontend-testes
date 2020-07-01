@@ -23,7 +23,7 @@ export const baseConfig: Config = {
     compiler: 'ts:ts-node/register',
     require: [path.resolve(process.cwd(), './build/tests/**/*.js')],
     format: [require.resolve('cucumber-pretty'), 'json:reports/results.json'],
-    'fail-fast': true,
+    // 'fail-fast': true,
     tags: false,
     strict: true,
     profile: false,

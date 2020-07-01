@@ -15,7 +15,7 @@ export async function assertAtividadeExiste(tituloDaAtividade: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-atividade-tabela//tbody//tr//td[contains(@class, "titulo")]'
+        '//app-atividade-tabela//tbody//tr/td[contains(@class, "titulo")]'
       ),
       tituloDaAtividade
     );
@@ -35,7 +35,7 @@ export async function assertDemandaVinculada(numeroDaDemanda: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-demanda-atividade-tabela//tbody//tr//td[contains(@class, "numero")]'
+        '//app-demanda-atividade-tabela//tbody//tr/td[contains(@class, "numero")]'
       ),
       numeroDaDemanda
     );
@@ -55,7 +55,7 @@ export async function assertImovelVinculado(logradouroDoImovel: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-atividade-imovel-tabela//tbody//tr//td[contains(@class, "logradouro")]'
+        '//app-atividade-imovel-tabela//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouroDoImovel
     );

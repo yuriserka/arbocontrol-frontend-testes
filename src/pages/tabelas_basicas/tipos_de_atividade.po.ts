@@ -39,7 +39,7 @@ export class TiposDeAtividadesPage extends SystemPage {
     const formRow = await getNodeWithText(
       By.xpath('//app-formulario-listagem//tbody//tr'),
       nomeFormulario,
-      By.xpath('./td[contains(@class, "titulo")]/span')
+      By.xpath('./td[contains(@class, "titulo")]')
     );
 
     const btn = formRow.element(
@@ -106,7 +106,7 @@ export class TiposDeAtividadesPage extends SystemPage {
   async selecionarTipo(tipo: string) {
     await selectFrom(
       By.xpath(
-        '//app-tipo-atividade-tabela//tbody//tr/td[contains(@class, "nome")]/span'
+        '//app-atividade-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       tipo
     );

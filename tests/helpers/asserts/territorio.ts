@@ -9,7 +9,7 @@ export async function assertTerritorioExiste(nome: string) {
   try {
     await getNodeWithText(
       By.xpath(
-        '//app-territorio-listagem//tbody//tr/td[contains(@class, "nome")]/span'
+        '//app-territorio-listar//tbody//tr/td[contains(@class, "nome")]'
       ),
       nome
     );

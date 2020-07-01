@@ -21,8 +21,6 @@ Esquema do Cenário: Cadastro com sucesso
 Exemplos:
 | nome_da_equipe |
 | __Equipe_0__   |
-| __Equipe_1__   |
-| __Equipe_2__   |
 
 @NeedLogin
 Esquema do Cenário: Desvincular usuarios de uma equipe
@@ -42,8 +40,6 @@ Esquema do Cenário: Excluir uma equipe
 
 Exemplos:
 | nome_da_equipe |
-| __Equipe_1__   |
-| __Equipe_2__   |
 | __Equipe_0__   |
 
 @Blaze
