@@ -6,6 +6,11 @@ import { TiposDeAtividadesPage } from '../../../src/pages/tabelas_basicas/tipos_
 
 const tiposAtividadePage = new TiposDeAtividadesPage();
 
+/**
+ * checa se as atividades do tipo passando possuem um relatorio especifico
+ * @param tipo 
+ * @param nomeFormulario 
+ */
 export async function assertTipoDeAtividadePossuiFormulario(
   tipo: string,
   nomeFormulario: string

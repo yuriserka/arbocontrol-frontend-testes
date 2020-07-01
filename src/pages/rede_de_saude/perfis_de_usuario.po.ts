@@ -44,7 +44,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * cadastra um perfil de usuario
    * @param perfil
    */
   async cadastrarPerfil(perfil: PerfilUsuario) {
@@ -59,7 +59,8 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * exclui o perfil com o nome passado e remove os formularios e recursos do
+   * mesmo
    * @param nome
    */
   async excluirPerfil(nome: string) {
@@ -72,7 +73,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * exclui os recursos do perfil, dado que ele ja foi selecionado anteriormente
    * @param nomeRecursos
    */
   async desvincularRecursos(nomeRecursos?: string[]) {
@@ -111,7 +112,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * exclui o formulario do perfil, dado que ele ja foi selecionado anteriormente
    * @param nomeFormularios
    */
   async desvincularFormularios(nomeFormularios?: string[]) {
@@ -149,7 +150,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * seleciona um perfil de usuario
    * @param nome
    */
   async selecionarPerfil(nome: string) {
@@ -165,7 +166,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * edita os dados básicos de um perfil
    * @param dados
    */
   async atribuirDadosBasicos(dados: DadosBasicosPerfilUsuario) {
@@ -174,7 +175,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * atribui os recursos especificados ao perfil selecionado
    * @param perfil
    */
   async atribuirRecursos(perfil: PerfilUsuario) {
@@ -187,7 +188,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * atribui os formularios especificados ao perfil selecionado
    * @param perfil
    */
   async atribuirFormularios(perfil: PerfilUsuario) {
@@ -242,7 +243,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   * preenche o nó do tipo \<input\> com o valor apropriado
+   * preenche os nós do tipo \<input\> com o valor apropriado
    * @param campo
    * @param dadosBasicos
    */
@@ -256,7 +257,7 @@ export class PerfisDeUsuarioPage extends SystemPage {
   }
 
   /**
-   *
+   * seleciona os elementos que são do tipo \<select\> de forma correta
    * @param dado
    * @param target
    */

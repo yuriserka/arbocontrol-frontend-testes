@@ -31,7 +31,7 @@ export async function assertRelatorioExiste(nomeDoRelatorio: string) {
 }
 
 /**
- *
+ * checa se todos os registros inseridos na lista de trabalho estão no formulario
  * @param relatorio
  */
 export async function assertRelatorioPossuiRegistros(relatorio: Relatorio) {

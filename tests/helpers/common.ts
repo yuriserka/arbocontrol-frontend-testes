@@ -38,7 +38,7 @@ const listaDeTrabalhoPage = new ListaDeTrabalhoPage();
 const relatorioPage = new RelatoriosPage();
 
 /**
- * tempo de timeout de 2 minutos para os testes
+ * tempo total de timeout para os testes
  */
 export const timeout = 10 * 60 * 1000;
 

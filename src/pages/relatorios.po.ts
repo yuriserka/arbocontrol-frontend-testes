@@ -28,7 +28,7 @@ export class RelatoriosPage extends SystemPage {
   }
 
   /**
-   * cadastra um relatorio dado que existem dados para tal
+   * cadastra um relatorio dado que existem registros inseridos na lista de trabalho
    * @param relatorio
    * @param formulario
    */
@@ -97,6 +97,11 @@ export class RelatoriosPage extends SystemPage {
     await element(By.xpath('(//button[@color="primary"])[1]')).click();
   }
 
+  /**
+   * exclui o relatorio do formulario passado
+   * @param titulo 
+   * @param formulario 
+   */
   async excluirRelatorio(titulo: string, formulario: string) {
     await element(this.botoes_.cadastrar).click();
     await selectFrom(

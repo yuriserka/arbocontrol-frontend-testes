@@ -187,6 +187,10 @@ export class Recorder {
     await SmartWaiter.waitFile(filename, 10000);
   }
 
+  /**
+   * Verifica se já existe um usuario logado, para evitar uma tentativa de
+   * login novamente
+   */
   private async isLogado() {
     if (logado) {
       return true;

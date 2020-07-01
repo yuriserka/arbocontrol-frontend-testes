@@ -7,7 +7,7 @@ import {
 import * as fs from 'fs';
 
 /**
- * Representa o tempo máximo de espera para as condições
+ * Representa o tempo máximo de espera para as condições em ms
  */
 const timeout = 10000;
 

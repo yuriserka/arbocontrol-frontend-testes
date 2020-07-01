@@ -3,6 +3,10 @@ import { getNodeWithText, selectFrom } from '../../../src/helpers/selectors';
 import { By, browser, element } from 'protractor';
 import { baseUrl } from '../../../src/common';
 
+/**
+ * checa se a situação está liberada para edição
+ * @param situacao 
+ */
 export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/situacoes-atividade`);
   const ok = true;
@@ -28,6 +32,10 @@ export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
   }
 }
 
+/**
+ * checa se a situação exige justificativa
+ * @param situacao 
+ */
 export async function assertSituacaoExigeJustificativa(situacao: string) {
   await SmartWaiter.waitUrl(`${baseUrl}/situacoes-atividade`);
   const ok = true;

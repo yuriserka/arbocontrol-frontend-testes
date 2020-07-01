@@ -7,7 +7,7 @@ import { EquipesPage } from '../../../src/pages/rede_de_saude/equipes.po';
 const equipesPage = new EquipesPage();
 
 /**
- * verifica se a a equipe passada foi criada, ou seja, checando se a mesma
+ * verifica se a equipe passada foi criada, ou seja, checando se a mesma
  * consta na tabela na página de gerenciamento de equipes
  * @param nomeDaEquipe
  */
