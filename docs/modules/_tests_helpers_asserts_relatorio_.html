@@ -80,7 +80,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_tests_helpers_asserts_relatorio_.html#assertrelatorioexiste" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Existe</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_tests_helpers_asserts_relatorio_.html#assertrelatoriopossuiquantidadecorretaderegistros" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Quantidade<wbr>Correta<wbr>DeRegistros</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_tests_helpers_asserts_relatorio_.html#assertrelatoriopossuiregistros" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Registros</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,7 +94,7 @@
 					<div class="tsd-signature tsd-kind-icon">relatorios<wbr>Page<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_pages_relatorios_po_.relatoriospage.html" class="tsd-signature-type">RelatoriosPage</a><span class="tsd-signature-symbol"> = new RelatoriosPage()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/8a42d1e/tests/helpers/asserts/relatorio.ts#L10">tests/helpers/asserts/relatorio.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6cee29c/tests/helpers/asserts/relatorio.ts#L10">tests/helpers/asserts/relatorio.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,7 +111,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/8a42d1e/tests/helpers/asserts/relatorio.ts#L17">tests/helpers/asserts/relatorio.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6cee29c/tests/helpers/asserts/relatorio.ts#L17">tests/helpers/asserts/relatorio.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -133,19 +133,22 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="assertrelatoriopossuiquantidadecorretaderegistros" class="tsd-anchor"></a>
-					<h3>assert<wbr>Relatorio<wbr>Possui<wbr>Quantidade<wbr>Correta<wbr>DeRegistros</h3>
+					<a name="assertrelatoriopossuiregistros" class="tsd-anchor"></a>
+					<h3>assert<wbr>Relatorio<wbr>Possui<wbr>Registros</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Quantidade<wbr>Correta<wbr>DeRegistros<span class="tsd-signature-symbol">(</span>relatorio<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-signature-type">Relatorio</a>, siglaTipoDeAtividade<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Registros<span class="tsd-signature-symbol">(</span>relatorio<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-signature-type">Relatorio</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/8a42d1e/tests/helpers/asserts/relatorio.ts#L37">tests/helpers/asserts/relatorio.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/yuriserka/ARBO_frontend_tests/blob/6cee29c/tests/helpers/asserts/relatorio.ts#L37">tests/helpers/asserts/relatorio.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>checa se todos os registros inseridos na lista de trabalho estão no formulario</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -153,9 +156,6 @@
 									<h5>relatorio: <a href="../interfaces/_src_models_relatorio_.relatorio.html" class="tsd-signature-type">Relatorio</a></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
-								</li>
-								<li>
-									<h5>siglaTipoDeAtividade: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -184,7 +184,7 @@
 						<a href="_tests_helpers_asserts_relatorio_.html#assertrelatorioexiste" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Existe</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_tests_helpers_asserts_relatorio_.html#assertrelatoriopossuiquantidadecorretaderegistros" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Quantidade<wbr>Correta<wbr>DeRegistros</a>
+						<a href="_tests_helpers_asserts_relatorio_.html#assertrelatoriopossuiregistros" class="tsd-kind-icon">assert<wbr>Relatorio<wbr>Possui<wbr>Registros</a>
 					</li>
 				</ul>
 			</nav>
