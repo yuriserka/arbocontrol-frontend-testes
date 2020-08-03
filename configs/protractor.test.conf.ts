@@ -27,18 +27,18 @@ export const config: Config = {
         ...defaultMetadata,
       },
     },
-    {
-      browserName: 'chrome',
-      chromeOptions: defaultChromeOpts,
-      specs: loadFeatureFiles([
-        'imoveis',
-        'atividades',
-        'lista_de_trabalho',
-        'relatorios',
-      ]),
-      metadata: {
-        ...defaultMetadata,
-      },
-    },
+    // {
+    //   browserName: 'chrome',
+    //   chromeOptions: defaultChromeOpts,
+    //   specs: loadFeatureFiles([
+    //     'imoveis',
+    //     'atividades',
+    //     'lista_de_trabalho',
+    //     'relatorios',
+    //   ]),
+    //   metadata: {
+    //     ...defaultMetadata,
+    //   },
+    // },
   ],
 };

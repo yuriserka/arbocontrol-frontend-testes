@@ -4,14 +4,15 @@
   "description": "testes desenvolvidos para o sistema Arbocontrol",
   "main": "protractor.conf.ts",
   "scripts": {
-    "test": "yarn compile && ./node_modules/.bin/protractor ./build/configs/protractor.test.conf.js",
-    "test:jmx": "yarn compile && ./node_modules/.bin/protractor ./build/configs/protractor.jmx.conf.js",
-    "docs": "./node_modules/.bin/typedoc --tsconfig",
-    "webdriver:start": "node_modules/.bin/webdriver-manager update && node_modules/.bin/webdriver-manager start",
+    "test": "yarn compile && yarn protractor ./build/configs/protractor.test.conf.js",
+    "test:jmx": "yarn compile && yarn protractor ./build/configs/protractor.jmx.conf.js",
+    "docs": "yarn typedoc --tsconfig",
+    "webdriver:start": "yarn webdriver-manager update --standalone && yarn webdriver-manager start",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
-    "fix": "gts fix"
+    "fix": "gts fix",
+    "start": "node server/index.js"
   },
   "keywords": [
     "Software Test"
@@ -19,7 +20,11 @@
   "author": "Yuri Serka do Carmo Rodrigues",
   "license": "MIT",
   "dependencies": {
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
     "cucumber": "^6.0.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "protractor": "^5.4.2",
     "typescript": "^3.7.5"
   },

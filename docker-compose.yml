@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: "sv-frontend-test"
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    command: ./.docker/start.sh & && yarn start
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ".:/usr/app"
+networks:
+  default:
+    external:
+      name: arbocontrol-docker-testes_sv-network

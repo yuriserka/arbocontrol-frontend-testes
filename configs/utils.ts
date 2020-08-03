@@ -42,7 +42,14 @@ export const defaultMetadata = {
  * opções padroes para o navegador google chrome
  */
 export const defaultChromeOpts = {
-  args: ['--disable-plugins', '--disable-infobars', '--disable-gpu'],
+  args: [
+    '--headless',
+    '--window-size=1920x1080',
+    '--no-sandbox',
+    '--disable-plugins',
+    '--disable-infobars',
+    '--disable-gpu'
+  ],
   prefs: {
     download: {
       prompt_for_download: false,
