@@ -79,10 +79,10 @@ export class ImoveisPage extends SystemPage {
    * @param logradouro
    */
   async selecionarImovel(logradouro: string) {
-    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-listagem//tbody'));
+    await SmartWaiter.waitVisibility(By.xpath('//app-imovel-tabela-component//tbody'));
     await selectFrom(
       By.xpath(
-        '//app-imovel-listagem//tbody//tr/td[contains(@class, "logradouro")]'
+        '//app-imovel-tabela-component//tbody//tr/td[contains(@class, "logradouro")]'
       ),
       logradouro
     );

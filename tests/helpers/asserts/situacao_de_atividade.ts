@@ -15,18 +15,14 @@ export async function assertSituacaoLiberadaParaEdicao(situacao: string) {
     await selectFrom(By.xpath('//mat-option/span'), '30');
     await browser.sleep(1000);
 
-    const situacaoRow = await getNodeWithText(
-      By.xpath('//tbody//tr'),
+    await selectFrom(
+      By.xpath('//tbody//tr/td[contains(@class, "nome")]/a'),
       situacao,
-      By.xpath('./td[contains(@class, "nome")]/a')
     );
 
-    return situacaoRow
-      .element(
-        By.xpath('./td[contains(@class, "cdk-column-liberadaParaEdicao")]/a')
-      )
-      .getText()
-      .then(txt => txt.toLowerCase() === 'sim');
+    return await element(
+      By.xpath('//mat-checkbox[@formcontrolname="liberadaParaEdicao"]//input')
+    ).isSelected();
   } catch (err) {
     return !ok;
   }
@@ -44,18 +40,14 @@ export async function assertSituacaoExigeJustificativa(situacao: string) {
     await selectFrom(By.xpath('//mat-option/span'), '30');
     await browser.sleep(1000);
 
-    const situacaoRow = await getNodeWithText(
-      By.xpath('//tbody//tr'),
+    await selectFrom(
+      By.xpath('//tbody//tr/td[contains(@class, "nome")]/a'),
       situacao,
-      By.xpath('./td[contains(@class, "nome")]/a')
     );
 
-    return situacaoRow
-      .element(
-        By.xpath('./td[contains(@class, "cdk-column-exigeJustificativa")]/a')
-      )
-      .getText()
-      .then(txt => txt.toLowerCase() === 'sim');
+    return await element(
+      By.xpath('//mat-checkbox[@formcontrolname="exigeJustificativa"]//input')
+    ).isSelected();
   } catch (err) {
     return !ok;
   }

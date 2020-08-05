@@ -131,11 +131,11 @@ export class AtividadesPage extends SystemPage {
 
     for (let i = 0; i < atividade.imoveis.length; ++i) {
       await SmartWaiter.waitTableRows(
-        By.xpath('//app-imovel-listagem//tbody//tr')
+        By.xpath('//app-imovel-tabela-component//tbody//tr')
       );
       const logradouroImovel = atividade.imoveis[i];
       const imovelRow = await getNodeWithText(
-        By.xpath('//app-imovel-listagem//tbody//tr'),
+        By.xpath('//app-imovel-tabela-component//tbody//tr'),
         logradouroImovel,
         By.xpath('./td[contains(@class, "logradouro")]')
       );
