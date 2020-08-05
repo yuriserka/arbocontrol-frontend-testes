@@ -44,7 +44,7 @@ export const defaultMetadata = {
 export const defaultChromeOpts = {
   args: [
     '--headless',
-    '--window-size=1920x1080',
+    '--window-size=1280x720',
     '--no-sandbox',
     '--disable-plugins',
     '--disable-infobars',

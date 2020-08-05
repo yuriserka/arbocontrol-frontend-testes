@@ -11,8 +11,7 @@
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
-    "fix": "gts fix",
-    "start": "node server/index.js"
+    "fix": "gts fix"
   },
   "keywords": [
     "Software Test"
@@ -20,12 +19,8 @@
   "author": "Yuri Serka do Carmo Rodrigues",
   "license": "MIT",
   "dependencies": {
-    "child_process": "^1.0.2",
-    "cors": "^2.8.5",
     "cucumber": "^6.0.5",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "protractor": "^5.4.2",
+    "protractor": "^7.0.0",
     "typescript": "^3.7.5"
   },
   "devDependencies": {

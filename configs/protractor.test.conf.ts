@@ -18,10 +18,10 @@ export const config: Config = {
       maxInstances: 5,
       specs: loadFeatureFiles([
         'login',
-        'home',
-        'perfis_de_usuario',
-        'equipes',
-        'territorios',
+        // 'home',
+        // 'perfis_de_usuario',
+        // 'equipes',
+        // 'territorios',
       ]),
       metadata: {
         ...defaultMetadata,

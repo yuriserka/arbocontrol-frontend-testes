@@ -6,11 +6,9 @@ services:
     build:
       context: .
       dockerfile: ./.docker/Dockerfile
-    command: ./.docker/start.sh & && yarn start
-    ports:
-      - "${PORT}:${PORT}"
+    command: sh entrypoint.sh
     volumes:
-      - ".:/usr/app"
+      - "./output:/usr/app/reports/report"
 networks:
   default:
     external:

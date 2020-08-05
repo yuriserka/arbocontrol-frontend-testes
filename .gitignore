@@ -68,3 +68,6 @@ typings/
 
 # Cucumber results
 reports
+
+output/**
+!output/.gitkeep
